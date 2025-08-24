@@ -1,7 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { ClientTypeSelector } from "@/components/ClientTypeSelector";
 import { WorkShowcase } from "@/components/WorkShowcase";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactSection } from "@/components/ContactSection";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Hero />
       <ClientTypeSelector />
       <WorkShowcase />
-      <ContactForm />
+      <ContactSection />
     </div>
   );
 };
