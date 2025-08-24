@@ -1,6 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { ClientTypeSelector } from "@/components/ClientTypeSelector";
 import { WorkShowcase } from "@/components/WorkShowcase";
+import { ContactPreview } from "@/components/ContactPreview";
 import { ClientShowcase } from "@/components/ClientShowcase";
 import { ContactSection } from "@/components/ContactSection";
 
@@ -10,6 +11,7 @@ const Index = () => {
       <Hero />
       <ClientTypeSelector />
       <WorkShowcase />
+      <ContactPreview />
       <ClientShowcase />
       <ContactSection />
     </div>
