@@ -50,91 +50,91 @@ const propertyListings = [
     id: 1,
     title: "Modern Mediterranean Villa",
     location: "Marbella, Costa del Sol",
-    price: "€2,850,000",
+    status: "Sold",
     beds: 5,
     baths: 4,
     image: property1,
-    badge: "New Listing"
+    badge: "Video + Photos"
   },
   {
     id: 2,
     title: "Luxury Sea View Apartment",
     location: "Puerto Banús, Marbella",
-    price: "€1,250,000",
+    status: "Sold",
     beds: 3,
     baths: 2,
     image: property2,
-    badge: "Sea Views"
+    badge: "Drone Tour"
   },
   {
     id: 3,
     title: "Penthouse with Terrace",
     location: "Estepona, Costa del Sol",
-    price: "€3,200,000",
+    status: "Sold",
     beds: 4,
     baths: 3,
     image: property3,
-    badge: "Exclusive"
+    badge: "Staging + Video"
   },
   {
     id: 4,
     title: "Traditional Spanish Villa",
     location: "Benahavís, Málaga",
-    price: "€1,850,000",
+    status: "Sold",
     beds: 4,
     baths: 3,
     image: property4,
-    badge: "Authentic"
+    badge: "Photography"
   },
   {
     id: 5,
     title: "Beachfront Apartment",
     location: "Fuengirola, Costa del Sol",
-    price: "€890,000",
+    status: "Sold",
     beds: 2,
     baths: 2,
     image: property5,
-    badge: "Beachfront"
+    badge: "Virtual Tour"
   },
   {
     id: 6,
     title: "Golf Course Villa",
     location: "Nueva Andalucía, Marbella",
-    price: "€2,100,000",
+    status: "Sold",
     beds: 4,
     baths: 4,
     image: property6,
-    badge: "Golf Views"
+    badge: "Cinematic Video"
   },
   {
     id: 7,
     title: "Renovated Finca",
     location: "Countryside, Málaga",
-    price: "€1,450,000",
+    status: "Sold",
     beds: 6,
     baths: 4,
     image: property7,
-    badge: "Rural Charm"
+    badge: "Before/After"
   },
   {
     id: 8,
     title: "Smart Home Villa",
     location: "Mijas, Costa del Sol",
-    price: "€2,650,000",
+    status: "Sold",
     beds: 5,
     baths: 5,
     image: property8,
-    badge: "Smart Home"
+    badge: "Tech Showcase"
   },
   {
     id: 9,
     title: "Charming Townhouse",
     location: "Casares, Costa del Sol",
-    price: "€650,000",
+    status: "Sold",
     beds: 3,
     baths: 2,
     image: property9,
-    badge: "Move-in Ready"
+    badge: "Lifestyle Video"
   }
 ];
 
@@ -217,13 +217,13 @@ export const WorkShowcase = () => {
         {/* Property Listings Section */}
         <div className="text-center mb-12 animate-fade-up">
           <Badge variant="outline" className="mb-4 px-4 py-2">
-            Featured Properties
+            Successfully Sold Properties
           </Badge>
           <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Discover Your <span className="text-gradient-gold">Dream Home</span>
+            Properties <span className="text-gradient-gold">We've Marketed</span>
           </h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our exclusive collection of luxury properties on the Costa del Sol
+            Professional photo and video content that helped these properties sell faster
           </p>
         </div>
         
@@ -251,9 +251,9 @@ export const WorkShowcase = () => {
                   {property.badge}
                 </Badge>
                 
-                {/* Price */}
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
-                  <span className="text-lg font-bold text-primary">{property.price}</span>
+                {/* Status */}
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-sm font-medium text-green-600">{property.status}</span>
                 </div>
               </div>
               
