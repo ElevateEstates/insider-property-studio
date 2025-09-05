@@ -32,48 +32,44 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-fade-up">
-            <Badge variant="secondary" className="mb-4 px-4 py-2 glass-effect text-white border-white/30">
-              Get Started
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Ready to Work <span className="text-gradient-gold">Together?</span>
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Tell us about your project and we'll create a tailored strategy for your success
-            </p>
-          </div>
+    <section id="contact-form" className="py-32 px-6 bg-black">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-16 animate-fade-up">
+          <h2 className="text-5xl md:text-6xl font-light mb-8 border-b border-white/20 pb-4 text-white">
+            Ready to Work Together?
+          </h2>
+          <p className="text-lg md:text-xl leading-relaxed text-white/80 font-light max-w-2xl mx-auto">
+            Tell us about your project and we'll create a tailored strategy for your success
+          </p>
+        </div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Contact Info */}
             <div className="space-y-8 animate-slide-in">
               <div>
-                <h3 className="text-2xl font-semibold text-white mb-6">Get In Touch</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-white/80">
-                    <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-accent-gold" />
+                <h3 className="text-2xl font-light text-white mb-6">Get In Touch</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="font-medium">Email</p>
                       <p>contact@costaestateservices.com</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-white/80">
-                    <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-accent-gold" />
+                  <div className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="font-medium">Phone</p>
                       <p>+34 123 456 789</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-white/80">
-                    <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-accent-gold" />
+                  <div className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="font-medium">Location</p>
@@ -83,8 +79,8 @@ export const ContactSection = () => {
                 </div>
               </div>
               
-              <div className="glass-effect p-6 rounded-2xl">
-                <h4 className="text-lg font-semibold text-white mb-3">Why Choose Us?</h4>
+              <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl">
+                <h4 className="text-lg font-light text-white mb-3">Why Choose Us?</h4>
                 <ul className="space-y-2 text-white/80">
                   <li>• Access to exclusive off-market properties</li>
                   <li>• Professional marketing content creation</li>
@@ -144,7 +140,11 @@ export const ContactSection = () => {
                   />
                 </div>
                 
-                <Button type="submit" className="btn-hero w-full group">
+                <Button 
+                  type="submit" 
+                  variant="outline"
+                  className="w-full bg-transparent border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group"
+                >
                   Send Message
                   <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -152,7 +152,6 @@ export const ContactSection = () => {
             </Card>
           </div>
         </div>
-      </div>
       
       {/* Other Specification Dialog */}
       <Dialog open={isOtherDialogOpen} onOpenChange={setIsOtherDialogOpen}>

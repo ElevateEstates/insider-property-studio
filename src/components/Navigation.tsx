@@ -22,9 +22,9 @@ export const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{ 
-        backgroundColor: `rgba(0, 0, 0, ${0.8 * navOpacity})`,
+        background: `linear-gradient(to bottom, rgba(0, 0, 0, ${0.9 * navOpacity}), rgba(0, 0, 0, ${0.6 * navOpacity}), transparent)`,
         backdropFilter: scrollY > 0 ? 'blur(8px)' : 'blur(12px)',
         borderBottom: `1px solid rgba(255, 255, 255, ${0.1 * navOpacity})`
       }}
