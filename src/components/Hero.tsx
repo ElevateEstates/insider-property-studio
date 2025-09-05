@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden pt-20">
       {/* Animated Mission Statement */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center transform -rotate-12 opacity-10">
@@ -21,9 +21,12 @@ export const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight">
-            geir / costa del sol
+        <div className="mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white tracking-tight mb-6">
+            OUR MISSION IS TO HELP AGENTS PROMOTE THEIR LISTINGS THROUGH CONTENT MARKETING IN COSTA DEL SOL.
+          </h1>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/80 tracking-wide">
+            ELEVATE YOUR PROPERTY LISTING
           </h2>
         </div>
       </div>
