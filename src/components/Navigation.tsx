@@ -1,8 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 export const Navigation = () => {
   const location = useLocation();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { href: "/", label: "HOME" },
@@ -10,17 +18,38 @@ export const Navigation = () => {
     { href: "/client-feedback", label: "CLIENT FEEDBACK" },
   ];
 
+  const navOpacity = Math.max(0, 1 - scrollY / 300);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{ 
+        backgroundColor: `rgba(0, 0, 0, ${0.8 * navOpacity})`,
+        backdropFilter: scrollY > 0 ? 'blur(8px)' : 'blur(12px)',
+        borderBottom: `1px solid rgba(255, 255, 255, ${0.1 * navOpacity})`
+      }}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-              <div className="text-black font-bold text-xl">E</div>
-            </div>
-            <div className="text-white font-light text-xl tracking-wide">
-              ELEVATE PROPERTIES
+          <Link to="/" className="flex items-center">
+            <div className="flex items-center space-x-2">
+              {/* House icon with camera aperture */}
+              <div className="relative w-12 h-12">
+                <svg viewBox="0 0 48 48" className="w-full h-full text-white">
+                  {/* House outline */}
+                  <path 
+                    d="M6 20L24 4L42 20V42H30V30H18V42H6V20Z" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2"
+                  />
+                  {/* Camera aperture in center */}
+                  <circle cx="24" cy="22" r="6" fill="currentColor"/>
+                  <circle cx="24" cy="22" r="4" fill="black"/>
+                  <circle cx="24" cy="22" r="2" fill="currentColor"/>
+                </svg>
+              </div>
             </div>
           </Link>
 

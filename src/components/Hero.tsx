@@ -4,33 +4,15 @@ export const Hero = () => {
       {/* Animated Mission Statement */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center transform -rotate-12 opacity-10">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-wider text-white">
-            OUR MISSION IS TO
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-wider text-white">
+            HELPING AGENTS FIND BUYERS
           </h1>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-wider text-white mt-4">
-            HELP AGENTS PROMOTE
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-wider text-white mt-4">
+            THROUGH CONTENT MARKETING
           </h1>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-wider text-white mt-4">
-            THEIR LISTINGS THROUGH
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-wider text-white mt-4">
+            IN COSTA DEL SOL
           </h1>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-wider text-white mt-4">
-            CONTENT MARKETING IN
-          </h1>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-wider text-white mt-4">
-            COSTA DEL SOL
-          </h1>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white tracking-tight mb-6">
-            Premium Content Marketing for Costa del Sol Real Estate
-          </h1>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/80 tracking-wide">
-            ELEVATE YOUR PROPERTY LISTING
-          </h2>
         </div>
       </div>
 
