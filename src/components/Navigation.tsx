@@ -14,8 +14,9 @@ export const Navigation = () => {
 
   const navItems = [
     { href: "/", label: "HOME" },
-    { href: "/get-new-leads", label: "GET NEW LEADS" },
-    { href: "/client-feedback", label: "CLIENT FEEDBACK" },
+    { href: "/about", label: "ABOUT" },
+    { href: "/portfolio", label: "PORTFOLIO" },
+    { href: "/contact", label: "CONTACT" },
   ];
 
   const navOpacity = Math.max(0, 1 - scrollY / 300);
@@ -34,21 +35,8 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="flex items-center space-x-2">
-              {/* House icon with camera aperture */}
-              <div className="relative w-12 h-12">
-                <svg viewBox="0 0 48 48" className="w-full h-full text-white">
-                  {/* House outline */}
-                  <path 
-                    d="M6 20L24 4L42 20V42H30V30H18V42H6V20Z" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2"
-                  />
-                  {/* Camera aperture in center */}
-                  <circle cx="24" cy="22" r="6" fill="currentColor"/>
-                  <circle cx="24" cy="22" r="4" fill="black"/>
-                  <circle cx="24" cy="22" r="2" fill="currentColor"/>
-                </svg>
+              <div className="text-2xl font-light text-white">
+                GEIR <span className="text-blue-400">COSTA</span>
               </div>
             </div>
           </Link>

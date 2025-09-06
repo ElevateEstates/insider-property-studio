@@ -1,0 +1,33 @@
+export const StatsSection = () => {
+  const stats = [
+    { label: "Views Generated", value: "5M+", color: "text-blue-400" },
+    { label: "Shot in 2024", value: "$0B+", color: "text-white" },
+    { label: "5 Star Reviews", value: "50+", color: "text-blue-400" },
+    { label: "Commissions Earned", value: "$33M+", color: "text-white" }
+  ];
+
+  return (
+    <section className="py-32 px-6 bg-black">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
+            Reflecting the aspirations of the modern buyer
+          </h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-sm md:text-base text-white/70 mb-2 uppercase tracking-wide">
+                {stat.label}
+              </div>
+              <div className={`text-4xl md:text-5xl lg:text-6xl font-light ${stat.color}`}>
+                {stat.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
