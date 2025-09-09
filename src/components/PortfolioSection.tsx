@@ -61,12 +61,75 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100 }: Typewr
   );
 };
 
+const portfolioItems: PortfolioItem[] = [
+  {
+    type: 'video',
+    vimeoId: '123456789',
+    alt: 'Luxury estate tour video',
+    size: 'large',
+    title: 'Modern Villa Showcase'
+  },
+  {
+    type: 'image',
+    src: portfolio1,
+    alt: 'Luxury property exterior view',
+    size: 'medium',
+    title: 'Coastal Estate'
+  },
+  {
+    type: 'image',
+    src: portfolio2,
+    alt: 'Modern interior living space',
+    size: 'small',
+    title: 'Contemporary Interior'
+  },
+  {
+    type: 'video',
+    vimeoId: '987654321',
+    alt: 'Property walkthrough video',
+    size: 'medium',
+    title: 'Downtown Penthouse'
+  },
+  {
+    type: 'image',
+    src: portfolio3,
+    alt: 'Stunning property landscape',
+    size: 'small',
+    title: 'Garden Views'
+  },
+  {
+    type: 'image',
+    src: portfolio1,
+    alt: 'Luxury property exterior view',
+    size: 'large',
+    title: 'Architectural Marvel'
+  },
+  {
+    type: 'image',
+    src: portfolio2,
+    alt: 'Modern interior living space',
+    size: 'small',
+    title: 'Minimalist Design'
+  },
+  {
+    type: 'video',
+    vimeoId: '456789123',
+    alt: 'Drone footage of estate',
+    size: 'medium',
+    title: 'Aerial Estate Tour'
+  }
+];
+
 export const PortfolioSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const [titleVisible, setTitleVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Separate videos and photos
+  const videoItems = portfolioItems.filter(item => item.type === 'video');
+  const photoItems = portfolioItems.filter(item => item.type === 'image');
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -110,76 +173,10 @@ export const PortfolioSection = () => {
 
     return () => observers.forEach(observer => observer.disconnect());
   }, []);
-  const portfolioItems: PortfolioItem[] = [
-    {
-      type: 'video',
-      vimeoId: '123456789',
-      alt: 'Luxury estate tour video',
-      size: 'large',
-      title: 'Modern Villa Showcase'
-    },
-    {
-      type: 'image',
-      src: portfolio1,
-      alt: 'Luxury property exterior view',
-      size: 'medium',
-      title: 'Coastal Estate'
-    },
-    {
-      type: 'image',
-      src: portfolio2,
-      alt: 'Modern interior living space',
-      size: 'small',
-      title: 'Contemporary Interior'
-    },
-    {
-      type: 'video',
-      vimeoId: '987654321',
-      alt: 'Property walkthrough video',
-      size: 'medium',
-      title: 'Downtown Penthouse'
-    },
-    {
-      type: 'image',
-      src: portfolio3,
-      alt: 'Stunning property landscape',
-      size: 'small',
-      title: 'Garden Views'
-    },
-    {
-      type: 'image',
-      src: portfolio1,
-      alt: 'Luxury property exterior view',
-      size: 'large',
-      title: 'Architectural Marvel'
-    },
-    {
-      type: 'image',
-      src: portfolio2,
-      alt: 'Modern interior living space',
-      size: 'small',
-      title: 'Minimalist Design'
-    },
-    {
-      type: 'video',
-      vimeoId: '456789123',
-      alt: 'Drone footage of estate',
-      size: 'medium',
-      title: 'Aerial Estate Tour'
-    }
-  ];
 
   const getSizeClasses = (size: string) => {
-    switch (size) {
-      case 'small':
-        return 'col-span-1 row-span-1 aspect-[4/3] min-h-[250px]';
-      case 'medium':
-        return 'col-span-1 md:col-span-2 row-span-1 aspect-[4/3] min-h-[300px]';
-      case 'large':
-        return 'col-span-1 md:col-span-2 lg:col-span-3 row-span-2 aspect-[16/10] min-h-[400px]';
-      default:
-        return 'col-span-1 row-span-1 aspect-[4/3] min-h-[250px]';
-    }
+    // All cards now have uniform size
+    return 'col-span-1 aspect-[4/3] h-[280px]';
   };
 
   return (
@@ -219,29 +216,32 @@ export const PortfolioSection = () => {
           </p>
         </div>
 
-        {/* Dynamic Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-6 mb-16">
-          {portfolioItems.map((item, index) => (
-            <div 
-              key={index} 
-              ref={el => cardRefs.current[index] = el}
-              className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)} transition-all duration-700 ${
-                visibleCards.includes(index) 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
-              }`}
-              style={{ 
-                transitionDelay: `${index * 100}ms`,
-                transform: `translateY(${scrollY * 0.02}px)`
-              }}
-            >
-              {item.type === 'image' ? (
-                <img 
-                  src={item.src} 
-                  alt={item.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              ) : (
+        {/* Video Gallery */}
+        <div className="mb-20">
+          <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
+            {titleVisible && (
+              <TypewriterText
+                text="Video Tours"
+                delay={2500}
+                speed={100}
+              />
+            )}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {videoItems.map((item, index) => (
+              <div 
+                key={`video-${index}`} 
+                ref={el => cardRefs.current[index] = el}
+                className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)} transition-all duration-700 ${
+                  visibleCards.includes(index) 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{ 
+                  transitionDelay: `${index * 150}ms`,
+                  transform: `translateY(${scrollY * 0.02}px)`
+                }}
+              >
                 <div className="relative w-full h-full bg-black">
                   <iframe
                     src={`https://player.vimeo.com/video/${item.vimeoId}?background=1&autoplay=0&loop=1&byline=0&title=0`}
@@ -256,26 +256,72 @@ export const PortfolioSection = () => {
                     </div>
                   </div>
                 </div>
-              )}
-              
-              {/* Overlay with title */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white font-medium text-sm md:text-base mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/80 text-xs md:text-sm">
-                    {item.type === 'video' ? 'Video Tour' : 'Photography'}
-                  </p>
+                
+                {/* Overlay with title */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h4 className="text-white font-medium text-sm md:text-base mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-white/80 text-xs md:text-sm">
+                      Video Tour
+                    </p>
+                  </div>
                 </div>
               </div>
-              
-              {/* Base overlay for images */}
-              {item.type === 'image' && (
+            ))}
+          </div>
+        </div>
+
+        {/* Photo Gallery */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
+            {titleVisible && (
+              <TypewriterText
+                text="Photography"
+                delay={3000}
+                speed={100}
+              />
+            )}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {photoItems.map((item, index) => (
+              <div 
+                key={`photo-${index}`} 
+                ref={el => cardRefs.current[videoItems.length + index] = el}
+                className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)} transition-all duration-700 ${
+                  visibleCards.includes(videoItems.length + index) 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{ 
+                  transitionDelay: `${(videoItems.length + index) * 150}ms`,
+                  transform: `translateY(${scrollY * 0.02}px)`
+                }}
+              >
+                <img 
+                  src={item.src} 
+                  alt={item.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                
+                {/* Overlay with title */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h4 className="text-white font-medium text-sm md:text-base mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-white/80 text-xs md:text-sm">
+                      Photography
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Base overlay for images */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center" style={{ transform: `translateY(${scrollY * 0.03}px)` }}>
