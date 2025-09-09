@@ -193,28 +193,37 @@
   }
 }
 
-/* Grainy texture background for black sections */
+/* Galaxy texture background for black sections */
 @layer components {
   .bg-black-grainy {
     @apply bg-black relative;
     background-image: 
-      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
-      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.06) 1px, transparent 1px),
-      radial-gradient(circle at 40% 70%, rgba(255,255,255,0.04) 1px, transparent 1px),
-      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.05) 1px, transparent 1px),
-      radial-gradient(circle at 60% 30%, rgba(255,255,255,0.03) 1px, transparent 1px);
+      radial-gradient(circle at 15% 25%, rgba(255,255,255,0.9) 0.5px, transparent 1px),
+      radial-gradient(circle at 85% 15%, rgba(200,220,255,0.7) 0.3px, transparent 1px),
+      radial-gradient(circle at 45% 75%, rgba(255,255,255,0.8) 0.4px, transparent 1px),
+      radial-gradient(circle at 90% 85%, rgba(255,240,200,0.6) 0.2px, transparent 1px),
+      radial-gradient(circle at 25% 85%, rgba(255,255,255,0.9) 0.6px, transparent 1px),
+      radial-gradient(circle at 75% 45%, rgba(220,200,255,0.5) 0.3px, transparent 1px),
+      radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0.5px, transparent 1px),
+      radial-gradient(circle at 65% 65%, rgba(200,255,220,0.4) 0.2px, transparent 1px);
     background-size: 
-      25px 25px,
-      35px 35px,
-      45px 45px,
-      55px 55px,
-      65px 65px;
+      150px 150px,
+      200px 200px,
+      180px 180px,
+      250px 250px,
+      120px 120px,
+      300px 300px,
+      170px 170px,
+      220px 220px;
     background-position:
       0 0,
-      12px 12px,
-      25px 8px,
-      40px 20px,
-      15px 35px;
+      50px 30px,
+      120px 80px,
+      200px 150px,
+      80px 200px,
+      160px 60px,
+      240px 120px,
+      100px 180px;
   }
   
   .bg-black-grainy::before {
@@ -225,16 +234,59 @@
     right: 0;
     bottom: 0;
     background-image: 
-      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
-      linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%, transparent);
+      radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.15) 1px, transparent 2px),
+      radial-gradient(ellipse at 80% 70%, rgba(180,200,255,0.12) 0.8px, transparent 2px),
+      radial-gradient(ellipse at 60% 20%, rgba(255,240,180,0.1) 1.2px, transparent 2px),
+      radial-gradient(ellipse at 40% 80%, rgba(200,180,255,0.08) 0.6px, transparent 2px),
+      radial-gradient(ellipse at 90% 40%, rgba(255,255,255,0.2) 0.4px, transparent 1px),
+      radial-gradient(ellipse at 10% 60%, rgba(220,255,200,0.06) 0.9px, transparent 2px);
     background-size: 
-      15px 15px,
-      75px 75px,
-      75px 75px;
+      400px 300px,
+      350px 450px,
+      500px 200px,
+      300px 400px,
+      600px 350px,
+      450px 500px;
+    background-position:
+      0 0,
+      100px 50px,
+      200px 100px,
+      300px 200px,
+      150px 250px,
+      250px 150px;
     opacity: 0.5;
     pointer-events: none;
     z-index: 1;
+  }
+  
+  .bg-black-grainy::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.3) 0.1px, transparent 0.5px),
+      radial-gradient(circle at 75% 75%, rgba(180,220,255,0.2) 0.1px, transparent 0.5px),
+      radial-gradient(circle at 50% 10%, rgba(255,200,150,0.15) 0.1px, transparent 0.5px),
+      radial-gradient(circle at 10% 90%, rgba(200,255,180,0.1) 0.1px, transparent 0.5px),
+      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.25) 0.1px, transparent 0.5px);
+    background-size: 
+      80px 80px,
+      120px 120px,
+      100px 100px,
+      90px 90px,
+      110px 110px;
+    background-position:
+      0 0,
+      40px 40px,
+      80px 20px,
+      20px 80px,
+      60px 60px;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 2;
   }
 }
 
