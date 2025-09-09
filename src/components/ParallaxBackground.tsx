@@ -24,196 +24,183 @@ export const ParallaxBackground = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Generate varying opacities for dots
+  // Generate smooth flowing dots without any sudden appearances
   const generateDotLayers = () => {
     const layers = [];
     const baseOpacities = [0.6, 0.7, 0.8, 0.9];
     const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
     const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
     
+    // Calculate smooth transitions with extended fade margins
+    const createSmoothDot = (config: {
+      id: string;
+      baseOpacity: number;
+      size: number;
+      dotSize: number;
+      xStart: number;
+      ySpeed: number;
+      xDrift: number;
+      color?: string;
+    }) => {
+      const { id, baseOpacity, size, dotSize, xStart, ySpeed, xDrift, color = '255,255,255' } = config;
+      
+      // Calculate position with smooth continuous movement
+      const rawY = scrollY * ySpeed * multiplier;
+      const rawX = xStart + (scrollY * xDrift * multiplier);
+      
+      // Create infinite loop without modulo jumps - use smooth sine wave transitions
+      const loopCycle = 8000; // Large cycle to prevent visible repetition
+      const yProgress = (rawY % loopCycle) / loopCycle;
+      const yOffset = (yProgress * screenHeight * 6) - (screenHeight * 2); // Start well off-screen
+      
+      const xProgress = (rawX % (screenWidth * 2)) / (screenWidth * 2);
+      const xOffset = (xProgress * screenWidth * 1.6) - (screenWidth * 0.3); // Extended range
+      
+      // Calculate distance-based opacity with smooth falloff
+      const fadeDistance = 200; // Extended fade distance
+      const centerFadeDistance = 150;
+      
+      // Horizontal fade
+      let horizontalFade = 1;
+      if (xOffset < 0) {
+        horizontalFade = Math.max(0, Math.min(1, 1 + (xOffset / fadeDistance)));
+      } else if (xOffset > screenWidth) {
+        horizontalFade = Math.max(0, Math.min(1, 1 - ((xOffset - screenWidth) / fadeDistance)));
+      }
+      
+      // Vertical fade with smoother transitions
+      let verticalFade = 1;
+      if (yOffset < -centerFadeDistance) {
+        verticalFade = Math.max(0, Math.min(1, 1 + ((yOffset + centerFadeDistance) / fadeDistance)));
+      } else if (yOffset > screenHeight + centerFadeDistance) {
+        verticalFade = Math.max(0, Math.min(1, 1 - ((yOffset - screenHeight - centerFadeDistance) / fadeDistance)));
+      }
+      
+      // Combined smooth opacity
+      const finalOpacity = baseOpacity * horizontalFade * verticalFade;
+      
+      // Only render if opacity is meaningful
+      if (finalOpacity > 0.01) {
+        return (
+          <div 
+            key={id}
+            className="absolute"
+            style={{
+              transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
+              backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+              backgroundSize: `${size}px ${size}px`,
+              backgroundRepeat: 'repeat',
+              willChange: 'transform',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '500vh', // Extended height
+              pointerEvents: 'none'
+            }}
+          />
+        );
+      }
+      return null;
+    };
+    
+    // Main dot layers with staggered positions and speeds
     for (let i = 0; i < 4; i++) {
       const baseOpacity = baseOpacities[i];
       const size = 40 + (i * 35);
       const dotSize = 0.4 + (i * 0.15);
-      const speed = 0.08 + (i * 0.2);
+      const ySpeed = 0.08 + (i * 0.2);
       
-      // Create uniform distribution across screen width
-      const basePosition = (i * screenWidth / 3.5) + (screenWidth * 0.1);
+      // Staggered starting positions across screen width
+      const xStart = screenWidth * (0.1 + (i * 0.25));
       
-      // Movement patterns with continuous flow
-      const direction = i % 4;
-      let xMovement, yMovement;
+      // Varied horizontal drift patterns
+      const xDrift = (i % 2 === 0 ? 1 : -1) * (0.1 + (i * 0.05));
       
-      switch (direction) {
-        case 0: // Gentle drift from left-center
-          xMovement = basePosition + Math.sin(scrollY * 0.0008 + i) * 30;
-          yMovement = scrollY * speed * multiplier;
-          break;
-        case 1: // Diagonal movement from center-left
-          xMovement = basePosition + (scrollY * speed * 0.2 * multiplier) + Math.sin(scrollY * 0.001 + i) * 25;
-          yMovement = scrollY * speed * multiplier;
-          break;
-        case 2: // Horizontal drift from center
-          xMovement = basePosition + (scrollY * speed * 0.3 * multiplier) + Math.cos(scrollY * 0.0009 + i) * 35;
-          yMovement = (scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.0006 + i) * 30;
-          break;
-        case 3: // Gentle drift from center-right
-          xMovement = basePosition + (scrollY * speed * 0.1 * multiplier) + Math.sin(scrollY * 0.0012 + i) * 28;
-          yMovement = scrollY * speed * multiplier;
-          break;
-      }
+      // Add oscillating movement
+      const oscillation = Math.sin(scrollY * (0.0008 + i * 0.0002)) * (30 + i * 10);
       
-      // Continuous cycling without jumps
-      const cycleHeight = screenHeight * 4;
-      const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
-      const yOffset = normalizedY - screenHeight;
+      const dot = createSmoothDot({
+        id: `main-${i}`,
+        baseOpacity,
+        size,
+        dotSize,
+        xStart: xStart + oscillation,
+        ySpeed,
+        xDrift
+      });
       
-      // Smooth horizontal cycling
-      const cycleWidth = screenWidth * 1.4;
-      const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
-      const xOffset = normalizedX - (screenWidth * 0.2);
-      
-      // Calculate fade based on distance from screen edges
-      const fadeMargin = 100;
-      let opacityFactor = 1;
-      
-      if (xOffset < 0) {
-        opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
-      } else if (xOffset > screenWidth) {
-        opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
-      }
-      
-      if (yOffset < -fadeMargin) {
-        opacityFactor *= Math.max(0, 1 + (yOffset + fadeMargin) / fadeMargin);
-      } else if (yOffset > screenHeight + fadeMargin) {
-        opacityFactor *= Math.max(0, 1 - (yOffset - screenHeight - fadeMargin) / fadeMargin);
-      }
-      
-      layers.push(
-        <div 
-          key={i}
-          className="absolute"
-          style={{
-            transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
-            backgroundSize: `${size}px ${size}px`,
-            backgroundRepeat: 'repeat',
-            willChange: 'transform',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '400vh',
-            opacity: opacityFactor,
-            transition: 'opacity 0.3s ease-out'
-          }}
-        />
-      );
+      if (dot) layers.push(dot);
     }
     
-    // Additional left-side accent dots for balance
+    // Left side accent dots
     for (let i = 0; i < 2; i++) {
       const baseOpacity = 0.7 + (i * 0.1);
       const size = 60 + (i * 30);
       const dotSize = 0.5 + (i * 0.2);
-      const speed = 0.1 + (i * 0.15);
+      const ySpeed = 0.1 + (i * 0.15);
       
-      // Position on left third of screen
-      const leftBasePosition = screenWidth * (0.05 + i * 0.15);
-      const xMovement = leftBasePosition + Math.sin(scrollY * (0.0007 + i * 0.0003)) * 40;
-      const yMovement = scrollY * speed * multiplier;
+      const xStart = screenWidth * (0.05 + i * 0.12);
+      const xDrift = 0.02 + (i * 0.03);
       
-      // Continuous cycling
-      const cycleHeight = screenHeight * 3.5;
-      const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
-      const yOffset = normalizedY - screenHeight * 0.5;
+      const oscillation = Math.sin(scrollY * (0.0007 + i * 0.0003)) * 40;
       
-      const cycleWidth = screenWidth * 1.2;
-      const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
-      const xOffset = normalizedX - (screenWidth * 0.1);
+      const dot = createSmoothDot({
+        id: `left-accent-${i}`,
+        baseOpacity,
+        size,
+        dotSize,
+        xStart: xStart + oscillation,
+        ySpeed,
+        xDrift
+      });
       
-      // Smooth fade based on position
-      const fadeMargin = 120;
-      let opacityFactor = 1;
-      
-      if (xOffset < 0) {
-        opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
-      } else if (xOffset > screenWidth) {
-        opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
-      }
-      
-      layers.push(
-        <div 
-          key={`left-accent-${i}`}
-          className="absolute"
-          style={{
-            transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
-            backgroundSize: `${size}px ${size}px`,
-            backgroundRepeat: 'repeat',
-            willChange: 'transform',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '400vh',
-            opacity: opacityFactor,
-            transition: 'opacity 0.3s ease-out'
-          }}
-        />
-      );
+      if (dot) layers.push(dot);
     }
     
-    // Colored accent dot positioned for balance
-    const color = '200,220,255';
-    const baseOpacity = 0.8;
-    const size = 90;
-    const dotSize = 1.0;
-    const speed = 0.6;
+    // Right side accent dots
+    for (let i = 0; i < 2; i++) {
+      const baseOpacity = 0.65 + (i * 0.1);
+      const size = 55 + (i * 25);
+      const dotSize = 0.45 + (i * 0.15);
+      const ySpeed = 0.12 + (i * 0.18);
+      
+      const xStart = screenWidth * (0.7 + i * 0.15);
+      const xDrift = -0.03 - (i * 0.02);
+      
+      const oscillation = Math.cos(scrollY * (0.0009 + i * 0.0004)) * 35;
+      
+      const dot = createSmoothDot({
+        id: `right-accent-${i}`,
+        baseOpacity,
+        size,
+        dotSize,
+        xStart: xStart + oscillation,
+        ySpeed,
+        xDrift
+      });
+      
+      if (dot) layers.push(dot);
+    }
     
-    // Position in right third of screen for balance
+    // Colored accent dot with spiral movement
     const spiralRadius = 35;
     const spiralSpeed = scrollY * 0.0012;
-    const baseX = screenWidth * 0.65 + (scrollY * 0.05 * multiplier);
-    const xMovement = baseX + Math.cos(spiralSpeed) * spiralRadius;
-    const yMovement = scrollY * speed * multiplier;
+    const baseX = screenWidth * 0.65;
+    const spiralX = baseX + Math.cos(spiralSpeed) * spiralRadius;
+    const spiralY = scrollY * 0.6 * multiplier;
     
-    // Continuous cycling for colored accent
-    const cycleHeight = screenHeight * 4.2;
-    const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
-    const yOffset = normalizedY - screenHeight * 0.8;
+    const coloredDot = createSmoothDot({
+      id: 'colored-accent',
+      baseOpacity: 0.8,
+      size: 90,
+      dotSize: 1.0,
+      xStart: spiralX,
+      ySpeed: 0.6,
+      xDrift: 0.05,
+      color: '200,220,255'
+    });
     
-    const cycleWidth = screenWidth * 1.3;
-    const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
-    const xOffset = normalizedX - (screenWidth * 0.15);
-    
-    // Smooth fade for colored accent
-    const fadeMargin = 100;
-    let opacityFactor = 1;
-    
-    if (xOffset < 0) {
-      opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
-    } else if (xOffset > screenWidth) {
-      opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
-    }
-    
-    layers.push(
-      <div 
-        key="colored-accent"
-        className="absolute"
-        style={{
-          transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-          backgroundImage: `radial-gradient(circle, rgba(${color},${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
-          backgroundSize: `${size}px ${size}px`,
-          backgroundRepeat: 'repeat',
-          willChange: 'transform',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '400vh',
-          opacity: opacityFactor,
-          transition: 'opacity 0.3s ease-out'
-        }}
-      />
-    );
+    if (coloredDot) layers.push(coloredDot);
     
     return layers;
   };
