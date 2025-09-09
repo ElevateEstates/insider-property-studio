@@ -108,8 +108,16 @@ export const Hero = () => {
                   <span className="inline-block">
                     <TypewriterText text="into " className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />
                     {currentStep >= 5 && (
-                      <span className="text-gradient-gold inline-block transition-all duration-500">
-                        {animatedWords[animatedWordIndex]}
+                      <span className="text-gradient-gold inline-block relative overflow-hidden">
+                        <span 
+                          key={animatedWordIndex}
+                          className="inline-block animate-fade-in"
+                          style={{ 
+                            animation: 'fadeSlideIn 0.6s ease-out forwards'
+                          }}
+                        >
+                          {animatedWords[animatedWordIndex]}
+                        </span>
                       </span>
                     )}
                   </span>
