@@ -27,19 +27,19 @@ export const ParallaxBackground = ({
   // Generate varying opacities for dots
   const generateDotLayers = () => {
     const layers = [];
-    const baseOpacities = [0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 0.8, 0.9, 1.0];
+    const baseOpacities = [0.6, 0.7, 0.8, 0.9, 1.0, 0.8]; // Reduced from 12 to 6 layers
     
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 6; i++) { // Reduced from 12 to 6 layers
       const opacity = baseOpacities[i];
-      const size = 20 + (i * 15); // Varying sizes from 20px to 185px
-      const dotSize = 0.2 + (i * 0.1); // Varying dot sizes from 0.2px to 1.3px
-      const speed = 0.05 + (i * 0.15); // Varying speeds
-      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.02 + i * 0.01);
+      const size = 30 + (i * 25); // Increased spacing between sizes
+      const dotSize = 0.3 + (i * 0.15); // Slightly larger dots
+      const speed = 0.05 + (i * 0.2); // More varied speeds
+      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.02 + i * 0.015);
       
       // Create infinite loop effect by using modulo on scroll position
-      const loopHeight = 2000; // Loop every 2000px of scroll
+      const loopHeight = 3000; // Increased loop height for more natural spacing
       const yOffset = (scrollY * speed * multiplier) % loopHeight;
-      const xOffset = (scrollY * xSpeed * multiplier) % 1000;
+      const xOffset = (scrollY * xSpeed * multiplier) % 1500;
       
       layers.push(
         <div 
@@ -54,44 +54,46 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '300vh' // Reduced height since we're looping
+            height: '400vh' // Adjusted height
           }}
         />
       );
       
-      // Add a second layer offset for seamless looping
-      layers.push(
-        <div 
-          key={`loop-${i}`}
-          className="absolute"
-          style={{
-            transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
-            backgroundSize: `${size}px ${size}px`,
-            backgroundRepeat: 'repeat',
-            willChange: 'transform',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '300vh'
-          }}
-        />
-      );
+      // Add a second layer offset for seamless looping - but only for every other layer to reduce density
+      if (i % 2 === 0) {
+        layers.push(
+          <div 
+            key={`loop-${i}`}
+            className="absolute"
+            style={{
+              transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
+              backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity * 0.7}) ${dotSize}px, transparent ${dotSize}px)`, // Slightly less opacity for loop layers
+              backgroundSize: `${size}px ${size}px`,
+              backgroundRepeat: 'repeat',
+              willChange: 'transform',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '400vh'
+            }}
+          />
+        );
+      }
     }
     
-    // Add some colored accent dots for variety with infinite loop
-    for (let i = 0; i < 4; i++) {
-      const colors = ['200,220,255', '220,200,255', '255,220,200', '200,255,220'];
+    // Reduced colored accent dots from 4 to 2
+    for (let i = 0; i < 2; i++) {
+      const colors = ['200,220,255', '255,220,200'];
       const color = colors[i];
-      const opacity = 0.7 + (i * 0.1); // Increased base opacity
-      const size = 60 + (i * 40);
-      const dotSize = 0.8 + (i * 0.3);
-      const speed = 0.3 + (i * 0.2);
-      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.05 + i * 0.02);
+      const opacity = 0.7 + (i * 0.15);
+      const size = 80 + (i * 60);
+      const dotSize = 1.0 + (i * 0.4);
+      const speed = 0.4 + (i * 0.3);
+      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.06 + i * 0.03);
       
-      const loopHeight = 2500;
+      const loopHeight = 3500;
       const yOffset = (scrollY * speed * multiplier) % loopHeight;
-      const xOffset = (scrollY * xSpeed * multiplier) % 1200;
+      const xOffset = (scrollY * xSpeed * multiplier) % 1800;
       
       layers.push(
         <div 
@@ -106,26 +108,26 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '300vh'
+            height: '400vh'
           }}
         />
       );
       
-      // Second layer for looping
+      // Only one loop layer for colored dots
       layers.push(
         <div 
           key={`colored-loop-${i}`}
           className="absolute"
           style={{
             transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(${color},${opacity * 0.6}) ${dotSize}px, transparent ${dotSize}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
             willChange: 'transform',
             top: 0,
             left: 0,
             right: 0,
-            height: '300vh'
+            height: '400vh'
           }}
         />
       );
