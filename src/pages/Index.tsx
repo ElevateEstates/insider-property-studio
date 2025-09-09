@@ -12,7 +12,7 @@ import { ParallaxBackground } from "@/components/ParallaxBackground";
 const Index = () => {
   return (
     <div className="min-h-screen text-white relative">
-      <ParallaxBackground speed={2.5} />
+      <ParallaxBackground speed={5} />
       <Navigation />
       <Hero />
       <div className="content-background">
