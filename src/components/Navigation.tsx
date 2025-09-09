@@ -34,12 +34,12 @@ export const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="flex items-center space-x-2">
-              <div className="text-2xl font-light text-white">
-                GEIR <span className="text-blue-400">COSTA</span>
-              </div>
-            </div>
+          <Link to="/" className="flex items-center" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img 
+              src="/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png" 
+              alt="Elevate Properties" 
+              className="h-8 w-auto filter invert"
+            />
           </Link>
 
           {/* Navigation Menu */}

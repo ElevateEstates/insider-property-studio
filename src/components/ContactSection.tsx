@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, MapPin, MessageCircle, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const ContactSection = () => {
@@ -74,18 +74,37 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <p className="font-medium">Email</p>
-                      <p>contact@costaestateservices.com</p>
+                      <p>geir@elevateproperties.es</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90">
-                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-white" />
+                  <a 
+                    href="https://wa.me/34685243192" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
+                  >
+                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                      <MessageCircle className="w-6 h-6 text-green-400" />
                     </div>
                     <div>
-                      <p className="font-medium">Phone</p>
-                      <p>+34 123 456 789</p>
+                      <p className="font-medium">WhatsApp</p>
+                      <p>+34 685 243 192</p>
                     </div>
-                  </div>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/elevateproperties.es" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
+                  >
+                    <div className="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center">
+                      <Instagram className="w-6 h-6 text-pink-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Instagram</p>
+                      <p>@elevateproperties.es</p>
+                    </div>
+                  </a>
                   <div className="flex items-center gap-4 text-white/80 transition-colors hover:text-white/90">
                     <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
                       <MapPin className="w-6 h-6 text-white" />

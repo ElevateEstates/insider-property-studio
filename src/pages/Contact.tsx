@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Send, Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Send, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -44,14 +44,22 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: "contact@costaestateservices.com",
+      details: "geir@elevateproperties.es",
       description: "Send us an email anytime"
     },
     {
-      icon: Phone,
-      title: "Phone",
-      details: "+34 123 456 789",
-      description: "Available 9 AM - 6 PM CET"
+      icon: MessageCircle,
+      title: "WhatsApp",
+      details: "+34 685 243 192",
+      description: "Quick response via WhatsApp",
+      link: "https://wa.me/34685243192"
+    },
+    {
+      icon: Instagram,
+      title: "Instagram", 
+      details: "@elevateproperties.es",
+      description: "Follow our latest work",
+      link: "https://www.instagram.com/elevateproperties.es"
     },
     {
       icon: MapPin,
@@ -142,23 +150,35 @@ const Contact = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {contactInfo.map((info, index) => (
-              <Card key={index} className="p-8 text-center bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div className="w-16 h-16 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <info.icon className="w-8 h-8 text-accent-gold" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {contactInfo.map((info, index) => {
+              const CardContent = (
+                <Card className="p-8 text-center bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div className="w-16 h-16 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <info.icon className="w-8 h-8 text-accent-gold" />
+                  </div>
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {info.title}
+                  </h3>
+                  <p className="text-accent-gold font-medium mb-2">
+                    {info.details}
+                  </p>
+                  <p className="text-white/60 text-sm">
+                    {info.description}
+                  </p>
+                </Card>
+              );
+
+              return info.link ? (
+                <a key={index} href={info.link} target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
+                  {CardContent}
+                </a>
+              ) : (
+                <div key={index}>
+                  {CardContent}
                 </div>
-                <h3 className="text-xl font-medium text-white mb-2">
-                  {info.title}
-                </h3>
-                <p className="text-accent-gold font-medium mb-2">
-                  {info.details}
-                </p>
-                <p className="text-white/60 text-sm">
-                  {info.description}
-                </p>
-              </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

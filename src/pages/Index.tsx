@@ -8,6 +8,7 @@ import { WorkWithUs } from "@/components/WorkWithUs";
 import { ContactPreview } from "@/components/ContactPreview";
 import { ContactSection } from "@/components/ContactSection";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
         <ContactPreview />
         <ContactSection />
       </div>
+      <Footer />
     </div>
   );
 };
