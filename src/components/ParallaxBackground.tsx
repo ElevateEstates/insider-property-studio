@@ -8,7 +8,7 @@ interface ParallaxBackgroundProps {
 
 export const ParallaxBackground = ({ 
   className = "", 
-  speed = 5, 
+  speed = 8, 
   opacity = 1 
 }: ParallaxBackgroundProps) => {
   const [scrollY, setScrollY] = useState(0);
