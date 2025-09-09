@@ -40,6 +40,7 @@ const CountUp = ({ end, suffix = "", duration = 2000, isVisible }: CountUpProps)
 
 export const StatsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -50,16 +51,19 @@ export const StatsSection = () => {
   }, []);
 
   const stats = [
-    { label: "Views Generated", value: 5, suffix: "M+", color: "text-blue-400" },
-    { label: "Shot in 2024", value: 50, suffix: "B+", color: "text-white" },
-    { label: "5 Star Reviews", value: 50, suffix: "+", color: "text-blue-400" },
-    { label: "Commissions Earned", value: 33, suffix: "M+", color: "text-white" }
+    { label: "views generated", value: 2, suffix: "m+", color: "text-blue-400", prefix: "" },
+    { label: "properties shot", value: 250, suffix: "+", color: "text-white", prefix: "" },
+    { label: "partner agents", value: 20, suffix: "+", color: "text-blue-400", prefix: "" },
+    { label: "ad spend in 2024", value: 10, suffix: "k+", color: "text-white", prefix: "€" }
   ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting && !hasAnimated) {
+          setIsVisible(true);
+          setHasAnimated(true);
+        }
       },
       { threshold: 0.3 }
     );
@@ -69,7 +73,7 @@ export const StatsSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <section ref={sectionRef} className="py-16 px-4 md:px-6 relative overflow-hidden z-10">
@@ -97,7 +101,7 @@ export const StatsSection = () => {
           {stats.map((stat, index) => (
             <div key={index} className="glass-card text-center rounded-2xl p-8">
               <div className={`text-4xl md:text-5xl lg:text-6xl font-light ${stat.color} mb-4`}>
-                $<CountUp 
+                {stat.prefix}<CountUp 
                   end={stat.value} 
                   suffix={stat.suffix}
                   duration={2000}

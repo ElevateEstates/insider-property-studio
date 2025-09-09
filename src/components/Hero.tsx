@@ -54,7 +54,10 @@ export const Hero = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [hasCompleted, setHasCompleted] = useState(false);
+  const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+  
+  const animatedWords = ["results.", "connections.", "commissions."];
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -69,6 +72,14 @@ export const Hero = () => {
       setTimeout(() => setCurrentStep(1), 300);
     }
   }, [isVisible, hasCompleted]);
+
+  // Animate word rotation for "results"
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimatedWordIndex(prev => (prev + 1) % animatedWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [animatedWords.length]);
   return <section ref={heroRef} className="relative min-h-screen text-white transparent-section">
       <div className="relative z-30 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 section-content">
         <div className="max-w-6xl w-full text-center space-y-8 py-20 pb-24">
@@ -82,7 +93,7 @@ export const Hero = () => {
               </h1>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 2 && <TypewriterText text="property marketing" className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
+                {currentStep >= 2 && <TypewriterText text="property marketing," className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
               </h1>
             </div>
 
@@ -93,7 +104,16 @@ export const Hero = () => {
               </h1>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 4 && <TypewriterText text="into results." className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />}
+                {currentStep >= 4 && (
+                  <span className="inline-block">
+                    <TypewriterText text="into " className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />
+                    {currentStep >= 5 && (
+                      <span className="text-gradient-gold inline-block transition-all duration-500">
+                        {animatedWords[animatedWordIndex]}
+                      </span>
+                    )}
+                  </span>
+                )}
               </h1>
             </div>
           </div>
