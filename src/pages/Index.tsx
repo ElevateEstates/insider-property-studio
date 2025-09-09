@@ -17,11 +17,11 @@ const Index = () => {
       <Navigation />
       <Hero />
       <div className="transparent-section">
+        <About />
         <StatsSection />
         <PortfolioSection />
       </div>
       <div className="transparent-section">
-        <About />
         <TestimonialsSection />
         <WorkWithUs />
       </div>
