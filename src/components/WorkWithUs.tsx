@@ -25,7 +25,6 @@ export const WorkWithUs = () => {
       
       <div 
         className="container mx-auto max-w-4xl relative z-20 section-content py-8"
-        style={{ transform: `translateY(${scrollY * 0.04}px)` }}
       >
         <div className="mb-16 animate-fade-up">
           <div className="flex items-center gap-4 mb-8">
@@ -55,7 +54,7 @@ export const WorkWithUs = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale z-30 relative"
+          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale relative z-50"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Start Your Project

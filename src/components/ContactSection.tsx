@@ -52,7 +52,6 @@ export const ContactSection = () => {
       
       <div 
         className="container mx-auto max-w-6xl relative z-20 section-content py-8"
-        style={{ transform: `translateY(${scrollY * 0.02}px)` }}
       >
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-5xl md:text-6xl font-light mb-8 border-b border-white/20 pb-4 text-white">
@@ -163,7 +162,7 @@ export const ContactSection = () => {
                 <Button 
                   type="submit" 
                   variant="outline"
-                  className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group z-30 relative"
+                  className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group relative z-50"
                 >
                   Send Message
                   <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

@@ -69,7 +69,6 @@ export const TestimonialsSection = () => {
       
       <div 
         className="container mx-auto max-w-6xl relative z-20 section-content py-8"
-        style={{ transform: `translateY(${scrollY * 0.04}px)` }}
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
@@ -82,14 +81,13 @@ export const TestimonialsSection = () => {
             <div 
               key={index} 
               ref={el => cardRefs.current[index] = el}
-              className={`bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 transition-all duration-700 ${
+              className={`bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 transition-all duration-700 relative z-40 ${
                 visibleCards.includes(index) 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}
               style={{ 
-                transitionDelay: `${index * 200}ms`,
-                transform: `translateY(${scrollY * 0.02}px)`
+                transitionDelay: `${index * 200}ms`
               }}
             >
               <blockquote className="text-lg text-white/90 mb-6 leading-relaxed">
