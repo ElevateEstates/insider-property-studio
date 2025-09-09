@@ -72,9 +72,9 @@ export const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-15">
+      <div className="absolute inset-0 opacity-15 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 30% 70%, rgba(255,255,255,0.04) 1px, transparent 1px),
                            radial-gradient(circle at 70% 30%, rgba(255,255,255,0.02) 1px, transparent 1px),
@@ -84,7 +84,7 @@ export const StatsSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-8"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="text-center mb-16">

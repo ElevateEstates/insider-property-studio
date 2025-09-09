@@ -91,9 +91,9 @@ export const Hero = () => {
   }, [isVisible]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen bg-black text-white overflow-hidden">
+    <section ref={heroRef} className="relative min-h-screen bg-black text-white overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
                            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px),
@@ -104,7 +104,7 @@ export const Hero = () => {
       
       {/* Background Image with Parallax */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage: `url(${heroImage})`,
           transform: `translateY(${scrollY * 0.5}px)`
@@ -115,10 +115,10 @@ export const Hero = () => {
       
       {/* Content with Parallax */}
       <div 
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16"
+        className="relative z-30 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16 section-content"
         style={{ transform: `translateY(${scrollY * 0.1}px)` }}
       >
-        <div className="max-w-6xl w-full text-center space-y-6">
+        <div className="max-w-6xl w-full text-center space-y-6 py-20">
           
           {/* YOUR */}
           <div>

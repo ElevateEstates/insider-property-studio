@@ -56,9 +56,9 @@ export const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-black relative overflow-hidden">
+    <section className="py-32 px-6 bg-black relative overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-8">
+      <div className="absolute inset-0 opacity-8 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 35% 65%, rgba(255,255,255,0.02) 1px, transparent 1px),
                            radial-gradient(circle at 65% 35%, rgba(255,255,255,0.025) 1px, transparent 1px),
@@ -68,7 +68,7 @@ export const TestimonialsSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-8"
         style={{ transform: `translateY(${scrollY * 0.04}px)` }}
       >
         <div className="text-center mb-16">

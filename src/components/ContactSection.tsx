@@ -39,9 +39,9 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact-form" className="py-32 px-6 bg-black relative overflow-hidden">
+    <section id="contact-form" className="py-32 px-6 bg-black relative overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-6">
+      <div className="absolute inset-0 opacity-6 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 45% 55%, rgba(255,255,255,0.02) 1px, transparent 1px),
                            radial-gradient(circle at 55% 45%, rgba(255,255,255,0.015) 1px, transparent 1px),
@@ -51,7 +51,7 @@ export const ContactSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-8"
         style={{ transform: `translateY(${scrollY * 0.02}px)` }}
       >
         <div className="text-center mb-16 animate-fade-up">

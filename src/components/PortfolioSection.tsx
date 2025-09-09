@@ -183,9 +183,9 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden">
+    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-20 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 1px, transparent 1px),
                            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -195,7 +195,7 @@ export const PortfolioSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-7xl relative z-10"
+        className="container mx-auto max-w-7xl relative z-20 section-content py-8"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="text-center mb-16">

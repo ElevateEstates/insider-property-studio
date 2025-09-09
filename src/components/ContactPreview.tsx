@@ -13,9 +13,9 @@ export const ContactPreview = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-black relative overflow-hidden">
+    <section className="py-32 px-6 bg-black relative overflow-hidden z-10">
       {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-8">
+      <div className="absolute inset-0 opacity-8 z-0">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 60% 20%, rgba(255,255,255,0.025) 1px, transparent 1px),
                            radial-gradient(circle at 20% 80%, rgba(255,255,255,0.02) 1px, transparent 1px),
@@ -25,7 +25,7 @@ export const ContactPreview = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-4xl text-center relative z-10"
+        className="container mx-auto max-w-4xl text-center relative z-20 section-content py-8"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
         <h2 className="text-5xl md:text-6xl font-light mb-8 text-white">
