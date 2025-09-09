@@ -115,15 +115,15 @@ export const ParallaxBackground = ({
     
     // Reduced star field - fewer, varied sizes, all moving
     const starConfigs = [
-      // Small stars (90% of stars)
-      { opacity: 0.7, size: 45, dotSize: 0.3, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
-      { opacity: 0.6, size: 50, dotSize: 0.4, speed: 0.15, oscillate: 0.001, amplitude: 30 },
-      { opacity: 0.8, size: 40, dotSize: 0.35, speed: 0.1, oscillate: 0.0006, amplitude: 20 },
-      { opacity: 0.65, size: 55, dotSize: 0.45, speed: 0.14, oscillate: 0.0009, amplitude: 35 },
+      // Small stars (90% of stars) - much smaller
+      { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
+      { opacity: 0.6, size: 50, dotSize: 0.2, speed: 0.15, oscillate: 0.001, amplitude: 30 },
+      { opacity: 0.8, size: 40, dotSize: 0.18, speed: 0.1, oscillate: 0.0006, amplitude: 20 },
+      { opacity: 0.65, size: 55, dotSize: 0.25, speed: 0.14, oscillate: 0.0009, amplitude: 35 },
       
-      // Medium-large stars (10% of stars)
-      { opacity: 0.9, size: 60, dotSize: 1.4, speed: 0.18, oscillate: 0.0012, amplitude: 40 },
-      { opacity: 0.75, size: 65, dotSize: 1.6, speed: 0.16, oscillate: 0.0011, amplitude: 45 }
+      // Medium-large stars (10% of stars) - much smaller
+      { opacity: 0.9, size: 60, dotSize: 0.4, speed: 0.18, oscillate: 0.0012, amplitude: 40 },
+      { opacity: 0.75, size: 65, dotSize: 0.6, speed: 0.16, oscillate: 0.0011, amplitude: 45 }
     ];
     
     starConfigs.forEach((config, i) => {
@@ -157,7 +157,7 @@ export const ParallaxBackground = ({
     });
     
     // Reduced colored accent stars - only 1 instead of 3
-    const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 1.2 };
+    const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 0.35 };
     
     const spiralRadius = 35;
     const spiralSpeed = 0.001;
