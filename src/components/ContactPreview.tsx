@@ -13,7 +13,7 @@ export const ContactPreview = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 relative overflow-hidden z-10">
+    <section className="py-20 px-6 relative overflow-hidden z-10">
       <div 
         className="container mx-auto max-w-4xl text-center relative z-20 section-content py-8"
       >
