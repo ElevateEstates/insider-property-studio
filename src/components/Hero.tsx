@@ -100,11 +100,14 @@ export const Hero = () => {
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
               {currentStep >= 3 && (
                 <span className="inline-block">
-                  <TypewriterText text="turning listings into " className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />
+                  <TypewriterText text="turning listings into" className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />
                   {currentStep >= 4 && (
-                    <span className="text-gradient-gold inline-block">
-                      {animatedWords[animatedWordIndex]}
-                    </span>
+                    <>
+                      <span> </span>
+                      <span className="text-gradient-gold inline-block">
+                        {animatedWords[animatedWordIndex]}
+                      </span>
+                    </>
                   )}
                 </span>
               )}
