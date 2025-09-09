@@ -100,38 +100,14 @@ export const Hero = () => {
 
           {/* Multi-line tagline */}
           <div className="mt-8 space-y-1">
-            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto">
-              {currentStep >= 3 && (
-                <TypewriterText 
-                  text="Presentation matters — we combine striking visuals," 
-                  className="inline-block" 
-                  delay={400} 
-                  speed={12} 
-                  onComplete={() => setCurrentStep(6)} 
-                />
-              )}
+            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto transition-all duration-700 delay-1000 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Presentation matters — we combine striking visuals,
             </p>
-            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto">
-              {currentStep >= 6 && (
-                <TypewriterText 
-                  text="proven marketing strategies, and local connections" 
-                  className="inline-block" 
-                  delay={100} 
-                  speed={12} 
-                  onComplete={() => setCurrentStep(7)} 
-                />
-              )}
+            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto transition-all duration-700 delay-1200 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              proven marketing strategies, and local connections
             </p>
-            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8">
-              {currentStep >= 7 && (
-                <TypewriterText 
-                  text="to bring buyers, sellers, and agents together for success." 
-                  className="inline-block" 
-                  delay={100} 
-                  speed={12} 
-                  onComplete={() => setHasCompleted(true)} 
-                />
-              )}
+            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8 transition-all duration-700 delay-1400 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              to bring buyers, sellers, and agents together for success.
             </p>
           </div>
         </div>
