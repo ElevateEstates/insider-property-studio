@@ -33,7 +33,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 130}px)`,
+          transform: `translateY(${scrollY * 0.1}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 0.3px, transparent 0.3px)',
           backgroundSize: '80px 80px',
           backgroundRepeat: 'repeat',
@@ -45,7 +45,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 390}px) translateX(${scrollY * 65}px)`,
+          transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.05}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 0.5px, transparent 0.5px)',
           backgroundSize: '120px 120px',
           backgroundRepeat: 'repeat',
@@ -57,7 +57,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 780}px) translateX(${scrollY * -130}px)`,
+          transform: `translateY(${scrollY * 0.6}px) translateX(${scrollY * -0.1}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 0.8px, transparent 0.8px)',
           backgroundSize: '100px 100px',
           backgroundRepeat: 'repeat',
@@ -69,7 +69,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 1560}px) translateX(${scrollY * 195}px)`,
+          transform: `translateY(${scrollY * 1.2}px) translateX(${scrollY * 0.15}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.7) 1.2px, transparent 1.2px)',
           backgroundSize: '150px 150px',
           backgroundRepeat: 'repeat',
@@ -81,7 +81,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 2600}px) translateX(${scrollY * -260}px)`,
+          transform: `translateY(${scrollY * 2}px) translateX(${scrollY * -0.2}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1.5px, transparent 1.5px)',
           backgroundSize: '200px 200px',
           backgroundRepeat: 'repeat',
@@ -93,7 +93,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 4550}px) translateX(${scrollY * 390}px)`,
+          transform: `translateY(${scrollY * 3.5}px) translateX(${scrollY * 0.3}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.5) 2px, transparent 2px)',
           backgroundSize: '300px 300px',
           backgroundRepeat: 'repeat',
@@ -105,7 +105,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * -1950}px) translateX(${scrollY * 520}px)`,
+          transform: `translateY(${scrollY * -1.5}px) translateX(${scrollY * 0.4}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(200,220,255,0.4) 1px, transparent 1px)',
           backgroundSize: '180px 180px',
           backgroundRepeat: 'repeat',
