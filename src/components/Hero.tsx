@@ -105,22 +105,30 @@ export const Hero = () => {
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
                 {currentStep >= 4 && (
-                  <span className="inline-block">
+                  <>
                     <TypewriterText text="into " className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />
                     {currentStep >= 5 && (
-                      <span className="text-gradient-gold inline-block relative overflow-hidden">
-                        <span 
-                          key={animatedWordIndex}
-                          className="inline-block animate-fade-in"
-                          style={{ 
-                            animation: 'fadeSlideIn 0.6s ease-out forwards'
-                          }}
-                        >
+                      <span className="text-gradient-gold inline-block relative ml-1">
+                        {animatedWords.map((word, index) => (
+                          <span 
+                            key={index}
+                            className={`absolute top-0 left-0 transition-opacity duration-500 ${
+                              index === animatedWordIndex ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            style={{ 
+                              whiteSpace: 'nowrap'
+                            }}
+                          >
+                            {word}
+                          </span>
+                        ))}
+                        {/* Invisible placeholder to maintain layout */}
+                        <span className="invisible">
                           {animatedWords[animatedWordIndex]}
                         </span>
                       </span>
                     )}
-                  </span>
+                  </>
                 )}
               </h1>
             </div>
