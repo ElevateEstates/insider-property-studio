@@ -27,57 +27,42 @@ export const ParallaxBackground = ({
   // Generate varying opacities for dots
   const generateDotLayers = () => {
     const layers = [];
-    const baseOpacities = [0.5, 0.6, 0.7, 0.8, 0.9]; // Reduced from 6 to 5 layers (17% reduction)
+    const baseOpacities = [0.6, 0.7, 0.8, 0.9];
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       const opacity = baseOpacities[i];
-      // Completely randomize sizes to break grid pattern
-      const size = 20 + Math.random() * 60; // Random sizes between 20-80px
-      const dotSize = 0.2 + Math.random() * 0.5; // Random dot sizes
-      const speed = 0.04 + Math.random() * 0.3; // Always ensure movement with random variation
+      const size = 40 + (i * 35); // Consistent spacing between sizes
+      const dotSize = 0.4 + (i * 0.15); // Slightly larger dots
+      const speed = 0.08 + (i * 0.2); // Consistent movement speeds
       
-      // Create more interesting trajectories with randomness
+      // Simple, clean movement patterns - no chaos
       const direction = i % 4;
       let xMovement, yMovement;
       
-      // Add unique random offsets for each layer to completely break grid alignment
-      const uniqueRandomX = (Math.sin(i * 73) * 0.5 + 0.5) * 400 - 200; // Deterministic but random-looking offset
-      const uniqueRandomY = (Math.cos(i * 137) * 0.5 + 0.5) * 600 - 300;
-      const timeOffset = i * 47; // Prime number for non-repeating patterns
-      
       switch (direction) {
-        case 0: // Vertical up with organic drift
-          xMovement = Math.sin((scrollY + timeOffset) * (0.0003 + Math.sin(i) * 0.0002)) * (10 + Math.cos(i) * 8) + uniqueRandomX;
-          yMovement = scrollY * speed * multiplier + uniqueRandomY;
+        case 0: // Gentle vertical with subtle drift
+          xMovement = Math.sin(scrollY * 0.0008 + i) * 20;
+          yMovement = scrollY * speed * multiplier;
           break;
-        case 1: // Diagonal right-up with variation
-          xMovement = (scrollY * speed * (0.2 + Math.sin(i) * 0.2) * multiplier) + 
-                     Math.sin((scrollY + timeOffset) * (0.0006 + Math.cos(i) * 0.0003)) * (8 + Math.sin(i) * 12) + uniqueRandomX;
-          yMovement = scrollY * speed * multiplier + uniqueRandomY;
+        case 1: // Diagonal right-up
+          xMovement = (scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.001 + i) * 15;
+          yMovement = scrollY * speed * multiplier;
           break;
-        case 2: // Horizontal with organic vertical drift
-          xMovement = (scrollY * speed * (0.3 + Math.cos(i) * 0.3) * multiplier) + 
-                     Math.cos((scrollY + timeOffset) * (0.0005 + Math.sin(i) * 0.0004)) * (15 + Math.cos(i) * 10) + uniqueRandomX;
-          yMovement = (scrollY * speed * (0.1 + Math.sin(i) * 0.1) * multiplier) + 
-                     Math.sin((scrollY + timeOffset) * (0.0003 + Math.cos(i) * 0.0002)) * (20 + Math.sin(i) * 15) + uniqueRandomY;
+        case 2: // Horizontal with gentle vertical drift
+          xMovement = (scrollY * speed * 0.4 * multiplier) + Math.cos(scrollY * 0.0009 + i) * 25;
+          yMovement = (scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.0006 + i) * 30;
           break;
-        case 3: // Diagonal left-up with variation
-          xMovement = -(scrollY * speed * (0.2 + Math.cos(i) * 0.2) * multiplier) + 
-                     Math.sin((scrollY + timeOffset) * (0.0007 + Math.sin(i) * 0.0003)) * (12 + Math.cos(i) * 8) + uniqueRandomX;
-          yMovement = scrollY * speed * multiplier + uniqueRandomY;
+        case 3: // Diagonal left-up
+          xMovement = -(scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.0012 + i) * 18;
+          yMovement = scrollY * speed * multiplier;
           break;
       }
       
-      // Randomized loop parameters to break uniformity
-      const loopHeight = 2800 + Math.sin(i * 89) * 800; // Random heights between 2000-3600
-      const loopWidth = 1600 + Math.cos(i * 113) * 600; // Random widths between 1000-2200
+      // Consistent infinite loop
+      const loopHeight = 3000;
+      const loopWidth = 2000;
       const yOffset = yMovement % loopHeight;
       const xOffset = xMovement % loopWidth;
-      
-      // Create organic, non-grid patterns with multiple overlays
-      const patternSeed1 = Math.sin(i * 43) * size * 0.5;
-      const patternSeed2 = Math.cos(i * 67) * size * 0.3;
-      const backgroundSizeVar = size * (0.8 + Math.sin(i * 23) * 0.4); // Vary background size
       
       layers.push(
         <div 
@@ -85,12 +70,8 @@ export const ParallaxBackground = ({
           className="absolute"
           style={{
             transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-            backgroundImage: `
-              radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize * 1.5}px),
-              radial-gradient(circle, rgba(255,255,255,${opacity * 0.4}) ${dotSize * 0.6}px, transparent ${dotSize}px)
-            `,
-            backgroundSize: `${backgroundSizeVar}px ${backgroundSizeVar}px, ${backgroundSizeVar * 1.4}px ${backgroundSizeVar * 1.4}px`,
-            backgroundPosition: `${patternSeed1}px ${patternSeed2}px, ${-patternSeed2}px ${patternSeed1}px`,
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+            backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
             willChange: 'transform',
             top: 0,
@@ -101,22 +82,16 @@ export const ParallaxBackground = ({
         />
       );
       
-      // Reduced loop layers with more variation
-      if (i % 3 === 0) {
-        const loopOpacity = opacity * (0.3 + Math.random() * 0.4);
-        const loopSizeVar = backgroundSizeVar * (0.9 + Math.random() * 0.2);
-        
+      // Clean loop layer - only for alternate layers
+      if (i % 2 === 0) {
         layers.push(
           <div 
             key={`loop-${i}`}
             className="absolute"
             style={{
-              transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset - (direction === 1 || direction === 2 ? loopWidth * 0.3 : 0)}px)`,
-              backgroundImage: `
-                radial-gradient(circle, rgba(255,255,255,${loopOpacity}) ${dotSize * 0.8}px, transparent ${dotSize * 1.2}px)
-              `,
-              backgroundSize: `${loopSizeVar}px ${loopSizeVar}px`,
-              backgroundPosition: `${-patternSeed1 * 0.7}px ${-patternSeed2 * 0.7}px`,
+              transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
+              backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity * 0.7}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+              backgroundSize: `${size}px ${size}px`,
               backgroundRepeat: 'repeat',
               willChange: 'transform',
               top: 0,
@@ -129,32 +104,27 @@ export const ParallaxBackground = ({
       }
     }
     
-    // Single colored accent dot with completely random behavior 
+    // Single clean colored accent dot
     const color = '200,220,255';
-    const opacity = 0.6 + Math.random() * 0.3;
-    const size = 70 + Math.random() * 50;
-    const dotSize = 0.8 + Math.random() * 0.6;
-    const speed = 0.3 + Math.random() * 0.4;
+    const opacity = 0.8;
+    const size = 90;
+    const dotSize = 1.0;
+    const speed = 0.6;
     
-    // Completely organic movement pattern
-    const timeVariation = Date.now() * 0.00001; // Subtle time-based variation
-    const spiralRadius = 25 + Math.sin(scrollY * 0.0003) * 15;
-    const spiralSpeed = scrollY * (0.0006 + Math.sin(timeVariation) * 0.0002);
-    const driftX = scrollY * 0.05 * multiplier + Math.cos(spiralSpeed * 0.7) * 30;
-    const driftY = scrollY * speed * multiplier + Math.sin(spiralSpeed * 0.9) * 20;
-    
-    const xOffset = Math.cos(spiralSpeed) * spiralRadius + driftX + Math.sin(scrollY * 0.0004) * 40;
-    const yOffset = (driftY + Math.sin(spiralSpeed) * (spiralRadius * 0.4)) % (3500 + Math.sin(timeVariation * 100) * 300);
+    // Simple spiral movement
+    const spiralRadius = 35;
+    const spiralSpeed = scrollY * 0.0012;
+    const xOffset = Math.cos(spiralSpeed) * spiralRadius + (scrollY * 0.08 * multiplier);
+    const yOffset = (scrollY * speed * multiplier) % 3800;
     
     layers.push(
       <div 
-        key="colored-organic"
+        key="colored-accent"
         className="absolute"
         style={{
           transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-          backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize * 1.5}px)`,
+          backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
           backgroundSize: `${size}px ${size}px`,
-          backgroundPosition: `${Math.sin(timeVariation * 50) * size * 0.3}px ${Math.cos(timeVariation * 70) * size * 0.3}px`,
           backgroundRepeat: 'repeat',
           willChange: 'transform',
           top: 0,

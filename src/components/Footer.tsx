@@ -15,13 +15,13 @@ export const Footer = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
-          backgroundImage: `url(/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png)`,
+          backgroundImage: `url(/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png)`,
           transform: `translateY(${scrollY * 0.3}px)`
         }}
       />
       
-      {/* Black Overlay */}
-      <div className="absolute inset-0 z-5 bg-black/50"></div>
+      {/* Gradient Black Overlay - darker towards bottom */}
+      <div className="absolute inset-0 z-5 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center justify-center space-y-8 min-h-[40vh]">
