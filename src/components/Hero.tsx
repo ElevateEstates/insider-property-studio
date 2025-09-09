@@ -102,8 +102,13 @@ export const Hero = () => {
       {/* Static Gradient Overlay - doesn't move with parallax */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-black/70 to-black/95"></div>
       
-      {/* Additional bottom gradient for seamless transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-96 z-15 bg-gradient-to-t from-[#0f0f0f] via-black/80 to-transparent"></div>
+      {/* Additional bottom gradient for seamless transition - matches content-background exactly */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-96 z-15 bg-gradient-to-t to-transparent"
+        style={{ 
+          background: 'linear-gradient(to top, rgba(15, 15, 15, 0.95) 0%, rgba(0, 0, 0, 0.85) 40%, transparent 100%)'
+        }}
+      ></div>
       
       {/* Content with Parallax */}
       <div 
