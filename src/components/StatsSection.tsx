@@ -95,7 +95,7 @@ export const StatsSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="glass-card-ultra text-center rounded-2xl p-8">
+            <div key={index} className="glass-card text-center rounded-2xl p-8">
               <div className={`text-4xl md:text-5xl lg:text-6xl font-light ${stat.color} mb-4`}>
                 $<CountUp 
                   end={stat.value} 

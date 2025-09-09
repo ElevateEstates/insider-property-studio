@@ -117,7 +117,7 @@ export const ContactSection = () => {
                 </div>
               </div>
               
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-6 rounded-2xl">
+              <div className="glass-card p-6 rounded-2xl">
                 <h4 className="text-lg font-light text-white mb-3">Why Choose Us?</h4>
                 <ul className="space-y-2 text-white/80">
                   <li>• Access to exclusive off-market properties</li>
