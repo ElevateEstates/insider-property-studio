@@ -93,8 +93,7 @@ export const Hero = () => {
               </h1>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 4 && <TypewriterText text="into results" className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />}
-                <span className="text-4xl md:text-5xl lg:text-6xl">.</span>
+                {currentStep >= 4 && <TypewriterText text="into results." className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />}
               </h1>
             </div>
           </div>
