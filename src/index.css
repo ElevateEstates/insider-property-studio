@@ -211,31 +211,31 @@
       radial-gradient(circle at 57% 13%, rgba(210,230,255,0.4) 0.32px, transparent 1px),
       radial-gradient(circle at 17% 77%, rgba(255,255,255,0.8) 0.38px, transparent 1px);
     background-size: 
-      137px 163px,
-      189px 203px,
-      167px 181px,
-      241px 257px,
-      113px 127px,
-      293px 307px,
-      173px 187px,
-      211px 229px,
-      149px 157px,
-      271px 283px,
-      197px 223px,
-      131px 139px;
+      387px 459px,
+      523px 617px,
+      467px 541px,
+      703px 773px,
+      331px 379px,
+      859px 923px,
+      491px 563px,
+      619px 683px,
+      421px 467px,
+      787px 853px,
+      571px 671px,
+      383px 419px;
     background-position:
       0 0,
-      43px 29px,
-      117px 83px,
-      197px 151px,
-      79px 193px,
-      157px 61px,
-      239px 119px,
-      97px 179px,
-      213px 37px,
-      67px 127px,
-      181px 71px,
-      31px 167px;
+      127px 89px,
+      347px 251px,
+      587px 453px,
+      237px 579px,
+      467px 183px,
+      707px 357px,
+      289px 537px,
+      637px 111px,
+      199px 381px,
+      541px 213px,
+      93px 503px;
   }
   
   .bg-black-grainy::before {
@@ -255,23 +255,23 @@
       radial-gradient(ellipse at 71% 29%, rgba(255,200,220,0.09) 0.65px, transparent 2px),
       radial-gradient(ellipse at 29% 89%, rgba(200,240,255,0.07) 0.55px, transparent 2px);
     background-size: 
-      387px 317px,
-      359px 431px,
-      503px 193px,
-      307px 397px,
-      593px 347px,
-      443px 509px,
-      433px 277px,
-      367px 463px;
+      1161px 953px,
+      1079px 1297px,
+      1507px 579px,
+      921px 1193px,
+      1783px 1041px,
+      1329px 1527px,
+      1297px 831px,
+      1101px 1391px;
     background-position:
       0 0,
-      103px 53px,
-      207px 107px,
-      311px 203px,
-      149px 251px,
-      257px 149px,
-      73px 191px,
-      179px 97px;
+      309px 159px,
+      621px 321px,
+      933px 609px,
+      447px 753px,
+      771px 447px,
+      219px 573px,
+      537px 291px;
     opacity: 0.5;
     pointer-events: none;
     z-index: 1;
@@ -294,23 +294,23 @@
       radial-gradient(circle at 67% 41%, rgba(255,230,200,0.18) 0.06px, transparent 0.5px),
       radial-gradient(circle at 17% 67%, rgba(200,250,230,0.14) 0.07px, transparent 0.5px);
     background-size: 
-      83px 89px,
-      127px 139px,
-      97px 103px,
-      91px 97px,
-      113px 119px,
-      107px 101px,
-      73px 79px,
-      109px 117px;
+      249px 267px,
+      381px 417px,
+      291px 309px,
+      273px 291px,
+      339px 357px,
+      321px 303px,
+      219px 237px,
+      327px 351px;
     background-position:
       0 0,
-      41px 43px,
-      79px 23px,
-      19px 83px,
-      59px 61px,
-      29px 37px,
-      71px 13px,
-      47px 67px;
+      123px 129px,
+      237px 69px,
+      57px 249px,
+      177px 183px,
+      87px 111px,
+      213px 39px,
+      141px 201px;
     opacity: 0.7;
     pointer-events: none;
     z-index: 2;

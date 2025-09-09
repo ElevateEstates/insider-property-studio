@@ -95,7 +95,7 @@ export const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
         style={{
           backgroundImage: `url(${heroImage})`,
-          transform: `translateY(${scrollY * 0.5}px)`
+          transform: `translateY(${scrollY * 0.8}px)`
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
@@ -104,7 +104,7 @@ export const Hero = () => {
       {/* Content with Parallax */}
       <div 
         className="relative z-30 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16 section-content"
-        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        style={{ transform: `translateY(${scrollY * 0.15}px)` }}
       >
         <div className="max-w-6xl w-full text-center space-y-6 py-20">
           

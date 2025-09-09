@@ -49,7 +49,7 @@ export default function Sellers() {
 
   return (
     <div className="min-h-screen relative">
-      <ParallaxBackground speed={0.4} />
+      <ParallaxBackground speed={0.8} />
       
       {/* Navigation */}
       <nav className="absolute top-6 left-6 z-50">
@@ -69,7 +69,7 @@ export default function Sellers() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
           style={{ 
             backgroundImage: `url(${heroImage})`,
-            transform: `translateY(${scrollY * 0.5}px)`
+            transform: `translateY(${scrollY * 0.9}px)`
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/70"></div>
@@ -77,7 +77,7 @@ export default function Sellers() {
         
         <div 
           className="relative z-30 container mx-auto px-6 text-center section-content"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+          style={{ transform: `translateY(${scrollY * 0.2}px)` }}
         >
           <div className="max-w-4xl mx-auto animate-fade-up">
             <Badge variant="secondary" className="mb-6 px-4 py-2 glass-effect text-white border-white/30">
