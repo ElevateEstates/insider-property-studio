@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import { usePersistedAnimation } from "@/hooks/usePersistedAnimation";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -126,7 +127,6 @@ const portfolioItems: PortfolioItem[] = [
 export const PortfolioSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
-  const [titleVisible, setTitleVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -134,48 +134,71 @@ export const PortfolioSection = () => {
   const videoItems = portfolioItems.filter(item => item.type === 'video');
   const photoItems = portfolioItems.filter(item => item.type === 'image');
 
+  // Use persistent animations
+  const titleAnimation = usePersistedAnimation({ 
+    key: 'portfolio-title',
+    threshold: 0.1
+  });
+
+  const cardsAnimation = usePersistedAnimation({ 
+    key: 'portfolio-cards',
+    threshold: 0.1
+  });
+
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (titleAnimation.isMobile) {
+        requestAnimationFrame(() => setScrollY(window.scrollY));
+      } else {
+        setScrollY(window.scrollY);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [titleAnimation.isMobile]);
+
+  // If animations are already complete, show all content immediately
+  useEffect(() => {
+    if (titleAnimation.hasAnimated && cardsAnimation.hasAnimated) {
+      setVisibleCards([...Array(videoItems.length + photoItems.length)].map((_, i) => i));
+    }
+  }, [titleAnimation.hasAnimated, cardsAnimation.hasAnimated, videoItems.length, photoItems.length]);
 
   useEffect(() => {
+    if (titleAnimation.hasAnimated && cardsAnimation.hasAnimated) return;
+
     const observers: IntersectionObserver[] = [];
+    const effectiveThreshold = titleAnimation.isMobile ? 0.05 : 0.2;
 
-    // Title observer
-    const titleObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTitleVisible(true);
+    // Card observers - only if not already animated
+    if (!cardsAnimation.hasAnimated) {
+      cardRefs.current.forEach((card, index) => {
+        if (card) {
+          const cardObserver = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                setVisibleCards(prev => {
+                  if (!prev.includes(index)) {
+                    return [...prev, index];
+                  }
+                  return prev;
+                });
+              }
+            },
+            { 
+              threshold: effectiveThreshold,
+              rootMargin: titleAnimation.isMobile ? '50px' : '100px'
+            }
+          );
+          cardObserver.observe(card);
+          observers.push(cardObserver);
         }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      titleObserver.observe(sectionRef.current);
-      observers.push(titleObserver);
+      });
     }
 
-    // Card observers
-    cardRefs.current.forEach((card, index) => {
-      if (card) {
-        const cardObserver = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setVisibleCards(prev => [...prev, index]);
-            }
-          },
-          { threshold: 0.2 }
-        );
-        cardObserver.observe(card);
-        observers.push(cardObserver);
-      }
-    });
-
     return () => observers.forEach(observer => observer.disconnect());
-  }, []);
+  }, [titleAnimation.hasAnimated, cardsAnimation.hasAnimated, titleAnimation.isMobile]);
 
   const getSizeClasses = (size: string) => {
     // Responsive card sizes with safe zones
@@ -200,15 +223,15 @@ export const PortfolioSection = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
-            {titleVisible && (
-              <span className="animate-fade-in opacity-0 delay-200 block">
+            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && (
+              <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-200'} block`}>
                 Grow your business and get noticed with our professional photography and videography.
               </span>
             )}
           </h2>
           <p className="text-xl text-white/80 mb-12">
-            {titleVisible && (
-              <span className="animate-fade-in opacity-0 delay-1000 block">
+            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && (
+              <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-1000'} block`}>
                 Strategic media crafted for maximum visibility, engagement, and results.
               </span>
             )}
@@ -218,8 +241,8 @@ export const PortfolioSection = () => {
         {/* Video Gallery */}
         <div className="mb-20 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
-            {titleVisible && (
-              <span className="animate-fade-in opacity-0 delay-700 block">
+            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && (
+              <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-700'} block`}>
                 Video Tours
               </span>
             )}
@@ -275,8 +298,8 @@ export const PortfolioSection = () => {
         {/* Photo Gallery */}
         <div className="mb-16 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
-            {titleVisible && (
-              <span className="animate-fade-in opacity-0 delay-1200 block">
+            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && (
+              <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-1200'} block`}>
                 Photography
               </span>
             )}

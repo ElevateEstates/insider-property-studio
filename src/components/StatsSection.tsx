@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from "react";
+import { usePersistedAnimation } from "@/hooks/usePersistedAnimation";
 
 interface CountUpProps {
   end: number;
   suffix?: string;
   duration?: number;
   isVisible: boolean;
+  isMobile?: boolean;
 }
 
-const CountUp = ({ end, suffix = "", duration = 2000, isVisible }: CountUpProps) => {
+const CountUp = ({ end, suffix = "", duration = 2000, isVisible, isMobile = false }: CountUpProps) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -19,9 +21,12 @@ const CountUp = ({ end, suffix = "", duration = 2000, isVisible }: CountUpProps)
     let startTime: number;
     let animationFrame: number;
 
+    // Faster animation on mobile
+    const effectiveDuration = isMobile ? duration * 0.7 : duration;
+
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const progress = Math.min((currentTime - startTime) / effectiveDuration, 1);
       
       const easeOutCubic = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(end * easeOutCubic));
@@ -33,22 +38,40 @@ const CountUp = ({ end, suffix = "", duration = 2000, isVisible }: CountUpProps)
 
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration, isVisible]);
+  }, [end, duration, isVisible, isMobile]);
 
   return <span>{count}{suffix}</span>;
 };
 
 export const StatsSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Get mobile detection first
+  const animationData = usePersistedAnimation({ 
+    key: 'stats-section',
+    threshold: 0.1  // Use lower threshold, will adjust in hook based on mobile
+  });
+  
+  const { 
+    isVisible, 
+    shouldAnimate, 
+    hasAnimated: alreadyAnimated, 
+    isMobile 
+  } = animationData;
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (isMobile) {
+        requestAnimationFrame(() => setScrollY(window.scrollY));
+      } else {
+        setScrollY(window.scrollY);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   const stats = [
     { label: "views generated", value: 2, suffix: "m+", color: "text-blue-400", prefix: "" },
@@ -56,24 +79,6 @@ export const StatsSection = () => {
     { label: "partner agents", value: 20, suffix: "+", color: "text-blue-400", prefix: "" },
     { label: "ad spend in 2024", value: 10, suffix: "k+", color: "text-white", prefix: "€" }
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setIsVisible(true);
-          setHasAnimated(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
 
   return (
     <section ref={sectionRef} className="py-16 px-4 md:px-6 relative overflow-hidden z-10">
@@ -105,7 +110,8 @@ export const StatsSection = () => {
                   end={stat.value} 
                   suffix={stat.suffix}
                   duration={2000}
-                  isVisible={isVisible}
+                  isVisible={shouldAnimate || alreadyAnimated}
+                  isMobile={isMobile}
                 />
               </div>
               <div className="text-white/70 text-sm uppercase tracking-wide">
