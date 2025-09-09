@@ -151,9 +151,9 @@ export const ParallaxBackground = ({
           xStart: baseX,
           yStart: initialY,
           ySpeed: Math.max(0.08, config.speed + speedVariation), // Add variation to prevent static matching
-          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.015, (0.02 + (i * 0.003) + driftVariation)), // Add drift variation
-          oscillateSpeed: Math.max(0.0005, config.oscillate), // Ensure minimum oscillation
-          oscillateAmplitude: Math.max(15, config.amplitude) // Ensure minimum amplitude
+          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.025, (0.02 + (i * 0.003) + driftVariation)), // Increased minimum drift
+          oscillateSpeed: Math.max(0.001, config.oscillate + (j * 0.0002)), // Increased minimum oscillation
+          oscillateAmplitude: Math.max(30, config.amplitude + (i * 5)) // Increased minimum amplitude for visible left/right movement
         });
         
         if (star) layers.push(star);
