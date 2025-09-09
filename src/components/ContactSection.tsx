@@ -117,7 +117,7 @@ export const ContactSection = () => {
                 </div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-2xl">
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-6 rounded-2xl">
                 <h4 className="text-lg font-light text-white mb-3">Why Choose Us?</h4>
                 <ul className="space-y-2 text-white/80">
                   <li>• Access to exclusive off-market properties</li>
@@ -129,7 +129,7 @@ export const ContactSection = () => {
             </div>
             
             {/* Contact Form */}
-            <Card className="p-8 bg-white/10 backdrop-blur-lg border-white/20">
+            <Card className="p-8 bg-transparent backdrop-blur-md border border-white/10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>

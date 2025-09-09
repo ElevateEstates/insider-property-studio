@@ -140,7 +140,7 @@ const About = () => {
           
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="p-8 bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300">
+              <Card key={index} className="p-8 bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
                     <service.icon className="w-6 h-6 text-accent-gold" />

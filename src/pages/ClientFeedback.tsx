@@ -77,17 +77,17 @@ const ClientFeedback = () => {
                   2-Year Partnership Results
                 </h4>
                 <div className="grid md:grid-cols-3 gap-8">
-                  <Card className="bg-white/10 border-accent-gold/20 p-6 text-center">
+                  <Card className="bg-transparent backdrop-blur-md border border-white/10 p-6 text-center">
                     <TrendingUp className="h-12 w-12 text-accent-gold mx-auto mb-4" />
                     <div className="text-3xl font-bold text-white mb-2">250%</div>
                     <div className="text-white/80">Increase in Premium Listing Inquiries</div>
                   </Card>
-                  <Card className="bg-white/10 border-accent-gold/20 p-6 text-center">
+                  <Card className="bg-transparent backdrop-blur-md border border-white/10 p-6 text-center">
                     <Users className="h-12 w-12 text-accent-gold mx-auto mb-4" />
                     <div className="text-3xl font-bold text-white mb-2">150+</div>
                     <div className="text-white/80">Exclusive Properties Marketed</div>
                   </Card>
-                  <Card className="bg-white/10 border-accent-gold/20 p-6 text-center">
+                  <Card className="bg-transparent backdrop-blur-md border border-white/10 p-6 text-center">
                     <Star className="h-12 w-12 text-accent-gold mx-auto mb-4" />
                     <div className="text-3xl font-bold text-white mb-2">98%</div>
                     <div className="text-white/80">Client Satisfaction Rate</div>

@@ -153,7 +153,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
             {contactInfo.map((info, index) => {
               const CardContent = (
-                <Card className="p-8 text-center bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
+                <Card className="p-8 text-center bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
                   <div className="w-16 h-16 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <info.icon className="w-8 h-8 text-accent-gold" />
                   </div>
@@ -201,7 +201,7 @@ const Contact = () => {
                 </p>
               </div>
 
-              <Card className="p-8 bg-white/10 backdrop-blur-lg border-white/20">
+              <Card className="p-8 bg-transparent backdrop-blur-md border border-white/10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -325,7 +325,7 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {services.map((service, index) => (
-                  <Card key={index} className="p-6 bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300">
+                  <Card key={index} className="p-6 bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-xl font-medium text-white">
                         {service.title}

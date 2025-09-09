@@ -234,7 +234,7 @@ const Portfolio = () => {
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <Card className="overflow-hidden bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300">
+                <Card className="overflow-hidden bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={item.image}
