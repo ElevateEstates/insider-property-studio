@@ -132,11 +132,13 @@ export const ParallaxBackground = ({
     };
     
     // Reduced star field - fewer, varied sizes, all moving
-    // Further reduce stars on mobile for better performance
+    // Increased mobile stars for better visibility
     const starConfigs = isMobile || prefersReducedMotion ? [
-      // Minimal stars for mobile
-      { opacity: 0.6, size: 60, dotSize: 0.2, speed: 0.08, oscillate: 0.0005, amplitude: 15 },
-      { opacity: 0.5, size: 70, dotSize: 0.3, speed: 0.1, oscillate: 0.0006, amplitude: 20 }
+      // Enhanced mobile stars - more visible
+      { opacity: 0.8, size: 50, dotSize: 0.4, speed: 0.08, oscillate: 0.0005, amplitude: 15 },
+      { opacity: 0.7, size: 60, dotSize: 0.5, speed: 0.1, oscillate: 0.0006, amplitude: 20 },
+      { opacity: 0.6, size: 55, dotSize: 0.3, speed: 0.09, oscillate: 0.0007, amplitude: 18 },
+      { opacity: 0.75, size: 65, dotSize: 0.4, speed: 0.11, oscillate: 0.0008, amplitude: 22 }
     ] : [
       // Small stars (90% of stars) - much smaller
       { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
@@ -150,8 +152,8 @@ export const ParallaxBackground = ({
     ];
     
     starConfigs.forEach((config, i) => {
-      // Reduce stars further on mobile: 1 star per config on mobile, 2 on desktop
-      const starsPerConfig = isMobile || prefersReducedMotion ? 1 : 2;
+      // Increase mobile stars: 2 stars per config on mobile, 2 on desktop
+      const starsPerConfig = isMobile || prefersReducedMotion ? 2 : 2;
       for (let j = 0; j < starsPerConfig; j++) {
         const starId = `star-${i}-${j}`;
         
