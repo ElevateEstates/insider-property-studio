@@ -49,16 +49,24 @@ export const StatsSection = () => {
   
   // Get mobile detection first
   const animationData = usePersistedAnimation({ 
-    key: 'stats-section',
-    threshold: 0.1  // Use lower threshold, will adjust in hook based on mobile
+    key: 'stats-section-main',  // Make it critical content
+    threshold: 0.1,
+    delay: 0  // No delay for immediate trigger
   });
   
   const { 
+    ref: animationRef,
     isVisible, 
     shouldAnimate, 
     hasAnimated: alreadyAnimated, 
     isMobile 
   } = animationData;
+
+  // Combine refs
+  const combinedRef = (el: HTMLElement | null) => {
+    if (sectionRef.current !== el) sectionRef.current = el;
+    if (animationRef.current !== el) animationRef.current = el;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,7 +89,7 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 md:px-6 relative overflow-hidden z-10">
+    <section ref={combinedRef} className="py-16 px-4 md:px-6 relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-15 z-0">
         <div className="absolute inset-0" style={{
