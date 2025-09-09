@@ -27,20 +27,42 @@ export const ParallaxBackground = ({
   // Generate varying opacities for dots
   const generateDotLayers = () => {
     const layers = [];
-    const baseOpacities = [0.6, 0.7, 0.8, 0.9, 1.0, 0.8]; // Reduced from 12 to 6 layers
+    const baseOpacities = [0.5, 0.6, 0.7, 0.8, 0.9]; // Reduced from 6 to 5 layers (17% reduction)
     
-    for (let i = 0; i < 6; i++) { // Reduced from 12 to 6 layers
+    for (let i = 0; i < 5; i++) { // Reduced from 6 to 5 layers
       const opacity = baseOpacities[i];
-      const size = 30 + (i * 25); // Increased spacing between sizes
-      const dotSize = 0.3 + (i * 0.15); // Slightly larger dots
-      const speed = 0.05 + (i * 0.2); // More varied speeds
-      // Much more subtle X movement that oscillates instead of accumulating
-      const xSpeed = Math.sin(i) * 0.005; // Very subtle oscillating movement
+      const size = 35 + (i * 30); // Increased spacing between sizes
+      const dotSize = 0.3 + (i * 0.2); // Slightly larger dots
+      const speed = 0.05 + (i * 0.25); // More varied speeds
       
-      // Create infinite loop effect by using modulo on scroll position
-      const loopHeight = 3000; // Increased loop height for more natural spacing
-      const yOffset = (scrollY * speed * multiplier) % loopHeight;
-      const xOffset = Math.sin(scrollY * 0.001 + i) * 20; // Gentle sine wave movement, max 20px offset
+      // Create more interesting trajectories - some go diagonally, some horizontally
+      const direction = i % 4; // 4 different movement patterns
+      let xMovement, yMovement;
+      
+      switch (direction) {
+        case 0: // Vertical up
+          xMovement = Math.sin(scrollY * 0.0005 + i) * 15;
+          yMovement = scrollY * speed * multiplier;
+          break;
+        case 1: // Diagonal right-up
+          xMovement = (scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.0008 + i) * 10;
+          yMovement = scrollY * speed * multiplier;
+          break;
+        case 2: // Horizontal right with slight vertical drift
+          xMovement = (scrollY * speed * 0.5 * multiplier) + Math.cos(scrollY * 0.0006 + i) * 20;
+          yMovement = (scrollY * speed * 0.2 * multiplier) + Math.sin(scrollY * 0.0004 + i) * 25;
+          break;
+        case 3: // Diagonal left-up
+          xMovement = -(scrollY * speed * 0.3 * multiplier) + Math.sin(scrollY * 0.0007 + i) * 15;
+          yMovement = scrollY * speed * multiplier;
+          break;
+      }
+      
+      // Create infinite loop effect
+      const loopHeight = 3500;
+      const loopWidth = 2000;
+      const yOffset = yMovement % loopHeight;
+      const xOffset = xMovement % loopWidth;
       
       layers.push(
         <div 
@@ -55,20 +77,20 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '400vh' // Adjusted height
+            height: '400vh'
           }}
         />
       );
       
-      // Add a second layer offset for seamless looping - but only for every other layer to reduce density
-      if (i % 2 === 0) {
+      // Add a second layer for seamless looping - reduced frequency
+      if (i % 3 === 0) { // Only every third layer gets a loop duplicate
         layers.push(
           <div 
             key={`loop-${i}`}
             className="absolute"
             style={{
-              transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
-              backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity * 0.7}) ${dotSize}px, transparent ${dotSize}px)`, // Slightly less opacity for loop layers
+              transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset - (direction === 1 || direction === 2 ? loopWidth : 0)}px)`,
+              backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity * 0.6}) ${dotSize}px, transparent ${dotSize}px)`,
               backgroundSize: `${size}px ${size}px`,
               backgroundRepeat: 'repeat',
               willChange: 'transform',
@@ -82,19 +104,20 @@ export const ParallaxBackground = ({
       }
     }
     
-    // Reduced colored accent dots from 4 to 2
-    for (let i = 0; i < 2; i++) {
-      const colors = ['200,220,255', '255,220,200'];
+    // Reduced colored accent dots from 2 to 1 (50% reduction)
+    for (let i = 0; i < 1; i++) {
+      const colors = ['200,220,255'];
       const color = colors[i];
-      const opacity = 0.7 + (i * 0.15);
-      const size = 80 + (i * 60);
-      const dotSize = 1.0 + (i * 0.4);
-      const speed = 0.4 + (i * 0.3);
-      // Gentle oscillating movement for colored dots too
-      const xOffset = Math.sin(scrollY * 0.0008 + i * 2) * 30; // Slightly more movement for accent dots
+      const opacity = 0.8;
+      const size = 100;
+      const dotSize = 1.2;
+      const speed = 0.5;
       
-      const loopHeight = 3500;
-      const yOffset = (scrollY * speed * multiplier) % loopHeight;
+      // Give colored dots spiral movement
+      const spiralRadius = 40;
+      const spiralSpeed = scrollY * 0.001;
+      const xOffset = Math.cos(spiralSpeed + i * Math.PI) * spiralRadius + (scrollY * 0.1 * multiplier);
+      const yOffset = (scrollY * speed * multiplier) % 4000;
       
       layers.push(
         <div 
@@ -114,14 +137,14 @@ export const ParallaxBackground = ({
         />
       );
       
-      // Only one loop layer for colored dots
+      // Loop layer for colored dot
       layers.push(
         <div 
           key={`colored-loop-${i}`}
           className="absolute"
           style={{
-            transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(${color},${opacity * 0.6}) ${dotSize}px, transparent ${dotSize}px)`,
+            transform: `translateY(${yOffset - 4000}px) translateX(${xOffset}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(${color},${opacity * 0.5}) ${dotSize}px, transparent ${dotSize}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
             willChange: 'transform',

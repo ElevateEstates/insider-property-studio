@@ -79,11 +79,13 @@ export const Hero = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen text-white overflow-hidden transparent-section">
       <div className="relative z-30 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 section-content">
-        <div className="max-w-6xl w-full text-center space-y-6 py-20">
+        <div className="max-w-6xl w-full text-center space-y-8 py-20">
+          <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
+            Professional Real Estate Media
+          </Badge>
           
-          {/* YOUR */}
-          <div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin tracking-wider">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
               {currentStep >= 1 && (
                 <TypewriterText
                   text="YOUR"
@@ -94,26 +96,20 @@ export const Hero = () => {
                 />
               )}
             </h1>
-          </div>
-
-          {/* LUXURY */}
-          <div>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-widest">
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
               {currentStep >= 1 && (
                 <TypewriterText
                   text="LUXURY"
-                  className="inline-block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
+                  className="inline-block text-gradient-gold"
                   delay={400}
                   speed={40}
                   onComplete={() => setCurrentStep(3)}
                 />
               )}
             </h1>
-          </div>
-
-          {/* EXCLUSIVE */}
-          <div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-wide">
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
               {currentStep >= 1 && (
                 <TypewriterText
                   text="EXCLUSIVE"
@@ -124,11 +120,8 @@ export const Hero = () => {
                 />
               )}
             </h1>
-          </div>
-
-          {/* BESPOKE PARTNER */}
-          <div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-wide">
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
               {currentStep >= 1 && (
                 <TypewriterText
                   text="BESPOKE PARTNER"
@@ -138,24 +131,21 @@ export const Hero = () => {
                   onComplete={() => setCurrentStep(5)}
                 />
               )}
-              <span className="text-6xl md:text-8xl lg:text-9xl">.</span>
+              <span className="text-4xl md:text-6xl lg:text-7xl">.</span>
             </h1>
           </div>
 
-          {/* Subtitle */}
-          <div className="mt-12">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/80 tracking-wide">
-              {currentStep >= 1 && (
-                <TypewriterText
-                  text="Luxury real estate media to impress"
-                  className="inline-block"
-                  delay={2000}
-                  speed={27}
-                  onComplete={() => setHasCompleted(true)}
-                />
-              )}
-            </h2>
-          </div>
+          <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+            {currentStep >= 1 && (
+              <TypewriterText
+                text="Luxury real estate media to impress"
+                className="inline-block"
+                delay={2000}
+                speed={27}
+                onComplete={() => setHasCompleted(true)}
+              />
+            )}
+          </p>
         </div>
       </div>
     </section>
