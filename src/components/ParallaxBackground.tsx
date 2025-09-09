@@ -36,12 +36,17 @@ export const ParallaxBackground = ({
       const speed = 0.05 + (i * 0.15); // Varying speeds
       const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.02 + i * 0.01);
       
+      // Create infinite loop effect by using modulo on scroll position
+      const loopHeight = 2000; // Loop every 2000px of scroll
+      const yOffset = (scrollY * speed * multiplier) % loopHeight;
+      const xOffset = (scrollY * xSpeed * multiplier) % 1000;
+      
       layers.push(
         <div 
           key={i}
           className="absolute"
           style={{
-            transform: `translateY(${scrollY * speed * multiplier}px) translateX(${scrollY * xSpeed * multiplier}px)`,
+            transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
             backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
@@ -49,13 +54,32 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '1000vh' // Much larger height to prevent disappearing
+            height: '300vh' // Reduced height since we're looping
+          }}
+        />
+      );
+      
+      // Add a second layer offset for seamless looping
+      layers.push(
+        <div 
+          key={`loop-${i}`}
+          className="absolute"
+          style={{
+            transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
+            backgroundSize: `${size}px ${size}px`,
+            backgroundRepeat: 'repeat',
+            willChange: 'transform',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '300vh'
           }}
         />
       );
     }
     
-    // Add some colored accent dots for variety
+    // Add some colored accent dots for variety with infinite loop
     for (let i = 0; i < 4; i++) {
       const colors = ['200,220,255', '220,200,255', '255,220,200', '200,255,220'];
       const color = colors[i];
@@ -65,12 +89,16 @@ export const ParallaxBackground = ({
       const speed = 0.3 + (i * 0.2);
       const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.05 + i * 0.02);
       
+      const loopHeight = 2500;
+      const yOffset = (scrollY * speed * multiplier) % loopHeight;
+      const xOffset = (scrollY * xSpeed * multiplier) % 1200;
+      
       layers.push(
         <div 
           key={`colored-${i}`}
           className="absolute"
           style={{
-            transform: `translateY(${scrollY * speed * multiplier}px) translateX(${scrollY * xSpeed * multiplier}px)`,
+            transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
             backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
@@ -78,7 +106,26 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '1000vh'
+            height: '300vh'
+          }}
+        />
+      );
+      
+      // Second layer for looping
+      layers.push(
+        <div 
+          key={`colored-loop-${i}`}
+          className="absolute"
+          style={{
+            transform: `translateY(${yOffset - loopHeight}px) translateX(${xOffset}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize}px)`,
+            backgroundSize: `${size}px ${size}px`,
+            backgroundRepeat: 'repeat',
+            willChange: 'transform',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '300vh'
           }}
         />
       );
