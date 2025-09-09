@@ -117,6 +117,62 @@ const portfolioItems: PortfolioItem[] = [
     alt: 'Drone footage of estate',
     size: 'medium',
     title: 'Aerial Estate Tour'
+  },
+  {
+    type: 'image',
+    src: portfolio3,
+    alt: 'Elegant outdoor space',
+    size: 'small',
+    title: 'Terrace Paradise'
+  },
+  {
+    type: 'image',
+    src: portfolio1,
+    alt: 'Premium property facade',
+    size: 'medium',
+    title: 'Urban Elegance'
+  },
+  {
+    type: 'image',
+    src: portfolio2,
+    alt: 'Luxury kitchen design',
+    size: 'small',
+    title: 'Culinary Excellence'
+  },
+  {
+    type: 'image',
+    src: portfolio3,
+    alt: 'Serene poolside view',
+    size: 'large',
+    title: 'Aquatic Retreat'
+  },
+  {
+    type: 'image',
+    src: portfolio1,
+    alt: 'Master bedroom suite',
+    size: 'medium',
+    title: 'Private Sanctuary'
+  },
+  {
+    type: 'image',
+    src: portfolio2,
+    alt: 'Grand entrance hall',
+    size: 'small',
+    title: 'First Impressions'
+  },
+  {
+    type: 'image',
+    src: portfolio3,
+    alt: 'Panoramic city views',
+    size: 'large',
+    title: 'Skyline Majesty'
+  },
+  {
+    type: 'image',
+    src: portfolio1,
+    alt: 'Designer bathroom',
+    size: 'small',
+    title: 'Spa Experience'
   }
 ];
 
@@ -238,8 +294,7 @@ export const PortfolioSection = () => {
                     : 'opacity-0 translate-y-8'
                 }`}
                 style={{ 
-                  transitionDelay: `${index * 150}ms`,
-                  transform: `translateY(${scrollY * 0.02}px)`
+                  transitionDelay: `${index * 150}ms`
                 }}
               >
                 <div className="relative w-full h-full bg-black">
@@ -284,7 +339,7 @@ export const PortfolioSection = () => {
               />
             )}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12 px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20 px-4">
             {photoItems.map((item, index) => (
               <div 
                 key={`photo-${index}`} 
@@ -295,8 +350,7 @@ export const PortfolioSection = () => {
                     : 'opacity-0 translate-y-8'
                 }`}
                 style={{ 
-                  transitionDelay: `${(videoItems.length + index) * 150}ms`,
-                  transform: `translateY(${scrollY * 0.02}px)`
+                  transitionDelay: `${(videoItems.length + index) * 150}ms`
                 }}
               >
                 <img 
@@ -324,8 +378,8 @@ export const PortfolioSection = () => {
           </div>
         </div>
 
-        <div className="text-center pb-16">
-          <h3 className="text-2xl md:text-3xl font-light mb-6 text-white">
+        <div className="text-center pb-32 pt-16">
+          <h3 className="text-2xl md:text-3xl font-light mb-8 text-white">
             {visibleCards.length > 4 && (
               <TypewriterText
                 text="This is the pinnacle of real estate media."
@@ -334,7 +388,7 @@ export const PortfolioSection = () => {
               />
             )}
           </h3>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
             {visibleCards.length > 4 && (
               <TypewriterText
                 text="Discover the world of what real estate media was meant to be. Our work speaks for itself."
@@ -343,14 +397,16 @@ export const PortfolioSection = () => {
               />
             )}
           </p>
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-[100] mb-8"
-          >
-            Our Portfolio
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="portfolio-button-container">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-[100]"
+            >
+              Our Portfolio
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
