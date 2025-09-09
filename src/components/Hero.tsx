@@ -103,7 +103,7 @@ export const Hero = () => {
       
       {/* Content with Parallax */}
       <div 
-        className="relative z-30 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16 section-content"
+        className="relative z-30 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 section-content"
         style={{ transform: `translateY(${scrollY * 0.15}px)` }}
       >
         <div className="max-w-6xl w-full text-center space-y-6 py-20">

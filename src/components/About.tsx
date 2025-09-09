@@ -10,7 +10,7 @@ export const About = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-black-grainy relative overflow-hidden z-10">
+    <section className="py-32 px-4 md:px-6 bg-black-grainy relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-10 z-0">
         <div className="absolute inset-0" style={{
@@ -22,7 +22,7 @@ export const About = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-4xl relative z-20 section-content py-8"
+        className="container mx-auto max-w-4xl relative z-20 section-content py-8 px-4 md:px-8"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
         <div className="mb-16 animate-fade-up">

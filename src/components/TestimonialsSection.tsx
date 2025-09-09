@@ -56,7 +56,7 @@ export const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-black-grainy relative overflow-hidden z-10">
+    <section className="py-32 px-4 md:px-6 bg-black-grainy relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-8 z-0">
         <div className="absolute inset-0" style={{
@@ -68,7 +68,7 @@ export const TestimonialsSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-20 section-content py-8"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-8 px-4 md:px-8"
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">

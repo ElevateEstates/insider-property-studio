@@ -224,12 +224,12 @@ export const PortfolioSection = () => {
   }, []);
 
   const getSizeClasses = (size: string) => {
-    // All cards now have uniform size with generous safe zones
-    return 'col-span-1 aspect-[4/3] h-[320px] mx-2';
+    // Responsive card sizes with safe zones
+    return 'w-full aspect-[4/3] max-w-[400px] mx-auto';
   };
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-black-grainy relative overflow-hidden z-10">
+    <section ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 lg:px-8 bg-black-grainy relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-20 z-0">
         <div className="absolute inset-0" style={{
@@ -241,7 +241,7 @@ export const PortfolioSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-7xl relative z-20 section-content py-8"
+        className="container mx-auto max-w-7xl relative z-20 section-content py-4 md:py-8 px-2 md:px-4"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="text-center mb-16">
@@ -266,7 +266,7 @@ export const PortfolioSection = () => {
         </div>
 
         {/* Video Gallery */}
-        <div className="mb-20">
+        <div className="mb-20 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
             {titleVisible && (
               <TypewriterText
@@ -276,7 +276,7 @@ export const PortfolioSection = () => {
               />
             )}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
             {videoItems.map((item, index) => (
               <div 
                 key={`video-${index}`} 
@@ -322,7 +322,7 @@ export const PortfolioSection = () => {
         </div>
 
         {/* Photo Gallery */}
-        <div className="mb-16">
+        <div className="mb-16 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
             {titleVisible && (
               <TypewriterText
@@ -332,7 +332,7 @@ export const PortfolioSection = () => {
               />
             )}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-32 px-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
             {photoItems.map((item, index) => (
               <div 
                 key={`photo-${index}`} 
@@ -371,7 +371,7 @@ export const PortfolioSection = () => {
           </div>
         </div>
 
-        <div className="text-center pb-32 pt-24">
+        <div className="text-center pb-32 pt-24 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white">
             {visibleCards.length > 4 && (
               <TypewriterText

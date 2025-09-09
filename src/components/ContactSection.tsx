@@ -39,7 +39,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact-form" className="py-32 px-6 bg-black-grainy relative overflow-hidden z-10">
+    <section id="contact-form" className="py-32 px-4 md:px-6 bg-black-grainy relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-6 z-0">
         <div className="absolute inset-0" style={{
@@ -51,7 +51,7 @@ export const ContactSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-20 section-content py-8"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-8 px-4 md:px-8"
       >
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-5xl md:text-6xl font-light mb-8 border-b border-white/20 pb-4 text-white">
