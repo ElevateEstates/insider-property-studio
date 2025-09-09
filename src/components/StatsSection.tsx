@@ -92,7 +92,7 @@ export const StatsSection = () => {
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light mb-8 text-white leading-tight">
             Helping buyers find the homes they truly want
           </h2>
         </div>

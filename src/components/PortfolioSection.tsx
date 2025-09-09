@@ -248,7 +248,7 @@ export const PortfolioSection = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
             {titleVisible && (
               <TypewriterText
-                text="Grow your business with our real estate photography and videography."
+                text="Maximize appeal and get noticed with our professional photography and videography."
                 delay={200}
                 speed={33}
               />
@@ -257,7 +257,7 @@ export const PortfolioSection = () => {
           <p className="text-xl text-white/80 mb-12">
             {titleVisible && (
               <TypewriterText
-                text="An immersive way to experience real estate."
+                text="Strategic media crafted for maximum visibility, engagement, and results."
                 delay={3000}
                 speed={40}
               />
