@@ -113,33 +113,31 @@ export const ParallaxBackground = ({
       return null;
     };
     
-    // Main star field - more layers for density
+    // Reduced star field - fewer, varied sizes, all moving
     const starConfigs = [
-      // Primary star layers
-      { opacity: 0.8, size: 45, dotSize: 0.5, speed: 0.12, oscillate: 0.0008, amplitude: 35 },
-      { opacity: 0.7, size: 60, dotSize: 0.6, speed: 0.15, oscillate: 0.001, amplitude: 45 },
-      { opacity: 0.6, size: 75, dotSize: 0.7, speed: 0.18, oscillate: 0.0012, amplitude: 55 },
-      { opacity: 0.9, size: 40, dotSize: 0.4, speed: 0.1, oscillate: 0.0006, amplitude: 25 },
+      // Small stars (90% of stars)
+      { opacity: 0.7, size: 45, dotSize: 0.3, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
+      { opacity: 0.6, size: 50, dotSize: 0.4, speed: 0.15, oscillate: 0.001, amplitude: 30 },
+      { opacity: 0.8, size: 40, dotSize: 0.35, speed: 0.1, oscillate: 0.0006, amplitude: 20 },
+      { opacity: 0.65, size: 55, dotSize: 0.45, speed: 0.14, oscillate: 0.0009, amplitude: 35 },
       
-      // Secondary star layers
-      { opacity: 0.65, size: 55, dotSize: 0.55, speed: 0.14, oscillate: 0.0009, amplitude: 40 },
-      { opacity: 0.75, size: 50, dotSize: 0.45, speed: 0.11, oscillate: 0.0007, amplitude: 30 },
-      { opacity: 0.55, size: 70, dotSize: 0.65, speed: 0.16, oscillate: 0.0011, amplitude: 50 },
-      { opacity: 0.85, size: 35, dotSize: 0.35, speed: 0.09, oscillate: 0.0005, amplitude: 20 }
+      // Medium-large stars (10% of stars)
+      { opacity: 0.9, size: 60, dotSize: 1.4, speed: 0.18, oscillate: 0.0012, amplitude: 40 },
+      { opacity: 0.75, size: 65, dotSize: 1.6, speed: 0.16, oscillate: 0.0011, amplitude: 45 }
     ];
     
     starConfigs.forEach((config, i) => {
-      // Create multiple stars per config for density
-      for (let j = 0; j < 3; j++) {
+      // Only 2 stars per config instead of 3 for 50% reduction
+      for (let j = 0; j < 2; j++) {
         const starId = `star-${i}-${j}`;
         
-        // Distribute across screen width with some randomization based on index
-        const baseX = (screenWidth / 3) * j + (screenWidth * 0.1) + ((i * 37) % (screenWidth * 0.15));
+        // Distribute across screen width with better spacing
+        const baseX = (screenWidth / 2) * j + (screenWidth * 0.2) + ((i * 47) % (screenWidth * 0.3));
         
-        // Start some stars on screen, others off-screen for continuous flow
-        const initialY = (i + j * 2) % 4 === 0 ? 
-          (screenHeight * 0.2) + ((i * 23) % (screenHeight * 0.6)) : // On screen
-          -(screenHeight * 0.5) - ((i * 17) % (screenHeight * 0.8)); // Off screen top
+        // Start some stars visible, others off-screen for continuous flow
+        const initialY = (i + j) % 3 === 0 ? 
+          (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
+          -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5)); // Off screen top
         
         const star = createStar({
           id: starId,
@@ -149,7 +147,7 @@ export const ParallaxBackground = ({
           xStart: baseX,
           yStart: initialY,
           ySpeed: config.speed,
-          xDrift: (i % 2 === 0 ? 1 : -1) * (0.02 + (i * 0.005)),
+          xDrift: (i % 2 === 0 ? 1 : -1) * (0.02 + (i * 0.003)),
           oscillateSpeed: config.oscillate,
           oscillateAmplitude: config.amplitude
         });
@@ -158,40 +156,34 @@ export const ParallaxBackground = ({
       }
     });
     
-    // Add accent colored stars
-    const coloredStarConfigs = [
-      { color: '200,220,255', opacity: 0.9, size: 80, dotSize: 0.8 },
-      { color: '255,200,220', opacity: 0.7, size: 65, dotSize: 0.6 },
-      { color: '220,255,200', opacity: 0.6, size: 70, dotSize: 0.7 }
-    ];
+    // Reduced colored accent stars - only 1 instead of 3
+    const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 1.2 };
     
-    coloredStarConfigs.forEach((config, i) => {
-      const spiralRadius = 40 + (i * 15);
-      const spiralSpeed = 0.0008 + (i * 0.0004);
-      const baseX = screenWidth * (0.2 + i * 0.3);
-      
-      // Start some colored stars visible
-      const initialY = i === 0 ? screenHeight * 0.3 : -(screenHeight * 0.3);
-      
-      const spiralX = baseX + Math.cos(scrollY * spiralSpeed) * spiralRadius;
-      const spiralY = initialY + (scrollY * (0.13 + i * 0.02) * multiplier);
-      
-      const coloredStar = createStar({
-        id: `colored-star-${i}`,
-        baseOpacity: config.opacity,
-        size: config.size,
-        dotSize: config.dotSize,
-        xStart: spiralX,
-        yStart: spiralY,
-        ySpeed: 0.13 + (i * 0.02),
-        xDrift: (i % 2 === 0 ? 1 : -1) * 0.03,
-        oscillateSpeed: spiralSpeed * 2,
-        oscillateAmplitude: 25,
-        color: config.color
-      });
-      
-      if (coloredStar) layers.push(coloredStar);
+    const spiralRadius = 35;
+    const spiralSpeed = 0.001;
+    const baseX = screenWidth * 0.6;
+    
+    // Start colored star visible
+    const initialY = screenHeight * 0.25;
+    
+    const spiralX = baseX + Math.cos(scrollY * spiralSpeed) * spiralRadius;
+    const spiralY = initialY + (scrollY * 0.13 * multiplier);
+    
+    const coloredStar = createStar({
+      id: 'colored-star-accent',
+      baseOpacity: coloredStarConfig.opacity,
+      size: coloredStarConfig.size,
+      dotSize: coloredStarConfig.dotSize,
+      xStart: spiralX,
+      yStart: spiralY,
+      ySpeed: 0.13,
+      xDrift: 0.025,
+      oscillateSpeed: spiralSpeed * 2,
+      oscillateAmplitude: 30,
+      color: coloredStarConfig.color
     });
+    
+    if (coloredStar) layers.push(coloredStar);
     
     return layers;
   };
