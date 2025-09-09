@@ -89,19 +89,22 @@ export const ParallaxBackground = ({
       
       const finalOpacity = baseOpacity * horizontalFade * verticalFade;
       
-      // Render if meaningfully visible - create individual animated dot
+      // Render if meaningfully visible
       if (finalOpacity > 0.05) {
         return (
           <div 
             key={id}
-            className="absolute rounded-full"
+            className="absolute"
             style={{
               transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-              width: `${dotSize}px`,
-              height: `${dotSize}px`,
-              backgroundColor: `rgba(${color},${finalOpacity})`,
-              boxShadow: `0 0 ${dotSize * 2}px rgba(${color},${finalOpacity * 0.5})`,
+              backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2.5}px)`,
+              backgroundSize: `${size}px ${size}px`,
+              backgroundRepeat: 'repeat',
               willChange: 'transform',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '600vh',
               pointerEvents: 'none'
             }}
           />
