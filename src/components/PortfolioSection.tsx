@@ -248,7 +248,7 @@ export const PortfolioSection = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
             {titleVisible && (
               <TypewriterText
-                text="Maximize appeal and get noticed with our professional photography and videography."
+                text="Grow your business and get noticed with our professional photography and videography."
                 delay={200}
                 speed={33}
               />
