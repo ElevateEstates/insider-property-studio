@@ -49,24 +49,28 @@ export const ParallaxBackground = ({
         oscillateSpeed, oscillateAmplitude, color = '255,255,255' 
       } = config;
       
-      // Calculate smooth continuous movement
+      // Calculate smooth continuous movement with guaranteed variation
       const baseY = yStart + (scrollY * ySpeed * multiplier);
       const baseX = xStart + (scrollY * xDrift * multiplier);
       
-      // Add oscillating movement for star-like motion
-      const oscillationX = Math.sin(scrollY * oscillateSpeed + parseFloat(id.split('-')[1] || '0')) * oscillateAmplitude;
-      const oscillationY = Math.cos(scrollY * oscillateSpeed * 0.7 + parseFloat(id.split('-')[1] || '0')) * (oscillateAmplitude * 0.3);
+      // Add strong oscillating movement with unique phase for each dot
+      const uniquePhase = (parseFloat(id.split('-')[1] || '0') + parseFloat(id.split('-')[2] || '0')) * 1.5 + 1; // Ensure non-zero phase
+      const oscillationX = Math.sin(scrollY * oscillateSpeed + uniquePhase) * oscillateAmplitude;
+      const oscillationY = Math.cos(scrollY * oscillateSpeed * 0.7 + uniquePhase) * (oscillateAmplitude * 0.5);
+      
+      // Add secondary oscillation to prevent any static states
+      const secondaryOscillationX = Math.cos(scrollY * oscillateSpeed * 1.3 + uniquePhase * 2) * (oscillateAmplitude * 0.3);
+      const secondaryOscillationY = Math.sin(scrollY * oscillateSpeed * 0.9 + uniquePhase * 1.7) * (oscillateAmplitude * 0.2);
       
       // Create continuous loop with large cycle to prevent visible repetition
       const cycleHeight = screenHeight * 8;
       const cycleWidth = screenWidth * 3;
       
-      // Use smooth sine wave transitions for seamless looping
-      const yProgress = (baseY % cycleHeight) / cycleHeight;
-      const yOffset = (yProgress * cycleHeight) - (screenHeight * 2) + oscillationY;
-      
       const xProgress = (baseX % cycleWidth) / cycleWidth;
-      const xOffset = (xProgress * cycleWidth) - (screenWidth * 0.5) + oscillationX;
+      const xOffset = (xProgress * cycleWidth) - (screenWidth * 0.5) + oscillationX + secondaryOscillationX;
+      
+      const yProgress = (baseY % cycleHeight) / cycleHeight;
+      const yOffset = (yProgress * cycleHeight) - (screenHeight * 2) + oscillationY + secondaryOscillationY;
       
       // Extended smooth fade with generous margins
       const fadeMargin = 300;
