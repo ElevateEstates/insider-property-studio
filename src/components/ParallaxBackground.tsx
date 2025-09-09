@@ -139,6 +139,10 @@ export const ParallaxBackground = ({
           (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
           -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5)); // Off screen top
         
+        // Add randomization to prevent any dot from matching scroll speed exactly
+        const speedVariation = 0.02 + (Math.sin(i * j * 2.5) * 0.01);
+        const driftVariation = 0.005 + (Math.cos(i * j * 1.7) * 0.003);
+        
         const star = createStar({
           id: starId,
           baseOpacity: config.opacity,
@@ -146,8 +150,8 @@ export const ParallaxBackground = ({
           dotSize: config.dotSize,
           xStart: baseX,
           yStart: initialY,
-          ySpeed: Math.max(0.08, config.speed), // Ensure minimum movement
-          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.015, (0.02 + (i * 0.003))), // Ensure minimum drift
+          ySpeed: Math.max(0.08, config.speed + speedVariation), // Add variation to prevent static matching
+          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.015, (0.02 + (i * 0.003) + driftVariation)), // Add drift variation
           oscillateSpeed: Math.max(0.0005, config.oscillate), // Ensure minimum oscillation
           oscillateAmplitude: Math.max(15, config.amplitude) // Ensure minimum amplitude
         });
