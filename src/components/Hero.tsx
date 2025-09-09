@@ -44,7 +44,7 @@ const TypewriterText = ({
     setIsVisible(false);
     setIsComplete(false);
   }, [text]);
-  return <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+  return <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'} block pb-2`}>
       {displayText}
       {!isComplete && <span className="animate-pulse">|</span>}
     </span>;
