@@ -13,6 +13,7 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
   const [displayText, setDisplayText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
     if (hasStarted) return; // Prevent multiple starts
@@ -27,6 +28,7 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
           currentIndex++;
         } else {
           clearInterval(typeInterval);
+          setIsComplete(true);
           onComplete?.();
         }
       }, speed);
@@ -42,12 +44,13 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
     setHasStarted(false);
     setDisplayText("");
     setIsVisible(false);
+    setIsComplete(false);
   }, [text]);
 
   return (
     <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {displayText}
-      <span className="animate-pulse">|</span>
+      {!isComplete && <span className="animate-pulse">|</span>}
     </span>
   );
 };
@@ -125,8 +128,8 @@ export const Hero = () => {
                   text="YOUR"
                   className="inline-block"
                   delay={0}
-                  speed={150}
-                  onComplete={() => setTimeout(() => setCurrentStep(2), 400)}
+                  speed={75}
+                  onComplete={() => setTimeout(() => setCurrentStep(2), 200)}
                 />
               )}
             </h1>
@@ -140,8 +143,8 @@ export const Hero = () => {
                   text="LUXURY"
                   className="inline-block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
                   delay={0}
-                  speed={120}
-                  onComplete={() => setTimeout(() => setCurrentStep(3), 400)}
+                  speed={60}
+                  onComplete={() => setTimeout(() => setCurrentStep(3), 200)}
                 />
               )}
             </h1>
@@ -155,8 +158,8 @@ export const Hero = () => {
                   text="EXCLUSIVE"
                   className="inline-block"
                   delay={0}
-                  speed={130}
-                  onComplete={() => setTimeout(() => setCurrentStep(4), 400)}
+                  speed={65}
+                  onComplete={() => setTimeout(() => setCurrentStep(4), 200)}
                 />
               )}
             </h1>
@@ -171,16 +174,16 @@ export const Hero = () => {
                     text="BESPOKE "
                     className="inline-block mr-2"
                     delay={0}
-                    speed={140}
-                    onComplete={() => setTimeout(() => setCurrentStep(5), 200)}
+                    speed={70}
+                    onComplete={() => setTimeout(() => setCurrentStep(5), 100)}
                   />
                   {currentStep >= 5 && (
                     <TypewriterText
                       text="PARTNER"
                       className="inline-block"
                       delay={0}
-                      speed={140}
-                      onComplete={() => setTimeout(() => setCurrentStep(6), 400)}
+                      speed={70}
+                      onComplete={() => setTimeout(() => setCurrentStep(6), 200)}
                     />
                   )}
                   <span className="text-6xl md:text-8xl lg:text-9xl">.</span>
@@ -197,7 +200,7 @@ export const Hero = () => {
                   text="Luxury real estate media to impress"
                   className="inline-block"
                   delay={0}
-                  speed={80}
+                  speed={40}
                 />
               )}
             </h2>
