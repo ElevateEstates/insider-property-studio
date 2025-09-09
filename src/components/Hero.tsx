@@ -94,11 +94,11 @@ export const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: `url(/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png)`,
           transform: `translateY(${scrollY * 0.8}px)`
         }}
       >
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
       </div>
       
       {/* Content with Parallax */}
