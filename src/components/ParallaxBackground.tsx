@@ -28,20 +28,19 @@ export const ParallaxBackground = ({
   const generateDotLayers = () => {
     const layers = [];
     const baseOpacities = [0.6, 0.7, 0.8, 0.9];
+    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
+    const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
     
     for (let i = 0; i < 4; i++) {
-      const opacity = baseOpacities[i];
+      const baseOpacity = baseOpacities[i];
       const size = 40 + (i * 35);
       const dotSize = 0.4 + (i * 0.15);
       const speed = 0.08 + (i * 0.2);
       
-      // Screen dimensions for uniform distribution
-      const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
-      
       // Create uniform distribution across screen width
-      const basePosition = (i * screenWidth / 3.5) + (screenWidth * 0.1); // Spread evenly from 10% to 90% screen width
+      const basePosition = (i * screenWidth / 3.5) + (screenWidth * 0.1);
       
-      // Movement patterns - ensure uniform coverage
+      // Movement patterns with continuous flow
       const direction = i % 4;
       let xMovement, yMovement;
       
@@ -64,12 +63,31 @@ export const ParallaxBackground = ({
           break;
       }
       
-      // Smooth cycling that maintains screen coverage
-      const loopHeight = 3000;
-      const yOffset = yMovement % loopHeight;
+      // Continuous cycling without jumps
+      const cycleHeight = screenHeight * 4;
+      const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
+      const yOffset = normalizedY - screenHeight;
       
-      // Keep dots within screen bounds with gentle cycling
-      const xOffset = (xMovement % (screenWidth * 1.2)) - (screenWidth * 0.1);
+      // Smooth horizontal cycling
+      const cycleWidth = screenWidth * 1.4;
+      const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
+      const xOffset = normalizedX - (screenWidth * 0.2);
+      
+      // Calculate fade based on distance from screen edges
+      const fadeMargin = 100;
+      let opacityFactor = 1;
+      
+      if (xOffset < 0) {
+        opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
+      } else if (xOffset > screenWidth) {
+        opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
+      }
+      
+      if (yOffset < -fadeMargin) {
+        opacityFactor *= Math.max(0, 1 + (yOffset + fadeMargin) / fadeMargin);
+      } else if (yOffset > screenHeight + fadeMargin) {
+        opacityFactor *= Math.max(0, 1 - (yOffset - screenHeight - fadeMargin) / fadeMargin);
+      }
       
       layers.push(
         <div 
@@ -77,7 +95,7 @@ export const ParallaxBackground = ({
           className="absolute"
           style={{
             transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
             willChange: 'transform',
@@ -85,55 +103,43 @@ export const ParallaxBackground = ({
             left: 0,
             right: 0,
             height: '400vh',
-            // Uniform opacity across screen
-            opacity: xOffset < 0 || xOffset > screenWidth ? 0.5 : 1,
-            transition: 'opacity 0.6s ease-out'
+            opacity: opacityFactor,
+            transition: 'opacity 0.3s ease-out'
           }}
         />
       );
-      
-      // Add loop layer with balanced distribution
-      if (i % 2 === 0) {
-        const loopYOffset = yOffset - loopHeight;
-        if (loopYOffset > -200) {
-          layers.push(
-            <div 
-              key={`loop-${i}`}
-              className="absolute"
-              style={{
-                transform: `translateY(${loopYOffset}px) translateX(${xOffset}px)`,
-                backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity * 0.8}) ${dotSize}px, transparent ${dotSize * 2}px)`,
-                backgroundSize: `${size}px ${size}px`,
-                backgroundRepeat: 'repeat',
-                willChange: 'transform',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '400vh',
-                opacity: xOffset < 0 || xOffset > screenWidth ? 0.4 : 0.8,
-                transition: 'opacity 0.6s ease-out'
-              }}
-            />
-          );
-        }
-      }
     }
     
     // Additional left-side accent dots for balance
     for (let i = 0; i < 2; i++) {
-      const opacity = 0.7 + (i * 0.1);
+      const baseOpacity = 0.7 + (i * 0.1);
       const size = 60 + (i * 30);
       const dotSize = 0.5 + (i * 0.2);
       const speed = 0.1 + (i * 0.15);
-      const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
       
       // Position on left third of screen
       const leftBasePosition = screenWidth * (0.05 + i * 0.15);
       const xMovement = leftBasePosition + Math.sin(scrollY * (0.0007 + i * 0.0003)) * 40;
       const yMovement = scrollY * speed * multiplier;
       
-      const yOffset = yMovement % 3200;
-      const xOffset = xMovement % (screenWidth * 1.1) - (screenWidth * 0.05);
+      // Continuous cycling
+      const cycleHeight = screenHeight * 3.5;
+      const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
+      const yOffset = normalizedY - screenHeight * 0.5;
+      
+      const cycleWidth = screenWidth * 1.2;
+      const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
+      const xOffset = normalizedX - (screenWidth * 0.1);
+      
+      // Smooth fade based on position
+      const fadeMargin = 120;
+      let opacityFactor = 1;
+      
+      if (xOffset < 0) {
+        opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
+      } else if (xOffset > screenWidth) {
+        opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
+      }
       
       layers.push(
         <div 
@@ -141,14 +147,16 @@ export const ParallaxBackground = ({
           className="absolute"
           style={{
             transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${opacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
             backgroundSize: `${size}px ${size}px`,
             backgroundRepeat: 'repeat',
             willChange: 'transform',
             top: 0,
             left: 0,
             right: 0,
-            height: '400vh'
+            height: '400vh',
+            opacity: opacityFactor,
+            transition: 'opacity 0.3s ease-out'
           }}
         />
       );
@@ -156,18 +164,36 @@ export const ParallaxBackground = ({
     
     // Colored accent dot positioned for balance
     const color = '200,220,255';
-    const opacity = 0.8;
+    const baseOpacity = 0.8;
     const size = 90;
     const dotSize = 1.0;
     const speed = 0.6;
-    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
     
     // Position in right third of screen for balance
     const spiralRadius = 35;
     const spiralSpeed = scrollY * 0.0012;
     const baseX = screenWidth * 0.65 + (scrollY * 0.05 * multiplier);
-    const xOffset = (baseX + Math.cos(spiralSpeed) * spiralRadius) % (screenWidth * 1.1) - (screenWidth * 0.05);
-    const yOffset = (scrollY * speed * multiplier) % 3800;
+    const xMovement = baseX + Math.cos(spiralSpeed) * spiralRadius;
+    const yMovement = scrollY * speed * multiplier;
+    
+    // Continuous cycling for colored accent
+    const cycleHeight = screenHeight * 4.2;
+    const normalizedY = ((yMovement % cycleHeight) + cycleHeight) % cycleHeight;
+    const yOffset = normalizedY - screenHeight * 0.8;
+    
+    const cycleWidth = screenWidth * 1.3;
+    const normalizedX = ((xMovement % cycleWidth) + cycleWidth) % cycleWidth;
+    const xOffset = normalizedX - (screenWidth * 0.15);
+    
+    // Smooth fade for colored accent
+    const fadeMargin = 100;
+    let opacityFactor = 1;
+    
+    if (xOffset < 0) {
+      opacityFactor = Math.max(0, 1 + xOffset / fadeMargin);
+    } else if (xOffset > screenWidth) {
+      opacityFactor = Math.max(0, 1 - (xOffset - screenWidth) / fadeMargin);
+    }
     
     layers.push(
       <div 
@@ -175,14 +201,16 @@ export const ParallaxBackground = ({
         className="absolute"
         style={{
           transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-          backgroundImage: `radial-gradient(circle, rgba(${color},${opacity}) ${dotSize}px, transparent ${dotSize * 2}px)`,
+          backgroundImage: `radial-gradient(circle, rgba(${color},${baseOpacity * opacityFactor}) ${dotSize}px, transparent ${dotSize * 2}px)`,
           backgroundSize: `${size}px ${size}px`,
           backgroundRepeat: 'repeat',
           willChange: 'transform',
           top: 0,
           left: 0,
           right: 0,
-          height: '400vh'
+          height: '400vh',
+          opacity: opacityFactor,
+          transition: 'opacity 0.3s ease-out'
         }}
       />
     );
