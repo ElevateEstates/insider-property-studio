@@ -12,7 +12,7 @@ export const WorkWithUs = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-black relative overflow-hidden z-10">
+    <section className="py-32 px-6 bg-black-grainy relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-12 z-0">
         <div className="absolute inset-0" style={{

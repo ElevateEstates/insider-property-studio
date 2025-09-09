@@ -91,7 +91,7 @@ export const Hero = () => {
   }, [isVisible]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen bg-black text-white overflow-hidden z-10">
+    <section ref={heroRef} className="relative min-h-screen bg-black-grainy text-white overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-30 z-0">
         <div className="absolute inset-0" style={{

@@ -193,31 +193,48 @@
   }
 }
 
-/* Grainy texture background */
-@layer base {
-  body {
+/* Grainy texture background for black sections */
+@layer components {
+  .bg-black-grainy {
+    @apply bg-black relative;
     background-image: 
-      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0),
-      linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
-    background-size: 20px 20px, 100px 100px;
-    position: relative;
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.06) 1px, transparent 1px),
+      radial-gradient(circle at 40% 70%, rgba(255,255,255,0.04) 1px, transparent 1px),
+      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.05) 1px, transparent 1px),
+      radial-gradient(circle at 60% 30%, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 
+      25px 25px,
+      35px 35px,
+      45px 45px,
+      55px 55px,
+      65px 65px;
+    background-position:
+      0 0,
+      12px 12px,
+      25px 8px,
+      40px 20px,
+      15px 35px;
   }
   
-  body::before {
+  .bg-black-grainy::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px),
-      linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.01) 50%, transparent 100%);
-    background-size: 30px 30px, 50px 50px, 80px 80px;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+      linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%, transparent);
+    background-size: 
+      15px 15px,
+      75px 75px,
+      75px 75px;
+    opacity: 0.5;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.3;
   }
 }
 
