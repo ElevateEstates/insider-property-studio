@@ -96,19 +96,14 @@ export const Hero = () => {
               {currentStep >= 2 && <TypewriterText text="property marketing," className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
             </h1>
 
-            {/* Third line: turning listings into [animated word] - smaller to match alignment */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
+            {/* Third line: turning listings into [animated word] - matching size */}
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
               {currentStep >= 3 && (
                 <span className="inline-block">
                   <TypewriterText text="turning listings into " className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />
                   {currentStep >= 4 && (
-                    <span className="text-gradient-gold inline-block relative">
-                      <span 
-                        key={animatedWordIndex}
-                        className="inline-block transition-all duration-700 ease-in-out transform"
-                      >
-                        {animatedWords[animatedWordIndex]}
-                      </span>
+                    <span className="text-gradient-gold inline-block">
+                      {animatedWords[animatedWordIndex]}
                     </span>
                   )}
                 </span>
