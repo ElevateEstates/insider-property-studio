@@ -97,9 +97,13 @@ export const Hero = () => {
           backgroundImage: `url(/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png)`,
           transform: `translateY(${scrollY * 0.8}px)`
         }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black"></div>
-      </div>
+      />
+      
+      {/* Static Gradient Overlay - doesn't move with parallax */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-black/70 to-black/95"></div>
+      
+      {/* Additional bottom gradient for seamless transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-96 z-15 bg-gradient-to-t from-[#0f0f0f] via-black/80 to-transparent"></div>
       
       {/* Content with Parallax */}
       <div 
