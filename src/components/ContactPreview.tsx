@@ -26,7 +26,6 @@ export const ContactPreview = () => {
       
       <div 
         className="container mx-auto max-w-4xl text-center relative z-20 section-content py-8"
-        style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
         <h2 className="text-5xl md:text-6xl font-light mb-8 text-white">
           Get In Touch
@@ -37,7 +36,7 @@ export const ContactPreview = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 z-30 relative"
+          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-50"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Contact Us
