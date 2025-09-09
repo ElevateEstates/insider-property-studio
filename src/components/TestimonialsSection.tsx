@@ -56,7 +56,7 @@ export const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section className="pt-32 pb-20 px-4 md:px-6 relative overflow-hidden z-10">
+    <section className="pt-48 pb-20 px-4 md:px-6 relative overflow-hidden z-10">
       <div 
         className="container mx-auto max-w-6xl relative z-20 section-content py-8 px-4 md:px-8"
       >
