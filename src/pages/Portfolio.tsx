@@ -170,7 +170,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen text-white relative">
-      <ParallaxBackground speed={8} reduced={true} />
+      <ParallaxBackground speed={8} />
       <Navigation />
       
       {/* Hero Section */}

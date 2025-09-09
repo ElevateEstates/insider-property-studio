@@ -25,97 +25,129 @@ export const ParallaxBackground = ({
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '200vh' }}>
       {/* Base dark gray background */}
       <div 
-        className={`absolute inset-0 ${className}`}
+        className={`absolute ${className}`}
         style={{
           backgroundColor: '#0f0f0f', // Dark grayish instead of pitch black
-          opacity: opacity
+          opacity: opacity,
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '200vh'
         }}
       />
       
       {/* Background layer: smallest dots, slowest movement */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 0.1 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 0.3px, transparent 0.3px)',
           backgroundSize: '80px 80px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Mid-background layer: small dots, slow movement */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 0.3 * multiplier}px) translateX(${scrollY * 0.05 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 0.5px, transparent 0.5px)',
           backgroundSize: '120px 120px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Mid layer: medium dots, medium speed */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 0.6 * multiplier}px) translateX(${scrollY * -0.1 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 0.8px, transparent 0.8px)',
           backgroundSize: '100px 100px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Mid-foreground layer: larger dots, faster movement */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 1.2 * multiplier}px) translateX(${scrollY * 0.15 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.7) 1.2px, transparent 1.2px)',
           backgroundSize: '150px 150px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Foreground layer: largest dots, fastest movement */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 2 * multiplier}px) translateX(${scrollY * -0.2 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1.5px, transparent 1.5px)',
           backgroundSize: '200px 200px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Ultra-foreground layer: very large dots, very fast movement */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * 3.5 * multiplier}px) translateX(${scrollY * 0.3 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.5) 2px, transparent 2px)',
           backgroundSize: '300px 300px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       
       {/* Counter-direction layer for dramatic effect */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           transform: `translateY(${scrollY * -1.5 * multiplier}px) translateX(${scrollY * 0.4 * multiplier}px)`,
           backgroundImage: 'radial-gradient(circle, rgba(200,220,255,0.4) 1px, transparent 1px)',
           backgroundSize: '180px 180px',
           backgroundRepeat: 'repeat',
-          willChange: 'transform'
+          willChange: 'transform',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '300vh'
         }}
       />
       

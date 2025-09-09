@@ -6,7 +6,7 @@ export const Footer = () => {
           {/* Logo */}
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png" 
+              src="/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png" 
               alt="Elevate Properties" 
               className="h-24 w-auto filter invert opacity-60"
             />
