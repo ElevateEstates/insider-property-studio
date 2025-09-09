@@ -146,10 +146,10 @@ export const ParallaxBackground = ({
           dotSize: config.dotSize,
           xStart: baseX,
           yStart: initialY,
-          ySpeed: config.speed,
-          xDrift: (i % 2 === 0 ? 1 : -1) * (0.02 + (i * 0.003)),
-          oscillateSpeed: config.oscillate,
-          oscillateAmplitude: config.amplitude
+          ySpeed: Math.max(0.08, config.speed), // Ensure minimum movement
+          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.015, (0.02 + (i * 0.003))), // Ensure minimum drift
+          oscillateSpeed: Math.max(0.0005, config.oscillate), // Ensure minimum oscillation
+          oscillateAmplitude: Math.max(15, config.amplitude) // Ensure minimum amplitude
         });
         
         if (star) layers.push(star);
@@ -176,10 +176,10 @@ export const ParallaxBackground = ({
       dotSize: coloredStarConfig.dotSize,
       xStart: spiralX,
       yStart: spiralY,
-      ySpeed: 0.13,
-      xDrift: 0.025,
-      oscillateSpeed: spiralSpeed * 2,
-      oscillateAmplitude: 30,
+      ySpeed: Math.max(0.1, 0.13), // Ensure visible movement
+      xDrift: Math.max(0.02, 0.025), // Ensure visible drift
+      oscillateSpeed: Math.max(0.0008, spiralSpeed * 2), // Ensure visible oscillation
+      oscillateAmplitude: Math.max(25, 30), // Ensure visible amplitude
       color: coloredStarConfig.color
     });
     
