@@ -301,6 +301,7 @@
       537px 291px;
     opacity: 0.7;
     pointer-events: none;
+    animation: grain-drift 30s ease-in-out infinite;
     z-index: 1;
   }
   
@@ -335,6 +336,58 @@
   25% { transform: translate(-2px, -1px) scale(1.002); }
   50% { transform: translate(1px, -2px) scale(0.998); }
   75% { transform: translate(-1px, 1px) scale(1.001); }
+}
+
+/* Grain drift animation for subtle movement */
+@keyframes grain-drift {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    background-position: 
+      0 0,
+      309px 159px,
+      621px 321px,
+      933px 609px,
+      447px 753px,
+      771px 447px,
+      219px 573px,
+      537px 291px;
+  }
+  25% { 
+    transform: translate(-3px, -2px) scale(1.001);
+    background-position: 
+      -15px -10px,
+      294px 149px,
+      636px 331px,
+      918px 599px,
+      462px 763px,
+      786px 457px,
+      204px 563px,
+      552px 301px;
+  }
+  50% { 
+    transform: translate(2px, -3px) scale(0.999);
+    background-position: 
+      10px -20px,
+      319px 139px,
+      611px 301px,
+      948px 589px,
+      432px 733px,
+      756px 427px,
+      234px 593px,
+      522px 271px;
+  }
+  75% { 
+    transform: translate(-1px, 2px) scale(1.0005);
+    background-position: 
+      -8px 12px,
+      301px 171px,
+      629px 333px,
+      925px 621px,
+      455px 765px,
+      779px 459px,
+      211px 585px,
+      545px 303px;
+  }
 }
 /* Section spacing and z-index management */
 @layer components {
