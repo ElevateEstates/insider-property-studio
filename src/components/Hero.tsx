@@ -58,6 +58,7 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
 export const Hero = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasCompleted, setHasCompleted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
@@ -70,14 +71,11 @@ export const Hero = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
+        if (entry.isIntersecting && !isVisible && !hasCompleted) {
           setIsVisible(true);
           setCurrentStep(0);
           // Start the animation sequence
           setTimeout(() => setCurrentStep(1), 300);
-        } else if (!entry.isIntersecting && isVisible) {
-          setIsVisible(false);
-          setCurrentStep(0);
         }
       },
       { threshold: 0.3 }
@@ -88,7 +86,7 @@ export const Hero = () => {
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, [isVisible, hasCompleted]);
 
   return (
     <section ref={heroRef} className="relative min-h-screen bg-black-grainy text-white overflow-hidden z-10">
@@ -190,6 +188,7 @@ export const Hero = () => {
                   className="inline-block"
                   delay={2000}
                   speed={40}
+                  onComplete={() => setHasCompleted(true)}
                 />
               )}
             </h2>
