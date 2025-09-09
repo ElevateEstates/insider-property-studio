@@ -192,83 +192,58 @@ const Contact = () => {
           className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20 py-32"
           style={{ transform: `translateY(${scrollY * 0.1}px)` }}
         >
-          <div className="max-w-6xl w-full text-center space-y-6">
-            
-            {/* YOUR */}
-            <div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin tracking-wider">
-                {currentStep >= 1 && (
-                  <TypewriterText
-                    text="YOUR"
-                    className="inline-block"
-                    delay={0}
-                    speed={50}
-                    onComplete={() => setCurrentStep(2)}
-                  />
-                )}
-              </h1>
-            </div>
+          <div className="max-w-6xl w-full text-center space-y-8">
+            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
+              Professional Real Estate Media
+            </Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
+              Let's Create Something
+              <span className="block text-gradient-gold">Extraordinary</span>
+            </h1>
+            <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+              Ready to showcase your property with stunning visuals? Get in touch today 
+              and let's discuss how we can help you achieve your goals.
+            </p>
+          </div>
+        </div>
+      </section>
 
-            {/* LUXURY */}
-            <div>
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-widest">
-                {currentStep >= 1 && (
-                  <TypewriterText
-                    text="LUXURY"
-                    className="inline-block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
-                    delay={400}
-                    speed={40}
-                    onComplete={() => setCurrentStep(3)}
-                  />
-                )}
-              </h1>
-            </div>
-
-            {/* EXCLUSIVE */}
-            <div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-wide">
-                {currentStep >= 1 && (
-                  <TypewriterText
-                    text="EXCLUSIVE"
-                    className="inline-block"
-                    delay={800}
-                    speed={43}
-                    onComplete={() => setCurrentStep(4)}
-                  />
-                )}
-              </h1>
-            </div>
-
-            {/* BESPOKE PARTNER */}
-            <div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-wide">
-                {currentStep >= 1 && (
-                  <TypewriterText
-                    text="BESPOKE PARTNER"
-                    className="inline-block"
-                    delay={1200}
-                    speed={47}
-                    onComplete={() => setCurrentStep(5)}
-                  />
-                )}
-                <span className="text-6xl md:text-8xl lg:text-9xl">.</span>
-              </h1>
-            </div>
-
-            {/* Subtitle */}
-            <div className="mt-12">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/80 tracking-wide">
-                {currentStep >= 1 && (
-                  <TypewriterText
-                    text="Luxury real estate media to impress"
-                    className="inline-block"
-                    delay={2000}
-                    speed={27}
-                    onComplete={() => setHasCompleted(true)}
-                  />
-                )}
-              </h2>
-            </div>
+      {/* Our Services Section */}
+      <section className="py-32 transparent-section">
+        <div 
+          className="container mx-auto max-w-6xl px-4 md:px-8"
+          style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+        >
+          <div className="text-center mb-16 glass-card rounded-2xl p-8">
+            <h2 className="text-3xl md:text-5xl font-light mb-8">
+              Our Services
+            </h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Professional real estate media services tailored to your needs.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-medium text-white">
+                    {service.title}
+                  </h3>
+                  <Badge className="bg-accent-gold text-primary">
+                    {service.price}
+                  </Badge>
+                </div>
+                <ul className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="text-white/70 text-sm flex items-center">
+                      <span className="w-1.5 h-1.5 bg-accent-gold rounded-full mr-3 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
