@@ -14,52 +14,6 @@ interface PortfolioItem {
   title: string;
 }
 
-interface TypewriterTextProps {
-  text: string;
-  className?: string;
-  delay?: number;
-  speed?: number;
-}
-
-const TypewriterText = ({ text, className = "", delay = 0, speed = 100 }: TypewriterTextProps) => {
-  const [displayText, setDisplayText] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    if (hasStarted) return;
-    
-    const timer = setTimeout(() => {
-      setHasStarted(true);
-      setIsVisible(true);
-      let currentIndex = 0;
-      const typeInterval = setInterval(() => {
-        if (currentIndex <= text.length) {
-          setDisplayText(text.slice(0, currentIndex));
-          currentIndex++;
-        } else {
-          clearInterval(typeInterval);
-        }
-      }, speed);
-
-      return () => clearInterval(typeInterval);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [text, delay, speed, hasStarted]);
-
-  useEffect(() => {
-    setHasStarted(false);
-    setDisplayText("");
-    setIsVisible(false);
-  }, [text]);
-
-  return (
-    <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {displayText}
-    </span>
-  );
-};
 
 const portfolioItems: PortfolioItem[] = [
   {
@@ -247,20 +201,16 @@ export const PortfolioSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
             {titleVisible && (
-              <TypewriterText
-                text="Grow your business and get noticed with our professional photography and videography."
-                delay={200}
-                speed={33}
-              />
+              <span className="animate-fade-in opacity-0 delay-200 block">
+                Grow your business and get noticed with our professional photography and videography.
+              </span>
             )}
           </h2>
           <p className="text-xl text-white/80 mb-12">
             {titleVisible && (
-              <TypewriterText
-                text="Strategic media crafted for maximum visibility, engagement, and results."
-                delay={3000}
-                speed={40}
-              />
+              <span className="animate-fade-in opacity-0 delay-1000 block">
+                Strategic media crafted for maximum visibility, engagement, and results.
+              </span>
             )}
           </p>
         </div>
@@ -269,11 +219,9 @@ export const PortfolioSection = () => {
         <div className="mb-20 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
             {titleVisible && (
-              <TypewriterText
-                text="Video Tours"
-                delay={2500}
-                speed={67}
-              />
+              <span className="animate-fade-in opacity-0 delay-700 block">
+                Video Tours
+              </span>
             )}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
@@ -328,11 +276,9 @@ export const PortfolioSection = () => {
         <div className="mb-16 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
             {titleVisible && (
-              <TypewriterText
-                text="Photography"
-                delay={3000}
-                speed={67}
-              />
+              <span className="animate-fade-in opacity-0 delay-1200 block">
+                Photography
+              </span>
             )}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
@@ -377,20 +323,16 @@ export const PortfolioSection = () => {
         <div className="text-center pb-32 pt-24 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white">
             {visibleCards.length > 4 && (
-              <TypewriterText
-                text="This is the pinnacle of real estate media."
-                delay={500}
-                speed={53}
-              />
+              <span className="animate-fade-in opacity-0 delay-500 block">
+                This is the pinnacle of real estate media.
+              </span>
             )}
           </h3>
           <p className="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
             {visibleCards.length > 4 && (
-              <TypewriterText
-                text="Discover the world of what real estate media was meant to be. Our work speaks for itself."
-                delay={3000}
-                speed={40}
-              />
+              <span className="animate-fade-in opacity-0 delay-1500 block">
+                Discover the world of what real estate media was meant to be. Our work speaks for itself.
+              </span>
             )}
           </p>
           <div className="portfolio-button-container">
