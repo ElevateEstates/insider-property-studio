@@ -12,9 +12,13 @@ interface TypewriterTextProps {
 const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComplete }: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
+    if (hasStarted) return; // Prevent multiple starts
+    
     const timer = setTimeout(() => {
+      setHasStarted(true);
       setIsVisible(true);
       let currentIndex = 0;
       const typeInterval = setInterval(() => {
@@ -31,7 +35,14 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [text, delay, speed, onComplete]);
+  }, [text, delay, speed, onComplete, hasStarted]);
+
+  // Reset when text changes
+  useEffect(() => {
+    setHasStarted(false);
+    setDisplayText("");
+    setIsVisible(false);
+  }, [text]);
 
   return (
     <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -44,17 +55,24 @@ const TypewriterText = ({ text, className = "", delay = 0, speed = 100, onComple
 export const Hero = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
           setCurrentStep(0);
           // Start the animation sequence
           setTimeout(() => setCurrentStep(1), 300);
-        } else {
+        } else if (!entry.isIntersecting && isVisible) {
           setIsVisible(false);
           setCurrentStep(0);
         }
@@ -67,22 +85,36 @@ export const Hero = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
 
   return (
     <section ref={heroRef} className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Image */}
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                           radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                           radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px, 80px 80px, 120px 120px'
+        }}></div>
+      </div>
+      
+      {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${heroImage})`,
+          transform: `translateY(${scrollY * 0.5}px)`
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16">
+      {/* Content with Parallax */}
+      <div 
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 lg:px-16"
+        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+      >
         <div className="max-w-6xl w-full text-center space-y-6">
           
           {/* YOUR */}

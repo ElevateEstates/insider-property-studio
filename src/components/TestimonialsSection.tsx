@@ -1,3 +1,5 @@
+import { useEffect, useState, useRef } from "react";
+
 const testimonials = [
   {
     quote: "The best in the business! I highly recommend to everyone to use you. There is simply no one better than you! Your videos have grown my social media in a big way!",
@@ -22,9 +24,53 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    cardRefs.current.forEach((card, index) => {
+      if (card) {
+        const cardObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisibleCards(prev => [...prev, index]);
+            }
+          },
+          { threshold: 0.3 }
+        );
+        cardObserver.observe(card);
+        observers.push(cardObserver);
+      }
+    });
+
+    return () => observers.forEach(observer => observer.disconnect());
+  }, []);
+
   return (
-    <section className="py-32 px-6 bg-black">
-      <div className="container mx-auto max-w-6xl">
+    <section className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-8">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 35% 65%, rgba(255,255,255,0.02) 1px, transparent 1px),
+                           radial-gradient(circle at 65% 35%, rgba(255,255,255,0.025) 1px, transparent 1px),
+                           radial-gradient(circle at 10% 10%, rgba(255,255,255,0.015) 1px, transparent 1px)`,
+          backgroundSize: '120px 120px, 160px 160px, 200px 200px'
+        }}></div>
+      </div>
+      
+      <div 
+        className="container mx-auto max-w-6xl relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.04}px)` }}
+      >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
             What our discerning clients are saying...
@@ -33,7 +79,19 @@ export const TestimonialsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10">
+            <div 
+              key={index} 
+              ref={el => cardRefs.current[index] = el}
+              className={`bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10 transition-all duration-700 ${
+                visibleCards.includes(index) 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ 
+                transitionDelay: `${index * 200}ms`,
+                transform: `translateY(${scrollY * 0.02}px)`
+              }}
+            >
               <blockquote className="text-lg text-white/90 mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>

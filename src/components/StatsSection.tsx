@@ -40,7 +40,14 @@ const CountUp = ({ end, suffix = "", duration = 2000, isVisible }: CountUpProps)
 
 export const StatsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const stats = [
     { label: "Views Generated", value: 5, suffix: "M+", color: "text-blue-400" },
@@ -65,8 +72,21 @@ export const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-black">
-      <div className="container mx-auto max-w-6xl">
+    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 30% 70%, rgba(255,255,255,0.04) 1px, transparent 1px),
+                           radial-gradient(circle at 70% 30%, rgba(255,255,255,0.02) 1px, transparent 1px),
+                           radial-gradient(circle at 10% 90%, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '70px 70px, 110px 110px, 160px 160px'
+        }}></div>
+      </div>
+      
+      <div 
+        className="container mx-auto max-w-6xl relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+      >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
             Reflecting the aspirations of the modern buyer

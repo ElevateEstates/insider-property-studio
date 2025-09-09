@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -13,7 +14,102 @@ interface PortfolioItem {
   title: string;
 }
 
+interface TypewriterTextProps {
+  text: string;
+  className?: string;
+  delay?: number;
+  speed?: number;
+}
+
+const TypewriterText = ({ text, className = "", delay = 0, speed = 100 }: TypewriterTextProps) => {
+  const [displayText, setDisplayText] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    if (hasStarted) return;
+    
+    const timer = setTimeout(() => {
+      setHasStarted(true);
+      setIsVisible(true);
+      let currentIndex = 0;
+      const typeInterval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayText(text.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, speed);
+
+      return () => clearInterval(typeInterval);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [text, delay, speed, hasStarted]);
+
+  useEffect(() => {
+    setHasStarted(false);
+    setDisplayText("");
+    setIsVisible(false);
+  }, [text]);
+
+  return (
+    <span className={`${className} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      {displayText}
+    </span>
+  );
+};
+
 export const PortfolioSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [titleVisible, setTitleVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    // Title observer
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTitleVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      titleObserver.observe(sectionRef.current);
+      observers.push(titleObserver);
+    }
+
+    // Card observers
+    cardRefs.current.forEach((card, index) => {
+      if (card) {
+        const cardObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisibleCards(prev => [...prev, index]);
+            }
+          },
+          { threshold: 0.2 }
+        );
+        cardObserver.observe(card);
+        observers.push(cardObserver);
+      }
+    });
+
+    return () => observers.forEach(observer => observer.disconnect());
+  }, []);
   const portfolioItems: PortfolioItem[] = [
     {
       type: 'video',
@@ -87,14 +183,39 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section className="py-32 px-6 bg-black">
-      <div className="container mx-auto max-w-7xl">
+    <section ref={sectionRef} className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                           radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 1px, transparent 1px),
+                           radial-gradient(circle at 40% 40%, rgba(255,255,255,0.04) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px, 100px 100px, 140px 140px'
+        }}></div>
+      </div>
+      
+      <div 
+        className="container mx-auto max-w-7xl relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+      >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
-            Grow your business with our real estate photography and videography.
+            {titleVisible && (
+              <TypewriterText
+                text="Grow your business with our real estate photography and videography."
+                delay={200}
+                speed={50}
+              />
+            )}
           </h2>
           <p className="text-xl text-white/80 mb-12">
-            An immersive way to experience real estate.
+            {titleVisible && (
+              <TypewriterText
+                text="An immersive way to experience real estate."
+                delay={3000}
+                speed={60}
+              />
+            )}
           </p>
         </div>
 
@@ -103,7 +224,16 @@ export const PortfolioSection = () => {
           {portfolioItems.map((item, index) => (
             <div 
               key={index} 
-              className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)}`}
+              ref={el => cardRefs.current[index] = el}
+              className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)} transition-all duration-700 ${
+                visibleCards.includes(index) 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ 
+                transitionDelay: `${index * 100}ms`,
+                transform: `translateY(${scrollY * 0.02}px)`
+              }}
             >
               {item.type === 'image' ? (
                 <img 
@@ -148,12 +278,24 @@ export const PortfolioSection = () => {
           ))}
         </div>
 
-        <div className="text-center">
+        <div className="text-center" style={{ transform: `translateY(${scrollY * 0.03}px)` }}>
           <h3 className="text-2xl md:text-3xl font-light mb-6 text-white">
-            This is the pinnacle of real estate media.
+            {visibleCards.length > 4 && (
+              <TypewriterText
+                text="This is the pinnacle of real estate media."
+                delay={500}
+                speed={80}
+              />
+            )}
           </h3>
           <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Discover the world of what real estate media was meant to be. Our work speaks for itself.
+            {visibleCards.length > 4 && (
+              <TypewriterText
+                text="Discover the world of what real estate media was meant to be. Our work speaks for itself."
+                delay={3000}
+                speed={60}
+              />
+            )}
           </p>
           <Button 
             variant="outline" 

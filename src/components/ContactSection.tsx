@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,14 @@ export const ContactSection = () => {
   const [selectedType, setSelectedType] = useState("");
   const [otherSpecification, setOtherSpecification] = useState("");
   const [isOtherDialogOpen, setIsOtherDialogOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +39,21 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact-form" className="py-32 px-6 bg-black">
-      <div className="container mx-auto max-w-6xl">
+    <section id="contact-form" className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-6">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 45% 55%, rgba(255,255,255,0.02) 1px, transparent 1px),
+                           radial-gradient(circle at 55% 45%, rgba(255,255,255,0.015) 1px, transparent 1px),
+                           radial-gradient(circle at 25% 75%, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+          backgroundSize: '140px 140px, 180px 180px, 220px 220px'
+        }}></div>
+      </div>
+      
+      <div 
+        className="container mx-auto max-w-6xl relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+      >
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-5xl md:text-6xl font-light mb-8 border-b border-white/20 pb-4 text-white">
             Ready to Work Together?

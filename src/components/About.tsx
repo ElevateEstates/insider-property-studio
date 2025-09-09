@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
+
 export const About = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section className="py-32 px-6 bg-black">
-      <div className="container mx-auto max-w-4xl">
+    <section className="py-32 px-6 bg-black relative overflow-hidden">
+      {/* Subtle Star Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 15% 85%, rgba(255,255,255,0.03) 1px, transparent 1px),
+                           radial-gradient(circle at 85% 15%, rgba(255,255,255,0.02) 1px, transparent 1px),
+                           radial-gradient(circle at 50% 50%, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+          backgroundSize: '90px 90px, 130px 130px, 170px 170px'
+        }}></div>
+      </div>
+      
+      <div 
+        className="container mx-auto max-w-4xl relative z-10"
+        style={{ transform: `translateY(${scrollY * 0.03}px)` }}
+      >
         <div className="mb-16 animate-fade-up">
           <h2 className="text-5xl md:text-6xl font-light mb-8 border-b border-white/20 pb-4 text-white">
             About
