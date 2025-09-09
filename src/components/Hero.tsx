@@ -93,8 +93,8 @@ export const Hero = () => {
             </h1>
           </div>
 
-          <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mt-8">
-            {currentStep >= 1 && <TypewriterText text="Luxury real estate media to impress" className="inline-block" delay={2000} speed={27} onComplete={() => setHasCompleted(true)} />}
+          <p className="text-xl text-white/80 leading-loose max-w-3xl mx-auto mt-8 pb-4">
+            {currentStep >= 1 && <TypewriterText text="presentation matters - delivering results by combining visuals, marketing strategy, and local connections." className="inline-block" delay={2000} speed={27} onComplete={() => setHasCompleted(true)} />}
           </p>
         </div>
       </div>
