@@ -74,43 +74,35 @@ export const Hero = () => {
         <div className="max-w-6xl w-full text-center space-y-8 py-20 pb-24">
           
           
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* First segment: Your partner in property marketing */}
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-loose pb-2">
+            <div className="space-y-1">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
                 {currentStep >= 1 && <TypewriterText text="Your partner in" className="inline-block" delay={0} speed={50} onComplete={() => setCurrentStep(2)} />}
               </h1>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-loose pb-2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
                 {currentStep >= 2 && <TypewriterText text="property marketing" className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
               </h1>
             </div>
 
             {/* Second segment: turning listings into results */}
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-loose pb-2">
+            <div className="space-y-1">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
                 {currentStep >= 3 && <TypewriterText text="turning listings" className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />}
               </h1>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-loose pb-2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
                 {currentStep >= 4 && <TypewriterText text="into results" className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />}
                 <span className="text-4xl md:text-5xl lg:text-6xl">.</span>
               </h1>
             </div>
           </div>
 
-          {/* Multi-line tagline */}
-          <div className="space-y-2 mt-12">
-            <p className="text-xl text-white/80 leading-loose max-w-4xl mx-auto">
-              {currentStep >= 5 && <TypewriterText text="Presentation matters - we create visuals," className="inline-block" delay={500} speed={25} onComplete={() => setCurrentStep(6)} />}
-            </p>
-            
-            <p className="text-xl text-white/80 leading-loose max-w-4xl mx-auto">
-              {currentStep >= 6 && <TypewriterText text="combine marketing strategy and local connections" className="inline-block" delay={200} speed={25} onComplete={() => setCurrentStep(7)} />}
-            </p>
-            
-            <p className="text-xl text-white/80 leading-loose max-w-4xl mx-auto pb-8">
-              {currentStep >= 7 && <TypewriterText text="between buyers, sellers and agents for maximum results." className="inline-block" delay={200} speed={25} onComplete={() => setHasCompleted(true)} />}
+          {/* Single line tagline */}
+          <div className="mt-8">
+            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8">
+              {currentStep >= 5 && <TypewriterText text="Presentation matters — we combine striking visuals, proven marketing strategies, and local connections to bring buyers, sellers, and agents together for success." className="inline-block" delay={500} speed={25} onComplete={() => setHasCompleted(true)} />}
             </p>
           </div>
         </div>
