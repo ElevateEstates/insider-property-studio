@@ -101,7 +101,15 @@ export const Hero = () => {
           {/* Single line tagline */}
           <div className="mt-8">
             <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8">
-              {currentStep >= 5 && <TypewriterText text="Presentation matters — we combine striking visuals, proven marketing strategies, and local connections to bring buyers, sellers, and agents together for success." className="inline-block" delay={500} speed={25} onComplete={() => setHasCompleted(true)} />}
+              {currentStep >= 5 && (
+                <TypewriterText 
+                  text="Presentation matters — we combine striking visuals, proven marketing strategies, and local connections to bring buyers, sellers, and agents together for success." 
+                  className="inline-block" 
+                  delay={300} 
+                  speed={25} 
+                  onComplete={() => setHasCompleted(true)} 
+                />
+              )}
             </p>
           </div>
         </div>
