@@ -163,7 +163,7 @@ export const ContactSection = () => {
                 <Button 
                   type="submit" 
                   variant="outline"
-                  className="w-full bg-transparent border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group"
+                  className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group z-30 relative"
                 >
                   Send Message
                   <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

@@ -129,7 +129,7 @@ export const Hero = () => {
                   className="inline-block"
                   delay={0}
                   speed={75}
-                  onComplete={() => setTimeout(() => setCurrentStep(2), 200)}
+                  onComplete={() => setCurrentStep(2)}
                 />
               )}
             </h1>
@@ -138,13 +138,13 @@ export const Hero = () => {
           {/* LUXURY */}
           <div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-widest">
-              {currentStep >= 2 && (
+              {currentStep >= 1 && (
                 <TypewriterText
                   text="LUXURY"
                   className="inline-block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
-                  delay={0}
+                  delay={400}
                   speed={60}
-                  onComplete={() => setTimeout(() => setCurrentStep(3), 200)}
+                  onComplete={() => setCurrentStep(3)}
                 />
               )}
             </h1>
@@ -153,13 +153,13 @@ export const Hero = () => {
           {/* EXCLUSIVE */}
           <div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-wide">
-              {currentStep >= 3 && (
+              {currentStep >= 1 && (
                 <TypewriterText
                   text="EXCLUSIVE"
                   className="inline-block"
-                  delay={0}
+                  delay={800}
                   speed={65}
-                  onComplete={() => setTimeout(() => setCurrentStep(4), 200)}
+                  onComplete={() => setCurrentStep(4)}
                 />
               )}
             </h1>
@@ -168,38 +168,27 @@ export const Hero = () => {
           {/* BESPOKE PARTNER */}
           <div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-wide">
-              {currentStep >= 4 && (
-                <>
-                  <TypewriterText
-                    text="BESPOKE "
-                    className="inline-block mr-2"
-                    delay={0}
-                    speed={70}
-                    onComplete={() => setTimeout(() => setCurrentStep(5), 100)}
-                  />
-                  {currentStep >= 5 && (
-                    <TypewriterText
-                      text="PARTNER"
-                      className="inline-block"
-                      delay={0}
-                      speed={70}
-                      onComplete={() => setTimeout(() => setCurrentStep(6), 200)}
-                    />
-                  )}
-                  <span className="text-6xl md:text-8xl lg:text-9xl">.</span>
-                </>
+              {currentStep >= 1 && (
+                <TypewriterText
+                  text="BESPOKE PARTNER"
+                  className="inline-block"
+                  delay={1200}
+                  speed={70}
+                  onComplete={() => setCurrentStep(5)}
+                />
               )}
+              <span className="text-6xl md:text-8xl lg:text-9xl">.</span>
             </h1>
           </div>
 
           {/* Subtitle */}
           <div className="mt-12">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/80 tracking-wide">
-              {currentStep >= 6 && (
+              {currentStep >= 1 && (
                 <TypewriterText
                   text="Luxury real estate media to impress"
                   className="inline-block"
-                  delay={0}
+                  delay={2000}
                   speed={40}
                 />
               )}

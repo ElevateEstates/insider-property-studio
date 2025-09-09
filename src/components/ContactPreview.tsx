@@ -37,7 +37,7 @@ export const ContactPreview = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="bg-transparent border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300"
+          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 z-30 relative"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Contact Us

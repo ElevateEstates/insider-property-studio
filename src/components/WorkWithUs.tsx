@@ -55,7 +55,7 @@ export const WorkWithUs = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="bg-transparent border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale"
+          className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale z-30 relative"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Start Your Project

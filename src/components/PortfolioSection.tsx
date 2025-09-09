@@ -172,13 +172,13 @@ export const PortfolioSection = () => {
   const getSizeClasses = (size: string) => {
     switch (size) {
       case 'small':
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'col-span-1 row-span-1 aspect-[4/3] min-h-[250px]';
       case 'medium':
-        return 'col-span-1 md:col-span-2 row-span-1 aspect-[4/3]';
+        return 'col-span-1 md:col-span-2 row-span-1 aspect-[4/3] min-h-[300px]';
       case 'large':
-        return 'col-span-1 md:col-span-2 lg:col-span-3 row-span-2 aspect-[16/9]';
+        return 'col-span-1 md:col-span-2 lg:col-span-3 row-span-2 aspect-[16/10] min-h-[400px]';
       default:
-        return 'col-span-1 row-span-1 aspect-[4/3]';
+        return 'col-span-1 row-span-1 aspect-[4/3] min-h-[250px]';
     }
   };
 
@@ -220,7 +220,7 @@ export const PortfolioSection = () => {
         </div>
 
         {/* Dynamic Portfolio Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 auto-rows-[200px] gap-4 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-6 mb-16">
           {portfolioItems.map((item, index) => (
             <div 
               key={index} 
@@ -300,7 +300,7 @@ export const PortfolioSection = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="bg-transparent border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300"
+            className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 z-30 relative"
           >
             Our Portfolio
             <ArrowRight className="ml-2 h-5 w-5" />
