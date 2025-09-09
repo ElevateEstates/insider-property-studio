@@ -130,17 +130,17 @@
   .glass-button, .glass-card {
     @apply bg-transparent backdrop-blur-md border border-white/10 text-white transition-all duration-300 !important;
     box-shadow: 
-      0 4px 32px rgba(255, 255, 255, 0.1),
-      0 0 20px rgba(255, 255, 255, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 2px 16px rgba(255, 255, 255, 0.05),
+      0 0 10px rgba(255, 255, 255, 0.025),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
   
   .glass-button:hover, .glass-card:hover {
-    @apply border-white/30 bg-white/10 !important;
+    @apply border-white/20 bg-white/5 !important;
     box-shadow: 
-      0 8px 40px rgba(255, 255, 255, 0.15),
-      0 0 30px rgba(255, 255, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      0 4px 20px rgba(255, 255, 255, 0.075),
+      0 0 15px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.075);
   }
 
   .glass-button {
@@ -149,6 +149,23 @@
   
   .glass-card {
     @apply rounded-2xl;
+  }
+  
+  /* Special ultra-transparent version for stats */
+  .glass-card-ultra {
+    @apply bg-transparent backdrop-blur-sm border border-white/5 text-white transition-all duration-300 !important;
+    box-shadow: 
+      0 1px 8px rgba(255, 255, 255, 0.025),
+      0 0 5px rgba(255, 255, 255, 0.01),
+      inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  }
+  
+  .glass-card-ultra:hover {
+    @apply border-white/10 bg-white/2 !important;
+    box-shadow: 
+      0 2px 12px rgba(255, 255, 255, 0.04),
+      0 0 8px rgba(255, 255, 255, 0.025),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   /* Enhanced button styling */
