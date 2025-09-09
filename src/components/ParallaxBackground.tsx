@@ -34,7 +34,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 2}px) translateX(${scrollY * 0.3}px)`,
+          transform: `translateY(${scrollY * 4}px) translateX(${scrollY * 0.6}px)`,
           background: `
             radial-gradient(circle at 15% 25%, rgba(255,255,255,0.8) 1px, transparent 3px),
             radial-gradient(circle at 85% 15%, rgba(255,255,255,0.6) 0.8px, transparent 2.5px),
@@ -51,7 +51,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 4}px) translateX(${scrollY * -0.5}px)`,
+          transform: `translateY(${scrollY * 8}px) translateX(${scrollY * -1}px)`,
           background: `
             radial-gradient(circle at 35% 65%, rgba(255,255,255,0.7) 0.8px, transparent 2.5px),
             radial-gradient(circle at 65% 35%, rgba(200,220,255,0.6) 0.6px, transparent 2px),
@@ -67,7 +67,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 6}px) translateX(${scrollY * 0.8}px) rotate(${scrollY * 0.1}deg)`,
+          transform: `translateY(${scrollY * 12}px) translateX(${scrollY * 1.6}px) rotate(${scrollY * 0.2}deg)`,
           background: `
             radial-gradient(circle at 55% 15%, rgba(255,255,255,0.9) 1.2px, transparent 3px),
             radial-gradient(circle at 15% 85%, rgba(220,200,255,0.6) 0.5px, transparent 2px),
@@ -83,7 +83,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * -3}px) translateX(${scrollY * 1.2}px) rotate(${scrollY * -0.05}deg)`,
+          transform: `translateY(${scrollY * -6}px) translateX(${scrollY * 2.4}px) rotate(${scrollY * -0.1}deg)`,
           background: `
             radial-gradient(circle at 70% 30%, rgba(255,255,255,0.8) 1px, transparent 2.8px),
             radial-gradient(circle at 30% 70%, rgba(255,200,220,0.6) 0.7px, transparent 2.3px),
@@ -99,7 +99,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * 8}px) translateX(${scrollY * -1}px) rotate(${scrollY * 0.15}deg)`,
+          transform: `translateY(${scrollY * 16}px) translateX(${scrollY * -2}px) rotate(${scrollY * 0.3}deg)`,
           background: `
             radial-gradient(circle at 50% 20%, rgba(255,255,255,0.9) 0.6px, transparent 2px),
             radial-gradient(circle at 20% 80%, rgba(255,230,180,0.7) 0.4px, transparent 1.5px),
@@ -115,7 +115,7 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          transform: `translateY(${scrollY * -5}px) translateX(${scrollY * 1.5}px) rotate(${scrollY * -0.2}deg)`,
+          transform: `translateY(${scrollY * -10}px) translateX(${scrollY * 3}px) rotate(${scrollY * -0.4}deg)`,
           background: `
             radial-gradient(circle at 60% 10%, rgba(255,255,255,0.8) 0.5px, transparent 2px),
             radial-gradient(circle at 10% 90%, rgba(180,220,255,0.6) 0.7px, transparent 2.2px),
