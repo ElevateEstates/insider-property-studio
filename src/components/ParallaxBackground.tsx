@@ -112,6 +112,19 @@ export const ParallaxBackground = ({
           willChange: 'transform'
         }}
       />
+      
+      {/* Scratch texture overlay */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png)`,
+          backgroundSize: '400px 400px',
+          backgroundRepeat: 'repeat',
+          mixBlendMode: 'screen',
+          opacity: 0.15,
+          pointerEvents: 'none'
+        }}
+      />
     </div>
   );
 };
