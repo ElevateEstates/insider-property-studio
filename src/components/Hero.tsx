@@ -85,64 +85,57 @@ export const Hero = () => {
         <div className="max-w-6xl w-full text-center space-y-8 py-20 pb-24">
           
           
-          <div className="space-y-4">
-            {/* First segment: Your partner in property marketing */}
-            <div className="space-y-1">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 1 && <TypewriterText text="Your partner in" className="inline-block" delay={0} speed={50} onComplete={() => setCurrentStep(2)} />}
-              </h1>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 2 && <TypewriterText text="property marketing," className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
-              </h1>
-            </div>
+          <div className="space-y-6">
+            {/* First line: Your partner in */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+              {currentStep >= 1 && <TypewriterText text="Your partner in" className="inline-block" delay={0} speed={50} onComplete={() => setCurrentStep(2)} />}
+            </h1>
+            
+            {/* Second line: property marketing, */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+              {currentStep >= 2 && <TypewriterText text="property marketing," className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
+            </h1>
 
-            {/* Second segment: turning listings into results */}
-            <div className="space-y-1">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 3 && <TypewriterText text="turning listings" className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />}
-              </h1>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-1">
-                {currentStep >= 4 && (
-                  <>
-                    <TypewriterText text="into " className="inline-block" delay={200} speed={47} onComplete={() => setCurrentStep(5)} />
-                    {currentStep >= 5 && (
-                      <span className="text-gradient-gold inline-block relative ml-1">
-                        {animatedWords.map((word, index) => (
-                          <span 
-                            key={index}
-                            className={`absolute top-0 left-0 transition-opacity duration-500 ${
-                              index === animatedWordIndex ? 'opacity-100' : 'opacity-0'
-                            }`}
-                            style={{ 
-                              whiteSpace: 'nowrap'
-                            }}
-                          >
-                            {word}
-                          </span>
-                        ))}
-                        {/* Invisible placeholder to maintain layout */}
-                        <span className="invisible">
-                          {animatedWords[animatedWordIndex]}
+            {/* Third line: turning listings into [animated word] */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+              {currentStep >= 3 && (
+                <span className="inline-block">
+                  <TypewriterText text="turning listings into " className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />
+                  {currentStep >= 4 && (
+                    <span className="text-gradient-gold inline-block relative min-w-[200px]">
+                      {animatedWords.map((word, index) => (
+                        <span 
+                          key={`${word}-${index}`}
+                          className={`absolute left-0 top-0 transition-all duration-700 ease-in-out transform ${
+                            index === animatedWordIndex 
+                              ? 'opacity-100 translate-y-0' 
+                              : 'opacity-0 translate-y-2'
+                          }`}
+                          style={{ whiteSpace: 'nowrap' }}
+                        >
+                          {word}
                         </span>
+                      ))}
+                      {/* Invisible placeholder for longest word to maintain layout */}
+                      <span className="invisible" style={{ whiteSpace: 'nowrap' }}>
+                        commissions.
                       </span>
-                    )}
-                  </>
-                )}
-              </h1>
-            </div>
+                    </span>
+                  )}
+                </span>
+              )}
+            </h1>
           </div>
 
-          {/* Multi-line tagline */}
-          <div className="mt-8 space-y-1">
-            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto transition-all duration-700 delay-1000 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {/* Tagline with better spacing */}
+          <div className="mt-12 space-y-2">
+            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1000 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               Presentation matters — we combine striking visuals,
             </p>
-            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto transition-all duration-700 delay-1200 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1200 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               proven marketing strategies, and local connections
             </p>
-            <p className={`text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8 transition-all duration-700 delay-1400 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1400 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               to bring buyers, sellers, and agents together for success.
             </p>
           </div>
