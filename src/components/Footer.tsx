@@ -34,6 +34,15 @@ export const Footer = () => {
             />
           </div>
           
+          {/* Property Image */}
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png" 
+              alt="Luxury Villa with Pool" 
+              className="w-full max-w-2xl rounded-2xl shadow-2xl opacity-90"
+            />
+          </div>
+          
           {/* Copyright */}
           <div className="text-center">
             <p className="text-white/60 text-lg">
