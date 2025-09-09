@@ -205,8 +205,8 @@ const Portfolio = () => {
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category.id)}
                 className={selectedCategory === category.id 
-                  ? "bg-transparent backdrop-blur-md border-white/40 text-white hover:bg-white/20" 
-                  : "bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50"
+                  ? "glass-button bg-white/30" 
+                  : "glass-button"
                 }
               >
                 {category.label}
@@ -234,7 +234,7 @@ const Portfolio = () => {
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <Card className="overflow-hidden bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
+                <Card className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={item.image}
@@ -315,13 +315,13 @@ const Portfolio = () => {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+              <Button size="lg" className="glass-button">
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/about">
-              <Button variant="outline" size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+              <Button variant="outline" size="lg" className="glass-button">
                 Learn More About Us
               </Button>
             </Link>

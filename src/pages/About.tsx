@@ -74,13 +74,13 @@ const About = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/portfolio">
-                  <Button className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                  <Button className="glass-button">
                     View Portfolio
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                  <Button variant="outline" className="glass-button">
                     Get In Touch
                   </Button>
                 </Link>
@@ -140,7 +140,7 @@ const About = () => {
           
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="p-8 bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
+              <Card key={index} className="glass-card p-8 hover:border-white/20 transition-all duration-300">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
                     <service.icon className="w-6 h-6 text-accent-gold" />
@@ -194,7 +194,7 @@ const About = () => {
 
           <div className="text-center mt-16">
               <Link to="/contact">
-                <Button size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                <Button size="lg" className="glass-button">
                   Start Your Project
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>

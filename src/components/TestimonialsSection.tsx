@@ -81,7 +81,7 @@ export const TestimonialsSection = () => {
             <div 
               key={index} 
               ref={el => cardRefs.current[index] = el}
-              className={`bg-transparent backdrop-blur-md rounded-lg p-8 border border-white/10 transition-all duration-700 relative z-40 ${
+              className={`glass-card rounded-lg p-8 transition-all duration-700 relative z-40 ${
                 visibleCards.includes(index) 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'

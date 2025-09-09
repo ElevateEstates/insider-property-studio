@@ -141,7 +141,7 @@ const Contact = () => {
           className="container mx-auto max-w-6xl px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.05}px)` }}
         >
-          <div className="text-center mb-16 bg-transparent backdrop-blur-md border border-white/20 rounded-2xl p-8">
+          <div className="text-center mb-16 glass-card rounded-2xl p-8">
             <h2 className="text-3xl md:text-5xl font-light mb-8">
               How to Reach Us
             </h2>
@@ -153,7 +153,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
             {contactInfo.map((info, index) => {
               const CardContent = (
-                <Card className="p-8 text-center bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
+                <Card className="glass-card p-8 text-center hover:border-white/20 transition-all duration-300">
                   <div className="w-16 h-16 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <info.icon className="w-8 h-8 text-accent-gold" />
                   </div>
@@ -201,7 +201,7 @@ const Contact = () => {
                 </p>
               </div>
 
-              <Card className="p-8 bg-transparent backdrop-blur-md border border-white/10">
+              <Card className="glass-card p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -303,7 +303,7 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="w-full bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300 group"
+                    className="w-full glass-button group"
                   >
                     Send Message
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -325,7 +325,7 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {services.map((service, index) => (
-                  <Card key={index} className="p-6 bg-transparent backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
+                  <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-xl font-medium text-white">
                         {service.title}
@@ -346,7 +346,7 @@ const Contact = () => {
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-transparent backdrop-blur-md border border-accent-gold/40 rounded-2xl">
+              <div className="mt-8 p-6 glass-card rounded-2xl">
                 <div className="flex items-start gap-4">
                   <MessageCircle className="w-6 h-6 text-accent-gold mt-1" />
                   <div>

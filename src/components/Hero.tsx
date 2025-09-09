@@ -98,7 +98,7 @@ export const Hero = () => {
           transform: `translateY(${scrollY * 0.8}px)`
         }}
       >
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black"></div>
       </div>
       
       {/* Content with Parallax */}

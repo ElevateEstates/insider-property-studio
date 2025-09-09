@@ -394,7 +394,7 @@ export const PortfolioSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300 relative z-[100]"
+              className="glass-button relative z-[100]"
             >
               Our Portfolio
               <ArrowRight className="ml-2 h-5 w-5" />

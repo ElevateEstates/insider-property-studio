@@ -31,7 +31,7 @@ export const About = () => {
           </h2>
         </div>
         
-        <div className="space-y-8 text-lg md:text-xl leading-relaxed text-white/80 font-light animate-slide-in">
+        <div className="space-y-8 text-lg md:text-xl leading-relaxed text-white/80 font-light animate-slide-in glass-card p-8 rounded-2xl">
           <p className="transition-colors hover:text-white/90">
             Geir is a creative services provider specializing in Costa del Sol properties and businesses.
           </p>
