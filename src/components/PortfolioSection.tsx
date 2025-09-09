@@ -324,7 +324,7 @@ export const PortfolioSection = () => {
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="text-center pb-16">
           <h3 className="text-2xl md:text-3xl font-light mb-6 text-white">
             {visibleCards.length > 4 && (
               <TypewriterText
@@ -346,7 +346,7 @@ export const PortfolioSection = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-50"
+            className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-[100] mb-8"
           >
             Our Portfolio
             <ArrowRight className="ml-2 h-5 w-5" />
