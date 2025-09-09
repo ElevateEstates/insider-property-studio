@@ -27,7 +27,7 @@ export const ParallaxBackground = ({
   // Generate varying opacities for dots
   const generateDotLayers = () => {
     const layers = [];
-    const baseOpacities = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75];
+    const baseOpacities = [0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 0.8, 0.9, 1.0];
     
     for (let i = 0; i < 12; i++) {
       const opacity = baseOpacities[i];
@@ -83,7 +83,7 @@ export const ParallaxBackground = ({
     for (let i = 0; i < 4; i++) {
       const colors = ['200,220,255', '220,200,255', '255,220,200', '200,255,220'];
       const color = colors[i];
-      const opacity = 0.3 + (i * 0.1);
+      const opacity = 0.7 + (i * 0.1); // Increased base opacity
       const size = 60 + (i * 40);
       const dotSize = 0.8 + (i * 0.3);
       const speed = 0.3 + (i * 0.2);
