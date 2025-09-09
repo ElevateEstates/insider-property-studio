@@ -224,8 +224,8 @@ export const PortfolioSection = () => {
   }, []);
 
   const getSizeClasses = (size: string) => {
-    // All cards now have uniform size with better spacing
-    return 'col-span-1 aspect-[4/3] h-[320px]';
+    // All cards now have uniform size with generous safe zones
+    return 'col-span-1 aspect-[4/3] h-[320px] mx-2';
   };
 
   return (
@@ -332,7 +332,7 @@ export const PortfolioSection = () => {
               />
             )}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-32 px-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-32 px-12 max-w-6xl mx-auto">
             {photoItems.map((item, index) => (
               <div 
                 key={`photo-${index}`} 
