@@ -74,13 +74,13 @@ const About = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/portfolio">
-                  <Button className="btn-hero">
+                  <Button className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
                     View Portfolio
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" className="btn-hero-outline">
+                  <Button variant="outline" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
                     Get In Touch
                   </Button>
                 </Link>
@@ -111,7 +111,7 @@ const About = () => {
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center bg-transparent backdrop-blur-md border border-white/20 rounded-xl p-6">
                 <div className="text-3xl md:text-4xl lg:text-5xl font-light text-accent-gold mb-2">
                   {stat.number}
                 </div>
@@ -193,12 +193,12 @@ const About = () => {
           </div>
 
           <div className="text-center mt-16">
-            <Link to="/contact">
-              <Button size="lg" className="btn-hero">
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+              <Link to="/contact">
+                <Button size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
           </div>
         </div>
       </section>

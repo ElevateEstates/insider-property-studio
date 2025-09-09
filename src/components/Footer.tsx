@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="py-16 px-4 md:px-6 bg-black-grainy relative overflow-hidden border-t border-white/10">
+    <footer className="py-16 px-4 md:px-6 bg-transparent backdrop-blur-md relative overflow-hidden border-t border-white/10">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-center space-y-8">
           {/* Logo */}

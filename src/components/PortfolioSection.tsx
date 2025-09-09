@@ -250,7 +250,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="Grow your business with our real estate photography and videography."
                 delay={200}
-                speed={50}
+                speed={33}
               />
             )}
           </h2>
@@ -259,7 +259,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="An immersive way to experience real estate."
                 delay={3000}
-                speed={60}
+                speed={40}
               />
             )}
           </p>
@@ -272,7 +272,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="Video Tours"
                 delay={2500}
-                speed={100}
+                speed={67}
               />
             )}
           </h3>
@@ -328,7 +328,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="Photography"
                 delay={3000}
-                speed={100}
+                speed={67}
               />
             )}
           </h3>
@@ -377,7 +377,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="This is the pinnacle of real estate media."
                 delay={500}
-                speed={80}
+                speed={53}
               />
             )}
           </h3>
@@ -386,7 +386,7 @@ export const PortfolioSection = () => {
               <TypewriterText
                 text="Discover the world of what real estate media was meant to be. Our work speaks for itself."
                 delay={3000}
-                speed={60}
+                speed={40}
               />
             )}
           </p>
@@ -394,7 +394,7 @@ export const PortfolioSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 relative z-[100]"
+              className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300 relative z-[100]"
             >
               Our Portfolio
               <ArrowRight className="ml-2 h-5 w-5" />

@@ -141,7 +141,7 @@ const Contact = () => {
           className="container mx-auto max-w-6xl px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.05}px)` }}
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 bg-transparent backdrop-blur-md border border-white/20 rounded-2xl p-8">
             <h2 className="text-3xl md:text-5xl font-light mb-8">
               How to Reach Us
             </h2>
@@ -303,7 +303,7 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="w-full btn-hero group"
+                    className="w-full bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300 group"
                   >
                     Send Message
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -346,7 +346,7 @@ const Contact = () => {
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-accent-gold/10 border border-accent-gold/20 rounded-2xl">
+              <div className="mt-8 p-6 bg-transparent backdrop-blur-md border border-accent-gold/40 rounded-2xl">
                 <div className="flex items-start gap-4">
                   <MessageCircle className="w-6 h-6 text-accent-gold mt-1" />
                   <div>

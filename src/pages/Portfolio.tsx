@@ -205,8 +205,8 @@ const Portfolio = () => {
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category.id)}
                 className={selectedCategory === category.id 
-                  ? "btn-hero" 
-                  : "btn-hero-outline"
+                  ? "bg-transparent backdrop-blur-md border-white/40 text-white hover:bg-white/20" 
+                  : "bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50"
                 }
               >
                 {category.label}
@@ -315,13 +315,13 @@ const Portfolio = () => {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="btn-hero">
+              <Button size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/about">
-              <Button variant="outline" size="lg" className="btn-hero-outline">
+              <Button variant="outline" size="lg" className="bg-transparent backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300">
                 Learn More About Us
               </Button>
             </Link>

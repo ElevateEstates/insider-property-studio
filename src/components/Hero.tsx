@@ -116,7 +116,7 @@ export const Hero = () => {
                   text="YOUR"
                   className="inline-block"
                   delay={0}
-                  speed={75}
+                  speed={50}
                   onComplete={() => setCurrentStep(2)}
                 />
               )}
@@ -131,7 +131,7 @@ export const Hero = () => {
                   text="LUXURY"
                   className="inline-block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
                   delay={400}
-                  speed={60}
+                  speed={40}
                   onComplete={() => setCurrentStep(3)}
                 />
               )}
@@ -146,7 +146,7 @@ export const Hero = () => {
                   text="EXCLUSIVE"
                   className="inline-block"
                   delay={800}
-                  speed={65}
+                  speed={43}
                   onComplete={() => setCurrentStep(4)}
                 />
               )}
@@ -161,7 +161,7 @@ export const Hero = () => {
                   text="BESPOKE PARTNER"
                   className="inline-block"
                   delay={1200}
-                  speed={70}
+                  speed={47}
                   onComplete={() => setCurrentStep(5)}
                 />
               )}
@@ -177,7 +177,7 @@ export const Hero = () => {
                   text="Luxury real estate media to impress"
                   className="inline-block"
                   delay={2000}
-                  speed={40}
+                  speed={27}
                   onComplete={() => setHasCompleted(true)}
                 />
               )}
