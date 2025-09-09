@@ -98,15 +98,37 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Single line tagline */}
-          <div className="mt-8">
-            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8">
-              {currentStep >= 5 && (
+          {/* Multi-line tagline */}
+          <div className="mt-8 space-y-1">
+            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto">
+              {currentStep >= 3 && (
                 <TypewriterText 
-                  text="Presentation matters — we combine striking visuals, proven marketing strategies, and local connections to bring buyers, sellers, and agents together for success." 
+                  text="Presentation matters — we combine striking visuals," 
                   className="inline-block" 
-                  delay={300} 
-                  speed={25} 
+                  delay={400} 
+                  speed={12} 
+                  onComplete={() => setCurrentStep(6)} 
+                />
+              )}
+            </p>
+            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto">
+              {currentStep >= 6 && (
+                <TypewriterText 
+                  text="proven marketing strategies, and local connections" 
+                  className="inline-block" 
+                  delay={100} 
+                  speed={12} 
+                  onComplete={() => setCurrentStep(7)} 
+                />
+              )}
+            </p>
+            <p className="text-xl text-white/80 leading-relaxed max-w-5xl mx-auto pb-8">
+              {currentStep >= 7 && (
+                <TypewriterText 
+                  text="to bring buyers, sellers, and agents together for success." 
+                  className="inline-block" 
+                  delay={100} 
+                  speed={12} 
                   onComplete={() => setHasCompleted(true)} 
                 />
               )}
