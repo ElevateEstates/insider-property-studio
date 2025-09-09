@@ -114,18 +114,7 @@ export const Hero = () => {
             </h1>
           </div>
 
-          {/* Tagline with better spacing */}
-          <div className="mt-12 space-y-2">
-            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1000 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              Presentation matters — we combine striking visuals,
-            </p>
-            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1200 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              proven marketing strategies, and local connections
-            </p>
-            <p className={`text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto transition-all duration-700 delay-1400 ${currentStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              to bring buyers, sellers, and agents together for success.
-            </p>
-          </div>
+          {/* Tagline with better spacing - REMOVED - moved to StatsSection */}
         </div>
       </div>
     </section>;

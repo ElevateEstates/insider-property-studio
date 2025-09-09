@@ -93,7 +93,7 @@ export const StatsSection = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-8 text-white">
-            Reflecting the aspirations of the modern buyer
+            Helping buyers find the homes they truly want
           </h2>
         </div>
         
@@ -113,6 +113,19 @@ export const StatsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Tagline moved from Hero section */}
+        <div className="mt-20 space-y-2 text-center">
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+            Presentation matters — we combine striking visuals,
+          </p>
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+            proven marketing strategies, and local connections
+          </p>
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-16">
+            to bring buyers, sellers, and agents together for success.
+          </p>
         </div>
       </div>
     </section>

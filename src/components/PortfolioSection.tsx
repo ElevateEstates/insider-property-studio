@@ -285,6 +285,9 @@ export const PortfolioSection = () => {
                   visibleCards.includes(index) 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
+                } ${
+                  // Center the third video when it's alone on bottom row in md breakpoint
+                  index === 2 ? 'md:col-span-2 md:justify-self-center md:max-w-[400px] xl:col-span-1 xl:justify-self-auto xl:max-w-none' : ''
                 }`}
                 style={{ 
                   transitionDelay: `${index * 150}ms`
