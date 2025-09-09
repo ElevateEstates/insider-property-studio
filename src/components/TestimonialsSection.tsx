@@ -45,7 +45,7 @@ export const TestimonialsSection = () => {
               setVisibleCards(prev => [...prev, index]);
             }
           },
-          { threshold: 0.3 }
+          { threshold: 0.1, rootMargin: '100px' } // Trigger earlier
         );
         cardObserver.observe(card);
         observers.push(cardObserver);
