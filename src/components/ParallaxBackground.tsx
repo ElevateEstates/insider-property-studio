@@ -117,12 +117,26 @@ export const ParallaxBackground = ({
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png)`,
-          backgroundSize: '400px 400px',
+          backgroundImage: `url(/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png)`,
+          backgroundSize: '300px 300px',
           backgroundRepeat: 'repeat',
-          mixBlendMode: 'screen',
-          opacity: 0.15,
+          mixBlendMode: 'overlay',
+          opacity: 0.4,
           pointerEvents: 'none'
+        }}
+      />
+      
+      {/* Additional scratch layer with different blend mode */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png)`,
+          backgroundSize: '200px 200px',
+          backgroundRepeat: 'repeat',
+          mixBlendMode: 'soft-light',
+          opacity: 0.25,
+          pointerEvents: 'none',
+          transform: 'rotate(45deg) scale(1.2)'
         }}
       />
     </div>
