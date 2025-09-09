@@ -12,17 +12,7 @@ export const WorkWithUs = () => {
   }, []);
 
   return (
-    <section className="py-32 px-4 md:px-6 bg-black-grainy relative overflow-hidden z-10">
-      {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-12 z-0">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 40% 60%, rgba(255,255,255,0.03) 1px, transparent 1px),
-                           radial-gradient(circle at 60% 40%, rgba(255,255,255,0.02) 1px, transparent 1px),
-                           radial-gradient(circle at 20% 20%, rgba(255,255,255,0.025) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px, 120px 120px, 150px 150px'
-        }}></div>
-      </div>
-      
+    <section className="py-32 px-4 md:px-6 relative overflow-hidden z-10">
       <div 
         className="container mx-auto max-w-4xl relative z-20 section-content py-8 px-4 md:px-8"
       >

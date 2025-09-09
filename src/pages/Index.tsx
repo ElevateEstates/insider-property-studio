@@ -13,7 +13,7 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen text-white relative">
-      <ParallaxBackground speed={8} />
+      <ParallaxBackground speed={2} />
       <Navigation />
       <Hero />
       <div className="transparent-section">
