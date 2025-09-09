@@ -20,12 +20,16 @@ export const ParallaxBackground = ({
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   // Much less intense for other pages, mobile, or reduced motion preference
-  const multiplier = (reduced || isMobile || prefersReducedMotion) ? 0.03 : 1;
+  const multiplier = (reduced || isMobile || prefersReducedMotion) ? 0.07 : 1;
 
   const handleScroll = useCallback(() => {
-    // Consistent scroll updates for smoother animation
-    setScrollY(window.scrollY);
-  }, []);
+    // Throttle scroll updates for mobile performance
+    if (isMobile) {
+      requestAnimationFrame(() => setScrollY(window.scrollY));
+    } else {
+      setScrollY(window.scrollY);
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -161,17 +165,11 @@ export const ParallaxBackground = ({
           (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
           -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5)); // Off screen top
         
-        // Consistent movement for mobile, varied for desktop
-        const speedVariation = isMobile || prefersReducedMotion ? 0 : 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);
-        const driftVariation = isMobile || prefersReducedMotion ? 0 : 0.015 + (Math.abs(Math.cos(i * j * 1.7)) * 0.01);
-        const oscillateVariation = isMobile || prefersReducedMotion ? 0 : 0.0008 + (Math.abs(Math.sin(i * j * 3.3)) * 0.0005);
-        const amplitudeVariation = isMobile || prefersReducedMotion ? 0 : 20 + (Math.abs(Math.cos(i * j * 1.1)) * 15);
-        
-        // Consistent slow speeds for mobile
-        const baseSpeed = isMobile || prefersReducedMotion ? 0.08 : config.speed;
-        const baseDrift = isMobile || prefersReducedMotion ? 0.02 : 0.03;
-        const baseOscillate = isMobile || prefersReducedMotion ? 0.0003 : config.oscillate;
-        const baseAmplitude = isMobile || prefersReducedMotion ? 15 : config.amplitude;
+        // Add strong randomization to prevent any dot from matching scroll speed exactly
+        const speedVariation = 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);
+        const driftVariation = 0.015 + (Math.abs(Math.cos(i * j * 1.7)) * 0.01);
+        const oscillateVariation = 0.0008 + (Math.abs(Math.sin(i * j * 3.3)) * 0.0005);
+        const amplitudeVariation = 20 + (Math.abs(Math.cos(i * j * 1.1)) * 15);
         
         const star = createStar({
           id: starId,
@@ -180,10 +178,10 @@ export const ParallaxBackground = ({
           dotSize: config.dotSize,
           xStart: baseX,
           yStart: initialY,
-          ySpeed: baseSpeed + speedVariation,
-          xDrift: (i % 2 === 0 ? 1 : -1) * (baseDrift + driftVariation),
-          oscillateSpeed: baseOscillate + oscillateVariation,
-          oscillateAmplitude: baseAmplitude + amplitudeVariation
+          ySpeed: Math.max(0.12, config.speed + speedVariation), // Much higher minimum speed
+          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.05, (0.03 + (i * 0.008) + driftVariation)), // Much higher minimum drift
+          oscillateSpeed: Math.max(0.002, config.oscillate + oscillateVariation), // Much higher minimum oscillation
+          oscillateAmplitude: Math.max(50, config.amplitude + amplitudeVariation) // Much higher minimum amplitude for guaranteed left/right movement
         });
         
         if (star) layers.push(star);
