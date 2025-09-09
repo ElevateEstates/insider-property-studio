@@ -16,7 +16,7 @@ const Index = () => {
       <ParallaxBackground speed={8} />
       <Navigation />
       <Hero />
-      <div className="content-background">
+      <div className="transparent-section">
         <StatsSection />
         <PortfolioSection />
       </div>
@@ -25,7 +25,7 @@ const Index = () => {
         <TestimonialsSection />
         <WorkWithUs />
       </div>
-      <div className="content-background">
+      <div className="transparent-section">
         <ContactPreview />
         <ContactSection />
       </div>

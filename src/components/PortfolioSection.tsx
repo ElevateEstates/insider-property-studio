@@ -229,7 +229,7 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 lg:px-8 bg-black-grainy relative overflow-hidden z-10">
+    <section ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 lg:px-8 relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-20 z-0">
         <div className="absolute inset-0" style={{
