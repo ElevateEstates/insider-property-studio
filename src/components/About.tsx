@@ -10,9 +10,9 @@ export const About = () => {
   }, []);
 
   return (
-    <section className="py-20 px-4 md:px-6 relative overflow-hidden z-10">
+    <section className="py-8 px-4 md:px-6 relative overflow-hidden z-10">
       <div 
-        className="container mx-auto max-w-4xl relative z-20 section-content py-8 px-4 md:px-8"
+        className="container mx-auto max-w-4xl relative z-20 section-content py-4 px-4 md:px-8"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
         <div className="space-y-8 text-lg md:text-xl leading-relaxed text-white/80 font-light text-center max-w-3xl mx-auto">
