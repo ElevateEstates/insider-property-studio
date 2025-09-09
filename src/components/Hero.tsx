@@ -92,33 +92,22 @@ export const Hero = () => {
             </h1>
             
             {/* Second line: property marketing, */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
               {currentStep >= 2 && <TypewriterText text="property marketing," className="inline-block text-gradient-gold" delay={100} speed={40} onComplete={() => setCurrentStep(3)} />}
             </h1>
 
-            {/* Third line: turning listings into [animated word] */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+            {/* Third line: turning listings into [animated word] - smaller to match alignment */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
               {currentStep >= 3 && (
                 <span className="inline-block">
                   <TypewriterText text="turning listings into " className="inline-block" delay={200} speed={43} onComplete={() => setCurrentStep(4)} />
                   {currentStep >= 4 && (
-                    <span className="text-gradient-gold inline-block relative min-w-[200px]">
-                      {animatedWords.map((word, index) => (
-                        <span 
-                          key={`${word}-${index}`}
-                          className={`absolute left-0 top-0 transition-all duration-700 ease-in-out transform ${
-                            index === animatedWordIndex 
-                              ? 'opacity-100 translate-y-0' 
-                              : 'opacity-0 translate-y-2'
-                          }`}
-                          style={{ whiteSpace: 'nowrap' }}
-                        >
-                          {word}
-                        </span>
-                      ))}
-                      {/* Invisible placeholder for longest word to maintain layout */}
-                      <span className="invisible" style={{ whiteSpace: 'nowrap' }}>
-                        commissions.
+                    <span className="text-gradient-gold inline-block relative">
+                      <span 
+                        key={animatedWordIndex}
+                        className="inline-block transition-all duration-700 ease-in-out transform"
+                      >
+                        {animatedWords[animatedWordIndex]}
                       </span>
                     </span>
                   )}
