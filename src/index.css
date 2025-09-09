@@ -161,7 +161,7 @@
   }
   
   .glass-card-ultra:hover {
-    @apply border-white/10 bg-white/2 !important;
+    @apply border-white/10 !important;
     box-shadow: 
       0 2px 12px rgba(255, 255, 255, 0.04),
       0 0 8px rgba(255, 255, 255, 0.025),
