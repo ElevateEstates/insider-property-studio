@@ -3,10 +3,19 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Camera, Video, TrendingUp, Users, Clock, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-costa-del-sol.jpg";
 
 export default function Sellers() {
   const navigate = useNavigate();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const features = [
     {
@@ -39,9 +48,11 @@ export default function Sellers() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <ParallaxBackground speed={0.4} />
+      
       {/* Navigation */}
-      <nav className="absolute top-6 left-6 z-20">
+      <nav className="absolute top-6 left-6 z-50">
         <Button 
           variant="ghost" 
           onClick={() => navigate("/")}
@@ -53,15 +64,21 @@ export default function Sellers() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden transparent-section">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
+          style={{ 
+            backgroundImage: `url(${heroImage})`,
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/70"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-6 text-center">
+        <div 
+          className="relative z-30 container mx-auto px-6 text-center section-content"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        >
           <div className="max-w-4xl mx-auto animate-fade-up">
             <Badge variant="secondary" className="mb-6 px-4 py-2 glass-effect text-white border-white/30">
               For Home Sellers
@@ -90,7 +107,7 @@ export default function Sellers() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary text-white content-background">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
@@ -108,7 +125,7 @@ export default function Sellers() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 content-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -146,7 +163,7 @@ export default function Sellers() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-20 bg-gradient-to-b from-primary to-primary-dark text-white">
+      <section className="py-20 bg-gradient-to-b from-primary to-primary-dark text-white transparent-section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-8">
@@ -168,7 +185,7 @@ export default function Sellers() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 content-background">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

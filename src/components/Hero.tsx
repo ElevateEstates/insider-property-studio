@@ -89,20 +89,10 @@ export const Hero = () => {
   }, [isVisible, hasCompleted]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen bg-black-grainy text-white overflow-hidden z-10">
-      {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-30 z-0">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
-                           radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px),
-                           radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px, 80px 80px, 120px 120px'
-        }}></div>
-      </div>
-      
+    <section ref={heroRef} className="relative min-h-screen text-white overflow-hidden transparent-section">
       {/* Background Image with Parallax */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
         style={{
           backgroundImage: `url(${heroImage})`,
           transform: `translateY(${scrollY * 0.5}px)`

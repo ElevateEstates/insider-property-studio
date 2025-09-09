@@ -319,14 +319,53 @@
 
 /* Section spacing and z-index management */
 @layer components {
+  /* Parallax system z-index layers */
+  .parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
   section {
     position: relative;
     z-index: 10;
     isolation: isolate;
+    background: transparent;
   }
   
   .section-content {
     position: relative;
     z-index: 20;
+    background: transparent;
+  }
+  
+  /* Ensure content sections have proper backgrounds */
+  .content-background {
+    background: var(--background);
+    position: relative;
+    z-index: 15;
+  }
+  
+  /* Transparent sections for parallax effect */
+  .transparent-section {
+    background: transparent !important;
+  }
+  
+  /* Cards and components should have proper backgrounds */
+  .card-luxury,
+  .glass-effect {
+    position: relative;
+    z-index: 25;
+    backdrop-filter: blur(12px);
+  }
+  
+  /* Navigation should be above everything */
+  nav {
+    position: relative;
+    z-index: 50;
   }
 }

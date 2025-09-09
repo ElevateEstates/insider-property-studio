@@ -3,10 +3,19 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Eye, Video, Users, Lock, MapPin, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-costa-del-sol.jpg";
 
 export default function Buyers() {
   const navigate = useNavigate();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const benefits = [
     {
@@ -50,9 +59,11 @@ export default function Buyers() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <ParallaxBackground speed={0.4} />
+      
       {/* Navigation */}
-      <nav className="absolute top-6 left-6 z-20">
+      <nav className="absolute top-6 left-6 z-50">
         <Button 
           variant="ghost" 
           onClick={() => navigate("/")}
@@ -64,15 +75,21 @@ export default function Buyers() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden transparent-section">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-5"
+          style={{ 
+            backgroundImage: `url(${heroImage})`,
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/90 to-emerald-800/70"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-6 text-center">
+        <div 
+          className="relative z-30 container mx-auto px-6 text-center section-content"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        >
           <div className="max-w-4xl mx-auto animate-fade-up">
             <Badge variant="secondary" className="mb-6 px-4 py-2 glass-effect text-white border-white/30">
               For Home Buyers
@@ -101,7 +118,7 @@ export default function Buyers() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 content-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -139,7 +156,7 @@ export default function Buyers() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary text-white transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -173,7 +190,7 @@ export default function Buyers() {
       </section>
 
       {/* Market Reality Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 content-background">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -225,7 +242,7 @@ export default function Buyers() {
       </section>
 
       {/* Testimonial */}
-      <section className="py-20 bg-gradient-to-b from-primary to-primary-dark text-white">
+      <section className="py-20 bg-gradient-to-b from-primary to-primary-dark text-white transparent-section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <blockquote className="text-2xl md:text-3xl font-light mb-8 leading-relaxed">
@@ -241,7 +258,7 @@ export default function Buyers() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30 content-background">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">

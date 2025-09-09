@@ -7,19 +7,27 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { WorkWithUs } from "@/components/WorkWithUs";
 import { ContactPreview } from "@/components/ContactPreview";
 import { ContactSection } from "@/components/ContactSection";
+import { ParallaxBackground } from "@/components/ParallaxBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white relative">
+      <ParallaxBackground speed={0.3} />
       <Navigation />
       <Hero />
-      <StatsSection />
-      <PortfolioSection />
-      <About />
-      <TestimonialsSection />
-      <WorkWithUs />
-      <ContactPreview />
-      <ContactSection />
+      <div className="content-background">
+        <StatsSection />
+        <PortfolioSection />
+      </div>
+      <div className="transparent-section">
+        <About />
+        <TestimonialsSection />
+        <WorkWithUs />
+      </div>
+      <div className="content-background">
+        <ContactPreview />
+        <ContactSection />
+      </div>
     </div>
   );
 };
