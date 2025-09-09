@@ -196,7 +196,7 @@ const Portfolio = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="py-16 content-background">
+      <section className="py-16 transparent-section">
         <div className="container mx-auto max-w-6xl px-4 md:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
@@ -205,7 +205,7 @@ const Portfolio = () => {
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category.id)}
                 className={selectedCategory === category.id 
-                  ? "glass-button bg-white/30" 
+                  ? "glass-button bg-white/20" 
                   : "glass-button"
                 }
               >
@@ -301,30 +301,32 @@ const Portfolio = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-32 content-background">
+      <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-4xl px-4 md:px-8 text-center"
           style={{ transform: `translateY(${scrollY * 0.02}px)` }}
         >
-          <h2 className="text-3xl md:text-5xl font-light mb-8">
-            Ready to Create Your Visual Story?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Let's work together to create stunning visual content that showcases 
-            your property and captures the attention of potential buyers.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="glass-button">
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link to="/about">
-              <Button variant="outline" size="lg" className="glass-button">
-                Learn More About Us
-              </Button>
-            </Link>
+          <div className="glass-card p-12 rounded-3xl">
+            <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
+              Ready to Create Your Visual Story?
+            </h2>
+            <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+              Let's work together to create stunning visual content that showcases 
+              your property and captures the attention of potential buyers.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="glass-button">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="outline" size="lg" className="glass-button">
+                  Learn More About Us
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

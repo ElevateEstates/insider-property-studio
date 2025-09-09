@@ -168,7 +168,7 @@ export const ClientShowcase = () => {
                     </div>
                   </div>
 
-                  <Button className="btn-hero group">
+                  <Button className="glass-button group">
                     Visit {client.business.includes('Properties') ? 'WL Costa Properties' : client.name.split(' ')[0] + "'s Website"}
                     <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>

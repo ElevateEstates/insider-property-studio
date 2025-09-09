@@ -95,10 +95,10 @@ export default function Agents() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button className="btn-hero">
+              <Button className="glass-button">
                 Partner With Us
               </Button>
-              <Button variant="outline" className="btn-hero-outline">
+              <Button variant="outline" className="glass-button">
                 View Success Stories
               </Button>
             </div>
@@ -107,7 +107,7 @@ export default function Agents() {
       </section>
 
       {/* Partnership Benefits */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -145,7 +145,7 @@ export default function Agents() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-primary text-white transparent-section">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -197,7 +197,7 @@ export default function Agents() {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -244,7 +244,7 @@ export default function Agents() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -253,7 +253,7 @@ export default function Agents() {
             <p className="text-xl text-muted-foreground mb-8">
               Join our network of successful agents and start benefiting from our marketing expertise
             </p>
-            <Button className="btn-hero" onClick={() => navigate("/#contact")}>
+            <Button className="glass-button" onClick={() => navigate("/#contact")}>
               Start Partnership
             </Button>
           </div>

@@ -116,10 +116,10 @@ export default function Businesses() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button className="btn-hero">
+              <Button className="glass-button">
                 View Packages
               </Button>
-              <Button variant="outline" className="btn-hero-outline">
+              <Button variant="outline" className="glass-button">
                 See Our Work
               </Button>
             </div>
@@ -128,7 +128,7 @@ export default function Businesses() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -166,7 +166,7 @@ export default function Businesses() {
       </section>
 
       {/* Business Types */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -198,7 +198,7 @@ export default function Businesses() {
       </section>
 
       {/* Packages Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -242,7 +242,7 @@ export default function Businesses() {
                 </ul>
                 
                 <Button 
-                  className={`w-full ${pkg.popular ? 'btn-hero' : 'bg-primary text-primary-foreground hover:bg-primary-dark'}`}
+                  className={`w-full glass-button ${pkg.popular ? 'bg-white/30' : ''}`}
                 >
                   Choose {pkg.name}
                 </Button>

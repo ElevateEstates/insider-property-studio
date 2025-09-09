@@ -104,18 +104,18 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-32 content-background">
+      <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-6xl px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.05}px)` }}
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center bg-transparent backdrop-blur-md border border-white/20 rounded-xl p-6">
+              <div key={index} className="glass-card text-center rounded-2xl p-8">
                 <div className="text-3xl md:text-4xl lg:text-5xl font-light text-accent-gold mb-2">
                   {stat.number}
                 </div>
-                <div className="text-muted-foreground">{stat.label}</div>
+                <div className="text-white/70">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ const About = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-32 content-background">
+      <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-4xl px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.02}px)` }}
@@ -172,33 +172,35 @@ const About = () => {
             </h2>
           </div>
           
-          <div className="space-y-8 text-lg leading-relaxed text-muted-foreground">
-            <p>
-              At Geir Costa, we believe that every property has a unique story to tell. 
-              Our mission is to capture not just the physical spaces, but the emotions 
-              and lifestyle that each property represents.
-            </p>
-            
-            <p>
-              We understand that in today's competitive real estate market, exceptional 
-              visual content isn't a luxury—it's essential. Our work helps agents sell 
-              faster, buyers connect emotionally, and properties achieve their maximum value.
-            </p>
-            
-            <p>
-              From intimate residential spaces to grand luxury estates, we approach each 
-              project with meticulous attention to detail, creative vision, and a deep 
-              understanding of what makes properties irresistible to potential buyers.
-            </p>
+          <div className="glass-card p-8 rounded-2xl">
+            <div className="space-y-8 text-lg leading-relaxed text-white/80">
+              <p>
+                At Geir Costa, we believe that every property has a unique story to tell. 
+                Our mission is to capture not just the physical spaces, but the emotions 
+                and lifestyle that each property represents.
+              </p>
+              
+              <p>
+                We understand that in today's competitive real estate market, exceptional 
+                visual content isn't a luxury—it's essential. Our work helps agents sell 
+                faster, buyers connect emotionally, and properties achieve their maximum value.
+              </p>
+              
+              <p>
+                From intimate residential spaces to grand luxury estates, we approach each 
+                project with meticulous attention to detail, creative vision, and a deep 
+                understanding of what makes properties irresistible to potential buyers.
+              </p>
+            </div>
           </div>
 
           <div className="text-center mt-16">
-              <Link to="/contact">
-                <Button size="lg" className="glass-button">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+            <Link to="/contact">
+              <Button size="lg" className="glass-button">
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

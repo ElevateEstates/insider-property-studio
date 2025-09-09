@@ -136,7 +136,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Info Section */}
-      <section className="py-32 content-background">
+      <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-6xl px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.05}px)` }}
@@ -145,7 +145,7 @@ const Contact = () => {
             <h2 className="text-3xl md:text-5xl font-light mb-8">
               How to Reach Us
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
               We're here to help with all your real estate media needs
             </p>
           </div>
@@ -300,11 +300,11 @@ const Contact = () => {
                     />
                   </div>
                   
-                  <Button 
-                    type="submit" 
-                    size="lg"
-                    className="w-full glass-button group"
-                  >
+                    <Button 
+                      type="submit" 
+                      size="lg"
+                      className="w-full glass-button group"
+                    >
                     Send Message
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>

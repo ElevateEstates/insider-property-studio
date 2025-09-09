@@ -95,10 +95,10 @@ export default function Sellers() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button className="btn-hero">
+              <Button className="glass-button">
                 Get My Marketing Plan
               </Button>
-              <Button variant="outline" className="btn-hero-outline">
+              <Button variant="outline" className="glass-button">
                 View Portfolio
               </Button>
             </div>
@@ -107,11 +107,11 @@ export default function Sellers() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-primary text-white content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center animate-fade-up" style={{ animationDelay: `${index * 100}ms` }}>
+              <div key={index} className="text-center animate-fade-up glass-card p-6 rounded-2xl" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="text-4xl md:text-5xl font-bold text-accent-gold mb-2">
                   {stat.number}
                 </div>
@@ -125,13 +125,13 @@ export default function Sellers() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Complete <span className="text-gradient-gold">Marketing Solution</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
               Everything you need to showcase your property and attract qualified buyers
             </p>
           </div>
@@ -142,17 +142,17 @@ export default function Sellers() {
               return (
                 <Card 
                   key={index}
-                  className="card-luxury p-8 border-0"
+                  className="glass-card p-8 border-0"
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
                   <div className="w-16 h-16 bg-gradient-to-br from-accent-gold to-accent-gold-dark rounded-2xl flex items-center justify-center mb-6">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-2xl font-semibold text-foreground mb-4">
+                  <h3 className="text-2xl font-semibold text-white mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-white/70 leading-relaxed">
                     {feature.description}
                   </p>
                 </Card>
@@ -185,16 +185,16 @@ export default function Sellers() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <div className="max-w-3xl mx-auto glass-card p-12 rounded-3xl">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to <span className="text-gradient-gold">Sell Faster?</span>
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-white/70 mb-8">
               Get your free marketing consultation and see how we can help you achieve a premium sale
             </p>
-            <Button className="btn-hero" onClick={() => navigate("/#contact")}>
+            <Button className="glass-button" onClick={() => navigate("/#contact")}>
               Get Free Consultation
             </Button>
           </div>

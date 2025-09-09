@@ -106,10 +106,10 @@ export default function Buyers() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button className="btn-hero">
+              <Button className="glass-button">
                 Get Insider Access
               </Button>
-              <Button variant="outline" className="btn-hero-outline">
+              <Button variant="outline" className="glass-button">
                 Browse Properties
               </Button>
             </div>
@@ -118,7 +118,7 @@ export default function Buyers() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -156,7 +156,7 @@ export default function Buyers() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-primary text-white transparent-section">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -190,7 +190,7 @@ export default function Buyers() {
       </section>
 
       {/* Market Reality Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -231,7 +231,7 @@ export default function Buyers() {
                     Get exclusive access to properties in Marbella, Estepona, Fuengirola, 
                     and surrounding areas before they go public.
                   </p>
-                  <Button className="btn-hero w-full">
+                  <Button className="glass-button w-full">
                     Join Insider Network
                   </Button>
                 </div>
@@ -258,7 +258,7 @@ export default function Buyers() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/30 content-background">
+      <section className="py-20 transparent-section">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -267,7 +267,7 @@ export default function Buyers() {
             <p className="text-xl text-muted-foreground mb-8">
               Join our exclusive buyer network and get first access to the best properties on Costa del Sol
             </p>
-            <Button className="btn-hero" onClick={() => navigate("/#contact")}>
+            <Button className="glass-button" onClick={() => navigate("/#contact")}>
               Get Exclusive Access
             </Button>
           </div>
