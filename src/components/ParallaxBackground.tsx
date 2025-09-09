@@ -139,9 +139,11 @@ export const ParallaxBackground = ({
           (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
           -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5)); // Off screen top
         
-        // Add randomization to prevent any dot from matching scroll speed exactly
-        const speedVariation = 0.02 + (Math.sin(i * j * 2.5) * 0.01);
-        const driftVariation = 0.005 + (Math.cos(i * j * 1.7) * 0.003);
+        // Add strong randomization to prevent any dot from matching scroll speed exactly
+        const speedVariation = 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);
+        const driftVariation = 0.015 + (Math.abs(Math.cos(i * j * 1.7)) * 0.01);
+        const oscillateVariation = 0.0008 + (Math.abs(Math.sin(i * j * 3.3)) * 0.0005);
+        const amplitudeVariation = 20 + (Math.abs(Math.cos(i * j * 1.1)) * 15);
         
         const star = createStar({
           id: starId,
@@ -150,10 +152,10 @@ export const ParallaxBackground = ({
           dotSize: config.dotSize,
           xStart: baseX,
           yStart: initialY,
-          ySpeed: Math.max(0.08, config.speed + speedVariation), // Add variation to prevent static matching
-          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.025, (0.02 + (i * 0.003) + driftVariation)), // Increased minimum drift
-          oscillateSpeed: Math.max(0.001, config.oscillate + (j * 0.0002)), // Increased minimum oscillation
-          oscillateAmplitude: Math.max(30, config.amplitude + (i * 5)) // Increased minimum amplitude for visible left/right movement
+          ySpeed: Math.max(0.12, config.speed + speedVariation), // Much higher minimum speed
+          xDrift: (i % 2 === 0 ? 1 : -1) * Math.max(0.05, (0.03 + (i * 0.008) + driftVariation)), // Much higher minimum drift
+          oscillateSpeed: Math.max(0.002, config.oscillate + oscillateVariation), // Much higher minimum oscillation
+          oscillateAmplitude: Math.max(50, config.amplitude + amplitudeVariation) // Much higher minimum amplitude for guaranteed left/right movement
         });
         
         if (star) layers.push(star);
@@ -180,10 +182,10 @@ export const ParallaxBackground = ({
       dotSize: coloredStarConfig.dotSize,
       xStart: spiralX,
       yStart: spiralY,
-      ySpeed: Math.max(0.1, 0.13), // Ensure visible movement
-      xDrift: Math.max(0.02, 0.025), // Ensure visible drift
-      oscillateSpeed: Math.max(0.0008, spiralSpeed * 2), // Ensure visible oscillation
-      oscillateAmplitude: Math.max(25, 30), // Ensure visible amplitude
+      ySpeed: Math.max(0.15, 0.13), // Higher minimum movement
+      xDrift: Math.max(0.04, 0.025), // Higher minimum drift
+      oscillateSpeed: Math.max(0.0015, spiralSpeed * 2), // Higher minimum oscillation
+      oscillateAmplitude: Math.max(40, 30), // Higher minimum amplitude
       color: coloredStarConfig.color
     });
     
