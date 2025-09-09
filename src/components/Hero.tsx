@@ -75,21 +75,8 @@ export const Hero = () => {
           
           
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              {currentStep >= 1 && <TypewriterText text="YOUR" className="inline-block" delay={0} speed={50} onComplete={() => setCurrentStep(2)} />}
-            </h1>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              {currentStep >= 1 && <TypewriterText text="LUXURY" className="inline-block text-gradient-gold" delay={400} speed={40} onComplete={() => setCurrentStep(3)} />}
-            </h1>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              {currentStep >= 1 && <TypewriterText text="EXCLUSIVE" className="inline-block" delay={800} speed={43} onComplete={() => setCurrentStep(4)} />}
-            </h1>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              {currentStep >= 1 && <TypewriterText text="BESPOKE PARTNER" className="inline-block" delay={1200} speed={47} onComplete={() => setCurrentStep(5)} />}
-              <span className="text-4xl md:text-6xl lg:text-7xl">.</span>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight">
+              {currentStep >= 1 && <TypewriterText text="Your partner in property marketing — turning listings into results with visuals, strategy, and local connections." className="inline-block" delay={0} speed={30} onComplete={() => setCurrentStep(5)} />}
             </h1>
           </div>
 
