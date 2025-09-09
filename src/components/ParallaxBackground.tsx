@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface ParallaxBackgroundProps {
   className?: string;
@@ -15,14 +15,26 @@ export const ParallaxBackground = ({
 }: ParallaxBackgroundProps) => {
   const [scrollY, setScrollY] = useState(0);
   
-  // Much less intense for other pages to prevent dots disappearing
-  const multiplier = reduced ? 0.15 : 1; // Reduced from 1/3 to 0.15
+  // Detect mobile devices and reduce motion preference
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Much less intense for other pages, mobile, or reduced motion preference
+  const multiplier = (reduced || isMobile || prefersReducedMotion) ? 0.08 : 1;
+
+  const handleScroll = useCallback(() => {
+    // Throttle scroll updates for mobile performance
+    if (isMobile) {
+      requestAnimationFrame(() => setScrollY(window.scrollY));
+    } else {
+      setScrollY(window.scrollY);
+    }
+  }, [isMobile]);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   // Generate smooth flowing stars with always-visible coverage
   const generateDotLayers = () => {
@@ -100,11 +112,13 @@ export const ParallaxBackground = ({
             key={id}
             className="absolute"
             style={{
-              transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
+              transform: `translate3d(${xOffset}px, ${yOffset}px, 0)`,
               backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2.5}px)`,
               backgroundSize: `${size}px ${size}px`,
               backgroundRepeat: 'repeat',
               willChange: 'transform',
+              backfaceVisibility: 'hidden',
+              perspective: '1000px',
               top: 0,
               left: 0,
               right: 0,
@@ -118,7 +132,12 @@ export const ParallaxBackground = ({
     };
     
     // Reduced star field - fewer, varied sizes, all moving
-    const starConfigs = [
+    // Further reduce stars on mobile for better performance
+    const starConfigs = isMobile || prefersReducedMotion ? [
+      // Minimal stars for mobile
+      { opacity: 0.6, size: 60, dotSize: 0.2, speed: 0.08, oscillate: 0.0005, amplitude: 15 },
+      { opacity: 0.5, size: 70, dotSize: 0.3, speed: 0.1, oscillate: 0.0006, amplitude: 20 }
+    ] : [
       // Small stars (90% of stars) - much smaller
       { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
       { opacity: 0.6, size: 50, dotSize: 0.2, speed: 0.15, oscillate: 0.001, amplitude: 30 },
@@ -131,8 +150,9 @@ export const ParallaxBackground = ({
     ];
     
     starConfigs.forEach((config, i) => {
-      // Only 2 stars per config instead of 3 for 50% reduction
-      for (let j = 0; j < 2; j++) {
+      // Reduce stars further on mobile: 1 star per config on mobile, 2 on desktop
+      const starsPerConfig = isMobile || prefersReducedMotion ? 1 : 2;
+      for (let j = 0; j < starsPerConfig; j++) {
         const starId = `star-${i}-${j}`;
         
         // Distribute across screen width with better spacing
@@ -166,34 +186,36 @@ export const ParallaxBackground = ({
       }
     });
     
-    // Reduced colored accent stars - only 1 instead of 3
-    const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 0.35 };
-    
-    const spiralRadius = 35;
-    const spiralSpeed = 0.001;
-    const baseX = screenWidth * 0.6;
-    
-    // Start colored star visible
-    const initialY = screenHeight * 0.25;
-    
-    const spiralX = baseX + Math.cos(scrollY * spiralSpeed) * spiralRadius;
-    const spiralY = initialY + (scrollY * 0.13 * multiplier);
-    
-    const coloredStar = createStar({
-      id: 'colored-star-accent',
-      baseOpacity: coloredStarConfig.opacity,
-      size: coloredStarConfig.size,
-      dotSize: coloredStarConfig.dotSize,
-      xStart: spiralX,
-      yStart: spiralY,
-      ySpeed: Math.max(0.15, 0.13), // Higher minimum movement
-      xDrift: Math.max(0.04, 0.025), // Higher minimum drift
-      oscillateSpeed: Math.max(0.0015, spiralSpeed * 2), // Higher minimum oscillation
-      oscillateAmplitude: Math.max(40, 30), // Higher minimum amplitude
-      color: coloredStarConfig.color
-    });
-    
-    if (coloredStar) layers.push(coloredStar);
+    // Skip colored accent stars on mobile for better performance
+    if (!isMobile && !prefersReducedMotion) {
+      const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 0.35 };
+      
+      const spiralRadius = 35;
+      const spiralSpeed = 0.001;
+      const baseX = screenWidth * 0.6;
+      
+      // Start colored star visible
+      const initialY = screenHeight * 0.25;
+      
+      const spiralX = baseX + Math.cos(scrollY * spiralSpeed) * spiralRadius;
+      const spiralY = initialY + (scrollY * 0.13 * multiplier);
+      
+      const coloredStar = createStar({
+        id: 'colored-star-accent',
+        baseOpacity: coloredStarConfig.opacity,
+        size: coloredStarConfig.size,
+        dotSize: coloredStarConfig.dotSize,
+        xStart: spiralX,
+        yStart: spiralY,
+        ySpeed: Math.max(0.15, 0.13), // Higher minimum movement
+        xDrift: Math.max(0.04, 0.025), // Higher minimum drift
+        oscillateSpeed: Math.max(0.0015, spiralSpeed * 2), // Higher minimum oscillation
+        oscillateAmplitude: Math.max(40, 30), // Higher minimum amplitude
+        color: coloredStarConfig.color
+      });
+      
+      if (coloredStar) layers.push(coloredStar);
+    }
     
     return layers;
   };
