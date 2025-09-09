@@ -34,12 +34,13 @@ export const ParallaxBackground = ({
       const size = 30 + (i * 25); // Increased spacing between sizes
       const dotSize = 0.3 + (i * 0.15); // Slightly larger dots
       const speed = 0.05 + (i * 0.2); // More varied speeds
-      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.02 + i * 0.015);
+      // Much more subtle X movement that oscillates instead of accumulating
+      const xSpeed = Math.sin(i) * 0.005; // Very subtle oscillating movement
       
       // Create infinite loop effect by using modulo on scroll position
       const loopHeight = 3000; // Increased loop height for more natural spacing
       const yOffset = (scrollY * speed * multiplier) % loopHeight;
-      const xOffset = (scrollY * xSpeed * multiplier) % 1500;
+      const xOffset = Math.sin(scrollY * 0.001 + i) * 20; // Gentle sine wave movement, max 20px offset
       
       layers.push(
         <div 
@@ -89,11 +90,11 @@ export const ParallaxBackground = ({
       const size = 80 + (i * 60);
       const dotSize = 1.0 + (i * 0.4);
       const speed = 0.4 + (i * 0.3);
-      const xSpeed = (i % 2 === 0 ? 1 : -1) * (0.06 + i * 0.03);
+      // Gentle oscillating movement for colored dots too
+      const xOffset = Math.sin(scrollY * 0.0008 + i * 2) * 30; // Slightly more movement for accent dots
       
       const loopHeight = 3500;
       const yOffset = (scrollY * speed * multiplier) % loopHeight;
-      const xOffset = (scrollY * xSpeed * multiplier) % 1800;
       
       layers.push(
         <div 
