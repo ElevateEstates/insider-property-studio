@@ -49,7 +49,7 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '500vh' // Much larger height to prevent disappearing
+            height: '1000vh' // Much larger height to prevent disappearing
           }}
         />
       );
@@ -78,7 +78,7 @@ export const ParallaxBackground = ({
             top: 0,
             left: 0,
             right: 0,
-            height: '500vh'
+            height: '1000vh'
           }}
         />
       );
