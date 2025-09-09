@@ -97,10 +97,14 @@ export const ParallaxBackground = ({
             className="absolute"
             style={{
               transform: `translateY(${yOffset}px) translateX(${xOffset}px)`,
-              background: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2.5}px)`,
-              width: `${dotSize * 5}px`,
-              height: `${dotSize * 5}px`,
+              backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2.5}px)`,
+              backgroundSize: `${size}px ${size}px`,
+              backgroundRepeat: 'repeat',
               willChange: 'transform',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '600vh',
               pointerEvents: 'none'
             }}
           />
