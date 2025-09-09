@@ -422,9 +422,10 @@
   
   /* Ensure content sections have proper backgrounds and spacing */
   .content-background {
-    background: var(--background);
+    background: rgba(15, 15, 15, 0.95); /* Dark grayish with transparency */
     position: relative;
     z-index: 15;
+    backdrop-filter: blur(20px);
   }
   
   /* Transparent sections for parallax effect */

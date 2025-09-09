@@ -49,7 +49,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen text-white relative">
-      <ParallaxBackground speed={8} />
+      <ParallaxBackground speed={8} reduced={true} />
       <Navigation />
       
       {/* Hero Section */}
