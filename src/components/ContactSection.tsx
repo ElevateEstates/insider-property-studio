@@ -39,17 +39,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact-form" className="py-32 px-4 md:px-6 bg-black-grainy relative overflow-hidden z-10">
-      {/* Subtle Star Background */}
-      <div className="absolute inset-0 opacity-6 z-0">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 45% 55%, rgba(255,255,255,0.02) 1px, transparent 1px),
-                           radial-gradient(circle at 55% 45%, rgba(255,255,255,0.015) 1px, transparent 1px),
-                           radial-gradient(circle at 25% 75%, rgba(255,255,255,0.025) 1px, transparent 1px)`,
-          backgroundSize: '140px 140px, 180px 180px, 220px 220px'
-        }}></div>
-      </div>
-      
+    <section id="contact-form" className="py-32 px-4 md:px-6 relative overflow-hidden z-10">
       <div 
         className="container mx-auto max-w-6xl relative z-20 section-content py-8 px-4 md:px-8"
       >
