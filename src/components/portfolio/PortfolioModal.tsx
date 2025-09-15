@@ -50,7 +50,7 @@ const PortfolioModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl w-full h-[90vh] p-0 bg-black/95 border-white/20">
+      <DialogContent className="max-w-6xl w-full h-[90vh] p-0 bg-black/98 border-white/20 backdrop-blur-md">
         <DialogHeader className="p-6 pb-0 text-white">
           <div className="flex items-start justify-between">
             <div className="space-y-2 flex-1">
@@ -105,9 +105,9 @@ const PortfolioModal = ({
           </div>
         </DialogHeader>
 
-        <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 pt-0">
+        <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 pt-0 overflow-hidden">
           {/* Content Area */}
-          <div className="flex-1 relative">
+          <div className="flex-1 relative overflow-y-auto max-h-[calc(90vh-200px)]">
             {renderContent(currentItem, currentIndex)}
             
             {/* Navigation Arrows */}
@@ -117,7 +117,7 @@ const PortfolioModal = ({
                   variant="ghost"
                   size="sm"
                   onClick={handlePrevious}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm z-10"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </Button>
@@ -125,7 +125,7 @@ const PortfolioModal = ({
                   variant="ghost"
                   size="sm"
                   onClick={handleNext}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm z-10"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </Button>
@@ -134,7 +134,7 @@ const PortfolioModal = ({
           </div>
 
           {/* Details Sidebar */}
-          <div className="lg:w-80 space-y-6 text-white">
+          <div className="lg:w-80 space-y-6 text-white overflow-y-auto max-h-[calc(90vh-200px)]">
             <div>
               <h4 className="text-lg font-medium mb-3 text-white">Project Details</h4>
               <div className="space-y-4">
@@ -149,30 +149,6 @@ const PortfolioModal = ({
                 </div>
               </div>
             </div>
-
-            {/* Thumbnail Navigation for mobile/desktop */}
-            {items.length > 1 && (
-              <div className="lg:block">
-                <h4 className="text-sm font-medium mb-3 text-white/80">Navigate Collection</h4>
-                <div className="grid grid-cols-3 gap-2 max-h-60 overflow-y-auto">
-                  {items.map((item, index) => (
-                    <button
-                      key={item.id}
-                      onClick={() => onNavigate(index)}
-                      className={`aspect-square rounded border-2 transition-all ${
-                        index === currentIndex 
-                          ? 'border-white/60 opacity-100' 
-                          : 'border-white/20 opacity-60 hover:opacity-80'
-                      }`}
-                    >
-                      <div className="w-full h-full bg-white/10 rounded flex items-center justify-center text-xs text-white/60">
-                        {index + 1}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </DialogContent>
