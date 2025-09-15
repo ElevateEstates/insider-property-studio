@@ -75,56 +75,88 @@ const PortfolioModal = ({
     }
 
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center gap-4 py-4">
-        {/* Main Image Display - 16:9 Aspect Ratio */}
-        <div className="w-full max-w-4xl aspect-video bg-black/20 rounded-lg overflow-hidden border-2 border-white/10">
-          <img
-            src={images[selectedImageIndex] || currentItem.src}
-            alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-            className="w-full h-full object-cover"
-          />
+      <div className="w-full h-full flex items-center justify-center gap-4 py-8 px-8">
+        {/* Left Navigation Arrow */}
+        {hasMultipleImages && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
+            className="text-white hover:bg-white/10 p-3 rounded-full flex-shrink-0"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+        )}
+
+        {/* Main Image Container with proper aspect ratio */}
+        <div className="flex flex-col items-center gap-4 flex-1 max-w-4xl">
+          <div className="w-full bg-black/20 rounded-lg overflow-hidden border-2 border-white/10" style={{ aspectRatio: 'auto' }}>
+            <img
+              src={images[selectedImageIndex] || currentItem.src}
+              alt={`${currentItem.title} ${selectedImageIndex + 1}`}
+              className="w-full h-auto object-contain max-h-[60vh]"
+            />
+          </div>
         </div>
 
-        {/* Image Thumbnail Navigation */}
+        {/* Right Navigation Arrow */}
         {hasMultipleImages && (
-          <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2 px-4">
-            {images.map((image: string, index: number) => (
-              <button
-                key={index}
-                onClick={() => setSelectedImageIndex(index)}
-                className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
-                  selectedImageIndex === index 
-                    ? 'border-white shadow-lg scale-105' 
-                    : 'border-white/20 hover:border-white/50'
-                }`}
-              >
-                <img
-                  src={image}
-                  alt={`${currentItem.title} thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
-          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
+            className="text-white hover:bg-white/10 p-3 rounded-full flex-shrink-0"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </Button>
         )}
 
-        {/* Image Counter */}
-        {hasMultipleImages && (
-          <div className="text-white/70 text-sm">
-            {selectedImageIndex + 1} of {images.length}
-          </div>
-        )}
+          {/* Image Thumbnail Navigation */}
+          {hasMultipleImages && (
+            <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2 px-4">
+              {images.map((image: string, index: number) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
+                    selectedImageIndex === index 
+                      ? 'border-white shadow-lg scale-105' 
+                      : 'border-white/20 hover:border-white/50'
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`${currentItem.title} thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Image Counter */}
+          {hasMultipleImages && (
+            <div className="text-white/70 text-sm">
+              {selectedImageIndex + 1} of {images.length}
+            </div>
+          )}
       </div>
     );
   };
 
   const shouldShowSidebar = type !== 'lifestyle-photos';
 
+  const getDynamicSize = () => {
+    if (type === 'property-videos' || type === 'lifestyle-videos') {
+      return shouldShowSidebar ? 'max-w-7xl h-[95vh]' : 'max-w-6xl h-[95vh]';
+    }
+    // For images, make size more dynamic
+    return shouldShowSidebar ? 'max-w-6xl max-h-[90vh]' : 'max-w-5xl max-h-[85vh]';
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className={`w-full h-[95vh] bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden ${
-        shouldShowSidebar ? 'max-w-7xl' : 'max-w-6xl'
-      }`}>
+      <DialogContent className={`w-full bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden ${getDynamicSize()}`}>
         <div className="flex h-full">
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col min-w-0">
@@ -192,7 +224,7 @@ const PortfolioModal = ({
             </div>
 
             {/* Content Area - Top Aligned with Padding */}
-            <div className="flex-1 p-6 flex flex-col justify-start overflow-auto">
+            <div className="flex-1 flex flex-col justify-start overflow-auto">
               {renderImageModal()}
             </div>
           </div>

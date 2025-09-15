@@ -86,8 +86,7 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <Card 
-                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer h-full flex flex-col"
-                onClick={() => onItemClick(filteredListings, index, 'property-videos')}
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 h-full flex flex-col"
               >
                 {/* Video Embed - Fixed Height */}
                 <div className="relative aspect-video flex-shrink-0">
