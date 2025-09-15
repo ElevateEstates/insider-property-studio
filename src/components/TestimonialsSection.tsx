@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
+import eddiePhoto from "../assets/eddie-profile.jpg";
 
 const testimonials = [
   {
@@ -31,6 +32,12 @@ const testimonials = [
     author: "Scarlett Lancaster",
     company: "Sales & Brand Director at Mila Homes",
     image: scarlettPhoto
+  },
+  {
+    quote: "Geir is a fantastic gentleman, who took my project onboard. His experience, and deep understanding of social media marketing, web design and video creation have helped me to get started with confidence and quickly receive interactions from clients. I should also highlight his sense of creativity is outstanding. Could not be happier to trust my project on his hands.",
+    author: "Eddie Caires",
+    company: "Irish National Champion RIBBF 2023 & Transformation Coach",
+    image: eddiePhoto
   }
 ];
 
