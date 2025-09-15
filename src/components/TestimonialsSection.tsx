@@ -228,7 +228,16 @@ export const TestimonialsSection = () => {
                   <blockquote className="text-white/90 leading-relaxed font-light" style={{
                     fontSize: `clamp(1rem, ${Math.max(0.8, Math.min(1.2, 200 / testimonial.quote.length))}rem, 1.25rem)`
                   }}>
-                    "{testimonial.quote}"
+                    {testimonial.quote.length > 350 ? (
+                      <>
+                        "{testimonial.quote.substring(0, 350)}..."
+                        <div className="mt-2 text-blue-400/80 text-sm italic cursor-pointer hover:text-blue-400 transition-colors">
+                          Click to read more →
+                        </div>
+                      </>
+                    ) : (
+                      `"${testimonial.quote}"`
+                    )}
                   </blockquote>
                   
                   {/* Author Info */}
