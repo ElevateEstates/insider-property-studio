@@ -8,28 +8,28 @@ import wlcostaPhoto from "../assets/wlcosta-profile.jpg";
 
 const testimonials = [
   {
-    quote: "I cannot express enough how thrilled I am with the work of Geir Stint as our content creator. His unique ideas and innovative approach have truly set him apart in the industry.",
-    author: "Yoni Bernard",
-    company: "Founder of Decogym and CEO of Mr Broker Estate",
-    image: yoniPhoto
-  },
-  {
-    quote: "Geir has been working with us for the past two years and has become a huge part of our real estate journey. His work speaks for itself, and our clients are always seriously impressed.",
+    quote: "Geir has been working with us for the past two years and has become a huge part of our real estate journey. Not only does he help us present our exclusive listings in the best possible way, but he also brings fresh energy, creative ideas, and a new perspective to everything we do. He's a cool guy with a brilliant creative brain, always thinking outside the box and encouraging us to push beyond our comfort zone. Geir's support means a lot to us, he's a true team player and someone we're genuinely grateful to work with. His work speaks for itself, and our clients are always seriously impressed.",
     author: "Warner and Sandra Laurie",
     company: "Founders, Directors of WL Costa Properties",
     image: wlcostaPhoto
   },
   {
-    quote: "Geir is a very professional and reliable photographer. We have a working relationship dating back many years so I could talk all day about how amazing, detailed and creative he is.",
-    author: "Scarlett Lancaster",
+    quote: "Geir is a fantastic gentleman, who took my project onboard. His experience, and deep understanding of social media marketing, web design and video creation have helped me to get started with confidence and quickly receive interactions from clients. I should also highlight his sense of creativity is outstanding. Could not be happier to trust my project on his hands.",
+    author: "Eddie Caires",
+    company: "Irish National Champion RIBBF 2023 & Transformation Coach",
+    image: eddiePhoto
+  },
+  {
+    quote: "Geir is a very professional and reliable photographer. We have a working relationship dating back many years so I could talk all day about how amazing, detailed and creative he is. But more importantly for me is how he can always be relied on and his professionalism in every situation that may occur. We couldn't recommend anybody else more!",
+    author: "Scarlett",
     company: "Sales & Brand Director at Mila Homes",
     image: scarlettPhoto
   },
   {
-    quote: "Geir is a fantastic gentleman, who took my project onboard. His experience, and deep understanding of social media marketing, web design and video creation have helped me to get started with confidence.",
-    author: "Eddie Caires",
-    company: "Irish National Champion RIBBF 2023 & Transformation Coach",
-    image: eddiePhoto
+    quote: "I cannot express enough how thrilled I am with the work of Geir Stint as our content creator. His unique ideas and innovative approach have truly set him apart in the industry. Geir's ability to consistently deliver high-quality content at an impressive pace is nothing short of remarkable. From the very beginning, it was clear that Geir is not just another content creator; he brings a fresh perspective that has transformed the way we communicate with our audience. His creativity knows no bounds, and it has played a pivotal role in elevating my business to new heights. I wholeheartedly give Geir a perfect five-star rating and cannot recommend him highly enough. If you're looking for someone who is dedicated, talented, and passionate about their craft, Geir is your go-to person. Working with him has been a game-changer for us, and I am confident he can do the same for anyone lucky enough to collaborate with him. Thank you, Geir, for your exceptional work and for being such an invaluable asset to our team!",
+    author: "Yoni Bernard",
+    company: "Founder of Decogym and CEO of Mr Broker Estate",
+    image: yoniPhoto
   }
 ];
 
