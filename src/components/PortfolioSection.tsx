@@ -202,48 +202,12 @@ export const PortfolioSection = () => {
         </div>
 
         {/* Video Gallery */}
-        <div className="mb-20 px-4 md:px-8">
-          <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
-            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-700'} block`}>
-                Video Tours
-              </span>}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
-            {videoItems.map((item, index) => <div key={`video-${index}`} ref={el => cardRefs.current[index] = el} className={`group relative overflow-hidden rounded-lg ${getSizeClasses(item.size)} transition-all duration-700 ${visibleCards.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${
-          // Center the third video when it's alone on bottom row in md breakpoint
-          index === 2 ? 'md:col-span-2 md:justify-self-center md:max-w-[400px] xl:col-span-1 xl:justify-self-auto xl:max-w-none' : ''}`} style={{
-            transitionDelay: `${index * 150}ms`
-          }}>
-                <div className="relative w-full h-full bg-black">
-                  <iframe src={`https://player.vimeo.com/video/${item.vimeoId}?background=1&autoplay=0&loop=1&byline=0&title=0`} className="w-full h-full object-cover" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                    <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                      <Play className="w-12 h-12 text-white" fill="white" />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Overlay with title */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h4 className="text-white font-medium text-sm md:text-base mb-1">
-                      {item.title}
-                    </h4>
-                    <p className="text-white/80 text-xs md:text-sm">
-                      Video Tour
-                    </p>
-                  </div>
-                </div>
-              </div>)}
-          </div>
-        </div>
+        
 
         {/* Photo Gallery */}
         <div className="mb-16 px-4 md:px-8">
           <h3 className="text-2xl md:text-3xl font-light mb-8 text-white text-center">
-            {(titleAnimation.shouldAnimate || titleAnimation.hasAnimated) && <span className={`${titleAnimation.hasAnimated ? 'opacity-100' : 'animate-fade-in opacity-0 delay-1200'} block`}>
-                Photography
-              </span>}
+            {titleAnimation.shouldAnimate || titleAnimation.hasAnimated}
           </h3>
           
         </div>
