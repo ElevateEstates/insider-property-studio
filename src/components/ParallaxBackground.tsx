@@ -244,13 +244,13 @@ export const ParallaxBackground = ({
       <div 
         className="absolute bottom-0 left-0 right-0 h-[50vh] pointer-events-none z-1"
         style={{
-          backgroundImage: `radial-gradient(circle at 25% 75%, rgba(255,255,255,0.6) 1.5px, transparent 4px),
-                           radial-gradient(circle at 75% 25%, rgba(255,255,255,0.4) 2px, transparent 6px),
-                           radial-gradient(circle at 50% 50%, rgba(255,255,255,0.5) 1.8px, transparent 5px),
-                           radial-gradient(circle at 20% 40%, rgba(255,255,255,0.3) 2.2px, transparent 7px),
-                           radial-gradient(circle at 80% 80%, rgba(255,255,255,0.45) 1.7px, transparent 5.5px)`,
+          backgroundImage: `radial-gradient(circle at 25% 75%, rgba(255,255,255,0.6) 6px, transparent 16px),
+                           radial-gradient(circle at 75% 25%, rgba(255,255,255,0.4) 8px, transparent 24px),
+                           radial-gradient(circle at 50% 50%, rgba(255,255,255,0.5) 7.2px, transparent 20px),
+                           radial-gradient(circle at 20% 40%, rgba(255,255,255,0.3) 8.8px, transparent 28px),
+                           radial-gradient(circle at 80% 80%, rgba(255,255,255,0.45) 6.8px, transparent 22px)`,
           backgroundSize: '120px 120px, 160px 160px, 140px 140px, 180px 180px, 130px 130px',
-          transform: `translateY(${scrollY * 0.02}px) scale(1.3)`,
+          transform: `translateY(${scrollY * 0.02}px) scale(5.2)`,
           transformOrigin: 'bottom center'
         }}
       />
