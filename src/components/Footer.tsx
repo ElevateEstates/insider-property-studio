@@ -11,7 +11,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-16 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[50vh]">
+    <footer className="relative py-12 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[40vh]">
       {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
@@ -25,13 +25,13 @@ export const Footer = () => {
       <div className="absolute inset-0 z-5 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="flex flex-col items-center justify-center space-y-8 min-h-[40vh]">
+        <div className="flex flex-col items-center justify-center space-y-6 min-h-[30vh]">
           {/* Logo */}
           <div className="flex justify-center">
             <img 
               src={elevateLogoWhite} 
               alt="Elevate Properties" 
-              className="h-32 md:h-40 w-auto opacity-90 drop-shadow-2xl"
+              className="h-36 md:h-48 w-auto opacity-90 drop-shadow-2xl"
             />
           </div>
           
