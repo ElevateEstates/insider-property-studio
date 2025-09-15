@@ -111,12 +111,12 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
   }, [filteredListings]);
 
   return (
-    <section className="py-32 transparent-section">
+    <section className="py-16 md:py-24 lg:py-32 transparent-section">
       <div 
         className="container mx-auto max-w-7xl px-4 md:px-8 relative z-20"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           {filteredListings.map((listing, index) => (
             <div
               key={listing.id}
@@ -164,57 +164,56 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                          <span className="text-white font-medium">
+                          <span className="text-white font-medium text-xs md:text-sm">
                             +{listing.images.length - 5}
                           </span>
                         </div>
                       </div>
                     )}
                   </div>
-
                 </div>
 
                 {/* Content - Consistent Height */}
-                <div className="p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
+                <div className="p-4 md:p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
                   {/* Header Info - Fixed Space */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
-                      <Calendar className="w-4 h-4" />
+                  <div className="mb-3 md:mb-4">
+                    <div className="flex items-center gap-2 text-xs md:text-sm text-white/60 mb-2">
+                      <Calendar className="w-3 h-3 md:w-4 md:h-4" />
                       {listing.date}
                     </div>
                     
-                    <h3 className="text-xl font-medium text-white mb-2 line-clamp-2">
+                    <h3 className="text-lg md:text-xl font-medium text-white mb-2 line-clamp-2">
                       {listing.title}
                     </h3>
                     
-                    <p className="text-white/70 text-sm mb-3">
+                    <p className="text-white/70 text-xs md:text-sm mb-2 md:mb-3">
                       {listing.location}
                     </p>
                     
-                    <p className="text-white/60 text-sm leading-relaxed">
+                    <p className="text-white/60 text-xs md:text-sm leading-relaxed line-clamp-3">
                       {listing.description}
                     </p>
                   </div>
 
                   {/* Expandable Content */}
                   <div className="flex-1">
-                    <div className="space-y-3 mb-4">
+                    <div className="space-y-2 md:space-y-3 mb-3 md:mb-4">
                       <div>
                         <h4 className="text-white/80 text-xs font-medium mb-1">Shoot Details:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
+                        <p className="text-white/60 text-xs leading-relaxed line-clamp-2">
                           {expandedListing === listing.id 
                             ? listing.shootDetails 
-                            : listing.shootDetails.slice(0, 80) + (listing.shootDetails.length > 80 ? '...' : '')
+                            : listing.shootDetails.slice(0, 60) + (listing.shootDetails.length > 60 ? '...' : '')
                           }
                         </p>
                       </div>
                       
                       <div>
                         <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
+                        <p className="text-white/60 text-xs leading-relaxed line-clamp-2">
                           {expandedListing === listing.id 
                             ? listing.clientNotes 
-                            : listing.clientNotes.slice(0, 80) + (listing.clientNotes.length > 80 ? '...' : '')
+                            : listing.clientNotes.slice(0, 60) + (listing.clientNotes.length > 60 ? '...' : '')
                           }
                         </p>
                       </div>
@@ -232,10 +231,10 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                           expandedListing === listing.id ? null : listing.id
                         );
                       }}
-                      className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
+                      className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10 text-xs md:text-sm"
                     >
                       {expandedListing === listing.id ? 'Show Less' : 'Show More'}
-                      <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
+                      <ArrowRight className={`w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 transition-transform ${
                         expandedListing === listing.id ? 'rotate-90' : ''
                       }`} />
                     </Button>

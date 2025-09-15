@@ -181,13 +181,13 @@ export const TestimonialsSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 px-4 md:px-6 relative overflow-hidden z-5"
+      className="py-12 md:py-16 lg:py-20 px-4 md:px-6 relative overflow-hidden z-5"
     >
       <div className="container mx-auto max-w-6xl relative z-20">
-        <div className={`text-center mb-12 transition-all duration-700 ${
+        <div className={`text-center mb-8 md:mb-12 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-white">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-white px-4">
             What our clients are saying
           </h2>
         </div>
@@ -198,7 +198,7 @@ export const TestimonialsSection = () => {
         }`}>
           <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-8 pb-4 cursor-grab active:cursor-grabbing"
+            className="flex overflow-x-auto gap-4 md:gap-6 lg:gap-8 pb-4 cursor-grab active:cursor-grabbing px-2"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none'
@@ -214,23 +214,23 @@ export const TestimonialsSection = () => {
             {extendedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-80 md:w-96 px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300"
+                className="flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300"
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   {/* Blue Quote Icon */}
                   <div className="flex justify-start">
-                    <Quote className="text-blue-400 w-8 h-8 opacity-80" />
+                    <Quote className="text-blue-400 w-6 h-6 md:w-8 md:h-8 opacity-80" />
                   </div>
                   
                   {/* Testimonial Text */}
                   <blockquote className="text-white/90 leading-relaxed font-light" style={{
-                    fontSize: `clamp(1rem, ${Math.max(0.8, Math.min(1.2, 200 / testimonial.quote.length))}rem, 1.25rem)`
+                    fontSize: `clamp(0.875rem, ${Math.max(0.7, Math.min(1.1, 180 / testimonial.quote.length))}rem, 1.125rem)`
                   }}>
-                    {testimonial.quote.length > 350 ? (
+                    {testimonial.quote.length > 300 ? (
                       <>
-                        "{testimonial.quote.substring(0, 350)}..."
-                        <div className="mt-2 text-blue-400/80 text-sm italic cursor-pointer hover:text-blue-400 transition-colors">
+                        "{testimonial.quote.substring(0, 300)}..."
+                        <div className="mt-2 text-blue-400/80 text-xs md:text-sm italic cursor-pointer hover:text-blue-400 transition-colors">
                           Click to read more →
                         </div>
                       </>
@@ -240,13 +240,13 @@ export const TestimonialsSection = () => {
                   </blockquote>
                   
                   {/* Author Info */}
-                  <div className="flex items-center space-x-3 pt-4">
+                  <div className="flex items-center space-x-2 md:space-x-3 pt-3 md:pt-4">
                     <ProfileImage testimonial={testimonial} />
-                    <div>
-                      <div className="text-white font-medium" style={{
-                        fontSize: `clamp(0.875rem, ${Math.max(0.75, Math.min(1.125, 25 / testimonial.author.length))}rem, 1.125rem)`
+                    <div className="min-w-0 flex-1">
+                      <div className="text-white font-medium truncate" style={{
+                        fontSize: `clamp(0.75rem, ${Math.max(0.65, Math.min(1, 20 / testimonial.author.length))}rem, 1rem)`
                       }}>{testimonial.author}</div>
-                      <div className="text-blue-400/80 text-sm">
+                      <div className="text-blue-400/80 text-xs md:text-sm truncate">
                         {testimonial.company}
                       </div>
                     </div>

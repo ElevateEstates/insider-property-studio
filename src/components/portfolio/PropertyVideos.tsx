@@ -68,12 +68,12 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
   }, [filteredListings]);
 
   return (
-    <section className="py-32 transparent-section">
+    <section className="py-16 md:py-24 lg:py-32 transparent-section">
       <div 
         className="container mx-auto max-w-7xl px-4 md:px-8 relative z-20"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           {filteredListings.map((listing, index) => (
             <div
               key={listing.id}
@@ -103,39 +103,39 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
                 </div>
 
                 {/* Content - Consistent Height */}
-                <div className="p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
+                <div className="p-4 md:p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
                   {/* Header Info - Fixed Space */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
-                      <Calendar className="w-4 h-4" />
+                  <div className="mb-3 md:mb-4">
+                    <div className="flex items-center gap-2 text-xs md:text-sm text-white/60 mb-2">
+                      <Calendar className="w-3 h-3 md:w-4 md:h-4" />
                       {listing.date}
                     </div>
                     
-                    <h3 className="text-xl font-medium text-white mb-2 line-clamp-2">
+                    <h3 className="text-lg md:text-xl font-medium text-white mb-2 line-clamp-2">
                       {listing.title}
                     </h3>
                     
-                    <p className="text-white/70 text-sm mb-3">
+                    <p className="text-white/70 text-xs md:text-sm mb-2 md:mb-3">
                       {listing.location}
                     </p>
                     
-                    <p className="text-white/60 text-sm leading-relaxed mb-4">
+                    <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 line-clamp-3">
                       {listing.description}
                     </p>
                   </div>
 
                   {/* Content Details */}
-                  <div className="space-y-3">
+                  <div className="space-y-2 md:space-y-3 flex-1">
                     <div>
                       <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
+                      <p className="text-white/60 text-xs leading-relaxed line-clamp-3">
                         {listing.shootDetails}
                       </p>
                     </div>
                     
                     <div>
                       <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
+                      <p className="text-white/60 text-xs leading-relaxed line-clamp-3">
                         {listing.clientNotes}
                       </p>
                     </div>

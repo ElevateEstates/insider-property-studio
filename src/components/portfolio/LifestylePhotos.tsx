@@ -105,12 +105,12 @@ const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
   }, []);
 
   return (
-    <section className="py-32 transparent-section">
+    <section className="py-16 md:py-24 lg:py-32 transparent-section">
       <div 
         className="container mx-auto max-w-7xl px-4 md:px-8 relative z-20"
         style={{ transform: `translateY(${scrollY * 0.03}px)` }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {lifestylePhotos.map((photo, index) => (
             <div
               key={photo.id}
@@ -134,8 +134,8 @@ const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
                 
                 {/* Overlay with info */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                    <div className="flex items-center justify-between mb-1 md:mb-2">
                       <span className={`px-2 py-1 rounded text-xs font-medium text-white backdrop-blur-sm ${
                         photo.category === 'dining' ? 'bg-orange-600/80' :
                         photo.category === 'entertainment' ? 'bg-purple-600/80' :
@@ -145,8 +145,8 @@ const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
                         {photo.category.charAt(0).toUpperCase() + photo.category.slice(1)}
                       </span>
                     </div>
-                    <h4 className="text-white font-medium text-sm mb-1">{photo.alt}</h4>
-                    <p className="text-white/80 text-xs">{photo.location}</p>
+                    <h4 className="text-white font-medium text-xs md:text-sm mb-1 line-clamp-2">{photo.alt}</h4>
+                    <p className="text-white/80 text-xs line-clamp-1">{photo.location}</p>
                   </div>
                 </div>
               </div>
