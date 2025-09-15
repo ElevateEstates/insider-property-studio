@@ -187,13 +187,13 @@ const PortfolioModal = ({
               </div>
             </div>
 
-            {/* Content Area */}
-            <div className="flex-1 p-4 flex items-center justify-center">
+            {/* Content Area - Top Aligned */}
+            <div className="flex-1 p-4 flex flex-col justify-start">
               {renderImageModal()}
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* Sidebar - Top Aligned */}
           <div className="w-80 border-l border-white/10 bg-black/30 p-4 flex flex-col gap-4 overflow-auto">
             <div>
               <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
