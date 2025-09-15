@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
 import eddiePhoto from "../assets/eddie-profile.jpg";
 import yoniPhoto from "../assets/yoni-profile.jpg";
+import wlcostaPhoto from "../assets/wlcosta-profile.jpg";
 
 const testimonials = [
   {
@@ -10,24 +11,6 @@ const testimonials = [
     author: "Yoni Bernard",
     company: "Founder of Decogym and CEO of Mr Broker Estate",
     image: yoniPhoto
-  },
-  {
-    quote: "We've had the pleasure of working with Geir on a few luxury properties, and are always very impressed by his attention to detail, crispness of the photos, and other marks of a professional luxury photographer.",
-    author: "Anne LoGiudice", 
-    company: "Luxury Home Magazine",
-    image: null
-  },
-  {
-    quote: "I can't speak highly enough of this team. If you are looking to elevate your business, this is the team for you! This is a full service cinema grade production crew that will wow you with their results.",
-    author: "Curtis Bennett",
-    company: "Coldwell Banker",
-    image: null
-  },
-  {
-    quote: "Geir went above and beyond, turning the experience into an exceptional one. His meticulous approach sets him apart from other photographers, ensuring a level of quality and perfection that is truly outstanding.",
-    author: "Melanie Barre",
-    company: "Sothebys International Realty",
-    image: null
   },
   {
     quote: "Geir is a very professional and reliable photographer. We have a working relationship dating back many years so I could talk all day about how amazing, detailed and creative he is. But more importantly for me is how he can always be relied on and his professionalism in every situation that may occur. We couldn't recommend anybody else more!",
@@ -40,6 +23,12 @@ const testimonials = [
     author: "Eddie Caires",
     company: "Irish National Champion RIBBF 2023 & Transformation Coach",
     image: eddiePhoto
+  },
+  {
+    quote: "Geir has been working with us for the past two years and has become a huge part of our real estate journey. Not only does he help us present our exclusive listings in the best possible way, but he also brings fresh energy, creative ideas, and a new perspective to everything we do. He's a cool guy with a brilliant creative brain, always thinking outside the box and encouraging us to push beyond our comfort zone. Geir's support means a lot to us, he's a true team player and someone we're genuinely grateful to work with. His work speaks for itself, and our clients are always seriously impressed.",
+    author: "Warner and Sandra Laurie",
+    company: "Founders, Directors of WL Costa Properties",
+    image: wlcostaPhoto
   }
 ];
 
