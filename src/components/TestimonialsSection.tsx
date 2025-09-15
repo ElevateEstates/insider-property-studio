@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
 import eddiePhoto from "../assets/eddie-profile.jpg";
 import yoniPhoto from "../assets/yoni-profile.jpg";
@@ -105,13 +106,32 @@ export const TestimonialsSection = () => {
               <div className="border-t border-white/20 pt-4">
                 <div className="flex items-center space-x-4">
                   {testimonial.image && (
-                    <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.author}
-                        className="w-full h-full object-cover object-[50%_20%]"
-                      />
-                    </div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400 transition-all duration-200">
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.author}
+                            className="w-full h-full object-cover object-[50%_20%]"
+                          />
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-md">
+                        <div className="flex flex-col items-center space-y-4">
+                          <div className="w-64 h-64 rounded-full overflow-hidden">
+                            <img 
+                              src={testimonial.image} 
+                              alt={testimonial.author}
+                              className="w-full h-full object-cover object-center"
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h3 className="text-lg font-semibold">{testimonial.author}</h3>
+                            <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   )}
                   <div>
                     <div className="text-white font-medium">{testimonial.author}</div>
