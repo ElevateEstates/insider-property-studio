@@ -129,7 +129,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       packageType: 'photo',
       date: '2025',
       description: 'Contemporary open-plan apartment with stunning mountain views, modern kitchen with integrated appliances, and spacious terrace access',
-      clientNotes: '30 photo package with 5 drone shots for Airbnb listing.',
+      clientNotes: '45 photo package with 5 drone shots for Airbnb listing.',
       shootDetails: 'High quality wide angle HDR photos and some detail shots for rental listing.'
     },
     {
