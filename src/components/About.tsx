@@ -13,7 +13,7 @@ export const About = () => {
         <div className="space-y-6 text-lg md:text-xl leading-relaxed text-white font-light text-center max-w-4xl mx-auto relative z-50">
           <p className="transition-colors hover:text-white">We are creating visual content that transforms how properties are presented.</p>
           
-          <p className="transition-colors hover:text-white">We work with real estate agents, developers, home owners to create compelling photo, video, and digital marketing content that drives results and generates real leads.</p>
+          <p className="transition-colors hover:text-white">We work with real estate agents, developers and home owners to create compelling photo, video, and digital marketing content that drives results and generates real leads.</p>
         </div>
       </div>
     </section>;
