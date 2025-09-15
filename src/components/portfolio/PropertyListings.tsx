@@ -49,6 +49,16 @@ import img047 from "@/assets/img-047.jpg";
 import img048 from "@/assets/img-048.jpg";
 import img049 from "@/assets/img-049.jpg";
 import img050 from "@/assets/img-050.jpg";
+import img051 from "@/assets/img-051.jpg";
+import img052 from "@/assets/img-052.jpg";
+import img053 from "@/assets/img-053.jpg";
+import img054 from "@/assets/img-054.jpg";
+import img055 from "@/assets/img-055.jpg";
+import img056 from "@/assets/img-056.jpg";
+import img057 from "@/assets/img-057.jpg";
+import img058 from "@/assets/img-058.jpg";
+import img059 from "@/assets/img-059.jpg";
+import img060 from "@/assets/img-060.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -91,7 +101,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Modern Middle-Floor 2-Bedroom Apartment',
       location: 'Costa del Sol',
       clientType: 'airbnb',
-      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021],
+      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021, img051, img052, img053, img054, img055, img056, img057, img058, img059, img060],
       packageType: 'photo',
       date: '2025',
       description: 'Contemporary open-plan apartment with stunning mountain views, modern kitchen with integrated appliances, and spacious terrace access',
