@@ -101,7 +101,7 @@ export const TestimonialsSection = () => {
                       <img 
                         src={testimonial.image} 
                         alt={testimonial.author}
-                        className="w-full h-full object-cover object-[50%_35%]"
+                        className="w-full h-full object-cover object-[50%_50%]"
                       />
                     </div>
                   )}
