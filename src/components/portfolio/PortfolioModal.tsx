@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { X, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { useState } from "react";
 
 interface ModalItem {
   id: string;
@@ -15,6 +15,9 @@ interface ModalItem {
   clientType?: 'luxury' | 'residential' | 'airbnb' | 'commercial';
   packageType?: string;
   category?: string;
+  images?: string[];
+  src?: string;
+  videoUrl?: string;
 }
 
 interface PortfolioModalProps {
@@ -27,128 +30,209 @@ interface PortfolioModalProps {
   renderContent: (item: ModalItem, index: number) => React.ReactNode;
 }
 
-const PortfolioModal = ({ 
-  isOpen, 
-  onClose, 
-  items, 
-  currentIndex, 
-  onNavigate, 
+const PortfolioModal = ({
+  isOpen,
+  onClose,
+  items,
+  currentIndex,
+  onNavigate,
   type,
-  renderContent 
+  renderContent,
 }: PortfolioModalProps) => {
   const currentItem = items[currentIndex];
-
-  const handlePrevious = () => {
-    onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1);
-  };
-
-  const handleNext = () => {
-    onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0);
-  };
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   if (!currentItem) return null;
 
+  const getImageArray = () => {
+    if (type === 'property-listings') {
+      return currentItem.images || [];
+    }
+    if (type === 'lifestyle-photos') {
+      return [currentItem.src || ''];
+    }
+    return [];
+  };
+
+  const images = getImageArray().filter(Boolean);
+  const hasMultipleImages = images.length > 1;
+
+  const renderImageModal = () => {
+    if (type === 'property-videos' || type === 'lifestyle-videos') {
+      return (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full max-w-4xl aspect-video">
+            <iframe
+              src={currentItem.videoUrl}
+              title={currentItem.title}
+              className="w-full h-full rounded-lg"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center gap-4">
+        {/* Main Image Display - 16:9 Aspect Ratio */}
+        <div className="w-full max-w-4xl aspect-video bg-black/20 rounded-lg overflow-hidden">
+          <img
+            src={images[selectedImageIndex] || currentItem.src}
+            alt={`${currentItem.title} ${selectedImageIndex + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Image Thumbnail Navigation */}
+        {hasMultipleImages && (
+          <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
+            {images.map((image: string, index: number) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImageIndex(index)}
+                className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
+                  selectedImageIndex === index 
+                    ? 'border-white shadow-lg scale-105' 
+                    : 'border-white/20 hover:border-white/50'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`${currentItem.title} thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Image Counter */}
+        {hasMultipleImages && (
+          <div className="text-white/70 text-sm">
+            {selectedImageIndex + 1} of {images.length}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl w-full h-[90vh] p-0 bg-black/98 border-white/20 backdrop-blur-md">
-        <DialogHeader className="p-6 pb-0 text-white">
-          <div className="flex items-start justify-between">
-            <div className="space-y-2 flex-1">
-              <div className="flex items-center gap-3 flex-wrap">
-                <DialogTitle className="text-2xl font-light">{currentItem.title}</DialogTitle>
-                {currentItem.clientType && (
-                  <Badge className={`backdrop-blur-sm text-white font-medium ${
-                    currentItem.clientType === 'luxury' ? 'bg-yellow-600/80' :
-                    currentItem.clientType === 'commercial' ? 'bg-blue-600/80' :
-                    currentItem.clientType === 'airbnb' ? 'bg-green-600/80' :
-                    'bg-purple-600/80'
-                  }`}>
-                    {currentItem.clientType.charAt(0).toUpperCase() + currentItem.clientType.slice(1)}
-                  </Badge>
-                )}
-                {currentItem.packageType && (
-                  <Badge className="backdrop-blur-sm text-white bg-red-500/80">
-                    {currentItem.packageType}
-                  </Badge>
-                )}
-                {currentItem.category && (
-                  <Badge className={`backdrop-blur-sm text-white ${
-                    currentItem.category === 'dining' ? 'bg-orange-600/80' :
-                    currentItem.category === 'entertainment' ? 'bg-purple-600/80' :
-                    currentItem.category === 'wellness' ? 'bg-green-600/80' :
-                    'bg-blue-600/80'
-                  }`}>
-                    {currentItem.category.charAt(0).toUpperCase() + currentItem.category.slice(1)}
-                  </Badge>
-                )}
-              </div>
-              <div className="flex items-center gap-4 text-sm text-white/70">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  {currentItem.date}
+      <DialogContent className="max-w-7xl w-full h-[95vh] bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
+        <div className="flex h-full">
+          {/* Main Content Area */}
+          <div className="flex-1 flex flex-col min-w-0">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/50">
+              <div className="flex items-center gap-4 min-w-0">
+                <h2 className="text-xl font-light text-white truncate">
+                  {currentItem.title}
+                </h2>
+                <div className="flex gap-2 flex-wrap">
+                  {currentItem.clientType && (
+                    <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                      {currentItem.clientType}
+                    </Badge>
+                  )}
+                  {currentItem.packageType && (
+                    <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                      {currentItem.packageType}
+                    </Badge>
+                  )}
+                  {currentItem.category && (
+                    <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                      {currentItem.category}
+                    </Badge>
+                  )}
                 </div>
-                <span>•</span>
-                <span>{currentItem.location}</span>
-                <span>•</span>
-                <span>{currentIndex + 1} of {items.length}</span>
               </div>
-              <p className="text-white/80 text-sm max-w-2xl">{currentItem.description}</p>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="text-white/60 hover:text-white hover:bg-white/10"
-            >
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
-        </DialogHeader>
-
-        <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 pt-0 overflow-hidden">
-          {/* Content Area */}
-          <div className="flex-1 relative overflow-y-auto max-h-[calc(90vh-200px)]">
-            {renderContent(currentItem, currentIndex)}
-            
-            {/* Navigation Arrows */}
-            {items.length > 1 && (
-              <>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handlePrevious}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm z-10"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleNext}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm z-10"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-              </>
-            )}
-          </div>
-
-          {/* Details Sidebar */}
-          <div className="lg:w-80 space-y-6 text-white overflow-y-auto max-h-[calc(90vh-200px)]">
-            <div>
-              <h4 className="text-lg font-medium mb-3 text-white">Project Details</h4>
-              <div className="space-y-4">
-                <div>
-                  <h5 className="text-sm font-medium text-white/80 mb-1">Production Details:</h5>
-                  <p className="text-sm text-white/60 leading-relaxed">{currentItem.shootDetails}</p>
-                </div>
+              
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {items.length > 1 && (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
+                      className="text-white hover:bg-white/10 p-2"
+                      disabled={items.length <= 1}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <span className="text-white/70 text-sm px-2">
+                      {currentIndex + 1} / {items.length}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
+                      className="text-white hover:bg-white/10 p-2"
+                      disabled={items.length <= 1}
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </>
+                )}
                 
-                <div>
-                  <h5 className="text-sm font-medium text-white/80 mb-1">Client Requirements:</h5>
-                  <p className="text-sm text-white/60 leading-relaxed">{currentItem.clientNotes}</p>
-                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onClose}
+                  className="text-white hover:bg-white/10 p-2 ml-2"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
               </div>
             </div>
+
+            {/* Content Area */}
+            <div className="flex-1 p-4 flex items-center justify-center">
+              {renderImageModal()}
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="w-80 border-l border-white/10 bg-black/30 p-4 flex flex-col gap-4 overflow-auto">
+            <div>
+              <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
+                <span>{currentItem.date}</span>
+                {currentItem.location && (
+                  <>
+                    <span>•</span>
+                    <span>{currentItem.location}</span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {currentItem.description && (
+              <div>
+                <h3 className="text-lg font-medium text-white mb-3">Project Details</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  {currentItem.description}
+                </p>
+              </div>
+            )}
+
+            {currentItem.clientNotes && (
+              <div>
+                <h3 className="text-lg font-medium text-white mb-3">Client Requirements</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  {currentItem.clientNotes}
+                </p>
+              </div>
+            )}
+
+            {currentItem.shootDetails && (
+              <div>
+                <h3 className="text-lg font-medium text-white mb-3">Shoot Details</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  {currentItem.shootDetails}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>

@@ -14,7 +14,7 @@ const PortfolioNavigation = ({ activeView, onViewChange }: PortfolioNavigationPr
   ] as const;
 
   return (
-    <section className="py-16 transparent-section">
+    <section className="pt-32 pb-16 transparent-section">
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {navigationItems.map((item) => (

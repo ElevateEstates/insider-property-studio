@@ -49,7 +49,7 @@ export const Navigation = () => {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled 
             ? "backdrop-blur-xl bg-black/80 border-b border-white/10" 
-            : "backdrop-blur-md bg-black/20"
+            : "backdrop-blur-md bg-gradient-to-b from-black/60 via-black/40 to-transparent"
         )}
       >
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
