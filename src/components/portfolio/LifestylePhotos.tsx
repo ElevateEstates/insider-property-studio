@@ -7,6 +7,7 @@ import lifestylePadel from "@/assets/lifestyle-padel.jpg";
 import lifestylePoolAerial from "@/assets/lifestyle-pool-aerial.jpg";
 import lifestyleVillaCar from "@/assets/lifestyle-villa-car.jpg";
 import lifestyleCarInterior from "@/assets/lifestyle-car-interior.jpg";
+import milaOffice from "@/assets/mila-office-13.jpg";
 
 interface LifestylePhoto {
   id: string;
@@ -81,6 +82,13 @@ const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
       alt: 'Classic convertible car interior experience',
       category: 'entertainment',
       location: 'Luxury Car Collection'
+    },
+    {
+      id: '9',
+      src: milaOffice,
+      alt: 'Professional business meeting at Mila office',
+      category: 'dining',
+      location: 'Mila Business Center'
     }
   ];
 

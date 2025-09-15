@@ -129,7 +129,7 @@ export const ParallaxBackground = ({
               top: 0,
               left: 0,
               right: 0,
-              height: '120vh',
+              height: '130vh',
               pointerEvents: 'none'
             }}
           />
@@ -230,7 +230,7 @@ export const ParallaxBackground = ({
   };
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '120vh' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '130vh' }}>
       {/* Base dark gray background */}
       <div 
         className={`absolute ${className}`}
@@ -240,7 +240,7 @@ export const ParallaxBackground = ({
           top: 0,
           left: 0,
           right: 0,
-          height: '120vh'
+          height: '130vh'
         }}
       />
       
