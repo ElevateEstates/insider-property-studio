@@ -30,7 +30,7 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
       title: "Costa del Sol Luxury Lifestyle",
       location: "Marbella, Spain",
       category: 'outdoor',
-      videoUrl: "https://player.vimeo.com/video/1029952959?badge=0&autopause=0&player_id=0&app_id=58479",
+      videoUrl: "https://player.vimeo.com/video/1118748157?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1",
       thumbnail: "",
       date: "November 2024",
       description: "Experience the ultimate luxury lifestyle with breathtaking views of the Mediterranean coast. This exclusive showcase captures the essence of coastal living at its finest.",
