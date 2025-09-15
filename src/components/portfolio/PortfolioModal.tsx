@@ -92,34 +92,6 @@ const PortfolioModal = ({
   if (!currentItem) return null;
 
 
-  // Auto-scroll active thumbnail to center
-  useEffect(() => {
-    if (thumbnailContainerRef.current && thumbnailRefs.current[selectedImageIndex]) {
-      const container = thumbnailContainerRef.current;
-      const thumbnail = thumbnailRefs.current[selectedImageIndex];
-      
-      if (thumbnail) {
-        const containerRect = container.getBoundingClientRect();
-        const thumbnailRect = thumbnail.getBoundingClientRect();
-        
-        // Calculate the center position
-        const containerCenter = containerRect.width / 2;
-        const thumbnailCenter = thumbnailRect.left - containerRect.left + thumbnailRect.width / 2;
-        const scrollOffset = thumbnailCenter - containerCenter;
-        
-        container.scrollTo({
-          left: container.scrollLeft + scrollOffset,
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, [selectedImageIndex]);
-
-  // Reset thumbnail refs array when images change
-  useEffect(() => {
-    thumbnailRefs.current = thumbnailRefs.current.slice(0, images.length);
-  }, [images.length]);
-
   const renderImageModal = () => {
     if (type === 'property-videos' || type === 'lifestyle-videos') {
       return (
