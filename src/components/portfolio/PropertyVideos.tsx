@@ -31,16 +31,16 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
   const videoListings: VideoListing[] = [
     {
       id: '1',
-      title: 'Mijas Location Introduction Video',
-      location: 'Mijas, Spain',
+      title: 'Property Showcase Video',
+      location: 'Coming Soon',
       clientType: 'luxury',
-      videoUrl: 'https://player.vimeo.com/video/1118748157?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1',
-      thumbnail: '/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      thumbnail: '/placeholder.svg',
       packageType: 'video',
-      date: '2025 - September',
-      description: 'Cinematic video to showcase the convenient lifestyle in Mijas',
-      clientNotes: 'Showcase Mijas as a potential place for living to our Northern Europe clients who are not very familiar with Spain.',
-      shootDetails: '4-day shoot, 2 week post-production, professional voice-over'
+      date: 'Coming Soon',
+      description: 'Professional property showcase video - placeholder content',
+      clientNotes: 'High-end property video production with cinematic quality.',
+      shootDetails: 'Full day shoot with drone footage and interior cinematography'
     }
   ];
 
