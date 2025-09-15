@@ -96,7 +96,7 @@ export const StatsSection = () => {
     { label: "views generated", value: 2, suffix: "m+", color: "text-blue-400", prefix: "" },
     { label: "properties shot", value: 250, suffix: "+", color: "text-white", prefix: "" },
     { label: "partner agents", value: 20, suffix: "+", color: "text-blue-400", prefix: "" },
-    { label: "ad spend in 2024", value: 10, suffix: "k+", color: "text-white", prefix: "€" }
+    { label: "ad spend in 2025", value: 10, suffix: "k+", color: "text-white", prefix: "€" }
   ];
 
   return (
