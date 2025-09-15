@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import elevateLogoWhite from "@/assets/elevate-logo.png";
 
 export const Footer = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -10,7 +11,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-16 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[50vh]">
+    <footer className="relative py-8 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[35vh]">
       {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
@@ -24,13 +25,13 @@ export const Footer = () => {
       <div className="absolute inset-0 z-5 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="flex flex-col items-center justify-center space-y-8 min-h-[40vh]">
+        <div className="flex flex-col items-center justify-center space-y-6 min-h-[25vh]">
           {/* Logo */}
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png" 
+              src={elevateLogoWhite} 
               alt="Elevate Properties" 
-              className="h-24 w-auto filter invert opacity-90 drop-shadow-2xl"
+              className="h-32 w-auto opacity-90 drop-shadow-2xl"
             />
           </div>
           
