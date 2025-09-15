@@ -40,9 +40,9 @@ export const Navigation = () => {
     { href: "/contact", label: "CONTACT" },
   ];
 
-  // Dynamic opacity based on scroll position
-  const scrollOpacity = Math.min(scrollY / 200, 0.95); // Gradually increase opacity up to 95%
-  const blurIntensity = Math.min(scrollY / 100, 1); // Gradually increase blur
+  // Dynamic opacity based on scroll position with smoother transitions
+  const scrollOpacity = Math.min(scrollY / 300, 0.9); // More gradual opacity increase
+  const blurIntensity = Math.min(scrollY / 150, 1); // More gradual blur increase
 
   return (
     <>
@@ -50,11 +50,13 @@ export const Navigation = () => {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           background: `linear-gradient(to bottom, 
-            rgba(0, 0, 0, ${0.6 + scrollOpacity * 0.3}) 0%, 
-            rgba(0, 0, 0, ${0.4 + scrollOpacity * 0.4}) 50%, 
+            rgba(0, 0, 0, ${0.7 + scrollOpacity * 0.25}) 0%, 
+            rgba(0, 0, 0, ${0.5 + scrollOpacity * 0.35}) 30%, 
+            rgba(0, 0, 0, ${0.3 + scrollOpacity * 0.25}) 60%, 
+            rgba(0, 0, 0, ${0.1 + scrollOpacity * 0.15}) 80%, 
             transparent 100%)`,
-          backdropFilter: `blur(${8 + blurIntensity * 8}px)`,
-          borderBottom: scrollY > 50 ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'
+          backdropFilter: `blur(${6 + blurIntensity * 10}px)`,
+          WebkitBackdropFilter: `blur(${6 + blurIntensity * 10}px)` // Safari support
         }}
       >
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
