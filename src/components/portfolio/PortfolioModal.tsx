@@ -237,45 +237,48 @@ const PortfolioModal = ({
 
           {/* Conditional Sidebar */}
           {shouldShowSidebar && (
-            <div className="w-80 border-l border-white/10 bg-black/30 p-4 flex flex-col gap-4 overflow-auto">
-            <div>
-              <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
-                <span>{currentItem.date}</span>
-                {currentItem.location && (
-                  <>
-                    <span>•</span>
-                    <span>{currentItem.location}</span>
-                  </>
+            <div className="w-80 border-l border-white/10 bg-black/30 flex flex-col overflow-auto">
+              {/* Safe zone padding to align with image top */}
+              <div className="pt-20 px-4 pb-4 flex flex-col gap-4">
+                <div>
+                  <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
+                    <span>{currentItem.date}</span>
+                    {currentItem.location && (
+                      <>
+                        <span>•</span>
+                        <span>{currentItem.location}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {currentItem.description && (
+                  <div>
+                    <h3 className="text-lg font-medium text-white mb-3">Project Details</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.description}
+                    </p>
+                  </div>
+                )}
+
+                {currentItem.clientNotes && (
+                  <div>
+                    <h3 className="text-lg font-medium text-white mb-3">Client Requirements</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.clientNotes}
+                    </p>
+                  </div>
+                )}
+
+                {currentItem.shootDetails && (
+                  <div>
+                    <h3 className="text-lg font-medium text-white mb-3">Shoot Details</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.shootDetails}
+                    </p>
+                  </div>
                 )}
               </div>
-            </div>
-
-            {currentItem.description && (
-              <div>
-                <h3 className="text-lg font-medium text-white mb-3">Project Details</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  {currentItem.description}
-                </p>
-              </div>
-            )}
-
-            {currentItem.clientNotes && (
-              <div>
-                <h3 className="text-lg font-medium text-white mb-3">Client Requirements</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  {currentItem.clientNotes}
-                </p>
-              </div>
-            )}
-
-            {currentItem.shootDetails && (
-              <div>
-                <h3 className="text-lg font-medium text-white mb-3">Shoot Details</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  {currentItem.shootDetails}
-                </p>
-              </div>
-            )}
             </div>
           )}
         </div>
