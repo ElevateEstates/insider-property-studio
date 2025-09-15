@@ -55,14 +55,14 @@ const About = () => {
       }}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
-                About Geir Costa
-              </Badge>
+              
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-                Meet Geir Stint, your reliable content wizard.
+                Capturing the
+                <span className="block text-gradient-gold">Essence</span>
+                of Luxury Living
               </h1>
               <p className="text-xl text-white/80 leading-relaxed">
-                With over 8 years of experience in professional media creation in wide variety of sectors, we bring the expertise in creating 
+                With over 5 years of experience in luxury real estate media, we specialize in creating 
                 visual content that doesn't just showcase properties—it sells dreams and lifestyles.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -81,7 +81,7 @@ const About = () => {
             </div>
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                <img src={geirPortrait} alt="Geir Costa - Professional Real Estate Photographer" className="w-full h-full object-cover" />
+                
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
                 <div className="text-2xl font-light text-white">5+ Years</div>
