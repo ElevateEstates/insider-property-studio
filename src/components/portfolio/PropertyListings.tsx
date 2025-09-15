@@ -61,6 +61,10 @@ import img059 from "@/assets/img-059.jpg";
 import img060 from "@/assets/img-060.jpg";
 import img061 from "@/assets/img-061.jpg";
 import img062 from "@/assets/img-062.jpg";
+import img010 from "@/assets/img-010.jpg";
+import img011 from "@/assets/img-011.jpg";
+import img012 from "@/assets/img-012.jpg";
+import img033 from "@/assets/img-033.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -91,7 +95,15 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: "Maison Amani",
       location: "Costa del Sol, Spain",
       clientType: 'luxury',
-      images: [img001, img002, img003, img004, img005, img006, img007, img008, img009],
+      images: [
+        "/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png",
+        "/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png",
+        "/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png",
+        "/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png",
+        img001, img002, img003, img004, img005, img006, img007, img008, img009,
+        img010, img011, img012, img013, img014, img015, img016, img017, img018,
+        img019, img020, img021, img022, img023, img024, img025
+      ],
       packageType: 'photo-video',
       date: "October 2024",
       description: "Luxury villa showcasing Mediterranean elegance with stunning sea views and premium amenities.",
@@ -103,7 +115,15 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: "2-Bedroom Middle Floor Apartment",
       location: "Marbella Center, Spain",
       clientType: 'residential',
-      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021],
+      images: [
+        "/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png",
+        "/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png",
+        "/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png",
+        "/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png",
+        img026, img027, img028, img029, img030, img031, img032, img033, img034,
+        img035, img036, img037, img038, img039, img040, img041, img042, img043,
+        img044, img045, img046, img047, img048, img049, img050
+      ],
       packageType: 'photo',
       date: "September 2024",
       description: "Modern 2-bedroom apartment in the heart of Marbella with contemporary design and prime location access.",
