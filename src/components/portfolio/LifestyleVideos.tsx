@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, Play } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 interface LifestyleVideoListing {
   id: string;
@@ -23,7 +21,6 @@ interface LifestyleVideosProps {
 }
 
 const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
-  const [expandedListing, setExpandedListing] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -135,7 +132,7 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
 
                 {/* Content - Consistent Height */}
                 <div className="p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
-                  {/* Header Info - Fixed Space */}
+                  {/* Header Info */}
                   <div className="mb-4">
                     <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
                       <Calendar className="w-4 h-4" />
@@ -150,64 +147,26 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
                       {video.location}
                     </p>
                     
-                    <p className="text-white/60 text-sm leading-relaxed">
+                    <p className="text-white/60 text-sm leading-relaxed mb-4">
                       {video.description}
                     </p>
                   </div>
 
-                  {/* Expandable Content */}
-                  <div className="flex-1">
-                    <div className="space-y-3 mb-4">
-                      <div>
-                        <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === video.id 
-                            ? video.shootDetails 
-                            : video.shootDetails.slice(0, 80) + (video.shootDetails.length > 80 ? '...' : '')
-                          }
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-white/80 text-xs font-medium mb-1">Creative Direction:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === video.id 
-                            ? video.clientNotes 
-                            : video.clientNotes.slice(0, 80) + (video.clientNotes.length > 80 ? '...' : '')
-                          }
-                        </p>
-                      </div>
+                  {/* Content Details */}
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">
+                        {video.shootDetails}
+                      </p>
                     </div>
-                  </div>
-
-                  {/* Actions - Fixed at Bottom */}
-                  <div className="flex gap-2 mt-auto">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setExpandedListing(
-                          expandedListing === video.id ? null : video.id
-                        );
-                      }}
-                      className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
-                    >
-                      {expandedListing === video.id ? 'Show Less' : 'Show More'}
-                      <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
-                        expandedListing === video.id ? 'rotate-90' : ''
-                      }`} />
-                    </Button>
                     
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-white/60 hover:text-white hover:bg-white/10"
-                    >
-                      Watch Full Video
-                      <Play className="w-4 h-4 ml-2" />
-                    </Button>
+                    <div>
+                      <h4 className="text-white/80 text-xs font-medium mb-1">Creative Direction:</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">
+                        {video.clientNotes}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Card>

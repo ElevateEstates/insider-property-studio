@@ -75,9 +75,9 @@ const PortfolioModal = ({
     }
 
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center gap-4">
+      <div className="w-full h-full flex flex-col items-center justify-center gap-4 py-4">
         {/* Main Image Display - 16:9 Aspect Ratio */}
-        <div className="w-full max-w-4xl aspect-video bg-black/20 rounded-lg overflow-hidden">
+        <div className="w-full max-w-4xl aspect-video bg-black/20 rounded-lg overflow-hidden border-2 border-white/10">
           <img
             src={images[selectedImageIndex] || currentItem.src}
             alt={`${currentItem.title} ${selectedImageIndex + 1}`}
@@ -87,7 +87,7 @@ const PortfolioModal = ({
 
         {/* Image Thumbnail Navigation */}
         {hasMultipleImages && (
-          <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
+          <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2 px-4">
             {images.map((image: string, index: number) => (
               <button
                 key={index}
@@ -191,8 +191,8 @@ const PortfolioModal = ({
               </div>
             </div>
 
-            {/* Content Area - Top Aligned */}
-            <div className="flex-1 p-4 flex flex-col justify-start">
+            {/* Content Area - Top Aligned with Padding */}
+            <div className="flex-1 p-6 flex flex-col justify-start overflow-auto">
               {renderImageModal()}
             </div>
           </div>
