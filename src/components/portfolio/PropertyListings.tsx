@@ -56,7 +56,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Maison Amani - Luxury 3-Bedroom Residence',
       location: 'Las Lomas del Marbella Club, Golden Mile',
       clientType: 'luxury',
-      images: [maisonAmani1, maisonAmani6, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani13, maisonAmani5],
+      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani12, maisonAmani13, maisonAmani14],
       packageType: 'photo-video',
       date: '2024',
       description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
