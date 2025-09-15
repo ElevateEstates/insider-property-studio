@@ -37,18 +37,6 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
       clientNotes: 'Showcase Mijas as a potential place for living to our Northern Europe clients who are not very familiar with Spain.',
       shootDetails: '4-day shoot, 2 week post-production, professional voice-over'
     },
-    {
-      id: '5',
-      title: 'Garden & Outdoor Living',
-      location: 'Estepona Villa',
-      category: 'outdoor',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png',
-      date: '2024',
-      description: 'Beautiful garden spaces and outdoor lifestyle',
-      clientNotes: 'Showcase the property\'s connection to nature and outdoor living spaces.',
-      shootDetails: 'Full day shoot capturing gardens, outdoor kitchens, and landscape design'
-    }
   ];
 
   useEffect(() => {
