@@ -2,7 +2,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface ModalItem {
   id: string;
@@ -41,6 +41,8 @@ const PortfolioModal = ({
 }: PortfolioModalProps) => {
   const currentItem = items[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   if (!currentItem) return null;
 
@@ -56,6 +58,34 @@ const PortfolioModal = ({
 
   const images = getImageArray();
   const hasMultipleImages = images.length > 1;
+
+  // Auto-scroll active thumbnail to center
+  useEffect(() => {
+    if (thumbnailContainerRef.current && thumbnailRefs.current[selectedImageIndex]) {
+      const container = thumbnailContainerRef.current;
+      const thumbnail = thumbnailRefs.current[selectedImageIndex];
+      
+      if (thumbnail) {
+        const containerRect = container.getBoundingClientRect();
+        const thumbnailRect = thumbnail.getBoundingClientRect();
+        
+        // Calculate the center position
+        const containerCenter = containerRect.width / 2;
+        const thumbnailCenter = thumbnailRect.left - containerRect.left + thumbnailRect.width / 2;
+        const scrollOffset = thumbnailCenter - containerCenter;
+        
+        container.scrollTo({
+          left: container.scrollLeft + scrollOffset,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [selectedImageIndex]);
+
+  // Reset thumbnail refs array when images change
+  useEffect(() => {
+    thumbnailRefs.current = thumbnailRefs.current.slice(0, images.length);
+  }, [images.length]);
 
   const renderImageModal = () => {
     if (type === 'property-videos' || type === 'lifestyle-videos') {
@@ -117,10 +147,21 @@ const PortfolioModal = ({
               {/* Thumbnails directly below main image */}
               {hasMultipleImages && (
                 <div className="flex flex-col items-center gap-3 w-full">
-                  <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
+                  <div 
+                    ref={thumbnailContainerRef}
+                    className="flex gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-16 scroll-smooth"
+                    style={{
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: 'rgba(255,255,255,0.3) transparent'
+                    }}
+                  >
+                    {/* Left safe zone */}
+                    <div className="flex-shrink-0 w-12" />
+                    
                     {images.map((image: string, index: number) => (
                       <button
                         key={index}
+                        ref={el => thumbnailRefs.current[index] = el}
                         onClick={() => setSelectedImageIndex(index)}
                         className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
                           selectedImageIndex === index 
@@ -135,6 +176,9 @@ const PortfolioModal = ({
                         />
                       </button>
                     ))}
+                    
+                    {/* Right safe zone */}
+                    <div className="flex-shrink-0 w-12" />
                   </div>
 
                   {/* Image Counter */}
