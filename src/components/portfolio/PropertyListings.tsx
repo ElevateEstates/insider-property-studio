@@ -33,10 +33,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: "Maison Amani",
       location: "Costa del Sol, Spain",
       clientType: 'luxury',
-      images: [
-        "/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png",
-        "/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png"
-      ],
+      images: [],
       packageType: 'photo-video',
       date: "October 2024",
       description: "Luxury villa showcasing Mediterranean elegance with stunning sea views and premium amenities.",
@@ -48,14 +45,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: "2-Bedroom Middle Floor Apartment",
       location: "Marbella Center, Spain",
       clientType: 'residential',
-      images: [
-        "/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png",
-        "/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png",
-        "/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png",
-        "/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png",
-        "/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png",
-        "/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png"
-      ],
+      images: [],
       packageType: 'photo',
       date: "September 2024",
       description: "Modern 2-bedroom apartment in the heart of Marbella with contemporary design and prime location access.",
