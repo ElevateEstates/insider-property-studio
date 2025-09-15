@@ -5,29 +5,32 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-transparent backdrop-blur-md border border-white/30 text-white hover:bg-white/20",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-white/30 bg-transparent backdrop-blur-md text-white hover:bg-white/20 hover:border-white/50",
+        primary: 
+          "bg-accent-gold hover:bg-accent-gold-dark text-primary shadow-lg hover:shadow-xl active:scale-95 ring-accent-gold/50",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:border-white/30 active:scale-95",
+        outline:
+          "border-2 border-accent-gold bg-transparent text-accent-gold hover:bg-accent-gold hover:text-primary active:scale-95",
+        ghost: 
+          "text-white hover:bg-white/10 hover:text-accent-gold active:scale-95",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-lg active:scale-95",
+        link: 
+          "text-accent-gold underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        sm: "h-9 px-3 text-xs",
+        default: "h-11 px-6",
+        lg: "h-14 px-8 text-base",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   }

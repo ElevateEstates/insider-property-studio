@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useAnimations } from "@/contexts/AnimationContext";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface FadeInTextProps {
   text: string;
@@ -77,47 +79,83 @@ export const Hero = () => {
   }, [animatedWords.length]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen text-white transparent-section">
-      <div className="relative z-30 flex flex-col items-center justify-center min-h-screen px-4 md:px-8 lg:px-16 section-content">
-        <div className="max-w-6xl w-full text-center space-y-8 py-20 pb-24">
-          <div className="space-y-6">
-            {/* First line: Your partner in */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+    <header ref={heroRef} className="relative min-h-screen text-white transparent-section">
+      <div className="relative z-30 flex flex-col items-center justify-center min-h-screen px-6 md:px-8 lg:px-16 section-content">
+        <div className="max-w-7xl w-full text-center space-y-12 py-20 pb-32">
+          <div className="space-y-8 md:space-y-12">
+            {/* Main Heading */}
+            <div className="space-y-6">
               <FadeInText 
                 text="Your partner in" 
-                className="inline-block" 
+                className="block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight" 
                 delay={0} 
                 animationKey="hero-line-1"
               />
-            </h1>
-            
-            {/* Second line: property marketing, */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
+              
               <FadeInText 
                 text="property marketing," 
-                className="inline-block text-gradient-gold" 
-                delay={300} 
+                className="block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-gradient-gold" 
+                delay={400} 
                 animationKey="hero-line-2"
               />
-            </h1>
 
-            {/* Third line: turning listings into [animated word] - 50% smaller */}
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-light leading-tight">
-              <span className="inline-block">
+              <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight">
                 <FadeInText 
                   text="turning listings into" 
                   className="inline-block" 
-                  delay={600} 
+                  delay={800} 
                   animationKey="hero-line-3"
                 />
-                <span className="text-gradient-gold inline-block ml-2">
+                <span className="text-gradient-gold inline-block ml-3 md:ml-4 transition-all duration-500">
                   {animatedWords[animatedWordIndex]}
                 </span>
-              </span>
-            </h1>
+              </div>
+            </div>
+
+            {/* Subtitle */}
+            <FadeInText 
+              text="Professional photography, cinematic videos, and lifestyle content that transforms property listings into compelling stories." 
+              className="block text-lg md:text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed font-light" 
+              delay={1200} 
+              animationKey="hero-subtitle"
+            />
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center pt-8">
+              <div className={`transition-all duration-700 ${hasAnimated('hero-cta-1') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                  className="w-full sm:w-auto text-base md:text-lg px-8 md:px-12 py-4 md:py-6 h-auto min-h-[48px]"
+                  aria-label="View our portfolio of property marketing work"
+                  asChild
+                >
+                  <Link to="/portfolio">View Our Work</Link>
+                </Button>
+              </div>
+              
+              <div className={`transition-all duration-700 delay-200 ${hasAnimated('hero-cta-2') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  className="w-full sm:w-auto text-base md:text-lg px-8 md:px-12 py-4 md:py-6 h-auto min-h-[48px]"
+                  aria-label="Get started with our property marketing services"
+                  asChild
+                >
+                  <Link to="/contact">Get Started</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 };

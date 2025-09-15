@@ -20,14 +20,15 @@ const PortfolioNavigation = ({ activeView, onViewChange }: PortfolioNavigationPr
           {navigationItems.map((item) => (
             <Button
               key={item.id}
-              variant={activeView === item.id ? "default" : "outline"}
+              variant={activeView === item.id ? "primary" : "outline"}
               size="lg"
               onClick={() => onViewChange(item.id)}
               className={`h-20 text-lg font-medium transition-all duration-300 ${
                 activeView === item.id 
-                  ? "glass-button bg-white/20 scale-105" 
-                  : "glass-button hover:scale-105"
+                  ? "scale-105" 
+                  : "hover:scale-105"
               }`}
+              aria-pressed={activeView === item.id}
             >
               {item.label}
             </Button>
