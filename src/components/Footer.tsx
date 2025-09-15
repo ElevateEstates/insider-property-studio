@@ -31,7 +31,7 @@ export const Footer = () => {
             <img 
               src={elevateLogoWhite} 
               alt="Elevate Properties" 
-              className="h-20 md:h-24 w-auto opacity-90 drop-shadow-2xl"
+              className="h-32 md:h-40 w-auto opacity-90 drop-shadow-2xl"
             />
           </div>
           
