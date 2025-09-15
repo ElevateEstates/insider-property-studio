@@ -83,6 +83,8 @@ export const TestimonialsSection = () => {
       switch (author) {
         case "Scarlett Lancaster":
           return "object-[50%_20%]"; // Position from top for Scarlett
+        case "Eddie Caires":
+          return "object-[50%_20%]"; // Position from top for Eddie
         default:
           return "object-center";
       }
