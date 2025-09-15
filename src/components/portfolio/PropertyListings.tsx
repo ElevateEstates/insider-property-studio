@@ -85,7 +85,32 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const portfolioListings: PortfolioListing[] = [];
+  const portfolioListings: PortfolioListing[] = [
+    {
+      id: "maison-amani",
+      title: "Maison Amani",
+      location: "Costa del Sol, Spain",
+      clientType: 'luxury',
+      images: [img001, img002, img003, img004, img005, img006, img007, img008, img009],
+      packageType: 'photo-video',
+      date: "October 2024",
+      description: "Luxury villa showcasing Mediterranean elegance with stunning sea views and premium amenities.",
+      clientNotes: "Capture the luxury essence and Mediterranean charm for high-end rental marketing targeting affluent travelers.",
+      shootDetails: "Professional photography and videography featuring natural lighting, architectural details, and scenic coastal views during golden hour."
+    },
+    {
+      id: "2-bedroom-apartment",
+      title: "2-Bedroom Middle Floor Apartment",
+      location: "Marbella Center, Spain",
+      clientType: 'residential',
+      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021],
+      packageType: 'photo',
+      date: "September 2024",
+      description: "Modern 2-bedroom apartment in the heart of Marbella with contemporary design and prime location access.",
+      clientNotes: "Highlight the modern amenities, central location, and urban lifestyle appeal for potential buyers and renters.",
+      shootDetails: "Interior photography emphasizing natural light, modern furnishings, and space optimization with wide-angle lens techniques."
+    }
+  ];
 
   const filteredListings = portfolioListings;
 

@@ -24,7 +24,20 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const lifestyleVideos: LifestyleVideoListing[] = [];
+  const lifestyleVideos: LifestyleVideoListing[] = [
+    {
+      id: "vimeo-lifestyle-1",
+      title: "Costa del Sol Luxury Lifestyle",
+      location: "Marbella, Spain",
+      category: 'outdoor',
+      videoUrl: "https://player.vimeo.com/video/1029952959?badge=0&autopause=0&player_id=0&app_id=58479",
+      thumbnail: "",
+      date: "November 2024",
+      description: "Experience the ultimate luxury lifestyle with breathtaking views of the Mediterranean coast. This exclusive showcase captures the essence of coastal living at its finest.",
+      clientNotes: "Create an aspirational lifestyle video that captures the essence of luxury living with stunning coastal views and premium amenities.",
+      shootDetails: "Professional cinematography featuring drone footage, golden hour lighting, and carefully curated scenes showcasing the property's premium features and surroundings."
+    }
+  ];
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
