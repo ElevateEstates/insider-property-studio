@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Camera, Video, Award, Users } from "lucide-react";
+import { ArrowRight, Camera, Video, Award, Users, Box, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import geirPortrait from "@/assets/eddie-portrait.jpg";
 const About = () => {
@@ -30,6 +30,14 @@ const About = () => {
     icon: Users,
     title: "Lifestyle Photography",
     description: "Professional photography to build your personal brand and to showcase the unique aesthetic of the lifestyle your property enables for your prospects in the Costa del Sol."
+  }, {
+    icon: Box,
+    title: "3D Work",
+    description: "Bring your property's potential to life with photorealistic 3D renders. Collaborating with top industry specialists, we create stunning, true-to-vision environments based on your specifications, showcasing the full potential of your project."
+  }, {
+    icon: User,
+    title: "Personal Branding",
+    description: "Elevate your Costa del Sol presence with social media-focused personal branding. We create tailored video content and social media assets, paired with consistent posting strategies, to engage your audience, build trust, and establish your reputation as a market leader."
   }];
   const stats = [{
     number: "500+",
