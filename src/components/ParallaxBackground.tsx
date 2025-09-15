@@ -105,6 +105,13 @@ export const ParallaxBackground = ({
       
       const finalOpacity = baseOpacity * horizontalFade * verticalFade;
       
+      // Scale effect for footer area - dots get bigger near the bottom
+      const footerStartY = screenHeight * 0.85; // Assume footer starts at 85% of screen height
+      const isInFooterArea = yOffset > footerStartY;
+      const footerScale = isInFooterArea ? 1 + ((yOffset - footerStartY) / (screenHeight * 0.3)) * 0.5 : 1;
+      const scaledDotSize = dotSize * Math.min(footerScale, 1.5); // Cap maximum scale
+      const scaledSize = size * Math.min(footerScale, 1.3);
+      
       // Render if meaningfully visible
       if (finalOpacity > 0.05) {
         return (
@@ -113,8 +120,8 @@ export const ParallaxBackground = ({
             className="absolute"
             style={{
               transform: `translate3d(${xOffset}px, ${yOffset}px, 0)`,
-              backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${dotSize}px, transparent ${dotSize * 2.5}px)`,
-              backgroundSize: `${size}px ${size}px`,
+              backgroundImage: `radial-gradient(circle, rgba(${color},${finalOpacity}) ${scaledDotSize}px, transparent ${scaledDotSize * 2.5}px)`,
+              backgroundSize: `${scaledSize}px ${scaledSize}px`,
               backgroundRepeat: 'repeat',
               willChange: 'transform',
               backfaceVisibility: 'hidden',
@@ -122,7 +129,7 @@ export const ParallaxBackground = ({
               top: 0,
               left: 0,
               right: 0,
-              height: '600vh',
+              height: '120vh',
               pointerEvents: 'none'
             }}
           />
@@ -223,7 +230,7 @@ export const ParallaxBackground = ({
   };
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '100vh' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '120vh' }}>
       {/* Base dark gray background */}
       <div 
         className={`absolute ${className}`}
@@ -233,7 +240,7 @@ export const ParallaxBackground = ({
           top: 0,
           left: 0,
           right: 0,
-          height: '100vh'
+          height: '120vh'
         }}
       />
       

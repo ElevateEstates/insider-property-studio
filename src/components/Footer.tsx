@@ -22,7 +22,7 @@ export const Footer = () => {
       />
       
       {/* Gradient Black Overlay - darker towards bottom */}
-      <div className="absolute inset-0 z-5 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+      <div className="absolute inset-0 z-5 bg-gradient-to-b from-black/20 via-black/25 to-black/35 backdrop-blur-sm"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center justify-center space-y-6 min-h-[25vh]">
