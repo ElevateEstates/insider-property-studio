@@ -152,7 +152,7 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
                 </div>
 
                 {/* Content - Consistent Height */}
-                <div className="p-6 flex-1 flex flex-col">
+                <div className="p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
                   {/* Header Info - Fixed Space */}
                   <div className="mb-4">
                     <div className="flex items-center gap-2 text-sm text-white/60 mb-2">

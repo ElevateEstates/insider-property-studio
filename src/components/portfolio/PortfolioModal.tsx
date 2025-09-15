@@ -49,12 +49,12 @@ const PortfolioModal = ({
       return currentItem.images || [];
     }
     if (type === 'lifestyle-photos') {
-      return [currentItem.src || ''];
+      return items.map((item: any) => item.src).filter(Boolean);
     }
     return [];
   };
 
-  const images = getImageArray().filter(Boolean);
+  const images = getImageArray();
   const hasMultipleImages = images.length > 1;
 
   const renderImageModal = () => {
@@ -118,9 +118,13 @@ const PortfolioModal = ({
     );
   };
 
+  const shouldShowSidebar = type !== 'lifestyle-photos';
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-7xl w-full h-[95vh] bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
+      <DialogContent className={`w-full h-[95vh] bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden ${
+        shouldShowSidebar ? 'max-w-7xl' : 'max-w-6xl'
+      }`}>
         <div className="flex h-full">
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col min-w-0">
@@ -193,8 +197,9 @@ const PortfolioModal = ({
             </div>
           </div>
 
-          {/* Sidebar - Top Aligned */}
-          <div className="w-80 border-l border-white/10 bg-black/30 p-4 flex flex-col gap-4 overflow-auto">
+          {/* Conditional Sidebar */}
+          {shouldShowSidebar && (
+            <div className="w-80 border-l border-white/10 bg-black/30 p-4 flex flex-col gap-4 overflow-auto">
             <div>
               <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
                 <span>{currentItem.date}</span>
@@ -233,7 +238,8 @@ const PortfolioModal = ({
                 </p>
               </div>
             )}
-          </div>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
