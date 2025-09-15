@@ -45,7 +45,10 @@ const CountUp = ({ end, suffix = "", duration = 2000, isVisible, isMobile = fals
 
 export const StatsSection = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  const animatedWords = ["results.", "connections.", "commissions."];
   
   // Get mobile detection first
   const animationData = usePersistedAnimation({ 
@@ -81,6 +84,14 @@ export const StatsSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile]);
 
+  // Animate word rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimatedWordIndex(prev => (prev + 1) % animatedWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [animatedWords.length]);
+
   const stats = [
     { label: "views generated", value: 2, suffix: "m+", color: "text-blue-400", prefix: "" },
     { label: "properties shot", value: 250, suffix: "+", color: "text-white", prefix: "" },
@@ -106,7 +117,10 @@ export const StatsSection = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light mb-8 text-white leading-tight">
-            Helping buyers find the homes they truly want
+            turning listings into{" "}
+            <span className="text-gradient-gold transition-all duration-500">
+              {animatedWords[animatedWordIndex]}
+            </span>
           </h2>
         </div>
         
