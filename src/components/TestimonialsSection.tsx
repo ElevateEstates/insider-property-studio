@@ -190,7 +190,6 @@ export const TestimonialsSection = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-white">
             What our clients are saying
           </h2>
-          <p className="text-white/70 text-sm md:text-base">Real feedback from our satisfied clients</p>
         </div>
 
         {/* Horizontal Scrolling Testimonials */}
@@ -244,7 +243,9 @@ export const TestimonialsSection = () => {
                   <div className="flex items-center space-x-3 pt-4">
                     <ProfileImage testimonial={testimonial} />
                     <div>
-                      <div className="text-white font-medium text-base">{testimonial.author}</div>
+                      <div className="text-white font-medium" style={{
+                        fontSize: `clamp(0.875rem, ${Math.max(0.75, Math.min(1.125, 25 / testimonial.author.length))}rem, 1.125rem)`
+                      }}>{testimonial.author}</div>
                       <div className="text-blue-400/80 text-sm">
                         {testimonial.company}
                       </div>
