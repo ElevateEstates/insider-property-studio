@@ -75,45 +75,48 @@ const PortfolioModal = ({
     }
 
     return (
-      <div className="w-full h-full flex items-center justify-center gap-4 py-8 px-8">
-        {/* Left Navigation Arrow */}
-        {hasMultipleImages && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-            className="text-white hover:bg-white/10 p-3 rounded-full flex-shrink-0"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
-        )}
+      <div className="w-full h-full flex flex-col">
+        {/* Main Image Container */}
+        <div className="flex-1 flex items-center justify-center relative p-8">
+          {/* Left Navigation Arrow */}
+          {hasMultipleImages && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+          )}
 
-        {/* Main Image Container with proper aspect ratio */}
-        <div className="flex flex-col items-center gap-4 flex-1 max-w-4xl">
-          <div className="w-full bg-black/20 rounded-lg overflow-hidden border-2 border-white/10" style={{ aspectRatio: 'auto' }}>
+          {/* Right Navigation Arrow */}
+          {hasMultipleImages && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          )}
+
+          {/* Main Image */}
+          <div className="max-w-full max-h-full">
             <img
               src={images[selectedImageIndex] || currentItem.src}
               alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-              className="w-full h-auto object-contain max-h-[60vh]"
+              className="max-w-full max-h-[70vh] object-contain"
             />
           </div>
         </div>
 
-        {/* Right Navigation Arrow */}
-        {hasMultipleImages && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-            className="text-white hover:bg-white/10 p-3 rounded-full flex-shrink-0"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
-        )}
-
+        {/* Bottom Navigation Section */}
+        <div className="flex flex-col items-center gap-4 p-4 bg-black/30">
           {/* Image Thumbnail Navigation */}
           {hasMultipleImages && (
-            <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2 px-4">
+            <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
               {images.map((image: string, index: number) => (
                 <button
                   key={index}
@@ -140,6 +143,7 @@ const PortfolioModal = ({
               {selectedImageIndex + 1} of {images.length}
             </div>
           )}
+        </div>
       </div>
     );
   };
