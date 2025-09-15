@@ -76,7 +76,7 @@ export const TestimonialsSection = () => {
         if (container.scrollLeft >= maxScroll) {
           container.scrollLeft = 0;
         } else {
-          container.scrollLeft += 0.325; // Slowed down by 35% (was 0.5)
+          container.scrollLeft += 0.1625; // Slowed down by 67.5% (was 0.5, then 0.325)
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
