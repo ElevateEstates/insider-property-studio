@@ -101,8 +101,8 @@ export const Hero = () => {
               />
             </h1>
 
-            {/* Third line: turning listings into [animated word] */}
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
+            {/* Third line: turning listings into [animated word] - 50% smaller */}
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-light leading-tight">
               <span className="inline-block">
                 <FadeInText 
                   text="turning listings into" 
