@@ -12,6 +12,15 @@ import property3 from "@/assets/property-3.jpg";
 import property4 from "@/assets/property-4.jpg";
 import property5 from "@/assets/property-5.jpg";
 import property6 from "@/assets/property-6.jpg";
+import apartment1 from "@/assets/apartment-1.jpg";
+import apartment2 from "@/assets/apartment-2.jpg";
+import apartment3 from "@/assets/apartment-3.jpg";
+import apartment4 from "@/assets/apartment-4.jpg";
+import apartment5 from "@/assets/apartment-5.jpg";
+import apartment6 from "@/assets/apartment-6.jpg";
+import apartment7 from "@/assets/apartment-7.jpg";
+import apartment8 from "@/assets/apartment-8.jpg";
+import apartment9 from "@/assets/apartment-9.jpg";
 import maisonAmani1 from "@/assets/maison-amani-1.jpg";
 import maisonAmani2 from "@/assets/maison-amani-2.jpg";
 import maisonAmani3 from "@/assets/maison-amani-3.jpg";
@@ -80,15 +89,15 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
     },
     {
       id: '2',
-      title: 'Modern Penthouse Collection',
-      location: 'Puerto Banus',
-      clientType: 'luxury',
-      images: [portfolio2, property6, property1, property3, property4],
-      packageType: 'video',
-      date: '2024',
-      description: 'Cinematic tour of luxury penthouse apartment',
-      clientNotes: 'High-end client targeting luxury market. Requested cinematic walkthrough with professional narration.',
-      shootDetails: 'Single-day video production with 4K drone shots and interior cinematography'
+      title: 'Modern Middle-Floor 2-Bedroom Apartment',
+      location: 'Costa del Sol',
+      clientType: 'airbnb',
+      images: [apartment1, apartment2, apartment3, apartment4, apartment5, apartment6, apartment7, apartment8, apartment9],
+      packageType: 'photo',
+      date: '2025',
+      description: 'Contemporary open-plan apartment with stunning mountain views, modern kitchen with integrated appliances, and spacious terrace access',
+      clientNotes: '30 photo package with 5 drone shots for Airbnb listing.',
+      shootDetails: 'High quality wide angle HDR photos and some detail shots for rental listing.'
     },
     {
       id: '3',
