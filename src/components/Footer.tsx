@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import elevateLogoWhite from "@/assets/elevate-logo.png";
 
 export const Footer = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -28,9 +29,9 @@ export const Footer = () => {
           {/* Logo */}
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png" 
+              src={elevateLogoWhite} 
               alt="Elevate Properties" 
-              className="h-24 w-auto filter invert opacity-90 drop-shadow-2xl"
+              className="h-20 md:h-24 w-auto opacity-90 drop-shadow-2xl"
             />
           </div>
           
