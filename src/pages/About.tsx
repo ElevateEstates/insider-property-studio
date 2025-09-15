@@ -28,8 +28,8 @@ const About = () => {
     description: "Maximize leads and conversions with marketing packages that include long and short format social media content, virtual staging, 360 tour, floor plan, landing page and branded materials for real estate professionals."
   }, {
     icon: Users,
-    title: "Lifestyle Photography",
-    description: "Professional photography to build your personal brand and to showcase the unique aesthetic of the lifestyle your property enables for your prospects in the Costa del Sol."
+    title: "Image Building Package",
+    description: "Strengthen your Costa del Sol real estate brand with professional content that documents your already successful business and lifestyle. Our expertly crafted videos and social media assets highlight your achievements and unique aesthetic, fostering consistent audience engagement for long-term image building and trust."
   }, {
     icon: Box,
     title: "3D Work",
