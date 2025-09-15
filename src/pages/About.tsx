@@ -98,20 +98,36 @@ const About = () => {
 
       {/* Philosophy Section */}
       <section className="py-32 transparent-section">
-        <div className="container mx-auto max-w-4xl px-4 md:px-8" style={{
+        <div className="container mx-auto max-w-5xl px-4 md:px-8" style={{
         transform: `translateY(${scrollY * 0.02}px)`
       }}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-light mb-8">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-light mb-4 text-white">
               Our Philosophy
             </h2>
+            <div className="w-20 h-0.5 bg-accent-gold mx-auto"></div>
           </div>
           
-          <div className="glass-card p-8 rounded-2xl">
-            <div className="space-y-8 text-lg leading-relaxed text-white/80">
-              <p>
-                We've built our reputation on over-delivering—and we won't stop now. In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing. What truly sets you apart is you: your personality, your competence, your proven track record, and your ability to build trust. In a landscape where anyone can present attractive listing photos, our role is not only to make properties shine, but to position you as the professional clients can rely on to deliver.
+          <div className="relative">
+            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-accent-gold to-transparent opacity-60"></div>
+            <div className="pl-12 space-y-8">
+              <p className="text-2xl md:text-3xl font-light leading-relaxed text-white/90 italic">
+                "We've built our reputation on over-delivering—and we won't stop now."
               </p>
+              
+              <div className="space-y-6 text-lg leading-relaxed text-white/80 max-w-4xl">
+                <p>
+                  In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing.
+                </p>
+                
+                <p>
+                  What truly sets you apart is <em className="text-white font-medium">you</em>: your personality, your competence, your proven track record, and your ability to build trust.
+                </p>
+                
+                <p>
+                  In a landscape where anyone can present attractive listing photos, our role is not only to make properties shine, but to position you as the professional clients can rely on to deliver.
+                </p>
+              </div>
             </div>
           </div>
         </div>
