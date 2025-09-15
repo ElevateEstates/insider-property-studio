@@ -11,7 +11,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-12 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[40vh]">
+    <footer className="relative py-12 px-4 md:px-6 overflow-hidden border-t border-white/10 rounded-none min-h-[40vh] bg-transparent">
       {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
