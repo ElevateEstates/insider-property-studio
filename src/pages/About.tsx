@@ -145,21 +145,7 @@ const About = () => {
           <div className="glass-card p-8 rounded-2xl">
             <div className="space-y-8 text-lg leading-relaxed text-white/80">
               <p>
-                At Geir Costa, we believe that every property has a unique story to tell. 
-                Our mission is to capture not just the physical spaces, but the emotions 
-                and lifestyle that each property represents.
-              </p>
-              
-              <p>
-                We understand that in today's competitive real estate market, exceptional 
-                visual content isn't a luxury—it's essential. Our work helps agents sell 
-                faster, buyers connect emotionally, and properties achieve their maximum value.
-              </p>
-              
-              <p>
-                From intimate residential spaces to grand luxury estates, we approach each 
-                project with meticulous attention to detail, creative vision, and a deep 
-                understanding of what makes properties irresistible to potential buyers.
+                We've built our reputation on over-delivering—and we won't stop now. In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing. What truly sets you apart is you: your personality, your competence, your proven track record, and your ability to build trust. In a landscape where anyone can present attractive listing photos, our role is not only to make properties shine, but to position you as the professional clients can rely on to deliver.
               </p>
             </div>
           </div>
