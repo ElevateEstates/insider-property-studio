@@ -75,74 +75,76 @@ const PortfolioModal = ({
     }
 
     return (
-      <div className="w-full h-full flex flex-col">
-        {/* Main Image Container */}
-        <div className="flex-1 flex items-center justify-center relative p-8">
-          {/* Left Navigation Arrow */}
-          {hasMultipleImages && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-          )}
+      <div className="w-full h-full flex flex-col overflow-hidden">
+        {/* Main Image Container - Scrollable */}
+        <div className="flex-1 overflow-auto">
+          <div className="min-h-full flex items-center justify-center relative p-8">
+            {/* Left Navigation Arrow */}
+            {hasMultipleImages && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </Button>
+            )}
 
-          {/* Right Navigation Arrow */}
-          {hasMultipleImages && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </Button>
-          )}
+            {/* Right Navigation Arrow */}
+            {hasMultipleImages && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </Button>
+            )}
 
-          {/* Main Image */}
-          <div className="max-w-full max-h-full">
-            <img
-              src={images[selectedImageIndex] || currentItem.src}
-              alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-              className="max-w-full max-h-[70vh] object-contain"
-            />
+            {/* Main Image - Responsive sizing */}
+            <div className="flex flex-col items-center gap-8 max-w-full">
+              <img
+                src={images[selectedImageIndex] || currentItem.src}
+                alt={`${currentItem.title} ${selectedImageIndex + 1}`}
+                className="max-w-full max-h-[60vh] min-h-0 object-contain"
+                style={{ 
+                  maxHeight: window.innerHeight < 800 ? '50vh' : '60vh'
+                }}
+              />
+              
+              {/* Thumbnails directly below main image */}
+              {hasMultipleImages && (
+                <div className="flex flex-col items-center gap-3 w-full">
+                  <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
+                    {images.map((image: string, index: number) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
+                          selectedImageIndex === index 
+                            ? 'border-white shadow-lg scale-105' 
+                            : 'border-white/20 hover:border-white/50'
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${currentItem.title} thumbnail ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Image Counter */}
+                  <div className="text-white/70 text-sm">
+                    {selectedImageIndex + 1} of {images.length}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-
-        {/* Bottom Navigation Section */}
-        <div className="flex flex-col items-center gap-4 p-4 bg-black/30">
-          {/* Image Thumbnail Navigation */}
-          {hasMultipleImages && (
-            <div className="flex gap-2 max-w-4xl w-full justify-center overflow-x-auto pb-2">
-              {images.map((image: string, index: number) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
-                    selectedImageIndex === index 
-                      ? 'border-white shadow-lg scale-105' 
-                      : 'border-white/20 hover:border-white/50'
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`${currentItem.title} thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Image Counter */}
-          {hasMultipleImages && (
-            <div className="text-white/70 text-sm">
-              {selectedImageIndex + 1} of {images.length}
-            </div>
-          )}
         </div>
       </div>
     );
