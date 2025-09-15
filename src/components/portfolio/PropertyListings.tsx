@@ -12,6 +12,10 @@ import property3 from "@/assets/property-3.jpg";
 import property4 from "@/assets/property-4.jpg";
 import property5 from "@/assets/property-5.jpg";
 import property6 from "@/assets/property-6.jpg";
+import maisonAmani1 from "@/assets/maison-amani-1.jpg";
+import maisonAmani2 from "@/assets/maison-amani-2.jpg";
+import maisonAmani3 from "@/assets/maison-amani-3.jpg";
+import maisonAmani4 from "@/assets/maison-amani-4.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -39,15 +43,15 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
   const portfolioListings: PortfolioListing[] = [
     {
       id: '1',
-      title: 'Mediterranean Villa Estate',
-      location: 'Marbella, Spain',
+      title: 'Maison Amani - Luxury 3-Bedroom Residence',
+      location: 'Las Lomas del Marbella Club, Golden Mile',
       clientType: 'luxury',
-      images: [portfolio1, property1, property2, property3, property4, property5],
+      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, property1, property2],
       packageType: 'photo-video',
       date: '2024',
-      description: 'Stunning coastal villa with panoramic sea views',
-      clientNotes: 'Client requested golden hour shots and emphasis on outdoor living spaces. Premium marketing package for international buyers.',
-      shootDetails: '2-day shoot including drone footage, interior/exterior photography, and lifestyle shots'
+      description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
+      clientNotes: 'Ultra-luxury 129m² apartment in exclusive gated community. Fully furnished with premium materials including Dornbracht, Gaggenau, and herringbone floors. Target: international luxury buyers.',
+      shootDetails: 'Full architectural photography showcasing Japandi design, panoramic views, and luxury amenities. Emphasis on natural lighting and premium finishes throughout 3 bedrooms, 2.5 bathrooms.'
     },
     {
       id: '2',
