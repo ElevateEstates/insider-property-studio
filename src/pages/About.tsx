@@ -17,19 +17,19 @@ const About = () => {
   const services = [{
     icon: Camera,
     title: "Real Estate Photography",
-    description: "Professional photography that showcases properties in their best light, capturing every detail that matters to potential buyers."
+    description: "Professional photography using advanced HDR blending and color correcting techniques that showcases properties in their best light, capturing every detail that matters to potential buyers."
   }, {
     icon: Video,
-    title: "Luxury Video Tours",
-    description: "Cinematic video tours that create emotional connections with properties, featuring drone footage and professional editing."
+    title: "Professional Video Tours",
+    description: "Cinematic video tours that vividly showcase each property's unique features and location, highlighting distinct value propositions through dynamic FPV and drone footage, paired with expert editing and color grading to the highest standard."
   }, {
     icon: Award,
-    title: "Marketing Content",
-    description: "Complete marketing packages including social media content, virtual staging, and branded materials for real estate professionals."
+    title: "Marketing Package",
+    description: "Maximize leads and conversions with marketing packages that include long and short format social media content, virtual staging, 360 tour, floor plan, landing page and branded materials for real estate professionals."
   }, {
     icon: Users,
-    title: "Business Photography",
-    description: "Professional headshots and business photography for real estate agents, personal trainers, and Costa del Sol businesses."
+    title: "Lifestyle Photography",
+    description: "Professional photography to build your personal brand and to showcase the unique aesthetic of the lifestyle your property enables for your prospects in the Costa del Sol."
   }];
   const stats = [{
     number: "500+",
@@ -98,7 +98,7 @@ const About = () => {
               Our Expertise
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              We combine technical excellence with creative vision to deliver 
+              We combine creative vision with technical excellence to deliver 
               media that elevates your real estate business.
             </p>
           </div>
