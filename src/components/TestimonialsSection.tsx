@@ -101,7 +101,7 @@ export const TestimonialsSection = () => {
             />
           </div>
         </DialogTrigger>
-        <DialogContent className="max-w-md glass-card border-white/20">
+        <DialogContent className="max-w-md bg-white/5 backdrop-blur-xl border border-white/20 text-white">
           <div className="flex flex-col items-center space-y-4">
             <div className="w-64 h-64 rounded-full overflow-hidden">
               <img 
