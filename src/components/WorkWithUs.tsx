@@ -29,15 +29,15 @@ export const WorkWithUs = () => {
         
         <div className="space-y-8 text-lg md:text-xl leading-relaxed text-white/80 font-light mb-12 animate-slide-in">
           <p className="transition-colors hover:text-white/90">
-            We specialize in photo and video content for Costa del Sol businesses. You can see our work and results below.
+            We specialize in high-end photography and video content for real estate in Costa del Sol. View our portfolio of stunning property showcases on our dedicated portfolio page.
           </p>
           
           <p className="transition-colors hover:text-white/90">
-            We offer competitive rates based on your project needs, not your budget constraints. We work with diverse clients with a focus on delivering measurable results.
+            We offer a variety of options tailored to all budgets and goals, from simple listing photos to comprehensive marketing packages. Our services include HDR wide-angle shots, detailed close-ups, drone photography, 360 virtual tours, floorplans, simple reels, cinematic videos, drone videos and tours, and even custom landing pages designed for refined presentation and higher conversion rates.
           </p>
           
           <p className="transition-colors hover:text-white/90">
-            Learn more about our services and see why you should choose us below.
+            For exclusive properties, we also offer a commission-based model, aligning our production with our combined marketing and ad efforts. We share the risk of selling the property, earning only when you do. This reflects our confidence in delivering exceptional results and opens opportunities for clients with high-value listings but limited upfront funds for content and marketing.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export const WorkWithUs = () => {
           className="glass-button hover-scale relative z-50"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          Start Your Project
+          Let's Talk
           <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
