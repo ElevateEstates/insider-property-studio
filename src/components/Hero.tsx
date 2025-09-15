@@ -112,13 +112,6 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Subtitle */}
-            <FadeInText 
-              text="Professional photography, cinematic videos, and lifestyle content that transforms property listings into compelling stories." 
-              className="block text-base md:text-lg lg:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed font-light" 
-              delay={1200} 
-              animationKey="hero-subtitle"
-            />
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center pt-8">
