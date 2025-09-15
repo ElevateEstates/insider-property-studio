@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Quote } from "lucide-react";
 import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
 import eddiePhoto from "../assets/eddie-profile.jpg";
 import yoniPhoto from "../assets/yoni-profile.jpg";
@@ -34,10 +33,18 @@ const testimonials = [
   }
 ];
 
+// Duplicate testimonials for seamless infinite scroll
+const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
 export const TestimonialsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [autoScroll, setAutoScroll] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,34 +63,85 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Auto-scroll functionality
   useEffect(() => {
-    if (!isVisible) return;
-    
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
+    if (!isVisible || !autoScroll || isDragging) return;
 
-    return () => clearInterval(interval);
-  }, [isVisible]);
+    const scroll = () => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        if (container.scrollLeft >= maxScroll) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += 0.5; // Slow scroll speed
+        }
+      }
+      animationRef.current = requestAnimationFrame(scroll);
+    };
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    animationRef.current = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isVisible, autoScroll, isDragging]);
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setAutoScroll(false);
+    setStartX(e.pageX - (scrollContainerRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
   };
 
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - (scrollContainerRef.current.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    // Resume auto-scroll after 3 seconds
+    setTimeout(() => setAutoScroll(true), 3000);
+  };
+
+  // Touch handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setAutoScroll(false);
+    setStartX(e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    const x = e.touches[0].pageX - (scrollContainerRef.current.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    // Resume auto-scroll after 3 seconds
+    setTimeout(() => setAutoScroll(true), 3000);
   };
 
   const ProfileImage = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
     if (!testimonial.image) return null;
     
-    // Special positioning for different clients
     const getObjectPosition = (author: string) => {
       switch (author) {
         case "Scarlett Lancaster":
-          return "object-[50%_20%]"; // Position from top for Scarlett
+          return "object-[50%_20%]";
         case "Eddie Caires":
-          return "object-[50%_20%]"; // Position from top for Eddie
+          return "object-[50%_20%]";
         default:
           return "object-center";
       }
@@ -92,7 +150,7 @@ export const TestimonialsSection = () => {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400/50 transition-all duration-300 hover:scale-110 border border-white/20">
+          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400/50 transition-all duration-300 hover:scale-110 border border-white/20">
             <img 
               src={testimonial.image} 
               alt={testimonial.author}
@@ -134,76 +192,61 @@ export const TestimonialsSection = () => {
           <p className="text-white/70 text-sm md:text-base">Real feedback from our satisfied clients</p>
         </div>
 
-        {/* Compact Animated Carousel */}
-        <div className={`relative transition-all duration-1000 delay-300 ${
+        {/* Horizontal Scrolling Testimonials */}
+        <div className={`transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="overflow-hidden rounded-xl">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-shrink-0 px-2"
-                >
-                  <div className="glass-card rounded-xl p-6 mx-auto max-w-2xl hover:scale-105 transition-all duration-300 hover:bg-white/10">
-                    <div className="flex items-start space-x-4 mb-4">
-                      <Quote className="text-blue-400 w-5 h-5 flex-shrink-0 mt-1 opacity-70" />
-                      <blockquote className="text-sm md:text-base text-white/90 leading-relaxed font-light">
-                        "{testimonial.quote}"
-                      </blockquote>
-                    </div>
-                    
-                    <div className="border-t border-white/10 pt-4">
-                      <div className="flex items-center space-x-3">
-                        <ProfileImage testimonial={testimonial} />
-                        <div>
-                          <div className="text-white font-medium text-sm">{testimonial.author}</div>
-                          <div className="text-blue-400/80 text-xs truncate max-w-[200px] md:max-w-none">
-                            {testimonial.company}
-                          </div>
-                        </div>
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-8 pb-4 cursor-grab active:cursor-grabbing"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none'
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {extendedTestimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-80 md:w-96 px-4 select-none"
+              >
+                <div className="space-y-4">
+                  {/* Blue Quote Icon */}
+                  <div className="flex justify-start">
+                    <Quote className="text-blue-400 w-8 h-8 opacity-80" />
+                  </div>
+                  
+                  {/* Testimonial Text */}
+                  <blockquote className="text-white/90 text-lg md:text-xl leading-relaxed font-light">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-3 pt-4">
+                    <ProfileImage testimonial={testimonial} />
+                    <div>
+                      <div className="text-white font-medium text-base">{testimonial.author}</div>
+                      <div className="text-blue-400/80 text-sm">
+                        {testimonial.company}
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigation Buttons */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/20 w-10 h-10 transition-all duration-300 hover:scale-110"
-            onClick={prevTestimonial}
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white hover:bg-white/10 rounded-full backdrop-blur-sm border border-white/20 w-10 h-10 transition-all duration-300 hover:scale-110"
-            onClick={nextTestimonial}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-
-          {/* Carousel Indicators */}
-          <div className="flex justify-center space-x-2 mt-6">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-blue-400 w-8 h-2' 
-                    : 'bg-white/30 hover:bg-white/50 w-2 h-2'
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              />
+              </div>
             ))}
+          </div>
+          
+          {/* Scroll Hint */}
+          <div className="text-center mt-6">
+            <p className="text-white/50 text-sm">
+              Drag to scroll manually • Auto-scrolling resumes after 3 seconds
+            </p>
           </div>
         </div>
       </div>
