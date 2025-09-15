@@ -96,6 +96,36 @@ const About = () => {
       {/* Stats Section */}
       
 
+      {/* Philosophy Section */}
+      <section className="py-32 transparent-section">
+        <div className="container mx-auto max-w-4xl px-4 md:px-8" style={{
+        transform: `translateY(${scrollY * 0.02}px)`
+      }}>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-light mb-8">
+              Our Philosophy
+            </h2>
+          </div>
+          
+          <div className="glass-card p-8 rounded-2xl">
+            <div className="space-y-8 text-lg leading-relaxed text-white/80">
+              <p>
+                We've built our reputation on over-delivering—and we won't stop now. In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing. What truly sets you apart is you: your personality, your competence, your proven track record, and your ability to build trust. In a landscape where anyone can present attractive listing photos, our role is not only to make properties shine, but to position you as the professional clients can rely on to deliver.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-16">
+            <Link to="/contact">
+              <Button size="lg" className="glass-button">
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section className="py-32 transparent-section">
         <div className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20" style={{
@@ -127,36 +157,6 @@ const About = () => {
                   </div>
                 </div>
               </Card>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="py-32 transparent-section">
-        <div className="container mx-auto max-w-4xl px-4 md:px-8" style={{
-        transform: `translateY(${scrollY * 0.02}px)`
-      }}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-light mb-8">
-              Our Philosophy
-            </h2>
-          </div>
-          
-          <div className="glass-card p-8 rounded-2xl">
-            <div className="space-y-8 text-lg leading-relaxed text-white/80">
-              <p>
-                We've built our reputation on over-delivering—and we won't stop now. In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing. What truly sets you apart is you: your personality, your competence, your proven track record, and your ability to build trust. In a landscape where anyone can present attractive listing photos, our role is not only to make properties shine, but to position you as the professional clients can rely on to deliver.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center mt-16">
-            <Link to="/contact">
-              <Button size="lg" className="glass-button">
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
