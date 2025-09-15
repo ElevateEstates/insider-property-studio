@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { usePersistedAnimation } from "@/hooks/usePersistedAnimation";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
+import img001 from "@/assets/img-001.jpg";
+import img002 from "@/assets/img-002.jpg";
+import img003 from "@/assets/img-003.jpg";
 interface PortfolioItem {
   type: 'image' | 'video';
   src?: string;
@@ -21,13 +21,13 @@ const portfolioItems: PortfolioItem[] = [{
   title: 'Modern Villa Showcase'
 }, {
   type: 'image',
-  src: portfolio1,
+  src: img001,
   alt: 'Luxury property exterior view',
   size: 'medium',
   title: 'Coastal Estate'
 }, {
   type: 'image',
-  src: portfolio2,
+  src: img002,
   alt: 'Modern interior living space',
   size: 'small',
   title: 'Contemporary Interior'
@@ -39,19 +39,19 @@ const portfolioItems: PortfolioItem[] = [{
   title: 'Downtown Penthouse'
 }, {
   type: 'image',
-  src: portfolio3,
+  src: img003,
   alt: 'Stunning property landscape',
   size: 'small',
   title: 'Garden Views'
 }, {
   type: 'image',
-  src: portfolio1,
+  src: img001,
   alt: 'Luxury property exterior view',
   size: 'large',
   title: 'Architectural Marvel'
 }, {
   type: 'image',
-  src: portfolio2,
+  src: img002,
   alt: 'Modern interior living space',
   size: 'small',
   title: 'Minimalist Design'
@@ -63,43 +63,43 @@ const portfolioItems: PortfolioItem[] = [{
   title: 'Aerial Estate Tour'
 }, {
   type: 'image',
-  src: portfolio3,
+  src: img003,
   alt: 'Elegant outdoor space',
   size: 'small',
   title: 'Terrace Paradise'
 }, {
   type: 'image',
-  src: portfolio1,
+  src: img001,
   alt: 'Premium property facade',
   size: 'medium',
   title: 'Urban Elegance'
 }, {
   type: 'image',
-  src: portfolio2,
+  src: img002,
   alt: 'Luxury kitchen design',
   size: 'small',
   title: 'Culinary Excellence'
 }, {
   type: 'image',
-  src: portfolio3,
+  src: img003,
   alt: 'Serene poolside view',
   size: 'large',
   title: 'Aquatic Retreat'
 }, {
   type: 'image',
-  src: portfolio1,
+  src: img001,
   alt: 'Master bedroom suite',
   size: 'medium',
   title: 'Private Sanctuary'
 }, {
   type: 'image',
-  src: portfolio2,
+  src: img002,
   alt: 'Grand entrance hall',
   size: 'small',
   title: 'First Impressions'
 }, {
   type: 'image',
-  src: portfolio3,
+  src: img003,
   alt: 'Panoramic city views',
   size: 'large',
   title: 'Skyline Majesty'

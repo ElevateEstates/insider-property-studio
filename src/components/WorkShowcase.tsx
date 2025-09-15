@@ -2,25 +2,25 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Play, Camera, Video, MapPin, Bed, Bath } from "lucide-react";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import property1 from "@/assets/property-1.jpg";
-import property2 from "@/assets/property-2.jpg";
-import property3 from "@/assets/property-3.jpg";
-import property4 from "@/assets/property-4.jpg";
-import property5 from "@/assets/property-5.jpg";
-import property6 from "@/assets/property-6.jpg";
-import property7 from "@/assets/property-7.jpg";
-import property8 from "@/assets/property-8.jpg";
-import property9 from "@/assets/property-9.jpg";
+import img001 from "@/assets/img-001.jpg";
+import img002 from "@/assets/img-002.jpg";
+import img003 from "@/assets/img-003.jpg";
+import img004 from "@/assets/img-004.jpg";
+import img005 from "@/assets/img-005.jpg";
+import img006 from "@/assets/img-006.jpg";
+import img007 from "@/assets/img-007.jpg";
+import img008 from "@/assets/img-008.jpg";
+import img009 from "@/assets/img-009.jpg";
+import img010 from "@/assets/img-010.jpg";
+import img011 from "@/assets/img-011.jpg";
+import img012 from "@/assets/img-012.jpg";
 
 const workItems = [
   {
     id: 1,
     title: "Luxury Villa Photography",
     description: "Professional interior and exterior photography showcasing modern Mediterranean architecture",
-    image: portfolio1,
+    image: img001,
     type: "Photography",
     icon: Camera,
     badge: "Featured Work"
@@ -29,7 +29,7 @@ const workItems = [
     id: 2,
     title: "Aerial Cinematic Tour",
     description: "Stunning drone footage and video walkthrough highlighting ocean views and luxury amenities",
-    image: portfolio2,
+    image: img002,
     type: "Video Production",
     icon: Video,
     badge: "Video Tour"
@@ -38,7 +38,7 @@ const workItems = [
     id: 3,
     title: "Staged Interior Design",
     description: "Professional staging and photography that resulted in 3x more viewing requests",
-    image: portfolio3,
+    image: img003,
     type: "Staging + Photo",
     icon: Camera,
     badge: "Success Story"
@@ -53,7 +53,7 @@ const propertyListings = [
     status: "Sold",
     beds: 5,
     baths: 4,
-    image: property1,
+    image: img004,
     badge: "Video + Photos"
   },
   {
@@ -63,7 +63,7 @@ const propertyListings = [
     status: "Sold",
     beds: 3,
     baths: 2,
-    image: property2,
+    image: img005,
     badge: "Drone Tour"
   },
   {
@@ -73,7 +73,7 @@ const propertyListings = [
     status: "Sold",
     beds: 4,
     baths: 3,
-    image: property3,
+    image: img006,
     badge: "Staging + Video"
   },
   {
@@ -83,7 +83,7 @@ const propertyListings = [
     status: "Sold",
     beds: 4,
     baths: 3,
-    image: property4,
+    image: img007,
     badge: "Photography"
   },
   {
@@ -93,7 +93,7 @@ const propertyListings = [
     status: "Sold",
     beds: 2,
     baths: 2,
-    image: property5,
+    image: img008,
     badge: "Virtual Tour"
   },
   {
@@ -103,7 +103,7 @@ const propertyListings = [
     status: "Sold",
     beds: 4,
     baths: 4,
-    image: property6,
+    image: img009,
     badge: "Cinematic Video"
   },
   {
@@ -113,7 +113,7 @@ const propertyListings = [
     status: "Sold",
     beds: 6,
     baths: 4,
-    image: property7,
+    image: img010,
     badge: "Before/After"
   },
   {
@@ -123,7 +123,7 @@ const propertyListings = [
     status: "Sold",
     beds: 5,
     baths: 5,
-    image: property8,
+    image: img011,
     badge: "Tech Showcase"
   },
   {
@@ -133,7 +133,7 @@ const propertyListings = [
     status: "Sold",
     beds: 3,
     baths: 2,
-    image: property9,
+    image: img012,
     badge: "Lifestyle Video"
   }
 ];
