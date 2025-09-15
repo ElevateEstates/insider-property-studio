@@ -76,7 +76,7 @@ export const TestimonialsSection = () => {
         if (container.scrollLeft >= maxScroll) {
           container.scrollLeft = 0;
         } else {
-          container.scrollLeft += 0.1625; // Slowed down by 67.5% (was 0.5, then 0.325)
+          container.scrollLeft += 0.25; // Slow but visible scroll speed
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
@@ -255,12 +255,6 @@ export const TestimonialsSection = () => {
             ))}
           </div>
           
-          {/* Scroll Hint */}
-          <div className="text-center mt-6">
-            <p className="text-white/50 text-sm">
-              Drag to scroll manually • Auto-scrolling resumes after 3 seconds • Click on any testimonial to read more
-            </p>
-          </div>
         </div>
 
         {/* Dynamic Testimonial Modal */}
