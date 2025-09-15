@@ -3,53 +3,52 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, ExternalLink } from "lucide-react";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import property1 from "@/assets/property-1.jpg";
-import property2 from "@/assets/property-2.jpg";
-import property3 from "@/assets/property-3.jpg";
-import property4 from "@/assets/property-4.jpg";
-import property5 from "@/assets/property-5.jpg";
-import property6 from "@/assets/property-6.jpg";
-import apartment1 from "@/assets/apartment-1.jpg";
-import apartment2 from "@/assets/apartment-2.jpg";
-import apartment3 from "@/assets/apartment-3.jpg";
-import apartment4 from "@/assets/apartment-4.jpg";
-import apartment5 from "@/assets/apartment-5.jpg";
-import apartment6 from "@/assets/apartment-6.jpg";
-import apartment7 from "@/assets/apartment-7.jpg";
-import apartment8 from "@/assets/apartment-8.jpg";
-import apartment9 from "@/assets/apartment-9.jpg";
-import maisonAmani1 from "@/assets/maison-amani-1.jpg";
-import maisonAmani2 from "@/assets/maison-amani-2.jpg";
-import maisonAmani3 from "@/assets/maison-amani-3.jpg";
-import maisonAmani4 from "@/assets/maison-amani-4.jpg";
-import maisonAmani5 from "@/assets/maison-amani-5.jpg";
-import maisonAmani6 from "@/assets/maison-amani-6.jpg";
-import maisonAmani7 from "@/assets/maison-amani-7.jpg";
-import maisonAmani8 from "@/assets/maison-amani-8.jpg";
-import maisonAmani9 from "@/assets/maison-amani-9.jpg";
-import maisonAmani10 from "@/assets/maison-amani-10.jpg";
-import maisonAmani11 from "@/assets/maison-amani-11.jpg";
-import maisonAmani12 from "@/assets/maison-amani-12.jpg";
-import maisonAmani13 from "@/assets/maison-amani-13.jpg";
-import maisonAmani14 from "@/assets/maison-amani-14.jpg";
-import maisonAmani15 from "@/assets/maison-amani-15.jpg";
-import maisonAmani16 from "@/assets/maison-amani-16.jpg";
-import maisonAmani17 from "@/assets/maison-amani-17.jpg";
-import maisonAmani18 from "@/assets/maison-amani-18.jpg";
-import maisonAmani19 from "@/assets/maison-amani-19.jpg";
-import maisonAmani20 from "@/assets/maison-amani-20.jpg";
-import maisonAmani21 from "@/assets/maison-amani-21.jpg";
-import maisonAmani22 from "@/assets/maison-amani-22.jpg";
-import maisonAmani23 from "@/assets/maison-amani-23.jpg";
-import maisonAmani24 from "@/assets/maison-amani-24.jpg";
-import maisonAmani25 from "@/assets/maison-amani-25.jpg";
-import maisonAmani26 from "@/assets/maison-amani-26.jpg";
-import maisonAmani27 from "@/assets/maison-amani-27.jpg";
-import maisonAmani28 from "@/assets/maison-amani-28.jpg";
-import maisonAmani29 from "@/assets/maison-amani-29.jpg";
+import img001 from "@/assets/img-001.jpg";
+import img002 from "@/assets/img-002.jpg";
+import img003 from "@/assets/img-003.jpg";
+import img004 from "@/assets/img-004.jpg";
+import img005 from "@/assets/img-005.jpg";
+import img006 from "@/assets/img-006.jpg";
+import img007 from "@/assets/img-007.jpg";
+import img008 from "@/assets/img-008.jpg";
+import img009 from "@/assets/img-009.jpg";
+import img013 from "@/assets/img-013.jpg";
+import img014 from "@/assets/img-014.jpg";
+import img015 from "@/assets/img-015.jpg";
+import img016 from "@/assets/img-016.jpg";
+import img017 from "@/assets/img-017.jpg";
+import img018 from "@/assets/img-018.jpg";
+import img019 from "@/assets/img-019.jpg";
+import img020 from "@/assets/img-020.jpg";
+import img021 from "@/assets/img-021.jpg";
+import img022 from "@/assets/img-022.jpg";
+import img023 from "@/assets/img-023.jpg";
+import img024 from "@/assets/img-024.jpg";
+import img025 from "@/assets/img-025.jpg";
+import img026 from "@/assets/img-026.jpg";
+import img027 from "@/assets/img-027.jpg";
+import img028 from "@/assets/img-028.jpg";
+import img029 from "@/assets/img-029.jpg";
+import img030 from "@/assets/img-030.jpg";
+import img031 from "@/assets/img-031.jpg";
+import img032 from "@/assets/img-032.jpg";
+import img034 from "@/assets/img-034.jpg";
+import img035 from "@/assets/img-035.jpg";
+import img036 from "@/assets/img-036.jpg";
+import img037 from "@/assets/img-037.jpg";
+import img038 from "@/assets/img-038.jpg";
+import img039 from "@/assets/img-039.jpg";
+import img040 from "@/assets/img-040.jpg";
+import img041 from "@/assets/img-041.jpg";
+import img042 from "@/assets/img-042.jpg";
+import img043 from "@/assets/img-043.jpg";
+import img044 from "@/assets/img-044.jpg";
+import img045 from "@/assets/img-045.jpg";
+import img046 from "@/assets/img-046.jpg";
+import img047 from "@/assets/img-047.jpg";
+import img048 from "@/assets/img-048.jpg";
+import img049 from "@/assets/img-049.jpg";
+import img050 from "@/assets/img-050.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -80,7 +79,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Maison Amani - Luxury 3-Bedroom Residence',
       location: 'Las Lomas del Marbella Club, Golden Mile',
       clientType: 'luxury',
-      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani13, maisonAmani14, maisonAmani15, maisonAmani16, maisonAmani17, maisonAmani18, maisonAmani19, maisonAmani20, maisonAmani21, maisonAmani22, maisonAmani23, maisonAmani24, maisonAmani25, maisonAmani26, maisonAmani27, maisonAmani28, maisonAmani29],
+      images: [img022, img023, img024, img025, img026, img027, img028, img029, img030, img031, img032, img034, img035, img036, img037, img038, img039, img040, img041, img042, img043, img044, img045, img046, img047, img048, img049, img050],
       packageType: 'photo-video',
       date: '2025',
       description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
@@ -92,7 +91,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Modern Middle-Floor 2-Bedroom Apartment',
       location: 'Costa del Sol',
       clientType: 'airbnb',
-      images: [apartment1, apartment2, apartment3, apartment4, apartment5, apartment6, apartment7, apartment8, apartment9],
+      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021],
       packageType: 'photo',
       date: '2025',
       description: 'Contemporary open-plan apartment with stunning mountain views, modern kitchen with integrated appliances, and spacious terrace access',
@@ -104,7 +103,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Contemporary Family Home',
       location: 'Estepona',
       clientType: 'residential',
-      images: [portfolio3, property2, property5, property6, property1, property4],
+      images: [img003, img005, img008, img009, img004, img007],
       packageType: 'photo',
       date: '2024',
       description: 'Modern interior design photography',
@@ -116,7 +115,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Vacation Rental Paradise',
       location: 'Nueva Andalucia',
       clientType: 'airbnb',
-      images: [property1, property3, property5, portfolio1, property2],
+      images: [img004, img006, img008, img001, img005],
       packageType: 'photo-video',
       date: '2024',
       description: 'Beautiful garden and outdoor living spaces',
@@ -128,7 +127,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Commercial Office Complex',
       location: 'Malaga Center',
       clientType: 'commercial',
-      images: [property2, portfolio2, property4, property6],
+      images: [img005, img002, img007, img009],
       packageType: 'photo-video',
       date: '2024',
       description: 'Professional commercial property showcase',
@@ -140,7 +139,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Luxury Spa Retreat',
       location: 'La Zagaleta',
       clientType: 'luxury',
-      images: [property3, property5, portfolio1, property1, property6, property2],
+      images: [img006, img008, img001, img004, img009, img005],
       packageType: 'photo',
       date: '2024',
       description: 'High-end bathroom and wellness spaces',
