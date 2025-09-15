@@ -42,6 +42,7 @@ export const TestimonialsSection = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [autoScroll, setAutoScroll] = useState(true);
+  const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
@@ -63,7 +64,7 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-scroll functionality
+// Auto-scroll functionality
   useEffect(() => {
     if (!isVisible || !autoScroll || isDragging) return;
 
@@ -75,7 +76,7 @@ export const TestimonialsSection = () => {
         if (container.scrollLeft >= maxScroll) {
           container.scrollLeft = 0;
         } else {
-          container.scrollLeft += 0.5; // Slow scroll speed
+          container.scrollLeft += 0.325; // Slowed down by 35% (was 0.5)
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
@@ -214,7 +215,8 @@ export const TestimonialsSection = () => {
             {extendedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-80 md:w-96 px-4 select-none"
+                className="flex-shrink-0 w-80 md:w-96 px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300"
+                onClick={() => setSelectedTestimonial(testimonial)}
               >
                 <div className="space-y-4">
                   {/* Blue Quote Icon */}
@@ -223,7 +225,9 @@ export const TestimonialsSection = () => {
                   </div>
                   
                   {/* Testimonial Text */}
-                  <blockquote className="text-white/90 text-lg md:text-xl leading-relaxed font-light">
+                  <blockquote className="text-white/90 leading-relaxed font-light" style={{
+                    fontSize: `clamp(1rem, ${Math.max(0.8, Math.min(1.2, 200 / testimonial.quote.length))}rem, 1.25rem)`
+                  }}>
                     "{testimonial.quote}"
                   </blockquote>
                   
@@ -245,10 +249,57 @@ export const TestimonialsSection = () => {
           {/* Scroll Hint */}
           <div className="text-center mt-6">
             <p className="text-white/50 text-sm">
-              Drag to scroll manually • Auto-scrolling resumes after 3 seconds
+              Drag to scroll manually • Auto-scrolling resumes after 3 seconds • Click on any testimonial to read more
             </p>
           </div>
         </div>
+
+        {/* Dynamic Testimonial Modal */}
+        {selectedTestimonial && (
+          <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
+            <DialogContent className="max-w-4xl bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden">
+              <div className="p-8">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  {/* Profile Image Section */}
+                  <div className="flex-shrink-0">
+                    <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
+                      <img 
+                        src={selectedTestimonial.image} 
+                        alt={selectedTestimonial.author}
+                        className={`w-full h-full object-cover ${
+                          selectedTestimonial.author === "Scarlett Lancaster" || selectedTestimonial.author === "Eddie Caires"
+                            ? "object-[50%_20%]" 
+                            : "object-center"
+                        }`}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="flex-1 space-y-6">
+                    {/* Quote Icon */}
+                    <Quote className="text-blue-400 w-12 h-12 opacity-80" />
+                    
+                    {/* Full Testimonial Text */}
+                    <blockquote className="text-white/95 text-lg md:text-xl leading-relaxed font-light">
+                      "{selectedTestimonial.quote}"
+                    </blockquote>
+                    
+                    {/* Author Information */}
+                    <div className="border-t border-white/20 pt-6">
+                      <div className="text-white font-semibold text-xl md:text-2xl mb-2">
+                        {selectedTestimonial.author}
+                      </div>
+                      <div className="text-blue-400 text-base md:text-lg">
+                        {selectedTestimonial.company}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
     </section>
   );
