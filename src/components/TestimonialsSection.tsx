@@ -114,7 +114,7 @@ export const TestimonialsSection = () => {
                   )}
                   <div>
                     <div className="text-white font-medium">{testimonial.author}</div>
-                    <div className="text-blue-400 text-sm">{testimonial.company}</div>
+                    <div className="text-blue-400 text-xs md:text-sm truncate">{testimonial.company}</div>
                   </div>
                 </div>
               </div>
