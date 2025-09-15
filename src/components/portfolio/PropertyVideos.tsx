@@ -19,11 +19,11 @@ interface VideoListing {
 }
 
 interface PropertyVideosProps {
-  selectedCategory: string;
   scrollY: number;
+  onItemClick: (items: any[], index: number, type: 'property-videos') => void;
 }
 
-const PropertyVideos = ({ selectedCategory, scrollY }: PropertyVideosProps) => {
+const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
   const [expandedListing, setExpandedListing] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -83,9 +83,7 @@ const PropertyVideos = ({ selectedCategory, scrollY }: PropertyVideosProps) => {
     }
   ];
 
-  const filteredListings = selectedCategory === 'all' 
-    ? videoListings 
-    : videoListings.filter(listing => listing.clientType === selectedCategory);
+  const filteredListings = videoListings;
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -126,7 +124,10 @@ const PropertyVideos = ({ selectedCategory, scrollY }: PropertyVideosProps) => {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <Card className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300">
+              <Card 
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => onItemClick(filteredListings, index, 'property-videos')}
+              >
                 {/* Video Embed */}
                 <div className="relative aspect-video">
                   <iframe

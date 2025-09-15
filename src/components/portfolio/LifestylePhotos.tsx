@@ -10,9 +10,10 @@ interface LifestylePhoto {
 
 interface LifestylePhotosProps {
   scrollY: number;
+  onItemClick: (items: any[], index: number, type: 'lifestyle-photos') => void;
 }
 
-const LifestylePhotos = ({ scrollY }: LifestylePhotosProps) => {
+const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -121,7 +122,10 @@ const LifestylePhotos = ({ scrollY }: LifestylePhotosProps) => {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="relative overflow-hidden rounded-lg glass-card aspect-[4/3] hover:scale-105 transition-transform duration-300">
+              <div 
+                className="relative overflow-hidden rounded-lg glass-card aspect-[4/3] hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onClick={() => onItemClick(lifestylePhotos, index, 'lifestyle-photos')}
+              >
                 <img
                   src={photo.src}
                   alt={photo.alt}

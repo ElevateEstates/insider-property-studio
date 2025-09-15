@@ -27,11 +27,11 @@ interface PortfolioListing {
 }
 
 interface PropertyListingsProps {
-  selectedCategory: string;
   scrollY: number;
+  onItemClick: (items: any[], index: number, type: 'property-listings') => void;
 }
 
-const PropertyListings = ({ selectedCategory, scrollY }: PropertyListingsProps) => {
+const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
   const [expandedListing, setExpandedListing] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -111,9 +111,7 @@ const PropertyListings = ({ selectedCategory, scrollY }: PropertyListingsProps) 
     }
   ];
 
-  const filteredListings = selectedCategory === 'all' 
-    ? portfolioListings 
-    : portfolioListings.filter(listing => listing.clientType === selectedCategory);
+  const filteredListings = portfolioListings;
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -154,7 +152,10 @@ const PropertyListings = ({ selectedCategory, scrollY }: PropertyListingsProps) 
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <Card className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300">
+              <Card 
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => onItemClick(filteredListings, index, 'property-listings')}
+              >
                 {/* Image Collage */}
                 <div className="relative">
                   <div className="grid grid-cols-3 gap-1 aspect-[16/10]">

@@ -19,9 +19,10 @@ interface LifestyleVideoListing {
 
 interface LifestyleVideosProps {
   scrollY: number;
+  onItemClick: (items: any[], index: number, type: 'lifestyle-videos') => void;
 }
 
-const LifestyleVideos = ({ scrollY }: LifestyleVideosProps) => {
+const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
   const [expandedListing, setExpandedListing] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -116,7 +117,10 @@ const LifestyleVideos = ({ scrollY }: LifestyleVideosProps) => {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <Card className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300">
+              <Card 
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer"
+                onClick={() => onItemClick(lifestyleVideos, index, 'lifestyle-videos')}
+              >
                 {/* Video Embed */}
                 <div className="relative aspect-video">
                   <iframe

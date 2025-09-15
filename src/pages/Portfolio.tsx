@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
 import { useEffect, useState } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -10,11 +9,15 @@ import PropertyListings from "@/components/portfolio/PropertyListings";
 import PropertyVideos from "@/components/portfolio/PropertyVideos";
 import LifestyleVideos from "@/components/portfolio/LifestyleVideos";
 import LifestylePhotos from "@/components/portfolio/LifestylePhotos";
+import PortfolioModal from "@/components/portfolio/PortfolioModal";
 
 const Portfolio = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeView, setActiveView] = useState<'property-listings' | 'property-videos' | 'lifestyle-videos' | 'lifestyle-photos'>('property-listings');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalItems, setModalItems] = useState<any[]>([]);
+  const [currentModalIndex, setCurrentModalIndex] = useState(0);
+  const [modalType, setModalType] = useState<'property-listings' | 'property-videos' | 'lifestyle-videos' | 'lifestyle-photos'>('property-listings');
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -22,27 +25,69 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleItemClick = (items: any[], index: number, type: typeof modalType) => {
+    setModalItems(items);
+    setCurrentModalIndex(index);
+    setModalType(type);
+    setModalOpen(true);
+  };
 
-  const categories = [
-    { id: 'all', label: 'All Listings' },
-    { id: 'luxury', label: 'Luxury' },
-    { id: 'residential', label: 'Residential' },
-    { id: 'airbnb', label: 'Airbnb' },
-    { id: 'commercial', label: 'Commercial' }
-  ];
+  const renderModalContent = (item: any, index: number) => {
+    switch (modalType) {
+      case 'property-listings':
+        return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 h-full">
+            {item.images?.map((image: string, imgIndex: number) => (
+              <div key={imgIndex} className="aspect-square overflow-hidden rounded">
+                <img
+                  src={image}
+                  alt={`${item.title} ${imgIndex + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        );
+      case 'property-videos':
+      case 'lifestyle-videos':
+        return (
+          <div className="w-full h-full flex items-center justify-center">
+            <iframe
+              src={item.videoUrl}
+              title={item.title}
+              className="w-full aspect-video rounded"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        );
+      case 'lifestyle-photos':
+        return (
+          <div className="w-full h-full flex items-center justify-center">
+            <img
+              src={item.src}
+              alt={item.alt}
+              className="max-w-full max-h-full object-contain rounded"
+            />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   const renderActiveView = () => {
     switch (activeView) {
       case 'property-listings':
-        return <PropertyListings selectedCategory={selectedCategory} scrollY={scrollY} />;
+        return <PropertyListings scrollY={scrollY} onItemClick={handleItemClick} />;
       case 'property-videos':
-        return <PropertyVideos selectedCategory={selectedCategory} scrollY={scrollY} />;
+        return <PropertyVideos scrollY={scrollY} onItemClick={handleItemClick} />;
       case 'lifestyle-videos':
-        return <LifestyleVideos scrollY={scrollY} />;
+        return <LifestyleVideos scrollY={scrollY} onItemClick={handleItemClick} />;
       case 'lifestyle-photos':
-        return <LifestylePhotos scrollY={scrollY} />;
+        return <LifestylePhotos scrollY={scrollY} onItemClick={handleItemClick} />;
       default:
-        return <PropertyListings selectedCategory={selectedCategory} scrollY={scrollY} />;
+        return <PropertyListings scrollY={scrollY} onItemClick={handleItemClick} />;
     }
   };
 
@@ -50,57 +95,12 @@ const Portfolio = () => {
     <div className="min-h-screen text-white relative">
       <ParallaxBackground speed={8} reduced={true} />
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20 py-32"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-        >
-          <div className="text-center space-y-8">
-            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
-              Our Portfolio
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              Visual Stories That
-              <span className="block text-gradient-gold">Sell Dreams</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-              Every property has a unique story. Through our lens, we capture the essence 
-              of luxury living and create compelling visual narratives that connect with buyers.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Portfolio Navigation */}
       <PortfolioNavigation 
         activeView={activeView} 
         onViewChange={setActiveView} 
       />
-
-      {/* Category Filter - only show for property views */}
-      {(activeView === 'property-listings' || activeView === 'property-videos') && (
-        <section className="py-16 transparent-section">
-          <div className="container mx-auto max-w-6xl px-4 md:px-8">
-            <div className="flex flex-wrap justify-center gap-4">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={selectedCategory === category.id 
-                    ? "glass-button bg-white/20" 
-                    : "glass-button"
-                  }
-                >
-                  {category.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Dynamic Content Based on Active View */}
       {renderActiveView()}
@@ -135,6 +135,17 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Modal */}
+      <PortfolioModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        items={modalItems}
+        currentIndex={currentModalIndex}
+        onNavigate={setCurrentModalIndex}
+        type={modalType}
+        renderContent={renderModalContent}
+      />
     </div>
   );
 };
