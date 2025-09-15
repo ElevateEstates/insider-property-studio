@@ -44,11 +44,9 @@ const PortfolioModal = ({
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  if (!currentItem) return null;
-
   const getImageArray = () => {
     if (type === 'property-listings') {
-      return currentItem.images || [];
+      return currentItem?.images || [];
     }
     if (type === 'lifestyle-photos') {
       return items.map((item: any) => item.src).filter(Boolean);
@@ -58,6 +56,37 @@ const PortfolioModal = ({
 
   const images = getImageArray();
   const hasMultipleImages = images.length > 1;
+
+  // Auto-scroll active thumbnail to center
+  useEffect(() => {
+    if (thumbnailContainerRef.current && thumbnailRefs.current[selectedImageIndex]) {
+      const container = thumbnailContainerRef.current;
+      const thumbnail = thumbnailRefs.current[selectedImageIndex];
+      
+      if (thumbnail) {
+        const containerRect = container.getBoundingClientRect();
+        const thumbnailRect = thumbnail.getBoundingClientRect();
+        
+        // Calculate the center position
+        const containerCenter = containerRect.width / 2;
+        const thumbnailCenter = thumbnailRect.left - containerRect.left + thumbnailRect.width / 2;
+        const scrollOffset = thumbnailCenter - containerCenter;
+        
+        container.scrollTo({
+          left: container.scrollLeft + scrollOffset,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [selectedImageIndex]);
+
+  // Reset thumbnail refs array when images change
+  useEffect(() => {
+    thumbnailRefs.current = thumbnailRefs.current.slice(0, images.length);
+  }, [images.length]);
+
+  if (!currentItem) return null;
+
 
   // Auto-scroll active thumbnail to center
   useEffect(() => {
