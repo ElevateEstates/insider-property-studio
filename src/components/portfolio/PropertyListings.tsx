@@ -3,68 +3,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, ExternalLink } from "lucide-react";
-import img001 from "@/assets/img-001.jpg";
-import img002 from "@/assets/img-002.jpg";
-import img003 from "@/assets/img-003.jpg";
-import img004 from "@/assets/img-004.jpg";
-import img005 from "@/assets/img-005.jpg";
-import img006 from "@/assets/img-006.jpg";
-import img007 from "@/assets/img-007.jpg";
-import img008 from "@/assets/img-008.jpg";
-import img009 from "@/assets/img-009.jpg";
-import img013 from "@/assets/img-013.jpg";
-import img014 from "@/assets/img-014.jpg";
-import img015 from "@/assets/img-015.jpg";
-import img016 from "@/assets/img-016.jpg";
-import img017 from "@/assets/img-017.jpg";
-import img018 from "@/assets/img-018.jpg";
-import img019 from "@/assets/img-019.jpg";
-import img020 from "@/assets/img-020.jpg";
-import img021 from "@/assets/img-021.jpg";
-import img022 from "@/assets/img-022.jpg";
-import img023 from "@/assets/img-023.jpg";
-import img024 from "@/assets/img-024.jpg";
-import img025 from "@/assets/img-025.jpg";
-import img026 from "@/assets/img-026.jpg";
-import img027 from "@/assets/img-027.jpg";
-import img028 from "@/assets/img-028.jpg";
-import img029 from "@/assets/img-029.jpg";
-import img030 from "@/assets/img-030.jpg";
-import img031 from "@/assets/img-031.jpg";
-import img032 from "@/assets/img-032.jpg";
-import img034 from "@/assets/img-034.jpg";
-import img035 from "@/assets/img-035.jpg";
-import img036 from "@/assets/img-036.jpg";
-import img037 from "@/assets/img-037.jpg";
-import img038 from "@/assets/img-038.jpg";
-import img039 from "@/assets/img-039.jpg";
-import img040 from "@/assets/img-040.jpg";
-import img041 from "@/assets/img-041.jpg";
-import img042 from "@/assets/img-042.jpg";
-import img043 from "@/assets/img-043.jpg";
-import img044 from "@/assets/img-044.jpg";
-import img045 from "@/assets/img-045.jpg";
-import img046 from "@/assets/img-046.jpg";
-import img047 from "@/assets/img-047.jpg";
-import img048 from "@/assets/img-048.jpg";
-import img049 from "@/assets/img-049.jpg";
-import img050 from "@/assets/img-050.jpg";
-import img051 from "@/assets/img-051.jpg";
-import img052 from "@/assets/img-052.jpg";
-import img053 from "@/assets/img-053.jpg";
-import img054 from "@/assets/img-054.jpg";
-import img055 from "@/assets/img-055.jpg";
-import img056 from "@/assets/img-056.jpg";
-import img057 from "@/assets/img-057.jpg";
-import img058 from "@/assets/img-058.jpg";
-import img059 from "@/assets/img-059.jpg";
-import img060 from "@/assets/img-060.jpg";
-import img061 from "@/assets/img-061.jpg";
-import img062 from "@/assets/img-062.jpg";
-import img010 from "@/assets/img-010.jpg";
-import img011 from "@/assets/img-011.jpg";
-import img012 from "@/assets/img-012.jpg";
-import img033 from "@/assets/img-033.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -97,11 +35,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       clientType: 'luxury',
       images: [
         "/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png",
-        "/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png",
-        img001, img002, img003, img004, img005, img006, img007, img008, img009,
-        img010, img011, img012, img013, img014, img015, img016, img017, img018,
-        img019, img020, img021, img022, img023, img024, img025, img026, img027,
-        img028, img029, img030, img031, img032
+        "/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png"
       ],
       packageType: 'photo-video',
       date: "October 2024",
@@ -120,11 +54,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
         "/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png",
         "/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png",
         "/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png",
-        "/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png",
-        img033, img034, img035, img036, img037, img038, img039, img040,
-        img041, img042, img043, img044, img045, img046, img047, img048, img049,
-        img050, img051, img052, img053, img054, img055, img056, img057, img058,
-        img059, img060, img061, img062
+        "/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png"
       ],
       packageType: 'photo',
       date: "September 2024",
