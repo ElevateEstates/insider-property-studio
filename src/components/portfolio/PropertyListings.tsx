@@ -73,7 +73,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       clientType: 'luxury',
       images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani13, maisonAmani14, maisonAmani15, maisonAmani16, maisonAmani17, maisonAmani18, maisonAmani19, maisonAmani20, maisonAmani21, maisonAmani22, maisonAmani23, maisonAmani24, maisonAmani25, maisonAmani26, maisonAmani27, maisonAmani28, maisonAmani29],
       packageType: 'photo-video',
-      date: '2024',
+      date: '2025',
       description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
       clientNotes: 'Create standout before and after photos of this development to showcase its beauty and transformation.',
       shootDetails: 'High quality before and after photos of the development, drone photos of the urbanisation, some detail shots of amenities and a short reel for social media. Limited by tight budget and short shoot time.'
