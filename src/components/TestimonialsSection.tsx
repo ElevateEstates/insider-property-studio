@@ -78,6 +78,16 @@ export const TestimonialsSection = () => {
   const ProfileImage = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
     if (!testimonial.image) return null;
     
+    // Special positioning for different clients
+    const getObjectPosition = (author: string) => {
+      switch (author) {
+        case "Scarlett Lancaster":
+          return "object-[50%_20%]"; // Position from top for Scarlett
+        default:
+          return "object-center";
+      }
+    };
+    
     return (
       <Dialog>
         <DialogTrigger asChild>
@@ -85,7 +95,7 @@ export const TestimonialsSection = () => {
             <img 
               src={testimonial.image} 
               alt={testimonial.author}
-              className="w-full h-full object-cover object-center"
+              className={`w-full h-full object-cover ${getObjectPosition(testimonial.author)}`}
             />
           </div>
         </DialogTrigger>
@@ -95,7 +105,7 @@ export const TestimonialsSection = () => {
               <img 
                 src={testimonial.image} 
                 alt={testimonial.author}
-                className="w-full h-full object-cover object-center"
+                className={`w-full h-full object-cover ${getObjectPosition(testimonial.author)}`}
               />
             </div>
             <div className="text-center">
