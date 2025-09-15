@@ -39,14 +39,17 @@ const PortfolioModal = ({
   type,
   renderContent,
 }: PortfolioModalProps) => {
-  const currentItem = items[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  // Always call hooks at the same depth
+  const currentItem = items[currentIndex] || null;
+  
   const getImageArray = () => {
+    if (!currentItem) return [];
     if (type === 'property-listings') {
-      return currentItem?.images || [];
+      return currentItem.images || [];
     }
     if (type === 'lifestyle-photos') {
       return items.map((item: any) => item.src).filter(Boolean);
@@ -57,9 +60,9 @@ const PortfolioModal = ({
   const images = getImageArray();
   const hasMultipleImages = images.length > 1;
 
-  // Auto-scroll active thumbnail to center
+  // Auto-scroll active thumbnail to center - always call this hook
   useEffect(() => {
-    if (thumbnailContainerRef.current && thumbnailRefs.current[selectedImageIndex]) {
+    if (currentItem && thumbnailContainerRef.current && thumbnailRefs.current[selectedImageIndex]) {
       const container = thumbnailContainerRef.current;
       const thumbnail = thumbnailRefs.current[selectedImageIndex];
       
@@ -78,13 +81,14 @@ const PortfolioModal = ({
         });
       }
     }
-  }, [selectedImageIndex]);
+  }, [selectedImageIndex, currentItem]);
 
-  // Reset thumbnail refs array when images change
+  // Reset thumbnail refs array when images change - always call this hook
   useEffect(() => {
     thumbnailRefs.current = thumbnailRefs.current.slice(0, images.length);
   }, [images.length]);
 
+  // Early return after all hooks
   if (!currentItem) return null;
 
 
