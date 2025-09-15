@@ -26,6 +26,12 @@ import maisonAmani11 from "@/assets/maison-amani-11.jpg";
 import maisonAmani12 from "@/assets/maison-amani-12.jpg";
 import maisonAmani13 from "@/assets/maison-amani-13.jpg";
 import maisonAmani14 from "@/assets/maison-amani-14.jpg";
+import maisonAmani15 from "@/assets/maison-amani-15.jpg";
+import maisonAmani16 from "@/assets/maison-amani-16.jpg";
+import maisonAmani17 from "@/assets/maison-amani-17.jpg";
+import maisonAmani18 from "@/assets/maison-amani-18.jpg";
+import maisonAmani19 from "@/assets/maison-amani-19.jpg";
+import maisonAmani20 from "@/assets/maison-amani-20.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -56,7 +62,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Maison Amani - Luxury 3-Bedroom Residence',
       location: 'Las Lomas del Marbella Club, Golden Mile',
       clientType: 'luxury',
-      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani13, maisonAmani14],
+      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani13, maisonAmani14, maisonAmani15, maisonAmani16, maisonAmani17, maisonAmani18, maisonAmani19, maisonAmani20],
       packageType: 'photo-video',
       date: '2024',
       description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
