@@ -196,29 +196,6 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                     )}
                   </div>
 
-                  {/* Client Type Badge */}
-                  <div className="absolute top-4 left-4">
-                    <Badge className={`backdrop-blur-sm text-white font-medium ${
-                      listing.clientType === 'luxury' ? 'bg-yellow-600/80' :
-                      listing.clientType === 'commercial' ? 'bg-blue-600/80' :
-                      listing.clientType === 'airbnb' ? 'bg-green-600/80' :
-                      'bg-purple-600/80'
-                    }`}>
-                      {listing.clientType.charAt(0).toUpperCase() + listing.clientType.slice(1)}
-                    </Badge>
-                  </div>
-
-                  {/* Package Type Badge */}
-                  <div className="absolute top-4 right-4">
-                    <Badge className={`backdrop-blur-sm text-white ${
-                      listing.packageType === 'photo-video' ? 'bg-red-500/80' :
-                      listing.packageType === 'video' ? 'bg-red-600/80' :
-                      'bg-blue-500/80'
-                    }`}>
-                      {listing.packageType === 'photo-video' ? 'Photo + Video' :
-                       listing.packageType === 'video' ? 'Video Package' : 'Photo Package'}
-                    </Badge>
-                  </div>
                 </div>
 
                 {/* Content - Consistent Height */}

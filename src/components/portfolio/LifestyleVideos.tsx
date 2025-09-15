@@ -131,24 +131,6 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
                     allowFullScreen
                   />
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <Badge className={`backdrop-blur-sm text-white font-medium ${
-                      video.category === 'dining' ? 'bg-orange-600/80' :
-                      video.category === 'entertainment' ? 'bg-purple-600/80' :
-                      video.category === 'wellness' ? 'bg-green-600/80' :
-                      'bg-blue-600/80'
-                    }`}>
-                      {video.category.charAt(0).toUpperCase() + video.category.slice(1)}
-                    </Badge>
-                  </div>
-
-                  {/* Lifestyle Badge */}
-                  <div className="absolute top-4 right-4">
-                    <Badge className="backdrop-blur-sm text-white bg-pink-600/80">
-                      Lifestyle Video
-                    </Badge>
-                  </div>
                 </div>
 
                 {/* Content - Consistent Height */}

@@ -31,55 +31,16 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
   const videoListings: VideoListing[] = [
     {
       id: '1',
-      title: 'Mediterranean Villa Estate Tour',
-      location: 'Marbella, Spain',
+      title: 'Mijas Location Introduction Video',
+      location: 'Mijas, Spain',
       clientType: 'luxury',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      videoUrl: 'https://player.vimeo.com/video/1118748157?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1',
       thumbnail: '/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png',
-      packageType: 'photo-video',
-      date: '2024',
-      description: 'Cinematic walkthrough of luxury coastal villa',
-      clientNotes: 'Client wanted dramatic sunset shots with emphasis on infinity pool and ocean views.',
-      shootDetails: '2-day production with drone cinematography and interior flow sequences'
-    },
-    {
-      id: '2',
-      title: 'Penthouse Luxury Experience',
-      location: 'Puerto Banus',
-      clientType: 'luxury',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png',
       packageType: 'video',
-      date: '2024',
-      description: 'Premium penthouse with panoramic marina views',
-      clientNotes: 'High-end production for international marketing campaign.',
-      shootDetails: 'Single-day shoot with professional voice-over and luxury lifestyle sequences'
-    },
-    {
-      id: '3',
-      title: 'Family Home Showcase',
-      location: 'Estepona',
-      clientType: 'residential',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png',
-      packageType: 'video',
-      date: '2024',
-      description: 'Warm family-focused home tour',
-      clientNotes: 'Emphasis on natural lighting and family spaces.',
-      shootDetails: 'Half-day video production highlighting functionality and comfort'
-    },
-    {
-      id: '4',
-      title: 'Vacation Rental Experience',
-      location: 'Nueva Andalucia',
-      clientType: 'airbnb',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png',
-      packageType: 'photo-video',
-      date: '2024',
-      description: 'Guest experience journey and amenities showcase',
-      clientNotes: 'Focus on lifestyle amenities and guest comfort for booking platform.',
-      shootDetails: 'Full-day production documenting complete guest experience'
+      date: '2025 - September',
+      description: 'Cinematic video to showcase the convenient lifestyle in Mijas',
+      clientNotes: 'Showcase Mijas as a potential place for living to our Northern Europe clients who are not very familiar with Spain.',
+      shootDetails: '4-day shoot, 2 week post-production, professional voice-over'
     }
   ];
 
@@ -130,38 +91,20 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
               >
                 {/* Video Embed - Fixed Height */}
                 <div className="relative aspect-video flex-shrink-0">
-                  <iframe
-                    src={listing.videoUrl}
-                    title={listing.title}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-
-                  {/* Client Type Badge */}
-                  <div className="absolute top-4 left-4">
-                    <Badge className={`backdrop-blur-sm text-white font-medium ${
-                      listing.clientType === 'luxury' ? 'bg-yellow-600/80' :
-                      listing.clientType === 'commercial' ? 'bg-blue-600/80' :
-                      listing.clientType === 'airbnb' ? 'bg-green-600/80' :
-                      'bg-purple-600/80'
-                    }`}>
-                      {listing.clientType.charAt(0).toUpperCase() + listing.clientType.slice(1)}
-                    </Badge>
-                  </div>
-
-                  {/* Package Type Badge */}
-                  <div className="absolute top-4 right-4">
-                    <Badge className={`backdrop-blur-sm text-white ${
-                      listing.packageType === 'photo-video' ? 'bg-red-500/80' : 'bg-red-600/80'
-                    }`}>
-                      {listing.packageType === 'photo-video' ? 'Photo + Video' : 'Video Package'}
-                    </Badge>
+                  <div style={{padding:"56.25% 0 0 0",position:"relative"}}>
+                    <iframe 
+                      src={listing.videoUrl} 
+                      frameBorder="0" 
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                      referrerPolicy="strict-origin-when-cross-origin" 
+                      style={{position:"absolute",top:0,left:0,width:"100%",height:"100%"}} 
+                      title={listing.title}
+                    />
                   </div>
                 </div>
 
                 {/* Content - Consistent Height */}
-                <div className="p-6 flex-1 flex flex-col justify-between bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
+                <div className="p-6 flex-1 flex flex-col bg-gray-900/60 backdrop-blur-sm border-t border-white/10">
                   {/* Header Info - Fixed Space */}
                   <div className="mb-4">
                     <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
@@ -177,64 +120,26 @@ const PropertyVideos = ({ scrollY, onItemClick }: PropertyVideosProps) => {
                       {listing.location}
                     </p>
                     
-                    <p className="text-white/60 text-sm leading-relaxed">
+                    <p className="text-white/60 text-sm leading-relaxed mb-4">
                       {listing.description}
                     </p>
                   </div>
 
-                  {/* Expandable Content */}
-                  <div className="flex-1">
-                    <div className="space-y-3 mb-4">
-                      <div>
-                        <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === listing.id 
-                            ? listing.shootDetails 
-                            : listing.shootDetails.slice(0, 80) + (listing.shootDetails.length > 80 ? '...' : '')
-                          }
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
-                        <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === listing.id 
-                            ? listing.clientNotes 
-                            : listing.clientNotes.slice(0, 80) + (listing.clientNotes.length > 80 ? '...' : '')
-                          }
-                        </p>
-                      </div>
+                  {/* Content Details */}
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">
+                        {listing.shootDetails}
+                      </p>
                     </div>
-                  </div>
-
-                  {/* Actions - Fixed at Bottom */}
-                  <div className="flex gap-2 mt-auto">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setExpandedListing(
-                          expandedListing === listing.id ? null : listing.id
-                        );
-                      }}
-                      className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
-                    >
-                      {expandedListing === listing.id ? 'Show Less' : 'Show More'}
-                      <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
-                        expandedListing === listing.id ? 'rotate-90' : ''
-                      }`} />
-                    </Button>
                     
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-white/60 hover:text-white hover:bg-white/10"
-                    >
-                      Watch Full Video
-                      <Play className="w-4 h-4 ml-2" />
-                    </Button>
+                    <div>
+                      <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">
+                        {listing.clientNotes}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Card>
