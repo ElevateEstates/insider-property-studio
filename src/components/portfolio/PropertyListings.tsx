@@ -263,16 +263,6 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                         expandedListing === listing.id ? 'rotate-90' : ''
                       }`} />
                     </Button>
-                    
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-white/60 hover:text-white hover:bg-white/10"
-                    >
-                      View Gallery
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
                   </div>
                 </div>
               </Card>
