@@ -87,19 +87,19 @@ export const Hero = () => {
             <div className="space-y-6">
               <FadeInText 
                 text="Your partner in" 
-                className="block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight" 
+                className="block text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight" 
                 delay={0} 
                 animationKey="hero-line-1"
               />
               
               <FadeInText 
                 text="property marketing," 
-                className="block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[0.9] tracking-tight text-gradient-gold" 
+                className="block text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight text-gradient-gold" 
                 delay={400} 
                 animationKey="hero-line-2"
               />
 
-              <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight">
+              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light leading-[0.9] tracking-tight">
                 <FadeInText 
                   text="turning listings into" 
                   className="inline-block" 
@@ -115,7 +115,7 @@ export const Hero = () => {
             {/* Subtitle */}
             <FadeInText 
               text="Professional photography, cinematic videos, and lifestyle content that transforms property listings into compelling stories." 
-              className="block text-lg md:text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed font-light" 
+              className="block text-base md:text-lg lg:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed font-light" 
               delay={1200} 
               animationKey="hero-subtitle"
             />
