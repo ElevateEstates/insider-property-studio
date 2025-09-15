@@ -26,7 +26,6 @@ const Index = () => {
         <WorkWithUs />
       </div>
       <div className="transparent-section">
-        <ContactPreview />
         <ContactSection />
       </div>
       <Footer />
