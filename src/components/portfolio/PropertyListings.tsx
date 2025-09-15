@@ -59,6 +59,8 @@ import img057 from "@/assets/img-057.jpg";
 import img058 from "@/assets/img-058.jpg";
 import img059 from "@/assets/img-059.jpg";
 import img060 from "@/assets/img-060.jpg";
+import img061 from "@/assets/img-061.jpg";
+import img062 from "@/assets/img-062.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -101,7 +103,29 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Modern Middle-Floor 2-Bedroom Apartment',
       location: 'Costa del Sol',
       clientType: 'airbnb',
-      images: [img013, img014, img015, img016, img017, img018, img019, img020, img021, img051, img052, img053, img054, img055, img056, img057, img058, img059, img060],
+      images: [
+        img013, // Aerial development view
+        img014, // Living room wide angle
+        img015, // Living room different angle
+        img051, // Living room with terrace access
+        img055, // Living room detail with red cushions
+        img017, // Kitchen island view
+        img018, // Kitchen detail with appliances
+        img019, // Kitchen with integrated fridge
+        img020, // Kitchen full galley view
+        img054, // Kitchen sink detail
+        img016, // Dining area with round table
+        img056, // Dining table setup with wine
+        img052, // Terrace dining with sea view
+        img053, // Terrace lounge with coastal view
+        img060, // Master bedroom with grey headboard
+        img057, // Second bedroom with garden view
+        img061, // Master bedroom with wardrobe view
+        img058, // Bathroom with floating vanity
+        img059, // En-suite with glass shower
+        img062, // Master bathroom with bathtub
+        img021  // Additional interior view
+      ],
       packageType: 'photo',
       date: '2025',
       description: 'Contemporary open-plan apartment with stunning mountain views, modern kitchen with integrated appliances, and spacious terrace access',
