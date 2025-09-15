@@ -108,7 +108,7 @@ const PortfolioModal = ({
       <div className="w-full h-full flex flex-col overflow-hidden">
         {/* Main Image Container - Scrollable */}
         <div className="flex-1 overflow-auto">
-          <div className="min-h-full flex items-center justify-center relative p-8">
+          <div className="min-h-full flex items-center justify-center relative p-2 sm:p-4 lg:p-8">
             {/* Left Navigation Arrow */}
             {hasMultipleImages && (
               <Button
@@ -134,14 +134,11 @@ const PortfolioModal = ({
             )}
 
             {/* Main Image - Responsive sizing */}
-            <div className="flex flex-col items-center gap-8 max-w-full">
+            <div className="flex flex-col items-center gap-4 sm:gap-8 max-w-full">
               <img
                 src={images[selectedImageIndex] || currentItem.src}
                 alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-                className="max-w-full max-h-[60vh] min-h-0 object-contain"
-                style={{ 
-                  maxHeight: window.innerHeight < 800 ? '50vh' : '60vh'
-                }}
+                className="max-w-full max-h-[50vh] sm:max-h-[60vh] lg:max-h-[70vh] min-h-0 object-contain"
               />
               
               {/* Thumbnails directly below main image */}
@@ -149,21 +146,21 @@ const PortfolioModal = ({
                 <div className="flex flex-col items-center gap-3 w-full">
                   <div 
                     ref={thumbnailContainerRef}
-                    className="flex gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-16 scroll-smooth"
+                    className="flex gap-1 sm:gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-4 sm:px-16 scroll-smooth"
                     style={{
                       scrollbarWidth: 'thin',
                       scrollbarColor: 'rgba(255,255,255,0.3) transparent'
                     }}
                   >
                     {/* Left safe zone */}
-                    <div className="flex-shrink-0 w-12" />
+                    <div className="flex-shrink-0 w-4 sm:w-12" />
                     
                     {images.map((image: string, index: number) => (
                       <button
                         key={index}
                         ref={el => thumbnailRefs.current[index] = el}
                         onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
+                        className={`flex-shrink-0 w-16 h-10 sm:w-20 sm:h-12 rounded overflow-hidden border-2 transition-all ${
                           selectedImageIndex === index 
                             ? 'border-white shadow-lg scale-105' 
                             : 'border-white/20 hover:border-white/50'
@@ -178,7 +175,7 @@ const PortfolioModal = ({
                     ))}
                     
                     {/* Right safe zone */}
-                    <div className="flex-shrink-0 w-12" />
+                    <div className="flex-shrink-0 w-4 sm:w-12" />
                   </div>
 
                   {/* Image Counter */}
@@ -197,26 +194,23 @@ const PortfolioModal = ({
   const shouldShowSidebar = type !== 'lifestyle-photos';
 
   const getDynamicSize = () => {
-    if (type === 'property-videos' || type === 'lifestyle-videos') {
-      return shouldShowSidebar ? 'max-w-7xl h-[95vh]' : 'max-w-6xl h-[95vh]';
-    }
-    // For images, make size more dynamic
-    return shouldShowSidebar ? 'max-w-6xl max-h-[90vh]' : 'max-w-5xl max-h-[85vh]';
+    // Mobile-first responsive sizing that fills the screen properly
+    return 'w-full h-full max-w-none max-h-none sm:w-[95vw] sm:h-[95vh] sm:max-w-7xl sm:max-h-[95vh]';
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className={`w-full bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden ${getDynamicSize()}`}>
-        <div className="flex h-full">
+      <DialogContent className={`bg-black/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden ${getDynamicSize()}`}>
+        <div className="flex h-full flex-col sm:flex-row">
           {/* Main Content Area */}
-          <div className="flex-1 flex flex-col min-w-0">
+          <div className="flex-1 flex flex-col min-w-0 order-1">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/50">
-              <div className="flex items-center gap-4 min-w-0">
-                <h2 className="text-xl font-light text-white truncate">
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-white/10 bg-black/50">
+              <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                <h2 className="text-lg sm:text-xl font-light text-white truncate">
                   {currentItem.title}
                 </h2>
-                <div className="flex gap-2 flex-wrap">
+                <div className="hidden sm:flex gap-2 flex-wrap">
                   {currentItem.clientType && (
                     <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
                       {currentItem.clientType}
@@ -281,9 +275,9 @@ const PortfolioModal = ({
 
           {/* Conditional Sidebar */}
           {shouldShowSidebar && (
-            <div className="w-80 border-l border-white/10 bg-black/30 flex flex-col overflow-auto">
+            <div className="w-full sm:w-80 border-t sm:border-t-0 sm:border-l border-white/10 bg-black/30 flex flex-col overflow-auto order-2 sm:order-2 max-h-[40vh] sm:max-h-none">
               {/* Safe zone padding to align with image top */}
-              <div className="pt-20 px-4 pb-4 flex flex-col gap-4">
+              <div className="pt-4 sm:pt-20 px-4 pb-4 flex flex-col gap-4">
                 <div>
                   <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
                     <span>{currentItem.date}</span>
