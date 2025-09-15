@@ -101,7 +101,7 @@ export const TestimonialsSection = () => {
             />
           </div>
         </DialogTrigger>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md glass-card border-white/20">
           <div className="flex flex-col items-center space-y-4">
             <div className="w-64 h-64 rounded-full overflow-hidden">
               <img 
@@ -111,8 +111,8 @@ export const TestimonialsSection = () => {
               />
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-semibold">{testimonial.author}</h3>
-              <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+              <h3 className="text-lg font-semibold text-white">{testimonial.author}</h3>
+              <p className="text-sm text-blue-400">{testimonial.company}</p>
             </div>
           </div>
         </DialogContent>
