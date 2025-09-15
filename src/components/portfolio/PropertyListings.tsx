@@ -16,6 +16,16 @@ import maisonAmani1 from "@/assets/maison-amani-1.jpg";
 import maisonAmani2 from "@/assets/maison-amani-2.jpg";
 import maisonAmani3 from "@/assets/maison-amani-3.jpg";
 import maisonAmani4 from "@/assets/maison-amani-4.jpg";
+import maisonAmani5 from "@/assets/maison-amani-5.jpg";
+import maisonAmani6 from "@/assets/maison-amani-6.jpg";
+import maisonAmani7 from "@/assets/maison-amani-7.jpg";
+import maisonAmani8 from "@/assets/maison-amani-8.jpg";
+import maisonAmani9 from "@/assets/maison-amani-9.jpg";
+import maisonAmani10 from "@/assets/maison-amani-10.jpg";
+import maisonAmani11 from "@/assets/maison-amani-11.jpg";
+import maisonAmani12 from "@/assets/maison-amani-12.jpg";
+import maisonAmani13 from "@/assets/maison-amani-13.jpg";
+import maisonAmani14 from "@/assets/maison-amani-14.jpg";
 
 interface PortfolioListing {
   id: string;
@@ -46,12 +56,12 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       title: 'Maison Amani - Luxury 3-Bedroom Residence',
       location: 'Las Lomas del Marbella Club, Golden Mile',
       clientType: 'luxury',
-      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, property1, property2],
+      images: [maisonAmani1, maisonAmani2, maisonAmani3, maisonAmani4, maisonAmani5, maisonAmani6, maisonAmani7, maisonAmani8, maisonAmani9, maisonAmani10, maisonAmani11, maisonAmani12, maisonAmani13, maisonAmani14],
       packageType: 'photo-video',
       date: '2024',
       description: 'Newly renovated Japandi-style residence with breathtaking sea, city & mountain views. €1,350,000',
-      clientNotes: 'Ultra-luxury 129m² apartment in exclusive gated community. Fully furnished with premium materials including Dornbracht, Gaggenau, and herringbone floors. Target: international luxury buyers.',
-      shootDetails: 'Full architectural photography showcasing Japandi design, panoramic views, and luxury amenities. Emphasis on natural lighting and premium finishes throughout 3 bedrooms, 2.5 bathrooms.'
+      clientNotes: 'Create standout before and after photos of this development to showcase its beauty and transformation.',
+      shootDetails: 'High quality before and after photos of the development, drone photos of the urbanisation, some detail shots of amenities and a short reel for social media. Limited by tight budget and short shoot time.'
     },
     {
       id: '2',
