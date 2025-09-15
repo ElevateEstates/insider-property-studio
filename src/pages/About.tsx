@@ -59,12 +59,10 @@ const About = () => {
                 About Geir Costa
               </Badge>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-                Capturing the
-                <span className="block text-gradient-gold">Essence</span>
-                of Luxury Living
+                Meet Geir Stint, your reliable content wizard.
               </h1>
               <p className="text-xl text-white/80 leading-relaxed">
-                With over 5 years of experience in luxury real estate media, we specialize in creating 
+                With over 8 years of experience in professional media creation in wide variety of sectors, we bring the expertise in creating 
                 visual content that doesn't just showcase properties—it sells dreams and lifestyles.
               </p>
               <div className="flex flex-wrap gap-4">
