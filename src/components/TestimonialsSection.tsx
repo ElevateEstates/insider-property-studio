@@ -1,13 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
 import eddiePhoto from "../assets/eddie-profile.jpg";
+import yoniPhoto from "../assets/yoni-profile.jpg";
 
 const testimonials = [
   {
-    quote: "The best in the business! I highly recommend to everyone to use you. There is simply no one better than you! Your videos have grown my social media in a big way!",
-    author: "Rob Thomson",
-    company: "Waterfront Properties",
-    image: null
+    quote: "I cannot express enough how thrilled I am with the work of Geir Stint as our content creator. His unique ideas and innovative approach have truly set him apart in the industry. Geir's ability to consistently deliver high-quality content at an impressive pace is nothing short of remarkable. From the very beginning, it was clear that Geir is not just another content creator; he brings a fresh perspective that has transformed the way we communicate with our audience. His creativity knows no bounds, and it has played a pivotal role in elevating my business to new heights. I wholeheartedly give Geir a perfect five-star rating and cannot recommend him highly enough.",
+    author: "Yoni Bernard",
+    company: "Founder of Decogym and CEO of Mr Broker Estate",
+    image: yoniPhoto
   },
   {
     quote: "We've had the pleasure of working with Geir on a few luxury properties, and are always very impressed by his attention to detail, crispness of the photos, and other marks of a professional luxury photographer.",
