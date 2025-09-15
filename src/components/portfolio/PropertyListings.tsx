@@ -153,11 +153,11 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <Card 
-                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer"
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer h-full flex flex-col"
                 onClick={() => onItemClick(filteredListings, index, 'property-listings')}
               >
-                {/* Image Collage */}
-                <div className="relative">
+                {/* Image Collage - Fixed Height */}
+                <div className="relative flex-shrink-0">
                   <div className="grid grid-cols-3 gap-1 aspect-[16/10]">
                     {/* Main large image */}
                     <div className="col-span-2 row-span-2 overflow-hidden">
@@ -221,55 +221,64 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
-                    <Calendar className="w-4 h-4" />
-                    {listing.date}
-                  </div>
-                  
-                  <h3 className="text-xl font-medium text-white mb-2">
-                    {listing.title}
-                  </h3>
-                  
-                  <p className="text-white/70 text-sm mb-3">
-                    {listing.location}
-                  </p>
-                  
-                  <p className="text-white/60 text-sm leading-relaxed mb-4">
-                    {listing.description}
-                  </p>
-
-                  {/* Shoot Details & Client Notes Preview */}
-                  <div className="space-y-3 mb-4">
-                    <div>
-                      <h4 className="text-white/80 text-xs font-medium mb-1">Shoot Details:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
-                        {expandedListing === listing.id 
-                          ? listing.shootDetails 
-                          : listing.shootDetails.slice(0, 80) + (listing.shootDetails.length > 80 ? '...' : '')
-                        }
-                      </p>
+                {/* Content - Consistent Height */}
+                <div className="p-6 flex-1 flex flex-col">
+                  {/* Header Info - Fixed Space */}
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
+                      <Calendar className="w-4 h-4" />
+                      {listing.date}
                     </div>
                     
-                    <div>
-                      <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
-                        {expandedListing === listing.id 
-                          ? listing.clientNotes 
-                          : listing.clientNotes.slice(0, 80) + (listing.clientNotes.length > 80 ? '...' : '')
-                        }
-                      </p>
+                    <h3 className="text-xl font-medium text-white mb-2 line-clamp-2">
+                      {listing.title}
+                    </h3>
+                    
+                    <p className="text-white/70 text-sm mb-3">
+                      {listing.location}
+                    </p>
+                    
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {listing.description}
+                    </p>
+                  </div>
+
+                  {/* Expandable Content */}
+                  <div className="flex-1">
+                    <div className="space-y-3 mb-4">
+                      <div>
+                        <h4 className="text-white/80 text-xs font-medium mb-1">Shoot Details:</h4>
+                        <p className="text-white/60 text-xs leading-relaxed">
+                          {expandedListing === listing.id 
+                            ? listing.shootDetails 
+                            : listing.shootDetails.slice(0, 80) + (listing.shootDetails.length > 80 ? '...' : '')
+                          }
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
+                        <p className="text-white/60 text-xs leading-relaxed">
+                          {expandedListing === listing.id 
+                            ? listing.clientNotes 
+                            : listing.clientNotes.slice(0, 80) + (listing.clientNotes.length > 80 ? '...' : '')
+                          }
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  {/* Actions - Fixed at Bottom */}
+                  <div className="flex gap-2 mt-auto">
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      onClick={() => setExpandedListing(
-                        expandedListing === listing.id ? null : listing.id
-                      )}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedListing(
+                          expandedListing === listing.id ? null : listing.id
+                        );
+                      }}
                       className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
                     >
                       {expandedListing === listing.id ? 'Show Less' : 'Show More'}
@@ -281,6 +290,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                     <Button 
                       variant="ghost" 
                       size="sm"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-white/60 hover:text-white hover:bg-white/10"
                     >
                       View Gallery

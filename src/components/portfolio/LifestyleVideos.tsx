@@ -118,11 +118,11 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <Card 
-                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer"
+                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 cursor-pointer h-full flex flex-col"
                 onClick={() => onItemClick(lifestyleVideos, index, 'lifestyle-videos')}
               >
-                {/* Video Embed */}
-                <div className="relative aspect-video">
+                {/* Video Embed - Fixed Height */}
+                <div className="relative aspect-video flex-shrink-0">
                   <iframe
                     src={video.videoUrl}
                     title={video.title}
@@ -151,55 +151,64 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
-                    <Calendar className="w-4 h-4" />
-                    {video.date}
-                  </div>
-                  
-                  <h3 className="text-xl font-medium text-white mb-2">
-                    {video.title}
-                  </h3>
-                  
-                  <p className="text-white/70 text-sm mb-3">
-                    {video.location}
-                  </p>
-                  
-                  <p className="text-white/60 text-sm leading-relaxed mb-4">
-                    {video.description}
-                  </p>
-
-                  {/* Shoot Details & Client Notes Preview */}
-                  <div className="space-y-3 mb-4">
-                    <div>
-                      <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
-                        {expandedListing === video.id 
-                          ? video.shootDetails 
-                          : video.shootDetails.slice(0, 80) + (video.shootDetails.length > 80 ? '...' : '')
-                        }
-                      </p>
+                {/* Content - Consistent Height */}
+                <div className="p-6 flex-1 flex flex-col">
+                  {/* Header Info - Fixed Space */}
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
+                      <Calendar className="w-4 h-4" />
+                      {video.date}
                     </div>
                     
-                    <div>
-                      <h4 className="text-white/80 text-xs font-medium mb-1">Creative Direction:</h4>
-                      <p className="text-white/60 text-xs leading-relaxed">
-                        {expandedListing === video.id 
-                          ? video.clientNotes 
-                          : video.clientNotes.slice(0, 80) + (video.clientNotes.length > 80 ? '...' : '')
-                        }
-                      </p>
+                    <h3 className="text-xl font-medium text-white mb-2 line-clamp-2">
+                      {video.title}
+                    </h3>
+                    
+                    <p className="text-white/70 text-sm mb-3">
+                      {video.location}
+                    </p>
+                    
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {video.description}
+                    </p>
+                  </div>
+
+                  {/* Expandable Content */}
+                  <div className="flex-1">
+                    <div className="space-y-3 mb-4">
+                      <div>
+                        <h4 className="text-white/80 text-xs font-medium mb-1">Production Details:</h4>
+                        <p className="text-white/60 text-xs leading-relaxed">
+                          {expandedListing === video.id 
+                            ? video.shootDetails 
+                            : video.shootDetails.slice(0, 80) + (video.shootDetails.length > 80 ? '...' : '')
+                          }
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-white/80 text-xs font-medium mb-1">Creative Direction:</h4>
+                        <p className="text-white/60 text-xs leading-relaxed">
+                          {expandedListing === video.id 
+                            ? video.clientNotes 
+                            : video.clientNotes.slice(0, 80) + (video.clientNotes.length > 80 ? '...' : '')
+                          }
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  {/* Actions - Fixed at Bottom */}
+                  <div className="flex gap-2 mt-auto">
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      onClick={() => setExpandedListing(
-                        expandedListing === video.id ? null : video.id
-                      )}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedListing(
+                          expandedListing === video.id ? null : video.id
+                        );
+                      }}
                       className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
                     >
                       {expandedListing === video.id ? 'Show Less' : 'Show More'}
@@ -211,6 +220,7 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
                     <Button 
                       variant="ghost" 
                       size="sm"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-white/60 hover:text-white hover:bg-white/10"
                     >
                       Watch Full Video
