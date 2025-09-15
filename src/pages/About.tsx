@@ -7,57 +7,52 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Camera, Video, Award, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import geirPortrait from "@/assets/eddie-portrait.jpg";
-
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const services = [
-    {
-      icon: Camera,
-      title: "Real Estate Photography",
-      description: "Professional photography that showcases properties in their best light, capturing every detail that matters to potential buyers."
-    },
-    {
-      icon: Video,
-      title: "Luxury Video Tours",
-      description: "Cinematic video tours that create emotional connections with properties, featuring drone footage and professional editing."
-    },
-    {
-      icon: Award,
-      title: "Marketing Content",
-      description: "Complete marketing packages including social media content, virtual staging, and branded materials for real estate professionals."
-    },
-    {
-      icon: Users,
-      title: "Business Photography",
-      description: "Professional headshots and business photography for real estate agents, personal trainers, and Costa del Sol businesses."
-    }
-  ];
-
-  const stats = [
-    { number: "500+", label: "Properties Captured" },
-    { number: "50+", label: "Happy Clients" },
-    { number: "5M+", label: "Views Generated" },
-    { number: "95%", label: "Client Retention" }
-  ];
-
-  return (
-    <div className="min-h-screen text-white relative">
+  const services = [{
+    icon: Camera,
+    title: "Real Estate Photography",
+    description: "Professional photography that showcases properties in their best light, capturing every detail that matters to potential buyers."
+  }, {
+    icon: Video,
+    title: "Luxury Video Tours",
+    description: "Cinematic video tours that create emotional connections with properties, featuring drone footage and professional editing."
+  }, {
+    icon: Award,
+    title: "Marketing Content",
+    description: "Complete marketing packages including social media content, virtual staging, and branded materials for real estate professionals."
+  }, {
+    icon: Users,
+    title: "Business Photography",
+    description: "Professional headshots and business photography for real estate agents, personal trainers, and Costa del Sol businesses."
+  }];
+  const stats = [{
+    number: "500+",
+    label: "Properties Captured"
+  }, {
+    number: "50+",
+    label: "Happy Clients"
+  }, {
+    number: "5M+",
+    label: "Views Generated"
+  }, {
+    number: "95%",
+    label: "Client Retention"
+  }];
+  return <div className="min-h-screen text-white relative">
       <ParallaxBackground speed={8} reduced={true} />
       <Navigation />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20 py-32"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-        >
+        <div className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20 py-32" style={{
+        transform: `translateY(${scrollY * 0.1}px)`
+      }}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
@@ -88,11 +83,7 @@ const About = () => {
             </div>
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                <img 
-                  src={geirPortrait} 
-                  alt="Geir Costa - Professional Real Estate Photographer"
-                  className="w-full h-full object-cover"
-                />
+                <img src={geirPortrait} alt="Geir Costa - Professional Real Estate Photographer" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
                 <div className="text-2xl font-light text-white">5+ Years</div>
@@ -104,30 +95,13 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-32 transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8"
-          style={{ transform: `translateY(${scrollY * 0.05}px)` }}
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="glass-card text-center rounded-2xl p-8">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-light text-accent-gold mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-white/70">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Services Section */}
       <section className="py-32 transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20"
-          style={{ transform: `translateY(${scrollY * 0.03}px)` }}
-        >
+        <div className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20" style={{
+        transform: `translateY(${scrollY * 0.03}px)`
+      }}>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
               Our Expertise
@@ -139,8 +113,7 @@ const About = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="glass-card p-8 hover:border-white/20 transition-all duration-300">
+            {services.map((service, index) => <Card key={index} className="glass-card p-8 hover:border-white/20 transition-all duration-300">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
                     <service.icon className="w-6 h-6 text-accent-gold" />
@@ -154,18 +127,16 @@ const About = () => {
                     </p>
                   </div>
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
 
       {/* Philosophy Section */}
       <section className="py-32 transparent-section">
-        <div 
-          className="container mx-auto max-w-4xl px-4 md:px-8"
-          style={{ transform: `translateY(${scrollY * 0.02}px)` }}
-        >
+        <div className="container mx-auto max-w-4xl px-4 md:px-8" style={{
+        transform: `translateY(${scrollY * 0.02}px)`
+      }}>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-light mb-8">
               Our Philosophy
@@ -204,8 +175,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
