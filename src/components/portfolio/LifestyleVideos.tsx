@@ -24,7 +24,68 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const lifestyleVideos: LifestyleVideoListing[] = [];
+  const lifestyleVideos: LifestyleVideoListing[] = [
+    {
+      id: '1',
+      title: 'Mijas Location Introduction Video',
+      location: 'Mijas, Spain',
+      category: 'outdoor',
+      videoUrl: 'https://player.vimeo.com/video/1118748157?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1',
+      thumbnail: '/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png',
+      date: '2025 - September',
+      description: 'Cinematic video to showcase the convenient lifestyle in Mijas',
+      clientNotes: 'Showcase Mijas as a potential place for living to our Northern Europe clients who are not very familiar with Spain.',
+      shootDetails: '4-day shoot, 2 week post-production, professional voice-over'
+    },
+    {
+      id: '2',
+      title: 'Sunset Terrace Dining',
+      location: 'Marbella Private Villa',
+      category: 'dining',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      thumbnail: '/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png',
+      date: '2024',
+      description: 'Luxury outdoor dining experience with Mediterranean views',
+      clientNotes: 'Capture the golden hour ambiance and sophisticated dining setup.',
+      shootDetails: 'Evening shoot focusing on ambient lighting and luxury table settings'
+    },
+    {
+      id: '3',
+      title: 'Pool Party Lifestyle',
+      location: 'Puerto Banus Penthouse',
+      category: 'entertainment',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      thumbnail: '/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png',
+      date: '2024',
+      description: 'Vibrant pool party atmosphere and entertainment spaces',
+      clientNotes: 'Show the property as perfect for entertaining and social gatherings.',
+      shootDetails: 'Day and evening shoot capturing party atmosphere and social spaces'
+    },
+    {
+      id: '4',
+      title: 'Spa & Wellness Journey',
+      location: 'La Zagaleta Estate',
+      category: 'wellness',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      thumbnail: '/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png',
+      date: '2024',
+      description: 'Luxury spa and wellness facilities showcase',
+      clientNotes: 'Emphasize relaxation, luxury amenities, and wellness lifestyle.',
+      shootDetails: 'Spa session documentation with focus on luxury wellness amenities'
+    },
+    {
+      id: '5',
+      title: 'Garden & Outdoor Living',
+      location: 'Estepona Villa',
+      category: 'outdoor',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      thumbnail: '/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png',
+      date: '2024',
+      description: 'Beautiful garden spaces and outdoor lifestyle',
+      clientNotes: 'Showcase the property\'s connection to nature and outdoor living spaces.',
+      shootDetails: 'Full day shoot capturing gardens, outdoor kitchens, and landscape design'
+    }
+  ];
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];

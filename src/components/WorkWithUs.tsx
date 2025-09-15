@@ -37,7 +37,7 @@ export const WorkWithUs = () => {
           </p>
           
           <p className="transition-colors hover:text-white/90">
-            For exclusive listings we also offer a commission-based model that ties our production, marketing, and advertising directly to performance. We only succeed when you do. This structure minimizes your upfront costs, maximizes accountability, and ensures every effort is focused on achieving a successful sale.
+            For exclusive properties, we also offer a commission-based model, aligning our production with our combined marketing and ad efforts. We share the risk of selling the property, earning only when you do. This reflects our confidence in delivering exceptional results and opens opportunities for clients with high-value listings but limited upfront funds for content and marketing.
           </p>
         </div>
 
