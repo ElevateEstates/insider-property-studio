@@ -51,10 +51,7 @@ const FadeInText = ({
 export const Hero = () => {
   const { hasAnimated, isMobile } = useAnimations();
   const [scrollY, setScrollY] = useState(0);
-  const [animatedWordIndex, setAnimatedWordIndex] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
-  
-  const animatedWords = ["results.", "connections.", "commissions."];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,14 +67,6 @@ export const Hero = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile]);
 
-  // Animate word rotation for "results"
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimatedWordIndex(prev => (prev + 1) % animatedWords.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [animatedWords.length]);
-
   return (
     <header ref={heroRef} className="relative min-h-screen text-white transparent-section">
       <div className="relative z-30 flex flex-col items-center justify-center min-h-screen px-6 md:px-8 lg:px-16 section-content">
@@ -87,29 +76,17 @@ export const Hero = () => {
             <div className="space-y-6">
               <FadeInText 
                 text="Your partner in" 
-                className="block text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight" 
+                className="block text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light leading-[0.9] tracking-tight" 
                 delay={0} 
                 animationKey="hero-line-1"
               />
               
               <FadeInText 
-                text="property marketing," 
-                className="block text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[0.9] tracking-tight text-gradient-gold" 
+                text="property marketing" 
+                className="block text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light leading-[0.9] tracking-tight text-gradient-gold" 
                 delay={400} 
                 animationKey="hero-line-2"
               />
-
-              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light leading-[0.9] tracking-tight">
-                <FadeInText 
-                  text="turning listings into" 
-                  className="inline-block" 
-                  delay={800} 
-                  animationKey="hero-line-3"
-                />
-                <span className="text-gradient-gold inline-block ml-3 md:ml-4 transition-all duration-500">
-                  {animatedWords[animatedWordIndex]}
-                </span>
-              </div>
             </div>
 
 
