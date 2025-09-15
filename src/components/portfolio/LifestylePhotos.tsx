@@ -1,4 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import lifestyleGym from "@/assets/lifestyle-gym.jpg";
+import lifestyleGolfCart from "@/assets/lifestyle-golf-cart.jpg";
+import lifestyleGolfPlayer from "@/assets/lifestyle-golf-player.jpg";
+import lifestyleGolfCourse from "@/assets/lifestyle-golf-course.jpg";
+import lifestylePadel from "@/assets/lifestyle-padel.jpg";
+import lifestylePoolAerial from "@/assets/lifestyle-pool-aerial.jpg";
+import lifestyleVillaCar from "@/assets/lifestyle-villa-car.jpg";
+import lifestyleCarInterior from "@/assets/lifestyle-car-interior.jpg";
 
 interface LifestylePhoto {
   id: string;
@@ -20,66 +28,59 @@ const LifestylePhotos = ({ scrollY, onItemClick }: LifestylePhotosProps) => {
   const lifestylePhotos: LifestylePhoto[] = [
     {
       id: '1',
-      src: '/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png',
-      alt: 'Luxury terrace dining setup',
-      category: 'dining',
-      location: 'Marbella Villa'
+      src: lifestyleGym,
+      alt: 'Fitness training session at modern gym',
+      category: 'wellness',
+      location: 'Private Fitness Studio'
     },
     {
       id: '2',
-      src: '/lovable-uploads/111b5d7c-af39-4666-865d-874b4c80c29d.png',
-      alt: 'Pool party entertainment area',
-      category: 'entertainment',
-      location: 'Puerto Banus Penthouse'
+      src: lifestyleGolfCart,
+      alt: 'Golf cart experience with friends',
+      category: 'outdoor',
+      location: 'Mila Golf Course'
     },
     {
       id: '3',
-      src: '/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png',
-      alt: 'Luxury spa and wellness area',
-      category: 'wellness',
-      location: 'La Zagaleta Estate'
+      src: lifestyleGolfPlayer,
+      alt: 'Professional golf positioning and technique',
+      category: 'outdoor',
+      location: 'Championship Golf Course'
     },
     {
       id: '4',
-      src: '/lovable-uploads/3883c264-9908-46ec-88d3-d7647feeb35b.png',
-      alt: 'Beautiful garden landscape',
+      src: lifestyleGolfCourse,
+      alt: 'Golf course lifestyle and equipment',
       category: 'outdoor',
-      location: 'Estepona Villa'
+      location: 'Mila Golf Resort'
     },
     {
       id: '5',
-      src: '/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png',
-      alt: 'Outdoor dining with sunset views',
-      category: 'dining',
-      location: 'Costa del Sol Villa'
+      src: lifestylePadel,
+      alt: 'Padel tennis action and athleticism',
+      category: 'entertainment',
+      location: 'Premium Padel Club'
     },
     {
       id: '6',
-      src: '/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png',
-      alt: 'Entertainment lounge area',
-      category: 'entertainment',
-      location: 'Marbella Penthouse'
+      src: lifestylePoolAerial,
+      alt: 'Aerial view of luxury pool lifestyle',
+      category: 'outdoor',
+      location: 'Private Villa Estate'
     },
     {
       id: '7',
-      src: '/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png',
-      alt: 'Wellness meditation space',
-      category: 'wellness',
-      location: 'Luxury Spa Resort'
+      src: lifestyleVillaCar,
+      alt: 'Luxury villa and classic car lifestyle',
+      category: 'entertainment',
+      location: 'Mediterranean Villa'
     },
     {
       id: '8',
-      src: '/lovable-uploads/f663db8d-bf8c-4981-84b5-ecc1997427e3.png',
-      alt: 'Outdoor pool and garden area',
-      category: 'outdoor',
-      location: 'Nueva Andalucia Villa'
-    },
-    {
-      id: '9',
-      src: '/lovable-uploads/0425939a-50c2-4776-81ad-2721b48c4585.png',
-      alt: 'Fine dining experience',
-      category: 'dining',
-      location: 'Private Estate'
+      src: lifestyleCarInterior,
+      alt: 'Classic convertible car interior experience',
+      category: 'entertainment',
+      location: 'Luxury Car Collection'
     }
   ];
 

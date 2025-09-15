@@ -132,54 +132,6 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
       clientNotes: '45 photo package with 5 drone shots for Airbnb listing.',
       shootDetails: 'High quality wide angle HDR photos and some detail shots for rental listing.'
     },
-    {
-      id: '3',
-      title: 'Contemporary Family Home',
-      location: 'Estepona',
-      clientType: 'residential',
-      images: [img003, img005, img008, img009, img004, img007],
-      packageType: 'photo',
-      date: '2024',
-      description: 'Modern interior design photography',
-      clientNotes: 'Family-focused marketing targeting local buyers. Emphasis on functionality and comfort.',
-      shootDetails: 'Half-day interior photography session with natural lighting'
-    },
-    {
-      id: '4',
-      title: 'Vacation Rental Paradise',
-      location: 'Nueva Andalucia',
-      clientType: 'airbnb',
-      images: [img004, img006, img008, img001, img005],
-      packageType: 'photo-video',
-      date: '2024',
-      description: 'Beautiful garden and outdoor living spaces',
-      clientNotes: 'Airbnb property requiring lifestyle shots for booking platform. Focus on amenities and ambiance.',
-      shootDetails: 'Full-day shoot with guest experience documentation and amenity highlights'
-    },
-    {
-      id: '5',
-      title: 'Commercial Office Complex',
-      location: 'Malaga Center',
-      clientType: 'commercial',
-      images: [img005, img002, img007, img009],
-      packageType: 'photo-video',
-      date: '2024',
-      description: 'Professional commercial property showcase',
-      clientNotes: 'Corporate client requiring professional imagery for leasing brochures and website.',
-      shootDetails: 'Business hours shoot capturing workspace functionality and professional atmosphere'
-    },
-    {
-      id: '6',
-      title: 'Luxury Spa Retreat',
-      location: 'La Zagaleta',
-      clientType: 'luxury',
-      images: [img006, img008, img001, img004, img009, img005],
-      packageType: 'photo',
-      date: '2024',
-      description: 'High-end bathroom and wellness spaces',
-      clientNotes: 'Ultra-luxury property requiring magazine-quality imagery for international marketing.',
-      shootDetails: 'Multi-day architectural photography focusing on luxury finishes and spa amenities'
-    }
   ];
 
   const filteredListings = portfolioListings;

@@ -38,42 +38,6 @@ const LifestyleVideos = ({ scrollY, onItemClick }: LifestyleVideosProps) => {
       shootDetails: '4-day shoot, 2 week post-production, professional voice-over'
     },
     {
-      id: '2',
-      title: 'Sunset Terrace Dining',
-      location: 'Marbella Private Villa',
-      category: 'dining',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/4ea57a85-e502-45e4-8fd2-a1702b491f62.png',
-      date: '2024',
-      description: 'Luxury outdoor dining experience with Mediterranean views',
-      clientNotes: 'Capture the golden hour ambiance and sophisticated dining setup.',
-      shootDetails: 'Evening shoot focusing on ambient lighting and luxury table settings'
-    },
-    {
-      id: '3',
-      title: 'Pool Party Lifestyle',
-      location: 'Puerto Banus Penthouse',
-      category: 'entertainment',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/688cf447-cf8b-4cd1-b791-83e7bf665470.png',
-      date: '2024',
-      description: 'Vibrant pool party atmosphere and entertainment spaces',
-      clientNotes: 'Show the property as perfect for entertaining and social gatherings.',
-      shootDetails: 'Day and evening shoot capturing party atmosphere and social spaces'
-    },
-    {
-      id: '4',
-      title: 'Spa & Wellness Journey',
-      location: 'La Zagaleta Estate',
-      category: 'wellness',
-      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail: '/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png',
-      date: '2024',
-      description: 'Luxury spa and wellness facilities showcase',
-      clientNotes: 'Emphasize relaxation, luxury amenities, and wellness lifestyle.',
-      shootDetails: 'Spa session documentation with focus on luxury wellness amenities'
-    },
-    {
       id: '5',
       title: 'Garden & Outdoor Living',
       location: 'Estepona Villa',
