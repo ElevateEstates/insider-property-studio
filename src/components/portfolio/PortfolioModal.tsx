@@ -147,8 +147,8 @@ const PortfolioModal = ({
             </div>
           </div>
 
-          {/* Main Content Area - Minimal padding */}
-          <div className="flex-1 flex flex-col min-h-0 p-0">
+          {/* Main Content Area - Responsive padding */}
+          <div className="flex-1 flex flex-col min-h-0 p-0 lg:p-2">
             
             {/* Main Image Display - Maximized space */}
             <div className={`flex items-center justify-center relative bg-black/30 rounded min-h-0 transition-all duration-300 ${
@@ -157,7 +157,7 @@ const PortfolioModal = ({
                 : 'flex-1' // When hidden, maximize image space
             }`}>
               {getCurrentImage() ? (
-                <div className="relative w-full h-full flex items-center justify-center p-0">
+                <div className="relative w-full h-full flex items-center justify-center p-0 lg:p-2">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
@@ -203,7 +203,7 @@ const PortfolioModal = ({
             {/* Thumbnail Strip - Directly attached to image */}
             {hasMultipleImages && (
               <div className="flex-shrink-0">
-                <div className="flex gap-0.5 overflow-x-auto px-1 py-0.5">
+                <div className="flex gap-0.5 overflow-x-auto px-0 py-0 lg:px-2 lg:py-1">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
@@ -228,9 +228,9 @@ const PortfolioModal = ({
 
             {/* Project Details - Maximized space */}
             {showDetails && (
-              <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded p-1.5 mt-0.5
-                             scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
-                             animate-fade-in transition-all duration-300">
+               <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded p-0 mt-0 lg:p-3 lg:mt-2
+                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
+                              animate-fade-in transition-all duration-300">
                 <div className="space-y-1.5">
                   
                   {/* Badges */}
@@ -284,7 +284,7 @@ const PortfolioModal = ({
 
             {/* Navigation between properties - Minimal spacing */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center pt-1 mt-0.5 border-t border-white/20">
+              <div className="flex-shrink-0 flex justify-between items-center pt-0 mt-0 lg:pt-2 lg:mt-1 border-t border-white/20">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
                   className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
