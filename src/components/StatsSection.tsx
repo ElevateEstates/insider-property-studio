@@ -146,13 +146,10 @@ export const StatsSection = () => {
         {/* Tagline moved from Hero section */}
         <div className="mt-12 md:mt-20 space-y-2 text-center">
           <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
-            Presentation matters — we combine striking visuals,
-          </p>
-          <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
-            proven marketing strategies, and local connections
+            Presentation matters — we combine striking visuals, proven marketing strategies,
           </p>
           <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-12 md:pb-16">
-            to bring buyers, sellers, and agents together for success.
+            and local connections to bring buyers, sellers, and agents together for success.
           </p>
         </div>
       </div>

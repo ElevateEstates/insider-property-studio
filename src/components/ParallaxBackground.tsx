@@ -168,10 +168,16 @@ export const ParallaxBackground = ({
         // Distribute across screen width with better spacing
         const baseX = (screenWidth / 2) * j + (screenWidth * 0.2) + ((i * 47) % (screenWidth * 0.3));
         
-        // Start some stars visible, others off-screen for continuous flow
-        const initialY = (i + j) % 3 === 0 ? 
-          (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
-          -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5)); // Off screen top
+        // Start some stars visible at top, others distributed for continuous flow
+        const initialY = isMobile ? 
+          // On mobile, ensure stars are visible at top (scrollY=0)
+          ((i + j) % 3 === 0 ? 
+            (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // Visible on screen
+            (screenHeight * 0.3) + ((i * 19) % (screenHeight * 0.5))) : // Lower on screen
+          // Desktop behavior
+          ((i + j) % 3 === 0 ? 
+            (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
+            -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5))); // Off screen top
         
         // Add strong randomization to prevent any dot from matching scroll speed exactly
         const speedVariation = 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);

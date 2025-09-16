@@ -73,10 +73,11 @@ export const TestimonialsSection = () => {
         const container = scrollContainerRef.current;
         const maxScroll = container.scrollWidth - container.clientWidth;
         
-        if (container.scrollLeft >= maxScroll) {
+        // Reset to beginning when reached end for seamless loop
+        if (container.scrollLeft >= maxScroll * 0.66) { // Reset earlier for smoother transition
           container.scrollLeft = 0;
         } else {
-          container.scrollLeft += 0.5; // Visible scroll speed
+          container.scrollLeft += 1; // Slightly faster scroll speed
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
@@ -109,8 +110,8 @@ export const TestimonialsSection = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Resume auto-scroll after 3 seconds
-    setTimeout(() => setAutoScroll(true), 3000);
+    // Resume auto-scroll after 2 seconds (faster resume)
+    setTimeout(() => setAutoScroll(true), 2000);
   };
 
   // Touch handlers for mobile
@@ -130,8 +131,8 @@ export const TestimonialsSection = () => {
 
   const handleTouchEnd = () => {
     setIsDragging(false);
-    // Resume auto-scroll after 3 seconds
-    setTimeout(() => setAutoScroll(true), 3000);
+    // Resume auto-scroll after 2 seconds (faster resume)
+    setTimeout(() => setAutoScroll(true), 2000);
   };
 
   const ProfileImage = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
