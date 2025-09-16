@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Users, TrendingUp } from "lucide-react";
+import { Footer } from "@/components/Footer";
 import wlCostaLogo from "@/assets/wl-costa-logo.png";
 import wlCostaPortrait from "@/assets/wl-costa-portrait.jpg";
 
@@ -98,6 +99,7 @@ const ClientFeedback = () => {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

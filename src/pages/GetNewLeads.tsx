@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { ClientShowcase } from "@/components/ClientShowcase";
+import { Footer } from "@/components/Footer";
 
 const GetNewLeads = () => {
   return (
@@ -18,6 +19,7 @@ const GetNewLeads = () => {
         </div>
         <ClientShowcase />
       </div>
+      <Footer />
     </div>
   );
 };

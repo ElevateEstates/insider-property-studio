@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Camera, Video, Palette, Megaphone, Store, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-costa-del-sol.jpg";
+import { Footer } from "@/components/Footer";
 
 export default function Businesses() {
   const navigate = useNavigate();
@@ -268,6 +269,7 @@ export default function Businesses() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

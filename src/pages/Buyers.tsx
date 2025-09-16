@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Eye, Video, Users, Lock, MapPin, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { Footer } from "@/components/Footer";
 import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-costa-del-sol.jpg";
 
@@ -273,6 +274,7 @@ export default function Buyers() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Send, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Footer } from "@/components/Footer";
 
 interface TypewriterTextProps {
   text: string;
@@ -487,6 +488,7 @@ const Contact = () => {
           </div>
         </DialogContent>
       </Dialog>
+      <Footer />
     </div>
   );
 };

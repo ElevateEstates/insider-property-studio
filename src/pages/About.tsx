@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Camera, Video, Award, Users, Box, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 import geirPortrait from "@/assets/eddie-portrait.jpg";
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -187,6 +188,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>;
 };
 export default About;

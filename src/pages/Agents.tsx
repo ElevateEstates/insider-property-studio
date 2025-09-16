@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Users, Camera, TrendingUp, Handshake, Target, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { Footer } from "@/components/Footer";
 import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-costa-del-sol.jpg";
 
@@ -259,6 +260,7 @@ export default function Agents() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

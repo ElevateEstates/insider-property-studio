@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 import PortfolioNavigation from "@/components/portfolio/PortfolioNavigation";
 import PropertyListings from "@/components/portfolio/PropertyListings";
 import PropertyVideos from "@/components/portfolio/PropertyVideos";
@@ -138,6 +139,7 @@ const Portfolio = () => {
         type={modalType}
         renderContent={renderModalContent}
       />
+      <Footer />
     </div>
   );
 };
