@@ -35,8 +35,8 @@ export const Navigation = () => {
 
   const navItems = [
     { href: "/", label: "HOME" },
-    { href: "/about", label: "ABOUT" },
     { href: "/portfolio", label: "PORTFOLIO" },
+    { href: "/about", label: "ABOUT" },
     { href: "/contact", label: "CONTACT" },
   ];
 
