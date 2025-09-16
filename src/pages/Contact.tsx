@@ -216,7 +216,7 @@ const Contact = () => {
           
           <div className="space-y-6 mt-20">
             {services.map((service, index) => (
-              <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
+              <Card key={index} className="glass-card p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-medium text-white mb-2">
                     {service.title}
