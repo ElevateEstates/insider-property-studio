@@ -12,12 +12,12 @@ export const Footer = () => {
 
   return (
     <footer className="relative py-8 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[35vh] z-10">
-      {/* Background Image with Parallax */}
+      {/* Background Image with Parallax - Constrained to footer bounds */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage: `url(/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png)`,
-          transform: `translateY(${scrollY * 0.3}px)`
+          transform: `translateY(${Math.min(scrollY * 0.3, 0)}px)`
         }}
       />
       

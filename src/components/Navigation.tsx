@@ -37,7 +37,7 @@ export const Navigation = () => {
     { href: "/", label: "HOME" },
     { href: "/portfolio", label: "PORTFOLIO" },
     { href: "/about", label: "ABOUT" },
-    { href: "/contact", label: "CONTACT" },
+    { href: "/contact", label: "SERVICES" },
   ];
 
   // Dynamic opacity based on scroll position with smoother transitions

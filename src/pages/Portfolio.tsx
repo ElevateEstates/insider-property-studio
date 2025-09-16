@@ -93,7 +93,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen text-white relative">
+    <div className="min-h-screen text-white relative overflow-x-hidden">
       <ParallaxBackground speed={8} reduced={true} />
       <Navigation />
 
@@ -106,28 +106,6 @@ const Portfolio = () => {
       {/* Dynamic Content Based on Active View */}
       {renderActiveView()}
 
-      {/* Call to Action */}
-      <section className="py-32 transparent-section">
-        <div 
-          className="container mx-auto max-w-4xl px-4 md:px-8 text-center"
-          style={{ transform: `translateY(${scrollY * 0.02}px)` }}
-        >
-          <div className="space-y-12">
-            <p className="text-base md:text-lg lg:text-xl leading-relaxed text-white font-light transition-colors hover:text-white">
-              ready to start working?
-            </p>
-            <Link to="/#contact">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
-              >
-                Let's Discuss
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Portfolio Modal */}
       <PortfolioModal

@@ -81,7 +81,7 @@ interface PropertyListingsProps {
 }
 
 const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
-  const [expandedListing, setExpandedListing] = useState<string | null>(null);
+  const [expandedListings, setExpandedListings] = useState<Set<string>>(new Set());
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -249,7 +249,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                       <div>
                         <h4 className="text-white/80 text-xs font-medium mb-1">Shoot Details:</h4>
                         <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === listing.id 
+                          {expandedListings.has(listing.id) 
                             ? listing.shootDetails 
                             : listing.shootDetails.slice(0, 80) + (listing.shootDetails.length > 80 ? '...' : '')
                           }
@@ -259,7 +259,7 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                       <div>
                         <h4 className="text-white/80 text-xs font-medium mb-1">Client Requirements:</h4>
                         <p className="text-white/60 text-xs leading-relaxed">
-                          {expandedListing === listing.id 
+                          {expandedListings.has(listing.id) 
                             ? listing.clientNotes 
                             : listing.clientNotes.slice(0, 80) + (listing.clientNotes.length > 80 ? '...' : '')
                           }
@@ -275,15 +275,21 @@ const PropertyListings = ({ scrollY, onItemClick }: PropertyListingsProps) => {
                       size="sm"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setExpandedListing(
-                          expandedListing === listing.id ? null : listing.id
-                        );
+                        setExpandedListings(prev => {
+                          const newSet = new Set(prev);
+                          if (newSet.has(listing.id)) {
+                            newSet.delete(listing.id);
+                          } else {
+                            newSet.add(listing.id);
+                          }
+                          return newSet;
+                        });
                       }}
                       className="text-accent-gold hover:text-accent-gold-light hover:bg-accent-gold/10"
                     >
-                      {expandedListing === listing.id ? 'Show Less' : 'Show More'}
+                      {expandedListings.has(listing.id) ? 'Show Less' : 'Show More'}
                       <ArrowRight className={`w-4 h-4 ml-2 transition-transform ${
-                        expandedListing === listing.id ? 'rotate-90' : ''
+                        expandedListings.has(listing.id) ? 'rotate-90' : ''
                       }`} />
                     </Button>
                   </div>
