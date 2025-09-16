@@ -258,54 +258,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Info Section */}
-      <section className="py-32 transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8"
-          style={{ transform: `translateY(${scrollY * 0.05}px)` }}
-        >
-          <div className="text-center mb-16 glass-card rounded-2xl p-8">
-            <h2 className="text-3xl md:text-5xl font-light mb-8">
-              How to Reach Us
-            </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              We're here to help with all your real estate media needs
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {contactInfo.map((info, index) => {
-              const CardContent = (
-                <Card className="glass-card p-8 text-center hover:border-white/20 transition-all duration-300">
-                  <div className="w-16 h-16 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <info.icon className="w-8 h-8 text-accent-gold" />
-                  </div>
-                  <h3 className="text-xl font-medium text-white mb-2">
-                    {info.title}
-                  </h3>
-                  <p className="text-accent-gold font-medium mb-2">
-                    {info.details}
-                  </p>
-                  <p className="text-white/60 text-sm">
-                    {info.description}
-                  </p>
-                </Card>
-              );
-
-              return info.link ? (
-                <a key={index} href={info.link} target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
-                  {CardContent}
-                </a>
-              ) : (
-                <div key={index}>
-                  {CardContent}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form & Services */}
       <section className="py-32 transparent-section">
         <div 
