@@ -12,22 +12,22 @@ export const WorkWithUs = () => {
   }, []);
 
   return (
-    <section className="py-20 px-4 md:px-6 relative overflow-hidden z-10">
+    <section className="py-12 md:py-20 px-4 md:px-6 relative overflow-hidden z-10">
       <div 
-        className="container mx-auto max-w-4xl relative z-20 section-content py-8 px-4 md:px-8"
+        className="container mx-auto max-w-4xl relative z-20 section-content py-4 md:py-8 px-4 md:px-8"
       >
-        <div className="mb-16 animate-fade-up">
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-5xl md:text-6xl font-light border-b border-white/20 pb-4 text-white">
+        <div className="mb-12 md:mb-16 animate-fade-up">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-6 md:mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light border-b border-white/20 pb-2 md:pb-4 text-white">
               Work with us
             </h2>
-            <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium transform rotate-12 hover-scale">
+            <div className="bg-white text-black px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium transform rotate-12 hover-scale">
               We're creating!
             </div>
           </div>
         </div>
         
-        <div className="space-y-8 text-lg md:text-xl leading-relaxed text-white/80 font-light mb-12 animate-slide-in">
+        <div className="space-y-6 md:space-y-8 text-base md:text-lg lg:text-xl leading-relaxed text-white/80 font-light mb-8 md:mb-12 animate-slide-in">
           <p className="transition-colors hover:text-white/90">
             We specialize in high-end photography and video content for real estate in Costa del Sol. View our portfolio of stunning property showcases on our dedicated portfolio page.
           </p>
@@ -44,11 +44,11 @@ export const WorkWithUs = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="glass-button hover-scale relative z-50"
+          className="glass-button hover-scale relative z-50 w-full sm:w-auto"
           onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
         >
           Let's Talk
-          <ArrowRight className="ml-2 h-5 w-5" />
+          <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
         </Button>
       </div>
     </section>

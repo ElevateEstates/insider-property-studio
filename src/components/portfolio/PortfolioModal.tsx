@@ -139,33 +139,33 @@ const PortfolioModal = ({
             )}
 
             {/* Main Image - Responsive sizing */}
-            <div className="flex flex-col items-center gap-4 sm:gap-8 max-w-full">
+            <div className="flex flex-col items-center gap-2 sm:gap-4 md:gap-8 max-w-full">
               <img
                 src={images[selectedImageIndex] || currentItem.src}
                 alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-                className="max-w-full max-h-[50vh] sm:max-h-[60vh] lg:max-h-[70vh] min-h-0 object-contain"
+                className="max-w-full max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] lg:max-h-[70vh] min-h-0 object-contain"
               />
               
               {/* Thumbnails directly below main image */}
               {hasMultipleImages && (
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex flex-col items-center gap-2 sm:gap-3 w-full">
                   <div 
                     ref={thumbnailContainerRef}
-                    className="flex gap-1 sm:gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-4 sm:px-16 scroll-smooth"
+                    className="flex gap-1 sm:gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-2 sm:px-4 md:px-16 scroll-smooth snap-x snap-mandatory"
                     style={{
                       scrollbarWidth: 'thin',
                       scrollbarColor: 'rgba(255,255,255,0.3) transparent'
                     }}
                   >
                     {/* Left safe zone */}
-                    <div className="flex-shrink-0 w-4 sm:w-12" />
+                    <div className="flex-shrink-0 w-2 sm:w-4 md:w-12" />
                     
                     {images.map((image: string, index: number) => (
                       <button
                         key={index}
                         ref={el => thumbnailRefs.current[index] = el}
                         onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-16 h-10 sm:w-20 sm:h-12 rounded overflow-hidden border-2 transition-all ${
+                        className={`flex-shrink-0 w-12 h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 rounded overflow-hidden border-2 transition-all snap-center ${
                           selectedImageIndex === index 
                             ? 'border-white shadow-lg scale-105' 
                             : 'border-white/20 hover:border-white/50'
@@ -180,7 +180,7 @@ const PortfolioModal = ({
                     ))}
                     
                     {/* Right safe zone */}
-                    <div className="flex-shrink-0 w-4 sm:w-12" />
+                    <div className="flex-shrink-0 w-2 sm:w-4 md:w-12" />
                   </div>
 
                   {/* Image Counter */}
@@ -200,7 +200,7 @@ const PortfolioModal = ({
 
   const getDynamicSize = () => {
     // Mobile-first responsive sizing that fills the screen properly
-    return 'w-full h-full max-w-none max-h-none sm:w-[95vw] sm:h-[95vh] sm:max-w-7xl sm:max-h-[95vh]';
+    return 'w-[100vw] h-[100vh] max-w-none max-h-none sm:w-[95vw] sm:h-[95vh] sm:max-w-7xl sm:max-h-[95vh] sm:rounded-lg';
   };
 
   return (
@@ -280,9 +280,9 @@ const PortfolioModal = ({
 
           {/* Conditional Sidebar */}
           {shouldShowSidebar && (
-            <div className="w-full sm:w-80 border-t sm:border-t-0 sm:border-l border-white/10 bg-black/30 flex flex-col overflow-auto order-2 sm:order-2 max-h-[40vh] sm:max-h-none">
+            <div className="w-full sm:w-80 border-t sm:border-t-0 sm:border-l border-white/10 bg-black/30 flex flex-col overflow-auto order-2 sm:order-2 max-h-[35vh] sm:max-h-none">
               {/* Safe zone padding to align with image top */}
-              <div className="pt-4 sm:pt-20 px-4 pb-4 flex flex-col gap-4">
+              <div className="pt-2 sm:pt-4 md:pt-20 px-3 sm:px-4 pb-4 flex flex-col gap-3 sm:gap-4">
                 <div>
                   <div className="flex items-center gap-2 text-white/70 text-sm mb-4">
                     <span>{currentItem.date}</span>

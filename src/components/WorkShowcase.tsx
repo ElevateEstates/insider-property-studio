@@ -154,7 +154,7 @@ export const WorkShowcase = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto mb-12 md:mb-16">
           {workItems.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -168,7 +168,7 @@ export const WorkShowcase = () => {
                   <img 
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
@@ -192,20 +192,20 @@ export const WorkShowcase = () => {
                 </div>
                 
                 {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-accent-gold/10 rounded-xl flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-accent-gold" />
+                <div className="p-4 md:p-6">
+                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-accent-gold/10 rounded-xl flex items-center justify-center">
+                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-accent-gold" />
                     </div>
-                    <span className="text-sm font-medium text-accent-gold">
+                    <span className="text-xs md:text-sm font-medium text-accent-gold">
                       {item.type}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export const WorkShowcase = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto">
           {propertyListings.map((property, index) => (
             <Card 
               key={property.id}
@@ -239,7 +239,7 @@ export const WorkShowcase = () => {
                 <img 
                   src={property.image}
                   alt={property.title}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
@@ -258,26 +258,26 @@ export const WorkShowcase = () => {
               </div>
               
               {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <MapPin className="w-4 h-4 text-accent-gold" />
-                  <span className="text-sm text-muted-foreground">
+              <div className="p-4 md:p-6">
+                <div className="flex items-center gap-1 md:gap-2 mb-2 md:mb-3">
+                  <MapPin className="w-3 h-3 md:w-4 md:h-4 text-accent-gold" />
+                  <span className="text-xs md:text-sm text-muted-foreground">
                     {property.location}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-foreground mb-3">
+                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3">
                   {property.title}
                 </h3>
                 
-                <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex items-center gap-3 md:gap-4 text-muted-foreground">
                   <div className="flex items-center gap-1">
-                    <Bed className="w-4 h-4" />
-                    <span className="text-sm">{property.beds} beds</span>
+                    <Bed className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="text-xs md:text-sm">{property.beds} beds</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Bath className="w-4 h-4" />
-                    <span className="text-sm">{property.baths} baths</span>
+                    <Bath className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="text-xs md:text-sm">{property.baths} baths</span>
                   </div>
                 </div>
               </div>

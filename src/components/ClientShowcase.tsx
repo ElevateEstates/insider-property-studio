@@ -115,13 +115,13 @@ export const ClientShowcase = () => {
             <div key={client.id} className={`mb-20 ${clientIndex > 0 ? 'pt-20 border-t border-border/30' : ''}`}>
 
               {/* Client Profile */}
-              <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center mb-12 md:mb-16">
                 <div className="animate-slide-in">
                   <div className="relative">
                     <img 
                       src={client.image}
                       alt={`${client.name}`}
-                      className="w-full h-96 object-cover rounded-2xl shadow-2xl"
+                      className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl shadow-2xl"
                     />
                     <Badge 
                       variant="secondary" 
@@ -141,18 +141,18 @@ export const ClientShowcase = () => {
                   </div>
                 </div>
 
-                <div className="space-y-6 animate-fade-up">
+                <div className="space-y-4 md:space-y-6 animate-fade-up">
                   <div>
-                    <h3 className="text-3xl font-bold text-foreground mb-3">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 md:mb-3">
                       Meet {client.name.split(' ')[0]}
                     </h3>
-                    <p className="text-lg text-muted-foreground mb-6">
+                    <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                       {client.description}
                     </p>
                   </div>
 
-                  <div className="bg-secondary/30 rounded-2xl p-6 border-l-4 border-accent-gold">
-                    <p className="text-lg italic text-foreground mb-4">
+                  <div className="bg-secondary/30 rounded-2xl p-4 md:p-6 border-l-4 border-accent-gold">
+                    <p className="text-sm md:text-lg italic text-foreground mb-3 md:mb-4">
                       "{client.testimonial}"
                     </p>
                     <div className="flex items-center gap-3">
@@ -186,7 +186,7 @@ export const ClientShowcase = () => {
                   </p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                   {client.workItems.map((item, index) => (
                     <Card 
                       key={item.id}
@@ -197,21 +197,21 @@ export const ClientShowcase = () => {
                         <img 
                           src={item.image}
                           alt={item.title}
-                          className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       
-                      <div className="p-6">
-                        <div className="mb-3">
-                          <span className="text-sm font-medium text-accent-gold">
+                      <div className="p-4 md:p-6">
+                        <div className="mb-2 md:mb-3">
+                          <span className="text-xs md:text-sm font-medium text-accent-gold">
                             {item.type}
                           </span>
                         </div>
-                        <h4 className="text-xl font-semibold text-foreground mb-3">
+                        <h4 className="text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3">
                           {item.title}
                         </h4>
-                        <p className="text-muted-foreground">
+                        <p className="text-sm md:text-base text-muted-foreground">
                           {item.description}
                         </p>
                       </div>

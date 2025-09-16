@@ -100,7 +100,7 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section ref={combinedRef} className="py-16 px-4 md:px-6 relative overflow-hidden z-10">
+    <section ref={combinedRef} className="py-12 md:py-16 px-4 md:px-6 relative overflow-hidden z-10">
       {/* Subtle Star Background */}
       <div className="absolute inset-0 opacity-15 z-0">
         <div className="absolute inset-0" style={{
@@ -112,11 +112,11 @@ export const StatsSection = () => {
       </div>
       
       <div 
-        className="container mx-auto max-w-6xl relative z-20 section-content py-8 px-4 md:px-8"
+        className="container mx-auto max-w-6xl relative z-20 section-content py-4 md:py-8 px-4 md:px-8"
         style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
-        <div className="text-center mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light mb-8 text-white leading-tight">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light mb-6 md:mb-8 text-white leading-tight">
             turning listings into{" "}
             <span className="text-gradient-gold transition-all duration-500">
               {animatedWords[animatedWordIndex]}
@@ -124,10 +124,10 @@ export const StatsSection = () => {
           </h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="glass-card text-center rounded-2xl p-8">
-              <div className={`text-4xl md:text-5xl lg:text-6xl font-light ${stat.color} mb-4`}>
+            <div key={index} className="glass-card text-center rounded-2xl p-4 md:p-8">
+              <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light ${stat.color} mb-2 md:mb-4`}>
                 {stat.prefix}<CountUp 
                   end={stat.value} 
                   suffix={stat.suffix}
@@ -136,7 +136,7 @@ export const StatsSection = () => {
                   isMobile={isMobile}
                 />
               </div>
-              <div className="text-white/70 text-sm uppercase tracking-wide">
+              <div className="text-white/70 text-xs md:text-sm uppercase tracking-wide">
                 {stat.label}
               </div>
             </div>
@@ -144,14 +144,14 @@ export const StatsSection = () => {
         </div>
 
         {/* Tagline moved from Hero section */}
-        <div className="mt-20 space-y-2 text-center">
-          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+        <div className="mt-12 md:mt-20 space-y-2 text-center">
+          <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
             Presentation matters — we combine striking visuals,
           </p>
-          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
             proven marketing strategies, and local connections
           </p>
-          <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-16">
+          <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-12 md:pb-16">
             to bring buyers, sellers, and agents together for success.
           </p>
         </div>

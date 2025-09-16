@@ -497,6 +497,74 @@
     pointer-events: none;
   }
   
+  /* Mobile-first responsive improvements */
+  @media (max-width: 768px) {
+    .glass-card {
+      @apply p-4;
+    }
+    
+    .card-luxury {
+      @apply p-4;
+    }
+    
+    /* Ensure touch targets are at least 44px */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text scaling for mobile */
+    h1 { font-size: clamp(1.75rem, 8vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+    h3 { font-size: clamp(1.25rem, 5vw, 2rem); }
+    
+    /* Improved spacing for mobile */
+    .container {
+      @apply px-4;
+    }
+    
+    /* Better modal sizing */
+    [role="dialog"] {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      max-height: none !important;
+      border-radius: 0 !important;
+    }
+  }
+  
+  /* Snap scrolling for horizontal carousels */
+  .snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .snap-center {
+    scroll-snap-align: center;
+  }
+  
+  .snap-mandatory {
+    scroll-snap-type: x mandatory;
+  }
+  
+  /* Better scrollbars on mobile */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  
   section {
     position: relative;
     z-index: 10;

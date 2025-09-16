@@ -198,7 +198,7 @@ export const TestimonialsSection = () => {
         }`}>
           <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-8 pb-4 cursor-grab active:cursor-grabbing"
+            className="flex overflow-x-auto gap-4 md:gap-8 pb-4 cursor-grab active:cursor-grabbing snap-x snap-mandatory"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none'
@@ -214,7 +214,7 @@ export const TestimonialsSection = () => {
             {extendedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-80 md:w-96 px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300"
+                className="flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300 snap-center"
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
                 <div className="space-y-4">
@@ -261,12 +261,12 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-            <DialogContent className="max-w-4xl bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden">
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                  {/* Profile Image Section */}
-                  <div className="flex-shrink-0">
-                    <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
+        <DialogContent className="w-[95vw] max-w-4xl h-[90vh] max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden">
+          <div className="p-4 md:p-8 h-full overflow-y-auto">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+              {/* Profile Image Section */}
+              <div className="flex-shrink-0 mx-auto md:mx-0">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
                       <img 
                         src={selectedTestimonial.image} 
                         alt={selectedTestimonial.author}
@@ -279,26 +279,26 @@ export const TestimonialsSection = () => {
                     </div>
                   </div>
                   
-                  {/* Content Section */}
-                  <div className="flex-1 space-y-6">
-                    {/* Quote Icon */}
-                    <Quote className="text-blue-400 w-12 h-12 opacity-80" />
-                    
-                    {/* Full Testimonial Text */}
-                    <blockquote className="text-white/95 text-lg md:text-xl leading-relaxed font-light">
-                      "{selectedTestimonial.quote}"
-                    </blockquote>
-                    
-                    {/* Author Information */}
-                    <div className="border-t border-white/20 pt-6">
-                      <div className="text-white font-semibold text-xl md:text-2xl mb-2">
-                        {selectedTestimonial.author}
-                      </div>
-                      <div className="text-blue-400 text-base md:text-lg">
-                        {selectedTestimonial.company}
-                      </div>
-                    </div>
+              {/* Content Section */}
+              <div className="flex-1 space-y-4 md:space-y-6 text-center md:text-left">
+                {/* Quote Icon */}
+                <Quote className="text-blue-400 w-8 h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
+                
+                {/* Full Testimonial Text */}
+                <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
+                  "{selectedTestimonial.quote}"
+                </blockquote>
+                
+                {/* Author Information */}
+                <div className="border-t border-white/20 pt-4 md:pt-6">
+                  <div className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-2">
+                    {selectedTestimonial.author}
                   </div>
+                  <div className="text-blue-400 text-sm sm:text-base md:text-lg">
+                    {selectedTestimonial.company}
+                  </div>
+                </div>
+              </div>
                 </div>
               </div>
             </DialogContent>

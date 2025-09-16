@@ -19,8 +19,8 @@ export const ParallaxBackground = ({
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  // Much less intense for other pages, mobile, or reduced motion preference
-  const multiplier = (reduced || isMobile || prefersReducedMotion) ? 0.07 : 1;
+  // Much less intense for other pages but keep mobile stars visible
+  const multiplier = reduced ? 0.07 : (isMobile || prefersReducedMotion) ? 0.8 : 1;
 
   const handleScroll = useCallback(() => {
     // Throttle scroll updates for mobile performance
@@ -138,14 +138,15 @@ export const ParallaxBackground = ({
       return null;
     };
     
-    // Reduced star field - fewer, varied sizes, all moving
-    // Increased mobile stars for better visibility
+    // Enhanced star field for better mobile visibility
     const starConfigs = isMobile || prefersReducedMotion ? [
-      // Enhanced mobile stars - more visible
-      { opacity: 0.8, size: 50, dotSize: 0.4, speed: 0.08, oscillate: 0.0005, amplitude: 15 },
-      { opacity: 0.7, size: 60, dotSize: 0.5, speed: 0.1, oscillate: 0.0006, amplitude: 20 },
-      { opacity: 0.6, size: 55, dotSize: 0.3, speed: 0.09, oscillate: 0.0007, amplitude: 18 },
-      { opacity: 0.75, size: 65, dotSize: 0.4, speed: 0.11, oscillate: 0.0008, amplitude: 22 }
+      // Enhanced mobile stars - much more visible and active
+      { opacity: 0.9, size: 80, dotSize: 1.2, speed: 0.15, oscillate: 0.001, amplitude: 30 },
+      { opacity: 0.8, size: 90, dotSize: 1.0, speed: 0.18, oscillate: 0.0012, amplitude: 35 },
+      { opacity: 0.85, size: 85, dotSize: 1.1, speed: 0.16, oscillate: 0.0014, amplitude: 32 },
+      { opacity: 0.75, size: 95, dotSize: 0.9, speed: 0.2, oscillate: 0.0016, amplitude: 38 },
+      { opacity: 0.7, size: 75, dotSize: 0.8, speed: 0.14, oscillate: 0.0009, amplitude: 28 },
+      { opacity: 0.8, size: 100, dotSize: 1.3, speed: 0.22, oscillate: 0.0018, amplitude: 40 }
     ] : [
       // Small stars (90% of stars) - much smaller
       { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
@@ -159,8 +160,8 @@ export const ParallaxBackground = ({
     ];
     
     starConfigs.forEach((config, i) => {
-      // Increase mobile stars: 2 stars per config on mobile, 2 on desktop
-      const starsPerConfig = isMobile || prefersReducedMotion ? 2 : 2;
+      // Increase mobile stars: more stars per config on mobile for better visibility
+      const starsPerConfig = isMobile || prefersReducedMotion ? 3 : 2;
       for (let j = 0; j < starsPerConfig; j++) {
         const starId = `star-${i}-${j}`;
         
