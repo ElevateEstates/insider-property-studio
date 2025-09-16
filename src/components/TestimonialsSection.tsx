@@ -36,8 +36,8 @@ const testimonials = [
   }
 ];
 
-// Duplicate testimonials for seamless infinite scroll
-const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+// Duplicate testimonials for seamless infinite scroll - need more copies for smooth loop
+const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
 
 export const TestimonialsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,8 +75,8 @@ export const TestimonialsSection = () => {
         // Smooth continuous scrolling
         const scrollSpeed = 0.75;
         
-        // Reset to beginning when reached end for seamless loop
-        if (container.scrollLeft >= maxScroll * 0.66) { 
+        // Reset to beginning when reached 1/4 point for seamless loop
+        if (container.scrollLeft >= maxScroll * 0.25) {
           container.scrollLeft = 0;
         } else {
           container.scrollLeft += scrollSpeed;
@@ -159,7 +159,7 @@ export const TestimonialsSection = () => {
         }`}>
           <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-hidden gap-4 md:gap-8 pb-4"
+            className="flex overflow-x-hidden gap-4 md:gap-8 py-8"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none',
@@ -169,7 +169,7 @@ export const TestimonialsSection = () => {
             {extendedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 hover:scale-105"
+                className="flex-shrink-0 w-64 sm:w-72 md:w-80 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 hover:scale-102 origin-center"
                 style={{ pointerEvents: 'auto' }}
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
