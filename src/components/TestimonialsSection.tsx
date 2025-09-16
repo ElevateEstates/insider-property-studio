@@ -76,39 +76,43 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-// Auto-scroll functionality - enhanced for mobile
+// Auto-scroll functionality - always active on mobile
   useEffect(() => {
-    if (!isVisible || !autoScroll || isDragging) return;
-
-    const scroll = () => {
-      if (scrollContainerRef.current) {
-        const container = scrollContainerRef.current;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        
-        // More aggressive scrolling on mobile
-        const scrollSpeed = isMobile ? 1.5 : 1;
-        
-        // Reset to beginning when reached end for seamless loop
-        if (container.scrollLeft >= maxScroll * 0.66) { 
-          container.scrollLeft = 0;
-        } else {
-          container.scrollLeft += scrollSpeed;
+    if (!isVisible || isDragging) return;
+    
+    // On mobile, auto-scroll is always active (never paused by user interaction)
+    if (isMobile || autoScroll) {
+      const scroll = () => {
+        if (scrollContainerRef.current) {
+          const container = scrollContainerRef.current;
+          const maxScroll = container.scrollWidth - container.clientWidth;
+          
+          // More aggressive scrolling on mobile
+          const scrollSpeed = isMobile ? 1.5 : 1;
+          
+          // Reset to beginning when reached end for seamless loop
+          if (container.scrollLeft >= maxScroll * 0.66) { 
+            container.scrollLeft = 0;
+          } else {
+            container.scrollLeft += scrollSpeed;
+          }
         }
-      }
+        animationRef.current = requestAnimationFrame(scroll);
+      };
+
       animationRef.current = requestAnimationFrame(scroll);
-    };
 
-    animationRef.current = requestAnimationFrame(scroll);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
+      return () => {
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      };
+    }
   }, [isVisible, autoScroll, isDragging, isMobile]);
 
-  // Mouse drag handlers
+  // Mouse drag handlers - disabled on mobile
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (isMobile) return; // Disable manual scrolling on mobile
     setIsDragging(true);
     setAutoScroll(false);
     setStartX(e.pageX - (scrollContainerRef.current?.offsetLeft || 0));
@@ -116,7 +120,7 @@ export const TestimonialsSection = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollContainerRef.current) return;
+    if (isMobile || !isDragging || !scrollContainerRef.current) return;
     e.preventDefault();
     const x = e.pageX - (scrollContainerRef.current.offsetLeft || 0);
     const walk = (x - startX) * 2;
@@ -124,13 +128,15 @@ export const TestimonialsSection = () => {
   };
 
   const handleMouseUp = () => {
+    if (isMobile) return; // No manual interaction on mobile
     setIsDragging(false);
     // Resume auto-scroll after 1 second on mobile, 2 seconds on desktop
     setTimeout(() => setAutoScroll(true), isMobile ? 1000 : 2000);
   };
 
-  // Touch handlers for mobile
+  // Touch handlers for mobile - disabled for manual scrolling
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (isMobile) return; // Disable manual touch scrolling on mobile
     setIsDragging(true);
     setAutoScroll(false);
     setStartX(e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0));
@@ -138,13 +144,14 @@ export const TestimonialsSection = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || !scrollContainerRef.current) return;
+    if (isMobile || !isDragging || !scrollContainerRef.current) return;
     const x = e.touches[0].pageX - (scrollContainerRef.current.offsetLeft || 0);
     const walk = (x - startX) * 2;
     scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const handleTouchEnd = () => {
+    if (isMobile) return; // No manual interaction on mobile
     setIsDragging(false);
     // Resume auto-scroll after 1 second on mobile
     setTimeout(() => setAutoScroll(true), 1000);
@@ -216,10 +223,13 @@ export const TestimonialsSection = () => {
         }`}>
           <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-4 md:gap-8 pb-4 cursor-grab active:cursor-grabbing snap-x snap-mandatory"
+            className={`flex overflow-x-auto gap-4 md:gap-8 pb-4 snap-x snap-mandatory ${
+              isMobile ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'
+            }`}
             style={{ 
               scrollbarWidth: 'none', 
-              msOverflowStyle: 'none'
+              msOverflowStyle: 'none',
+              ...(isMobile ? { pointerEvents: 'none' } : {}) // Disable scroll interaction on mobile
             }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -235,6 +245,7 @@ export const TestimonialsSection = () => {
                 className={`flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 snap-center ${
                   isMobile ? '' : 'hover:scale-105'
                 }`}
+                style={isMobile ? { pointerEvents: 'auto' } : {}} // Re-enable click on mobile
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
                 <div className="space-y-4">
