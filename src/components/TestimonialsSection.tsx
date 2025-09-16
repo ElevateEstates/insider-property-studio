@@ -36,9 +36,9 @@ const testimonials = [
 export const TestimonialsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
-  const [translateX, setTranslateX] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const animationRef = useRef<number>();
+  const translateXRef = useRef(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,26 +57,30 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Smooth infinite scroll using CSS transforms
+  // Smooth infinite scroll using precise calculations
   useEffect(() => {
     if (!isVisible) return;
     
     const animate = () => {
-      setTranslateX(prev => {
-        // Each testimonial card is approximately 320px wide (w-80 + gap)
-        const cardWidth = 320;
-        const totalWidth = testimonials.length * cardWidth;
-        
-        // Move left by 0.3px per frame for smooth animation
-        const newTranslateX = prev - 0.3;
-        
-        // Reset when we've moved one full cycle
-        if (Math.abs(newTranslateX) >= totalWidth) {
-          return 0;
-        }
-        
-        return newTranslateX;
-      });
+      // Move left by 0.5px per frame for smooth animation  
+      translateXRef.current -= 0.5;
+      
+      // Calculate exact reset point: width of one testimonial set
+      // w-80 = 320px + px-4 padding = 16px each side + gap-8 = 32px between items
+      const itemWidth = 320 + 32 + 32; // card width + padding + gap
+      const singleSetWidth = testimonials.length * itemWidth;
+      
+      // Reset seamlessly when we've moved exactly one set width
+      // Use modulo to avoid any jumps
+      if (Math.abs(translateXRef.current) >= singleSetWidth) {
+        translateXRef.current = translateXRef.current + singleSetWidth;
+      }
+      
+      // Apply transform to the container
+      const container = document.querySelector('.testimonials-scroll-container');
+      if (container) {
+        (container as HTMLElement).style.transform = `translateX(${translateXRef.current}px)`;
+      }
       
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -134,14 +138,19 @@ export const TestimonialsSection = () => {
     );
   };
 
-  // Render testimonials multiple times for seamless loop
+  // Render testimonials multiple times for seamless infinite scroll
   const renderTestimonials = () => {
-    const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+    // Create 3 identical sets - this ensures when we reset, identical content is visible
+    const repeatedTestimonials = [
+      ...testimonials, 
+      ...testimonials, 
+      ...testimonials
+    ];
     
     return repeatedTestimonials.map((testimonial, index) => (
       <div
-        key={index}
-        className="flex-shrink-0 w-64 sm:w-72 md:w-80 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 hover:scale-102 origin-center"
+        key={`testimonial-${index}`}
+        className="flex-shrink-0 w-80 px-4 select-none cursor-pointer transition-all duration-300 hover:scale-102 origin-center"
         onClick={() => setSelectedTestimonial(testimonial)}
       >
         <div className="space-y-4">
@@ -207,11 +216,11 @@ export const TestimonialsSection = () => {
           
           <div className="overflow-hidden py-8">
             <div 
-              className="flex gap-4 md:gap-8"
+              className="testimonials-scroll-container flex gap-8"
               style={{ 
-                transform: `translateX(${translateX}px)`,
-                transition: 'none', // No CSS transition, pure requestAnimationFrame
-                pointerEvents: 'auto'
+                transition: 'none', // Pure requestAnimationFrame animation
+                pointerEvents: 'auto',
+                willChange: 'transform' // Optimize for smooth animation
               }}
             >
               {renderTestimonials()}
