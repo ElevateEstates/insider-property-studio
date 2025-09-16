@@ -4,43 +4,55 @@ import { usePersistedAnimation } from "@/hooks/usePersistedAnimation";
 interface DynamicTextProps {
   children: string;
   className?: string;
-  maxWidth?: number;
 }
 
-const DynamicText = ({ children, className = "", maxWidth }: DynamicTextProps) => {
+const DynamicText = ({ children, className = "" }: DynamicTextProps) => {
   const textRef = useRef<HTMLParagraphElement>(null);
-  const [fontSize, setFontSize] = useState(16);
+  const [fontSize, setFontSize] = useState(14);
 
   useEffect(() => {
     const adjustFontSize = () => {
       if (!textRef.current) return;
       
       const container = textRef.current;
-      const containerWidth = maxWidth || container.offsetWidth;
+      const containerWidth = container.parentElement?.offsetWidth || window.innerWidth - 32; // Account for padding
       
-      // Reset to base size first
-      container.style.fontSize = '16px';
+      // Create a temporary span to measure text width
+      const span = document.createElement('span');
+      span.style.visibility = 'hidden';
+      span.style.position = 'absolute';
+      span.style.whiteSpace = 'nowrap';
+      span.style.fontSize = '14px';
+      span.textContent = children;
+      document.body.appendChild(span);
       
-      // Check if text overflows
-      if (container.scrollWidth > containerWidth) {
-        // Calculate scale factor needed
-        const scale = containerWidth / container.scrollWidth;
-        const newFontSize = Math.max(12, 16 * scale * 0.95); // 0.95 for some padding
+      const textWidth = span.offsetWidth;
+      document.body.removeChild(span);
+      
+      // Calculate the scale needed
+      if (textWidth > containerWidth) {
+        const scale = containerWidth / textWidth;
+        const newFontSize = Math.max(10, 14 * scale * 0.9); // 0.9 for some margin
         setFontSize(newFontSize);
       } else {
-        setFontSize(16);
+        setFontSize(14);
       }
     };
 
-    adjustFontSize();
+    // Use timeout to ensure DOM is ready
+    const timer = setTimeout(adjustFontSize, 100);
     window.addEventListener('resize', adjustFontSize);
-    return () => window.removeEventListener('resize', adjustFontSize);
-  }, [children, maxWidth]);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', adjustFontSize);
+    };
+  }, [children]);
 
   return (
     <p 
       ref={textRef}
-      className={`${className} whitespace-nowrap`}
+      className={`${className} whitespace-nowrap overflow-hidden`}
       style={{ fontSize: `${fontSize}px` }}
     >
       {children}
