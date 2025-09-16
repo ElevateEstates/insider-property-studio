@@ -41,6 +41,7 @@ const PortfolioModal = ({
   renderContent,
 }: PortfolioModalProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [showDetails, setShowDetails] = useState(true);
 
   const currentItem = items[currentIndex] || null;
   
@@ -128,26 +129,37 @@ const PortfolioModal = ({
                 {currentItem.date} • {currentItem.location}
               </div>
             </div>
-            <button
-              onClick={onClose}
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 
-                         flex items-center justify-center text-white transition-colors"
-            >
-              <X size={20} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowDetails(!showDetails)}
+                className="px-3 py-1.5 text-xs font-medium bg-white/10 hover:bg-white/20 
+                           rounded-full transition-colors text-white border border-white/20"
+              >
+                {showDetails ? 'Hide Details' : 'Show Details'}
+              </button>
+              <button
+                onClick={onClose}
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 
+                           flex items-center justify-center text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col min-h-0 p-3 lg:p-4">
             
-            {/* Main Image Display - Increased space */}
-            <div className="flex-[3] flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0">
+            {/* Main Image Display - Dynamic sizing based on details visibility */}
+            <div className={`flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0 transition-all duration-300 ${
+              showDetails ? 'flex-[3]' : 'flex-[6]'
+            }`}>
               {getCurrentImage() ? (
                 <div className="relative w-full h-full flex items-center justify-center p-2">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
-                    className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-xl"
+                    className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-xl transition-all duration-300"
                   />
                   
                   {/* Navigation Arrows */}
@@ -155,24 +167,24 @@ const PortfolioModal = ({
                     <>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={24} />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={24} />
                       </button>
                     </>
                   )}
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded-full border border-white/20">
+                    <div className="absolute top-3 right-3 bg-black/70 px-4 py-2 rounded-full border border-white/20">
                       <span className="text-white/90 text-sm font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
@@ -212,57 +224,61 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Compact with Scroll */}
-            <div className="flex-shrink-0 h-24 lg:h-32 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
-              <div className="space-y-2 lg:space-y-3">
-                
-                {/* Badges */}
-                {(currentItem.clientType || currentItem.packageType) && (
-                  <div className="flex gap-2 flex-wrap">
-                    {currentItem.clientType && (
-                      <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                        {currentItem.clientType}
-                      </Badge>
-                    )}
-                    {currentItem.packageType && (
-                      <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                        {currentItem.packageType}
-                      </Badge>
-                    )}
-                  </div>
-                )}
+            {/* Project Details - Toggleable with Animation */}
+            {showDetails && (
+              <div className="flex-shrink-0 h-32 lg:h-40 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 
+                             scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
+                             animate-fade-in transition-all duration-300">
+                <div className="space-y-2 lg:space-y-3">
+                  
+                  {/* Badges */}
+                  {(currentItem.clientType || currentItem.packageType) && (
+                    <div className="flex gap-2 flex-wrap">
+                      {currentItem.clientType && (
+                        <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                          {currentItem.clientType}
+                        </Badge>
+                      )}
+                      {currentItem.packageType && (
+                        <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                          {currentItem.packageType}
+                        </Badge>
+                      )}
+                    </div>
+                  )}
 
-                {/* Project Description */}
-                {currentItem.description && (
-                  <div>
-                    <h3 className="text-white font-medium text-sm lg:text-base mb-1">Project Details</h3>
-                    <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
-                      {currentItem.description}
-                    </p>
-                  </div>
-                )}
+                  {/* Project Description */}
+                  {currentItem.description && (
+                    <div>
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Project Details</h3>
+                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                        {currentItem.description}
+                      </p>
+                    </div>
+                  )}
 
-                {/* Client Requirements */}
-                {currentItem.clientNotes && (
-                  <div>
-                    <h3 className="text-white font-medium text-sm lg:text-base mb-1">Client Requirements</h3>
-                    <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
-                      {currentItem.clientNotes}
-                    </p>
-                  </div>
-                )}
+                  {/* Client Requirements */}
+                  {currentItem.clientNotes && (
+                    <div>
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Client Requirements</h3>
+                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                        {currentItem.clientNotes}
+                      </p>
+                    </div>
+                  )}
 
-                {/* Shoot Details */}
-                {currentItem.shootDetails && (
-                  <div>
-                    <h3 className="text-white font-medium text-sm lg:text-base mb-1">Shoot Details</h3>
-                    <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
-                      {currentItem.shootDetails}
-                    </p>
-                  </div>
-                )}
+                  {/* Shoot Details */}
+                  {currentItem.shootDetails && (
+                    <div>
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Shoot Details</h3>
+                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                        {currentItem.shootDetails}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Navigation between properties - Fixed at bottom */}
             {items.length > 1 && (
