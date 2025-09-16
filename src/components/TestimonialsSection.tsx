@@ -198,62 +198,46 @@ export const TestimonialsSection = () => {
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
             <DialogContent className="w-[95vw] h-[80vh] max-w-none bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg mt-16">
-              <div 
-                className="h-full flex flex-col relative"
-                onTouchStart={(e) => {
-                  const touch = e.touches[0];
-                  const startX = touch.clientX;
-                  const startY = touch.clientY;
-                  
-                  const handleTouchMove = (moveEvent: TouchEvent) => {
-                    const moveTouch = moveEvent.touches[0];
-                    const deltaX = moveTouch.clientX - startX;
-                    const deltaY = moveTouch.clientY - startY;
-                    
-                    // Only trigger if horizontal swipe is dominant
-                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
-                      setSelectedTestimonial(null);
-                      document.removeEventListener('touchmove', handleTouchMove);
-                      document.removeEventListener('touchend', handleTouchEnd);
-                    }
-                  };
-                  
-                  const handleTouchEnd = () => {
-                    document.removeEventListener('touchmove', handleTouchMove);
-                    document.removeEventListener('touchend', handleTouchEnd);
-                  };
-                  
-                  document.addEventListener('touchmove', handleTouchMove);
-                  document.addEventListener('touchend', handleTouchEnd);
-                }}
-                onMouseDown={(e) => {
-                  const startX = e.clientX;
-                  const startY = e.clientY;
-                  
-                  const handleMouseMove = (moveEvent: MouseEvent) => {
-                    const deltaX = moveEvent.clientX - startX;
-                    const deltaY = moveEvent.clientY - startY;
-                    
-                    // Only trigger if horizontal drag is dominant
-                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
-                      setSelectedTestimonial(null);
-                      document.removeEventListener('mousemove', handleMouseMove);
-                      document.removeEventListener('mouseup', handleMouseUp);
-                    }
-                  };
-                  
-                  const handleMouseUp = () => {
-                    document.removeEventListener('mousemove', handleMouseMove);
-                    document.removeEventListener('mouseup', handleMouseUp);
-                  };
-                  
-                  document.addEventListener('mousemove', handleMouseMove);
-                  document.addEventListener('mouseup', handleMouseUp);
-                }}
-              >
+              <div className="h-full flex flex-col">
                 {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-y-auto p-4">
-                  <div className="flex flex-col items-center space-y-4">
+                <div 
+                  className="flex-1 overflow-y-scroll overscroll-contain p-4"
+                  style={{ 
+                    scrollBehavior: 'smooth',
+                    WebkitOverflowScrolling: 'touch'
+                  }}
+                >
+                  <div 
+                    className="flex flex-col items-center space-y-4"
+                    onTouchStart={(e) => {
+                      const touch = e.touches[0];
+                      const startX = touch.clientX;
+                      const startY = touch.clientY;
+                      let isDragging = false;
+                      
+                      const handleTouchMove = (moveEvent: TouchEvent) => {
+                        const moveTouch = moveEvent.touches[0];
+                        const deltaX = moveTouch.clientX - startX;
+                        const deltaY = moveTouch.clientY - startY;
+                        
+                        // Only trigger close on strong horizontal swipe, not vertical scroll
+                        if (Math.abs(deltaX) > Math.abs(deltaY) + 80 && Math.abs(deltaX) > 120) {
+                          isDragging = true;
+                          setSelectedTestimonial(null);
+                          document.removeEventListener('touchmove', handleTouchMove);
+                          document.removeEventListener('touchend', handleTouchEnd);
+                        }
+                      };
+                      
+                      const handleTouchEnd = () => {
+                        document.removeEventListener('touchmove', handleTouchMove);
+                        document.removeEventListener('touchend', handleTouchEnd);
+                      };
+                      
+                      document.addEventListener('touchmove', handleTouchMove, { passive: true });
+                      document.addEventListener('touchend', handleTouchEnd);
+                    }}
+                  >
                     {/* Profile Image */}
                     <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-400/30">
                       <img 
@@ -287,7 +271,7 @@ export const TestimonialsSection = () => {
                       </div>
                       
                       {/* Separating line and close logo */}
-                      <div className="border-t border-white/20 pt-4">
+                      <div className="border-t border-white/20 pt-4 mb-8">
                         <div 
                           className="flex flex-col items-center space-y-2 cursor-pointer hover:bg-white/10 transition-colors rounded-lg p-3"
                           onClick={() => setSelectedTestimonial(null)}
@@ -299,6 +283,9 @@ export const TestimonialsSection = () => {
                         </div>
                       </div>
                     </div>
+                    
+                    {/* Extra padding to ensure bottom area is reachable */}
+                    <div className="h-16"></div>
                   </div>
                 </div>
               </div>
