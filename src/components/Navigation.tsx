@@ -105,9 +105,9 @@ export const Navigation = () => {
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? (
-                <X className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12" />
+                <X className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14" />
               ) : (
-                <Menu className="h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12" />
+                <Menu className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14" />
               )}
             </Button>
           </div>
