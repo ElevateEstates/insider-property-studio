@@ -108,8 +108,8 @@ const PortfolioModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[90vw] h-[80vh] p-0 border bg-black/95 rounded-lg border-white/20 z-[101]
-                                fixed left-[50%] top-[55%] transform -translate-x-1/2 -translate-y-1/2
+      <DialogContent className="w-[90vw] h-[75vh] p-0 border bg-black/95 rounded-lg border-white/20 z-[101]
+                                fixed left-[50%] top-[60%] transform -translate-x-1/2 -translate-y-1/2
                                 max-w-[1400px] max-h-[900px]">
         <VisuallyHidden>
           <DialogTitle>{currentItem.title}</DialogTitle>
@@ -150,9 +150,11 @@ const PortfolioModal = ({
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col min-h-0 p-3 lg:p-4">
             
-            {/* Main Image Display - Dynamic sizing based on details visibility */}
+            {/* Main Image Display - Mobile responsive sizing */}
             <div className={`flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0 transition-all duration-300 ${
-              showDetails ? 'flex-[3]' : 'flex-[6]'
+              showDetails 
+                ? 'flex-[2] lg:flex-[3]' // Smaller on mobile when details shown, normal on desktop
+                : 'flex-[6] lg:flex-[6]' // Large when details hidden
             }`}>
               {getCurrentImage() ? (
                 <div className="relative w-full h-full flex items-center justify-center p-2">
@@ -224,12 +226,12 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Toggleable with Animation */}
+            {/* Project Details - Mobile responsive with proper spacing */}
             {showDetails && (
-              <div className="flex-shrink-0 h-32 lg:h-40 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 
+              <div className="flex-shrink-0 h-40 lg:h-32 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 
                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
                              animate-fade-in transition-all duration-300">
-                <div className="space-y-2 lg:space-y-3">
+                <div className="space-y-3 lg:space-y-2">
                   
                   {/* Badges */}
                   {(currentItem.clientType || currentItem.packageType) && (
@@ -250,8 +252,8 @@ const PortfolioModal = ({
                   {/* Project Description */}
                   {currentItem.description && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Project Details</h3>
-                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Project Details</h3>
+                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
                         {currentItem.description}
                       </p>
                     </div>
@@ -260,8 +262,8 @@ const PortfolioModal = ({
                   {/* Client Requirements */}
                   {currentItem.clientNotes && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Client Requirements</h3>
-                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Client Requirements</h3>
+                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
                         {currentItem.clientNotes}
                       </p>
                     </div>
@@ -270,8 +272,8 @@ const PortfolioModal = ({
                   {/* Shoot Details */}
                   {currentItem.shootDetails && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1">Shoot Details</h3>
-                      <p className="text-white/80 text-xs lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Shoot Details</h3>
+                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
                         {currentItem.shootDetails}
                       </p>
                     </div>
