@@ -117,14 +117,20 @@ const PortfolioModal = ({
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
         </VisuallyHidden>
         
-        {/* Centered Layout - Everything grouped together */}
-        <div className="w-full h-full bg-black text-white flex flex-col items-center justify-center overflow-hidden p-2">
+        {/* Clickable overlay to close modal */}
+        <div 
+          className="absolute inset-0 bg-black/95 cursor-pointer"
+          onClick={onClose}
+        />
+        
+        {/* Top-aligned Layout with safe zone */}
+        <div className="relative w-full h-full flex flex-col items-center pt-16 md:pt-8 lg:justify-center overflow-hidden p-2 pointer-events-none">
           
-          {/* Content Container - Centered */}
-          <div className="flex flex-col items-center justify-center max-w-full max-h-full">
+          {/* Content Container - Top aligned on mobile, centered on desktop */}
+          <div className="flex flex-col items-center max-w-full max-h-full pointer-events-auto">
             
             {/* Header with Close Button - Above image */}
-            <div className="flex-shrink-0 flex items-center justify-between w-full mb-2 px-2">
+            <div className="flex-shrink-0 flex items-center justify-between w-full mb-2 px-2 bg-black/90 rounded-lg py-2">
               <div className="flex-1 min-w-0 pr-2">
                 <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
                   {currentItem.title}
@@ -152,13 +158,13 @@ const PortfolioModal = ({
             </div>
 
             {/* Main Image - Centered */}
-            <div className="flex-shrink-0 relative">
+            <div className="flex-shrink-0 relative bg-black/50 rounded-lg overflow-hidden">
               {getCurrentImage() ? (
                 <div className="relative">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
-                    className="max-w-[90vw] max-h-[50vh] md:max-w-[70vw] md:max-h-[60vh] w-auto h-auto object-contain rounded"
+                    className="max-w-[90vw] max-h-[50vh] md:max-w-[70vw] md:max-h-[60vh] w-auto h-auto object-contain"
                   />
                   
                   {/* Navigation Arrows */}
@@ -199,7 +205,7 @@ const PortfolioModal = ({
 
             {/* Thumbnail Strip - Right under image */}
             {hasMultipleImages && (
-              <div className="flex-shrink-0 mt-2">
+              <div className="flex-shrink-0 mt-2 bg-black/50 rounded-lg py-2">
                 <div className="flex gap-1 overflow-x-auto px-2">
                   {images.map((image: string, index: number) => (
                     <button
@@ -225,7 +231,7 @@ const PortfolioModal = ({
 
             {/* Project Details - Compact */}
             {showDetails && (
-              <div className="flex-shrink-0 w-full max-w-2xl mt-3 max-h-40 overflow-y-auto bg-black/20 rounded p-3
+              <div className="flex-shrink-0 w-full max-w-2xl mt-3 max-h-40 overflow-y-auto bg-black/70 rounded-lg p-3
                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
                 <div className="space-y-2 text-sm">
                   
@@ -280,7 +286,7 @@ const PortfolioModal = ({
 
             {/* Navigation between properties */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center w-full max-w-md mt-3 px-2 border-t border-white/20 pt-2">
+              <div className="flex-shrink-0 flex justify-between items-center w-full max-w-md mt-3 px-2 border-t border-white/20 pt-2 bg-black/50 rounded-lg py-2">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
                   className="flex items-center gap-1 px-2 py-1 text-white/80 hover:text-white 
