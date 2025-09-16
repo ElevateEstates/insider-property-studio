@@ -216,7 +216,7 @@ export const PricingCalculator = () => {
                   {services.map((service) => (
                     <div
                       key={service.id}
-                      className="p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer border-white/10 bg-white/5 hover:border-white/20"
+                      className="p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer border-white/10 bg-white/5 hover:border-accent-gold/50 hover:bg-accent-gold/5"
                       onClick={() => toggleService(service.id)}
                     >
                       <div className="flex items-start justify-between">
@@ -259,7 +259,7 @@ export const PricingCalculator = () => {
                   
                   {/* Special Drone Photography Section */}
                   {category === "Drone" && (
-                    <div className="p-4 rounded-lg border-2 transition-all duration-300 border-white/10 bg-white/5">
+                    <div className="p-4 rounded-lg border-2 transition-all duration-300 border-white/10 bg-white/5 hover:border-accent-gold/50 hover:bg-accent-gold/5">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3">

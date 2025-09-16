@@ -153,7 +153,6 @@ const Contact = () => {
   const services = [
     {
       title: "Real Estate Photography",
-      price: "From €275",
       features: [
         "Professional High Dynamic Range photos",
         "Showcase your property in it's best light",
@@ -162,7 +161,6 @@ const Contact = () => {
     },
     {
       title: "Video Tours",
-      price: "From €150",
       features: [
         "Simple social media reels",
         "High level property showcase videos",
@@ -173,7 +171,6 @@ const Contact = () => {
     {
       title: "Marketing Package",
       subtitle: "retainer and commission-based partnership available",
-      price: "From €1000",
       features: [
         "Post consistently",
         "Build your brand and audience",
@@ -189,7 +186,7 @@ const Contact = () => {
       <Navigation />
       
 
-      {/* Our Packages Section */}
+      {/* Our Services Section */}
       <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-5xl px-4 md:px-8"
@@ -197,7 +194,7 @@ const Contact = () => {
         >
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-light mb-4 text-white">
-              Our Packages
+              Our Services
             </h2>
             <div className="w-20 h-0.5 bg-accent-gold mx-auto"></div>
           </div>
@@ -207,33 +204,28 @@ const Contact = () => {
             <div className="pl-12 space-y-8">
               <div className="space-y-6 text-lg leading-relaxed text-white/80 max-w-4xl">
                 <p>
-                  We offer fixed-price packages for clients who need specific deliverables.
+                  Professional real estate media services tailored to your needs.
                 </p>
                 
                 <p>
-                  For more comprehensive collaborations, we evaluate your project to create a custom plan to achieve the results you're looking for.
+                  Use our pricing calculator below to build your custom package and see live pricing for your specific requirements.
                 </p>
               </div>
             </div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 mt-20">
+          <div className="space-y-6 mt-20">
             {services.map((service, index) => (
               <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-medium text-white">
-                      {service.title}
-                    </h3>
-                    {service.subtitle && (
-                      <p className="text-accent-gold text-sm mt-1">
-                        {service.subtitle}
-                      </p>
-                    )}
-                  </div>
-                  <Badge className="bg-accent-gold text-primary">
-                    {service.price}
-                  </Badge>
+                <div className="mb-4">
+                  <h3 className="text-xl font-medium text-white mb-2">
+                    {service.title}
+                  </h3>
+                  {service.subtitle && (
+                    <p className="text-accent-gold text-sm">
+                      {service.subtitle}
+                    </p>
+                  )}
                 </div>
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
@@ -402,20 +394,15 @@ const Contact = () => {
               <div className="space-y-6">
                 {services.map((service, index) => (
                   <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-xl font-medium text-white">
-                          {service.title}
-                        </h3>
-                        {service.subtitle && (
-                          <p className="text-accent-gold text-sm mt-1">
-                            {service.subtitle}
-                          </p>
-                        )}
-                      </div>
-                      <Badge className="bg-accent-gold text-primary">
-                        {service.price}
-                      </Badge>
+                    <div className="mb-4">
+                      <h3 className="text-xl font-medium text-white">
+                        {service.title}
+                      </h3>
+                      {service.subtitle && (
+                        <p className="text-accent-gold text-sm mt-1">
+                          {service.subtitle}
+                        </p>
+                      )}
                     </div>
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
