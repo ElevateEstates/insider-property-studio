@@ -68,7 +68,7 @@ export const TestimonialsSection = () => {
     const getObjectPosition = (author: string) => {
       switch (author) {
         case "Scarlett Lancaster":
-          return "object-[50%_20%]";
+          return "object-[50%_0%]"; // Position to very top to show face
         case "Eddie Caires":
           return "object-[50%_20%]";
         default:
@@ -208,7 +208,9 @@ export const TestimonialsSection = () => {
                         src={selectedTestimonial.image} 
                         alt={selectedTestimonial.author}
                         className={`w-full h-full object-cover ${
-                          selectedTestimonial.author === "Scarlett Lancaster" || selectedTestimonial.author === "Eddie Caires"
+                          selectedTestimonial.author === "Scarlett Lancaster" 
+                            ? "object-[50%_0%]" 
+                            : selectedTestimonial.author === "Eddie Caires"
                             ? "object-[50%_20%]" 
                             : "object-center"
                         }`}
