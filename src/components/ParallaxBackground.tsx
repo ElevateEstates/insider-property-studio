@@ -87,38 +87,39 @@ export const ParallaxBackground = ({
         var finalOscillationY = oscillationY + Math.sin(scrollY * oscillateSpeed * 0.9 + uniquePhase * 1.7) * (oscillateAmplitude * 0.2);
       }
       
-      // Simplified cycle calculations for better performance
-      const cycleHeight = isMobile ? screenHeight * 6 : screenHeight * 12; // Smaller cycles on mobile
-      const cycleWidth = isMobile ? screenWidth * 2 : screenWidth * 4;
+      // Cycle calculations optimized for top-to-bottom visibility
+      const cycleHeight = isMobile ? screenHeight * 4 : screenHeight * 6; // Smaller cycles for better top coverage
+      const cycleWidth = isMobile ? screenWidth * 2 : screenWidth * 3;
       
       const xProgress = (baseX % cycleWidth) / cycleWidth;
-      const xOffset = (xProgress * cycleWidth) - (screenWidth * 1.5) + finalOscillationX;
+      const xOffset = (xProgress * cycleWidth) - (screenWidth * 0.5) + finalOscillationX;
       
       const yProgress = (baseY % cycleHeight) / cycleHeight;
-      const yOffset = (yProgress * cycleHeight) - (screenHeight * 1) + finalOscillationY;
+      const yOffset = (yProgress * cycleHeight) - (screenHeight * 0.3) + finalOscillationY; // Start much higher for top visibility
       
-      // Simplified fade calculations for mobile performance
+      // Enhanced visibility calculations prioritizing top of page
       if (isMobile) {
-        // Simple visibility check on mobile
-        const isVisible = xOffset > -200 && xOffset < screenWidth + 200 && 
-                          yOffset > -300 && yOffset < screenHeight + 300;
-        var finalOpacity = isVisible ? baseOpacity * 0.8 : 0;
+        // More lenient visibility check on mobile, especially for top area
+        const isVisible = xOffset > -300 && xOffset < screenWidth + 300 && 
+                          yOffset > -400 && yOffset < screenHeight + 600; // Extended top margin
+        var finalOpacity = isVisible ? baseOpacity * 0.9 : 0; // Higher opacity on mobile
       } else {
-        // Full fade calculations on desktop
-        const fadeMargin = 400;
+        // Desktop fade calculations with better top coverage
+        const fadeMargin = 500;
         let horizontalFade = 1;
         let verticalFade = 1;
         
         if (xOffset < -fadeMargin) {
-          horizontalFade = Math.max(0.1, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
+          horizontalFade = Math.max(0.2, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
         } else if (xOffset > screenWidth + fadeMargin) {
-          horizontalFade = Math.max(0.1, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
+          horizontalFade = Math.max(0.2, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
         }
         
-        if (yOffset < -fadeMargin * 2) {
-          verticalFade = Math.max(0.2, Math.sin(Math.PI * (yOffset + fadeMargin * 2) / (-fadeMargin * 3)) * 0.5 + 0.5);
-        } else if (yOffset > screenHeight + fadeMargin * 2) {
-          verticalFade = Math.max(0.2, Math.sin(Math.PI * (screenHeight + fadeMargin * 2 - yOffset) / (fadeMargin * 3)) * 0.5 + 0.5);
+        // Enhanced top visibility - much more lenient for top area
+        if (yOffset < -fadeMargin * 1.5) {
+          verticalFade = Math.max(0.3, Math.sin(Math.PI * (yOffset + fadeMargin * 1.5) / (-fadeMargin * 2)) * 0.5 + 0.5);
+        } else if (yOffset > screenHeight + fadeMargin * 1.5) {
+          verticalFade = Math.max(0.3, Math.sin(Math.PI * (screenHeight + fadeMargin * 1.5 - yOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
         }
         
         var finalOpacity = baseOpacity * horizontalFade * verticalFade;
@@ -131,8 +132,8 @@ export const ParallaxBackground = ({
       const scaledDotSize = dotSize * Math.min(footerScale, 1.3);
       const scaledSize = size * Math.min(footerScale, 1.2);
       
-      // Render if meaningfully visible - lower threshold for better coverage
-      if (finalOpacity > 0.02) {
+      // Lower visibility threshold for better coverage, especially at top
+      if (finalOpacity > 0.01) {
         return (
           <div 
             key={id}
@@ -185,12 +186,12 @@ export const ParallaxBackground = ({
         // Distribute across screen width with better spacing
         const baseX = (screenWidth / 2) * j + (screenWidth * 0.2) + ((i * 47) % (screenWidth * 0.3));
         
-        // Ensure stars are always visible from top to bottom
+        // Position stars to be visible from the very top of the page
         const initialY = isMobile ? 
-          // On mobile, distribute stars across entire viewport from the very beginning
-          (i * 80 + j * 120) % (screenHeight * 2) : // Spread across 2x viewport height
-          // Desktop behavior - also ensure coverage from top
-          (i * 100 + j * 150) % (screenHeight * 2.5); // Spread across 2.5x viewport height
+          // On mobile, ensure even distribution starting from top of page
+          (i * 60 + j * 90) % (screenHeight * 1.5) - (screenHeight * 0.2) : // Start above fold, spread across 1.5x viewport
+          // Desktop behavior - spread across larger area
+          (i * 80 + j * 120) % (screenHeight * 2) - (screenHeight * 0.3); // Start above fold, spread across 2x viewport
         
         // Add strong randomization to prevent any dot from matching scroll speed exactly
         const speedVariation = 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);
