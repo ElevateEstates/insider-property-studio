@@ -147,21 +147,21 @@ const PortfolioModal = ({
             </div>
           </div>
 
-          {/* Main Content Area - Optimized layout */}
-          <div className="flex-1 flex flex-col min-h-0 p-1 lg:p-3">
+          {/* Main Content Area - Minimal padding */}
+          <div className="flex-1 flex flex-col min-h-0 p-0">
             
-            {/* Main Image Display - Positioned high with minimal padding */}
-            <div className={`flex items-center justify-center relative bg-black/30 rounded-lg min-h-0 transition-all duration-300 ${
+            {/* Main Image Display - Maximized space */}
+            <div className={`flex items-center justify-center relative bg-black/30 rounded min-h-0 transition-all duration-300 ${
               showDetails 
-                ? 'flex-[3] mb-1' // When details shown, smaller image with minimal bottom margin
-                : 'flex-[6] mb-2' // When hidden, large image with small margin
+                ? 'flex-[3]' // When details shown, reduced image size
+                : 'flex-1' // When hidden, maximize image space
             }`}>
               {getCurrentImage() ? (
-                <div className="relative w-full h-full flex items-center justify-center p-0.5 lg:p-1">
+                <div className="relative w-full h-full flex items-center justify-center p-0">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
-                    className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-xl transition-all duration-300"
+                    className="max-w-full max-h-full w-auto h-auto object-contain rounded transition-all duration-300"
                   />
                   
                   {/* Navigation Arrows */}
@@ -169,46 +169,46 @@ const PortfolioModal = ({
                     <>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                        className="absolute left-1 lg:left-2 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute left-1 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronLeft size={20} className="lg:w-6 lg:h-6" />
+                        <ChevronLeft size={16} className="lg:w-5 lg:h-5" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                        className="absolute right-1 lg:right-2 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronRight size={20} className="lg:w-6 lg:h-6" />
+                        <ChevronRight size={16} className="lg:w-5 lg:h-5" />
                       </button>
                     </>
                   )}
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-1 lg:top-2 right-1 lg:right-2 bg-black/70 px-2 py-1 lg:px-3 lg:py-1.5 rounded-full border border-white/20">
-                      <span className="text-white/90 text-xs lg:text-sm font-medium">
+                    <div className="absolute top-1 right-1 bg-black/70 px-1.5 py-0.5 rounded-full border border-white/20">
+                      <span className="text-white/90 text-xs font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="text-white/50 text-center p-4">
+                <div className="text-white/50 text-center p-2">
                   <p>Image not available</p>
                 </div>
               )}
             </div>
 
-            {/* Thumbnail Strip - Positioned directly under main image */}
+            {/* Thumbnail Strip - Directly attached to image */}
             {hasMultipleImages && (
-              <div className="flex-shrink-0 mb-1">
-                <div className="flex gap-1.5 lg:gap-2 overflow-x-auto pb-1 px-0.5">
+              <div className="flex-shrink-0">
+                <div className="flex gap-0.5 overflow-x-auto px-1 py-0.5">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-12 h-9 lg:w-16 lg:h-12 rounded border-2 overflow-hidden 
+                      className={`flex-shrink-0 w-8 h-6 lg:w-10 lg:h-8 rounded border overflow-hidden 
                                  transition-all hover:scale-105 ${
                                    selectedImageIndex === index 
                                      ? 'border-white shadow-lg scale-105' 
@@ -226,16 +226,16 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Uses all remaining space efficiently */}
+            {/* Project Details - Maximized space */}
             {showDetails && (
-              <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded-lg p-2 lg:p-3 
+              <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded p-1.5 mt-0.5
                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
                              animate-fade-in transition-all duration-300">
-                <div className="space-y-2 lg:space-y-3">
+                <div className="space-y-1.5">
                   
                   {/* Badges */}
                   {(currentItem.clientType || currentItem.packageType) && (
-                    <div className="flex gap-1.5 flex-wrap">
+                    <div className="flex gap-1 flex-wrap">
                       {currentItem.clientType && (
                         <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
                           {currentItem.clientType}
@@ -252,7 +252,7 @@ const PortfolioModal = ({
                   {/* Project Description */}
                   {currentItem.description && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Project Details</h3>
+                      <h3 className="text-white font-medium text-sm mb-1">Project Details</h3>
                       <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.description}
                       </p>
@@ -262,7 +262,7 @@ const PortfolioModal = ({
                   {/* Client Requirements */}
                   {currentItem.clientNotes && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Client Requirements</h3>
+                      <h3 className="text-white font-medium text-sm mb-1">Client Requirements</h3>
                       <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.clientNotes}
                       </p>
@@ -272,7 +272,7 @@ const PortfolioModal = ({
                   {/* Shoot Details */}
                   {currentItem.shootDetails && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Shoot Details</h3>
+                      <h3 className="text-white font-medium text-sm mb-1">Shoot Details</h3>
                       <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.shootDetails}
                       </p>
@@ -282,27 +282,27 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Navigation between properties - Compact at bottom */}
+            {/* Navigation between properties - Minimal spacing */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center pt-2 mt-1 border-t border-white/20">
+              <div className="flex-shrink-0 flex justify-between items-center pt-1 mt-0.5 border-t border-white/20">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
-                  className="flex items-center gap-1 px-2 py-1.5 lg:px-3 lg:py-2 text-white/80 hover:text-white 
-                             hover:bg-white/10 rounded-md lg:rounded-lg transition-colors text-xs lg:text-sm"
+                  className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
+                             hover:bg-white/10 rounded transition-colors text-xs"
                 >
-                  <ChevronLeft size={14} />
+                  <ChevronLeft size={12} />
                   Previous
                 </button>
-                <span className="text-white/50 text-xs lg:text-sm">
+                <span className="text-white/50 text-xs">
                   {currentIndex + 1} of {items.length}
                 </span>
                 <button
                   onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
-                  className="flex items-center gap-1 px-2 py-1.5 lg:px-3 lg:py-2 text-white/80 hover:text-white 
-                             hover:bg-white/10 rounded-md lg:rounded-lg transition-colors text-xs lg:text-sm"
+                  className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
+                             hover:bg-white/10 rounded transition-colors text-xs"
                 >
                   Next
-                  <ChevronRight size={14} />
+                  <ChevronRight size={12} />
                 </button>
               </div>
             )}
