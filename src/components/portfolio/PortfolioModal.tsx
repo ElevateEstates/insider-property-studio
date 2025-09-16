@@ -119,47 +119,45 @@ const PortfolioModal = ({
         {/* Single Column Layout with Image Priority */}
         <div className="w-full h-full bg-black text-white flex flex-col overflow-hidden">
           
-          {/* Header with Close Button */}
-          <div className="flex-shrink-0 flex items-center justify-between p-3 lg:p-4 border-b border-white/20 bg-black/90">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-lg lg:text-xl xl:text-2xl font-semibold pr-4 truncate">
+          {/* Header with Close Button - Mobile optimized */}
+          <div className="flex-shrink-0 flex items-center justify-between p-2 lg:p-4 border-b border-white/20 bg-black/90">
+            <div className="flex-1 min-w-0 pr-2">
+              <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
                 {currentItem.title}
               </h2>
-              <div className="text-white/70 text-sm mt-1">
+              <div className="text-white/70 text-xs lg:text-sm mt-0.5">
                 {currentItem.date} • {currentItem.location}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 lg:gap-2 flex-shrink-0">
               <button
                 onClick={() => setShowDetails(!showDetails)}
-                className="px-4 py-2 text-sm font-medium bg-[hsl(var(--accent-gold))] hover:bg-[hsl(var(--accent-gold-dark))] 
-                           rounded-lg transition-colors text-black border border-[hsl(var(--accent-gold-light))]"
+                className="px-2.5 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium bg-[hsl(var(--accent-gold))] hover:bg-[hsl(var(--accent-gold-dark))] 
+                           rounded-md lg:rounded-lg transition-colors text-black border border-[hsl(var(--accent-gold-light))]"
               >
-                {showDetails ? 'Hide Details' : 'Show Details'}
+                {showDetails ? 'Hide' : 'Details'}
               </button>
               <button
                 onClick={onClose}
-                className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 
+                className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/10 hover:bg-white/20 
                            flex items-center justify-center text-white transition-colors"
               >
-                <X size={20} />
+                <X size={16} className="lg:w-5 lg:h-5" />
               </button>
             </div>
           </div>
 
-          {/* Main Content Area */}
-          <div className="flex-1 flex flex-col min-h-0 p-3 lg:p-4">
+          {/* Main Content Area - Optimized layout */}
+          <div className="flex-1 flex flex-col min-h-0 p-1 lg:p-3">
             
-            {/* Main Image Display - Mobile responsive sizing */}
-            <div className={`flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0 transition-all duration-300 ${
+            {/* Main Image Display - Positioned high with minimal padding */}
+            <div className={`flex items-center justify-center relative bg-black/30 rounded-lg min-h-0 transition-all duration-300 ${
               showDetails 
-                ? 'flex-[2] lg:flex-[3]' // Smaller on mobile when details shown, normal on desktop
-                : 'flex-[6] lg:flex-[6]' // Large when details hidden
+                ? 'flex-[3] mb-1' // When details shown, smaller image with minimal bottom margin
+                : 'flex-[6] mb-2' // When hidden, large image with small margin
             }`}>
               {getCurrentImage() ? (
-                <div className={`relative w-full h-full flex items-center justify-center transition-all duration-300 ${
-                  showDetails ? 'p-2' : 'p-1' // Less padding when details hidden for bigger image
-                }`}>
+                <div className="relative w-full h-full flex items-center justify-center p-0.5 lg:p-1">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
@@ -171,25 +169,25 @@ const PortfolioModal = ({
                     <>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute left-1 lg:left-2 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft size={20} className="lg:w-6 lg:h-6" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute right-1 lg:right-2 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
-                        <ChevronRight size={24} />
+                        <ChevronRight size={20} className="lg:w-6 lg:h-6" />
                       </button>
                     </>
                   )}
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-2 right-2 bg-black/70 px-3 py-1.5 rounded-full border border-white/20">
-                      <span className="text-white/90 text-sm font-medium">
+                    <div className="absolute top-1 lg:top-2 right-1 lg:right-2 bg-black/70 px-2 py-1 lg:px-3 lg:py-1.5 rounded-full border border-white/20">
+                      <span className="text-white/90 text-xs lg:text-sm font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
                     </div>
@@ -202,15 +200,15 @@ const PortfolioModal = ({
               )}
             </div>
 
-            {/* Thumbnail Strip */}
+            {/* Thumbnail Strip - Positioned directly under main image */}
             {hasMultipleImages && (
-              <div className="flex-shrink-0 mb-3">
-                <div className="flex gap-2 overflow-x-auto pb-2 px-1">
+              <div className="flex-shrink-0 mb-1">
+                <div className="flex gap-1.5 lg:gap-2 overflow-x-auto pb-1 px-0.5">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-12 lg:w-20 lg:h-15 rounded-md border-2 overflow-hidden 
+                      className={`flex-shrink-0 w-12 h-9 lg:w-16 lg:h-12 rounded border-2 overflow-hidden 
                                  transition-all hover:scale-105 ${
                                    selectedImageIndex === index 
                                      ? 'border-white shadow-lg scale-105' 
@@ -228,16 +226,16 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Mobile responsive with proper spacing */}
+            {/* Project Details - Uses all remaining space efficiently */}
             {showDetails && (
-              <div className="flex-shrink-0 h-40 lg:h-32 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 
+              <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded-lg p-2 lg:p-3 
                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
                              animate-fade-in transition-all duration-300">
-                <div className="space-y-3 lg:space-y-2">
+                <div className="space-y-2 lg:space-y-3">
                   
                   {/* Badges */}
                   {(currentItem.clientType || currentItem.packageType) && (
-                    <div className="flex gap-2 flex-wrap">
+                    <div className="flex gap-1.5 flex-wrap">
                       {currentItem.clientType && (
                         <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
                           {currentItem.clientType}
@@ -254,8 +252,8 @@ const PortfolioModal = ({
                   {/* Project Description */}
                   {currentItem.description && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Project Details</h3>
-                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Project Details</h3>
+                      <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.description}
                       </p>
                     </div>
@@ -264,8 +262,8 @@ const PortfolioModal = ({
                   {/* Client Requirements */}
                   {currentItem.clientNotes && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Client Requirements</h3>
-                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Client Requirements</h3>
+                      <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.clientNotes}
                       </p>
                     </div>
@@ -274,8 +272,8 @@ const PortfolioModal = ({
                   {/* Shoot Details */}
                   {currentItem.shootDetails && (
                     <div>
-                      <h3 className="text-white font-medium text-sm lg:text-base mb-2">Shoot Details</h3>
-                      <p className="text-white/80 text-sm lg:text-sm leading-relaxed">
+                      <h3 className="text-white font-medium text-sm lg:text-base mb-1.5">Shoot Details</h3>
+                      <p className="text-white/80 text-sm leading-relaxed">
                         {currentItem.shootDetails}
                       </p>
                     </div>
@@ -284,27 +282,27 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Navigation between properties - Fixed at bottom */}
+            {/* Navigation between properties - Compact at bottom */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center pt-3 mt-3 border-t border-white/20">
+              <div className="flex-shrink-0 flex justify-between items-center pt-2 mt-1 border-t border-white/20">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
-                  className="flex items-center gap-2 px-3 py-2 text-white/80 hover:text-white 
-                             hover:bg-white/10 rounded-lg transition-colors text-sm"
+                  className="flex items-center gap-1 px-2 py-1.5 lg:px-3 lg:py-2 text-white/80 hover:text-white 
+                             hover:bg-white/10 rounded-md lg:rounded-lg transition-colors text-xs lg:text-sm"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={14} />
                   Previous
                 </button>
-                <span className="text-white/50 text-sm">
+                <span className="text-white/50 text-xs lg:text-sm">
                   {currentIndex + 1} of {items.length}
                 </span>
                 <button
                   onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
-                  className="flex items-center gap-2 px-3 py-2 text-white/80 hover:text-white 
-                             hover:bg-white/10 rounded-lg transition-colors text-sm"
+                  className="flex items-center gap-1 px-2 py-1.5 lg:px-3 lg:py-2 text-white/80 hover:text-white 
+                             hover:bg-white/10 rounded-md lg:rounded-lg transition-colors text-xs lg:text-sm"
                 >
                   Next
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} />
                 </button>
               </div>
             )}
