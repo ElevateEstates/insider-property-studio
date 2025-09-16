@@ -197,55 +197,98 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-            <DialogContent className="w-[95vw] h-[80vh] max-w-2xl bg-gray-900 border border-gray-700 text-white p-0 overflow-hidden">
-              {/* Header with close button */}
-              <div className="flex justify-between items-center p-4 border-b border-gray-700 bg-gray-800">
-                <h3 className="text-lg font-semibold">Client Testimonial</h3>
-                <button 
-                  onClick={() => setSelectedTestimonial(null)}
-                  className="text-gray-400 hover:text-white transition-colors p-1"
+            <DialogContent className="w-[95vw] h-[75vh] max-w-none bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg mt-20">
+              <div className="h-full flex flex-col">
+                {/* Scrollable Content Area with proper top padding */}
+                <div 
+                  className="flex-1 overflow-y-scroll overscroll-contain"
+                  style={{ 
+                    scrollBehavior: 'smooth',
+                    WebkitOverflowScrolling: 'touch'
+                  }}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Scrollable content */}
-              <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                {/* Profile section */}
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-500">
-                    <img 
-                      src={selectedTestimonial.image} 
-                      alt={selectedTestimonial.author}
-                      className={`w-full h-full object-cover ${
-                        selectedTestimonial.author === "Scarlett" 
-                          ? "object-[50%_0%]" 
-                          : selectedTestimonial.author === "Eddie Caires"
-                          ? "object-[50%_20%]" 
-                          : "object-center"
-                      }`}
-                    />
-                  </div>
+                  {/* Safe zone padding at top */}
+                  <div className="h-4"></div>
                   
-                  <div className="text-center">
-                    <h4 className="text-xl font-semibold text-white mb-1">
-                      {selectedTestimonial.author}
-                    </h4>
-                    <p className="text-blue-400 text-sm">
-                      {selectedTestimonial.company}
-                    </p>
+                  <div className="px-4 pb-4">
+                    <div className="flex flex-col items-center space-y-4">
+                      {/* Profile Image */}
+                      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-400/30">
+                        <img 
+                          src={selectedTestimonial.image} 
+                          alt={selectedTestimonial.author}
+                          className={`w-full h-full object-cover ${
+                            selectedTestimonial.author === "Scarlett" 
+                              ? "object-[50%_0%]" 
+                              : selectedTestimonial.author === "Eddie Caires"
+                              ? "object-[50%_20%]" 
+                              : "object-center"
+                          }`}
+                        />
+                      </div>
+                      
+                      {/* Quote Icon */}
+                      <Quote className="text-blue-400 w-8 h-8 opacity-80" />
+                      
+                      {/* Testimonial Text */}
+                      <blockquote className="text-white/95 text-base leading-relaxed font-light text-center px-2">
+                        "{selectedTestimonial.quote}"
+                      </blockquote>
+                      
+                      {/* Author Information */}
+                      <div className="text-center pt-4 border-t border-white/20 w-full">
+                        <div className="text-white font-semibold text-lg mb-1">
+                          {selectedTestimonial.author}
+                        </div>
+                        <div className="text-blue-400 text-sm mb-4">
+                          {selectedTestimonial.company}
+                        </div>
+                        
+                        {/* Separating line and close logo */}
+                        <div className="border-t border-white/20 pt-4 mb-8">
+                          <div 
+                            className="flex flex-col items-center space-y-2 cursor-pointer hover:bg-white/10 transition-colors rounded-lg p-4 min-h-[60px]"
+                            onClick={() => setSelectedTestimonial(null)}
+                            onTouchEnd={(e) => {
+                              e.stopPropagation();
+                              setSelectedTestimonial(null);
+                            }}
+                          >
+                            <svg className="w-8 h-8 text-white/60 hover:text-white/80 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
+                            </svg>
+                            <span className="text-xs text-white/60">Close</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Extra bottom padding for easier scrolling access */}
+                      <div className="h-20"></div>
+                    </div>
                   </div>
                 </div>
-
-                {/* Quote */}
-                <div className="text-center">
-                  <Quote className="text-blue-400 w-8 h-8 opacity-80 mx-auto mb-4" />
-                  <blockquote className="text-gray-100 text-base leading-relaxed font-light italic">
-                    "{selectedTestimonial.quote}"
-                  </blockquote>
-                </div>
+                
+                {/* Swipe detection overlay - doesn't interfere with scroll */}
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  onTouchStart={(e) => {
+                    let startX = e.touches[0].clientX;
+                    let startY = e.touches[0].clientY;
+                    
+                    const handleSwipe = (moveEvent: TouchEvent) => {
+                      let deltaX = moveEvent.touches[0].clientX - startX;
+                      let deltaY = moveEvent.touches[0].clientY - startY;
+                      
+                      // Only close on strong horizontal swipe, ignore vertical movement
+                      if (Math.abs(deltaX) > 120 && Math.abs(deltaX) > Math.abs(deltaY) * 2) {
+                        setSelectedTestimonial(null);
+                        document.removeEventListener('touchmove', handleSwipe);
+                      }
+                    };
+                    
+                    document.addEventListener('touchmove', handleSwipe, { once: true, passive: true });
+                  }}
+                />
               </div>
             </DialogContent>
           </Dialog>
