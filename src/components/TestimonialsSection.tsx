@@ -251,14 +251,6 @@ export const TestimonialsSection = () => {
                   document.addEventListener('mouseup', handleMouseUp);
                 }}
               >
-                {/* Swipe indicator */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="flex space-x-1">
-                    <div className="w-8 h-1 bg-white/30 rounded-full"></div>
-                    <div className="w-3 h-1 bg-white/20 rounded-full"></div>
-                  </div>
-                  <div className="text-xs text-white/40 text-center mt-1">Swipe to close</div>
-                </div>
                 {/* Scrollable Content Area */}
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="flex flex-col items-center space-y-4">
