@@ -195,7 +195,7 @@ const Contact = () => {
         >
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-light mb-4 text-white">
-              Our Services
+              Services
             </h2>
             <div className="w-20 h-0.5 bg-accent-gold mx-auto"></div>
           </div>
