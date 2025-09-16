@@ -12,8 +12,8 @@ export const Footer = () => {
 
   return (
     <footer className="relative py-8 px-4 md:px-6 overflow-hidden border-t border-white/10 rounded-none min-h-[35vh] z-10">
-      {/* Black background with 75% opacity (25% darker than previous 50%) */}
-      <div className="absolute inset-0 bg-black/75 z-0" />
+      {/* Black background with 60% opacity (15% more transparent) */}
+      <div className="absolute inset-0 bg-black/60 z-0" />
       
       {/* Remove the image background and blend mode overlay */}
       
