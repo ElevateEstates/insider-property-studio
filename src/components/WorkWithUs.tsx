@@ -19,8 +19,8 @@ export const WorkWithUs = () => {
         className="container mx-auto max-w-4xl relative z-20 section-content py-4 md:py-8 px-4 md:px-8"
       >
         <div className="mb-12 md:mb-16 animate-fade-up">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-6 md:mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light border-b border-white/20 pb-2 md:pb-4 text-white">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-4 mb-6 md:mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light border-b border-white/20 pb-2 md:pb-4 text-white text-center sm:text-left">
               Work with us
             </h2>
             <div className="bg-white text-black px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium transform rotate-12 hover-scale">

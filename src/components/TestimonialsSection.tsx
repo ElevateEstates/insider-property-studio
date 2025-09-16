@@ -197,7 +197,7 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-            <DialogContent className="w-[95vw] max-h-[85vh] sm:w-[95vw] sm:h-[90vh] max-w-none sm:max-w-4xl sm:max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg">
+            <DialogContent className="fixed top-16 left-1/2 transform -translate-x-1/2 w-[95vw] max-h-[75vh] sm:top-[5%] sm:w-[90vw] sm:max-h-[85vh] max-w-none sm:max-w-4xl bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg z-[9999]">
               {/* Enhanced Close Button */}
               <button
                 onClick={() => setSelectedTestimonial(null)}
@@ -209,46 +209,64 @@ export const TestimonialsSection = () => {
                 </svg>
               </button>
               
-              <div className="p-4 sm:p-6 md:p-8 h-full overflow-y-auto overscroll-contain">
-                <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start">
-                  {/* Profile Image Section */}
-                  <div className="flex-shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
-                      <img 
-                        src={selectedTestimonial.image} 
-                        alt={selectedTestimonial.author}
-                        className={`w-full h-full object-cover ${
-                          selectedTestimonial.author === "Scarlett Lancaster" || selectedTestimonial.author === "Eddie Caires"
-                            ? "object-[50%_20%]" 
-                            : "object-center"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Content Section */}
-                  <div className="flex-1 space-y-3 sm:space-y-4 md:space-y-6 text-center md:text-left">
-                    {/* Quote Icon */}
-                    <Quote className="text-blue-400 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
-                    
-                    {/* Full Testimonial Text - Scrollable */}
-                    <div className="space-y-4">
-                      <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
-                        "{selectedTestimonial.quote}"
-                      </blockquote>
-                    </div>
-                    
-                    {/* Author Information */}
-                    <div className="border-t border-white/20 pt-3 sm:pt-4 md:pt-6 mt-4 sm:mt-6">
-                      <div className="text-white font-semibold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 sm:mb-2">
-                        {selectedTestimonial.author}
+              <div className="h-full overflow-y-auto overscroll-contain">
+                <div className="p-4 sm:p-6 md:p-8">
+                  <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start">
+                    {/* Profile Image Section */}
+                    <div className="flex-shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
+                        <img 
+                          src={selectedTestimonial.image} 
+                          alt={selectedTestimonial.author}
+                          className={`w-full h-full object-cover ${
+                            selectedTestimonial.author === "Scarlett Lancaster" || selectedTestimonial.author === "Eddie Caires"
+                              ? "object-[50%_20%]" 
+                              : "object-center"
+                          }`}
+                        />
                       </div>
-                      <div className="text-blue-400 text-xs sm:text-sm md:text-base lg:text-lg">
-                        {selectedTestimonial.company}
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="flex-1 space-y-3 sm:space-y-4 md:space-y-6 text-center md:text-left">
+                      {/* Quote Icon */}
+                      <Quote className="text-blue-400 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
+                      
+                      {/* Full Testimonial Text - Scrollable */}
+                      <div className="space-y-4">
+                        <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
+                          "{selectedTestimonial.quote}"
+                        </blockquote>
+                      </div>
+                      
+                      {/* Author Information */}
+                      <div className="border-t border-white/20 pt-3 sm:pt-4 md:pt-6 mt-4 sm:mt-6">
+                        <div className="text-white font-semibold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 sm:mb-2">
+                          {selectedTestimonial.author}
+                        </div>
+                        <div className="text-blue-400 text-xs sm:text-sm md:text-base lg:text-lg mb-4">
+                          {selectedTestimonial.company}
+                        </div>
+                        
+                        {/* Clickable Close Area with Logo - Like Menu Bar */}
+                        <div 
+                          className="flex justify-center md:justify-start mt-6 pt-4 border-t border-white/10 cursor-pointer hover:bg-white/5 transition-colors rounded-lg p-4"
+                          onClick={() => setSelectedTestimonial(null)}
+                        >
+                          <div className="flex flex-col items-center space-y-2 text-white/60 hover:text-white/80 transition-colors">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            <span className="text-xs">Close</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                
+                {/* Bottom padding to ensure scrolling works */}
+                <div className="h-8"></div>
               </div>
             </DialogContent>
           </Dialog>
