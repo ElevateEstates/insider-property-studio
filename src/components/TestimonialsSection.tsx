@@ -36,8 +36,8 @@ const testimonials = [
   }
 ];
 
-// Triple testimonials for seamless infinite scroll
-const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+// Double testimonials for seamless infinite scroll
+const extendedTestimonials = [...testimonials, ...testimonials];
 
 export const TestimonialsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -63,26 +63,30 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-scroll functionality - continuous left to right scrolling
+  // Auto-scroll functionality - seamless infinite scroll
   useEffect(() => {
     if (!isVisible) return;
     
     const scroll = () => {
       if (scrollContainerRef.current) {
         const container = scrollContainerRef.current;
-        const maxScroll = container.scrollWidth - container.clientWidth;
         
         // Smooth continuous scrolling
-        const scrollSpeed = 0.75;
+        const scrollSpeed = 0.5; // Slightly slower for smoother experience
         
-        // Calculate the width of one set of testimonials (1/3 of total since we have 3 copies)
-        const oneSetWidth = maxScroll / 3;
+        // Get total width and calculate single set width (half of total since we have 2 copies)
+        const totalWidth = container.scrollWidth;
+        const containerWidth = container.clientWidth;
+        const maxScrollLeft = totalWidth - containerWidth;
+        const singleSetWidth = maxScrollLeft / 2;
         
-        // Reset seamlessly when we've scrolled past the first set
-        if (container.scrollLeft >= oneSetWidth) {
-          container.scrollLeft = container.scrollLeft - oneSetWidth;
-        } else {
-          container.scrollLeft += scrollSpeed;
+        // Increment scroll position
+        container.scrollLeft += scrollSpeed;
+        
+        // When we've scrolled through the first complete set, instantly jump back to start
+        // This creates seamless infinite loop since both sets are identical
+        if (container.scrollLeft >= singleSetWidth) {
+          container.scrollLeft = 0;
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
