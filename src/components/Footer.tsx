@@ -21,8 +21,8 @@ export const Footer = () => {
         }}
       />
       
-      {/* 50% Opaque Overlay */}
-      <div className="absolute inset-0 z-5 backdrop-blur-sm"></div>
+      {/* 50% Transparent Overlay */}
+      <div className="absolute inset-0 z-5 bg-black/50"></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center justify-center space-y-6 min-h-[25vh]">

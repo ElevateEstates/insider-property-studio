@@ -149,7 +149,7 @@ export const ParallaxBackground = ({
               top: 0,
               left: 0,
               right: 0,
-              height: isMobile ? '150vh' : '200vh', // Reduced height on mobile
+              height: isMobile ? '200vh' : '300vh', // Extended to cover footer
               pointerEvents: 'none'
             }}
           />
@@ -245,7 +245,7 @@ export const ParallaxBackground = ({
   };
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: isMobile ? '150vh' : '200vh' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: isMobile ? '200vh' : '300vh' }}>
       {/* Base dark gray background */}
       <div 
         className={`absolute ${className}`}
@@ -255,7 +255,7 @@ export const ParallaxBackground = ({
           top: 0,
           left: 0,
           right: 0,
-          height: isMobile ? '150vh' : '200vh' // Reduced height on mobile
+          height: isMobile ? '200vh' : '300vh' // Extended to cover footer
         }}
       />
       
@@ -264,20 +264,24 @@ export const ParallaxBackground = ({
       
       {/* Scratch texture overlay */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           backgroundImage: `url(/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png)`,
           backgroundSize: '300px 300px',
           backgroundRepeat: 'repeat',
           mixBlendMode: 'overlay',
           opacity: 0.4,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: isMobile ? '200vh' : '300vh'
         }}
       />
       
       {/* Additional scratch layer with different blend mode */}
       <div 
-        className="absolute inset-0"
+        className="absolute"
         style={{
           backgroundImage: `url(/lovable-uploads/e4fc5374-2e03-4b03-bdea-1c9e31937aae.png)`,
           backgroundSize: '200px 200px',
@@ -285,7 +289,11 @@ export const ParallaxBackground = ({
           mixBlendMode: 'soft-light',
           opacity: 0.25,
           pointerEvents: 'none',
-          transform: 'rotate(45deg) scale(1.2)'
+          transform: 'rotate(45deg) scale(1.2)',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: isMobile ? '200vh' : '300vh'
         }}
       />
     </div>
