@@ -73,7 +73,7 @@ export const TestimonialsSection = () => {
         const maxScroll = container.scrollWidth - container.clientWidth;
         
         // Smooth continuous scrolling
-        const scrollSpeed = 1.5;
+        const scrollSpeed = 0.75;
         
         // Reset to beginning when reached end for seamless loop
         if (container.scrollLeft >= maxScroll * 0.66) { 
