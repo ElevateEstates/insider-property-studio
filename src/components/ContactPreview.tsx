@@ -20,16 +20,20 @@ export const ContactPreview = () => {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <Card className="p-6 bg-white/5 border-white/10 backdrop-blur-sm">
-            <Mail className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-            <p className="text-gray-300">info@elevateproperties.com</p>
+          <Card className="p-6 bg-white/5 border-white/10 backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-colors">
+            <a href="mailto:info@elevateproperties.com" className="block">
+              <Mail className="h-8 w-8 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Email Us</h3>
+              <p className="text-gray-300">info@elevateproperties.com</p>
+            </a>
           </Card>
           
-          <Card className="p-6 bg-white/5 border-white/10 backdrop-blur-sm">
-            <Phone className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-            <p className="text-gray-300">+34 123 456 789</p>
+          <Card className="p-6 bg-white/5 border-white/10 backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-colors">
+            <a href="tel:+34123456789" className="block">
+              <Phone className="h-8 w-8 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Call Us</h3>
+              <p className="text-gray-300">+34 123 456 789</p>
+            </a>
           </Card>
           
           <Card className="p-6 bg-white/5 border-white/10 backdrop-blur-sm">

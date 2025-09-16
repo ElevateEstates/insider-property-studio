@@ -58,7 +58,10 @@ export const ContactSection = () => {
               <div>
                 <h3 className="text-xl md:text-2xl font-light text-white mb-4 md:mb-6">Get In Touch</h3>
                 <div className="space-y-4 md:space-y-6">
-                  <div className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90">
+                  <a 
+                    href="mailto:geir@elevateproperties.es"
+                    className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
+                  >
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center">
                       <Mail className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
@@ -66,7 +69,7 @@ export const ContactSection = () => {
                       <p className="font-medium text-sm md:text-base">Email</p>
                       <p className="text-sm md:text-base">geir@elevateproperties.es</p>
                     </div>
-                  </div>
+                  </a>
                   <a 
                     href="https://wa.me/34685243192" 
                     target="_blank" 
