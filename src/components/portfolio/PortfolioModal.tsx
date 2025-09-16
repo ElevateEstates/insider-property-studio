@@ -108,10 +108,10 @@ const PortfolioModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[100vw] h-[100vh] p-0 border-0 bg-black/95 z-[101]
-                                fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2
+      <DialogContent className="w-[100vw] h-[calc(100vh-64px)] p-0 border-0 bg-transparent z-[101]
+                                fixed left-[50%] top-16 transform -translate-x-1/2
                                 max-w-none max-h-none 
-                                md:w-[85vw] md:h-[80vh] md:max-w-[900px] md:max-h-[700px] md:rounded-lg md:border md:border-white/20">
+                                md:w-[85vw] md:h-[80vh] md:max-w-[900px] md:max-h-[700px] md:rounded-lg md:border md:border-white/20 md:bg-black/95 md:top-[50%] md:-translate-y-1/2">
         <VisuallyHidden>
           <DialogTitle>{currentItem.title}</DialogTitle>
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
@@ -119,18 +119,18 @@ const PortfolioModal = ({
         
         {/* Clickable overlay to close modal */}
         <div 
-          className="absolute inset-0 bg-black/95 cursor-pointer"
+          className="absolute inset-0 bg-black/60 cursor-pointer"
           onClick={onClose}
         />
         
-        {/* Top-aligned Layout with safe zone */}
-        <div className="relative w-full h-full flex flex-col items-center pt-16 md:pt-8 lg:justify-center overflow-hidden p-2 pointer-events-none">
+        {/* Top-aligned Layout with safe zone and borders */}
+        <div className="relative w-full h-full flex flex-col items-center pt-4 md:pt-8 lg:justify-center overflow-hidden p-4 pointer-events-none">
           
-          {/* Content Container - Top aligned on mobile, centered on desktop */}
-          <div className="flex flex-col items-center max-w-full max-h-full pointer-events-auto">
+          {/* Content Container with clear borders */}
+          <div className="flex flex-col items-center max-w-full max-h-full pointer-events-auto bg-black/95 border-2 border-white/30 rounded-lg shadow-2xl p-4">
             
             {/* Header with Close Button - Above image */}
-            <div className="flex-shrink-0 flex items-center justify-between w-full mb-2 px-2 bg-black/90 rounded-lg py-2">
+            <div className="flex-shrink-0 flex items-center justify-between w-full mb-3 px-2 bg-black/90 rounded-lg py-3 border border-white/20">
               <div className="flex-1 min-w-0 pr-2">
                 <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
                   {currentItem.title}
@@ -157,14 +157,14 @@ const PortfolioModal = ({
               </div>
             </div>
 
-            {/* Main Image - Centered */}
-            <div className="flex-shrink-0 relative bg-black/50 rounded-lg overflow-hidden">
+            {/* Main Image - Centered with border */}
+            <div className="flex-shrink-0 relative bg-black/30 rounded-lg overflow-hidden border border-white/20">
               {getCurrentImage() ? (
                 <div className="relative">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
-                    className="max-w-[90vw] max-h-[50vh] md:max-w-[70vw] md:max-h-[60vh] w-auto h-auto object-contain"
+                    className="max-w-[85vw] max-h-[45vh] md:max-w-[65vw] md:max-h-[55vh] w-auto h-auto object-contain"
                   />
                   
                   {/* Navigation Arrows */}
@@ -173,14 +173,14 @@ const PortfolioModal = ({
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
                         className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
-                                   rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
+                                   rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
                       >
                         <ChevronLeft size={16} className="lg:w-5 lg:h-5" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
                         className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
-                                   rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
+                                   rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
                       >
                         <ChevronRight size={16} className="lg:w-5 lg:h-5" />
                       </button>
@@ -189,7 +189,7 @@ const PortfolioModal = ({
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full border border-white/20">
+                    <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full border border-white/30">
                       <span className="text-white/90 text-xs font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
@@ -203,15 +203,15 @@ const PortfolioModal = ({
               )}
             </div>
 
-            {/* Thumbnail Strip - Right under image */}
+            {/* Thumbnail Strip - Right under image with border */}
             {hasMultipleImages && (
-              <div className="flex-shrink-0 mt-2 bg-black/50 rounded-lg py-2">
+              <div className="flex-shrink-0 mt-3 bg-black/30 rounded-lg py-2 border border-white/20">
                 <div className="flex gap-1 overflow-x-auto px-2">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-12 h-8 lg:w-14 lg:h-10 rounded border overflow-hidden 
+                      className={`flex-shrink-0 w-12 h-8 lg:w-14 lg:h-10 rounded border-2 overflow-hidden 
                                  transition-all hover:scale-105 ${
                                    selectedImageIndex === index 
                                      ? 'border-white shadow-lg scale-105' 
@@ -229,9 +229,9 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Compact */}
+            {/* Project Details - Compact with border */}
             {showDetails && (
-              <div className="flex-shrink-0 w-full max-w-2xl mt-3 max-h-40 overflow-y-auto bg-black/70 rounded-lg p-3
+              <div className="flex-shrink-0 w-full max-w-2xl mt-3 max-h-40 overflow-y-auto bg-black/50 rounded-lg p-3 border border-white/20
                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
                 <div className="space-y-2 text-sm">
                   
@@ -284,9 +284,9 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Navigation between properties */}
+            {/* Navigation between properties with border */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center w-full max-w-md mt-3 px-2 border-t border-white/20 pt-2 bg-black/50 rounded-lg py-2">
+              <div className="flex-shrink-0 flex justify-between items-center w-full max-w-md mt-3 px-2 border-t border-white/20 pt-2 bg-black/30 rounded-lg py-2 border border-white/20">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
                   className="flex items-center gap-1 px-2 py-1 text-white/80 hover:text-white 
