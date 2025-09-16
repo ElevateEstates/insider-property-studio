@@ -127,21 +127,22 @@ export const Navigation = () => {
           
           {/* Mobile Menu Content */}
           <div 
-            className="absolute top-16 md:top-20 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-4 py-6"
+            className="absolute top-16 md:top-20 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <nav className="flex flex-col space-y-2" role="navigation" aria-label="Mobile navigation">
+            <nav className="grid grid-cols-2 gap-4 max-w-md mx-auto" role="navigation" aria-label="Mobile navigation">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
                   className={cn(
-                    "px-6 py-4 rounded-xl text-lg font-semibold tracking-wide transition-all duration-300",
+                    "aspect-square rounded-2xl text-base font-semibold tracking-wide transition-all duration-300",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold",
-                    "min-h-[48px] flex items-center", // Apple's 44pt minimum touch target
+                    "flex items-center justify-center text-center p-4",
+                    "min-h-[100px] min-w-[100px]", // Square dimensions
                     location.pathname === item.href
-                      ? "text-accent-gold bg-white/20"
-                      : "text-white hover:text-accent-gold hover:bg-white/10"
+                      ? "text-accent-gold bg-white/20 shadow-lg shadow-accent-gold/20"
+                      : "text-white hover:text-accent-gold hover:bg-white/10 hover:scale-105"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-current={location.pathname === item.href ? "page" : undefined}
