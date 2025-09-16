@@ -204,20 +204,20 @@ export const StatsSection = () => {
 
         {/* Tagline moved from Hero section */}
         <div className="mt-12 md:mt-20 space-y-2 text-center">
-          <div className="block md:hidden px-4">
-            <DynamicText className="text-white/80 leading-relaxed">
-              Presentation matters — we combine striking visuals, proven marketing strategies,
-            </DynamicText>
+          {/* Mobile version - 4 rows equally distributed */}
+          <div className="block md:hidden px-4 text-white/80 leading-relaxed pb-12">
+            <div className="text-sm sm:text-base space-y-1">
+              <div>Presentation matters — we combine</div>
+              <div>striking visuals, proven marketing</div>
+              <div>strategies, and local connections to</div>
+              <div>bring buyers, sellers, and agents together</div>
+            </div>
           </div>
+          
+          {/* Desktop version - unchanged */}
           <p className="hidden md:block text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
             Presentation matters — we combine striking visuals, proven marketing strategies,
           </p>
-          
-          <div className="block md:hidden px-4">
-            <DynamicText className="text-white/80 leading-relaxed pb-12">
-              and local connections to bring buyers, sellers, and agents together for success.
-            </DynamicText>
-          </div>
           <p className="hidden md:block text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-12 md:pb-16">
             and local connections to bring buyers, sellers, and agents together for success.
           </p>
