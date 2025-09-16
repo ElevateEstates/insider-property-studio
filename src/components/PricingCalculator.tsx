@@ -12,6 +12,11 @@ interface ServiceOption {
   description: string;
   apartmentPrice: number;
   villaPrice: number;
+  subOptions?: {
+    id: string;
+    name: string;
+    description: string;
+  }[];
 }
 
 interface PropertyType {
@@ -32,7 +37,7 @@ const serviceOptions: ServiceOption[] = [
     name: "Up to 25 Professional Photos",
     description: "HDR photography, interior & exterior shots",
     apartmentPrice: 275,
-    villaPrice: 325
+    villaPrice: 350
   },
   {
     id: "photo-35",
@@ -40,7 +45,7 @@ const serviceOptions: ServiceOption[] = [
     name: "Up to 35 Professional Photos",
     description: "Extended photo package with more angles",
     apartmentPrice: 325,
-    villaPrice: 375
+    villaPrice: 400
   },
   {
     id: "photo-50",
@@ -48,15 +53,27 @@ const serviceOptions: ServiceOption[] = [
     name: "Up to 50 Professional Photos",
     description: "Complete photo coverage of the property",
     apartmentPrice: 425,
-    villaPrice: 500
+    villaPrice: 550
   },
   {
     id: "video-basic",
     category: "Video",
-    name: "Basic Video Tour",
-    description: "3-5 minute walkthrough video",
+    name: "Basic Video Tour (1 minute)",
+    description: "Perfect for social media, idealista, webpages or messaging platforms",
     apartmentPrice: 150,
-    villaPrice: 200
+    villaPrice: 200,
+    subOptions: [
+      { 
+        id: "vertical", 
+        name: "Vertical Format", 
+        description: "For socials and messaging platforms" 
+      },
+      { 
+        id: "horizontal", 
+        name: "Horizontal Format", 
+        description: "For webpages, idealista, youtube, etc." 
+      }
+    ]
   },
   {
     id: "video-cinematic",
@@ -208,10 +225,21 @@ export const PricingCalculator = () => {
                                 <Check className="w-3 h-3 text-primary" />
                               )}
                             </div>
-                            <div>
-                              <h4 className="font-medium text-white">{service.name}</h4>
-                              <p className="text-sm text-white/60 mt-1">{service.description}</p>
-                            </div>
+                             <div>
+                               <h4 className="font-medium text-white">{service.name}</h4>
+                               <p className="text-sm text-white/60 mt-1">{service.description}</p>
+                               {service.subOptions && (
+                                 <div className="mt-3 space-y-2">
+                                   {service.subOptions.map((subOption) => (
+                                     <div key={subOption.id} className="flex items-center gap-2 text-xs">
+                                       <div className="w-1.5 h-1.5 bg-accent-gold rounded-full"></div>
+                                       <span className="text-accent-gold font-medium">{subOption.name}:</span>
+                                       <span className="text-white/50">{subOption.description}</span>
+                                     </div>
+                                   ))}
+                                 </div>
+                               )}
+                             </div>
                           </div>
                         </div>
                         <Badge className="bg-accent-gold text-primary ml-4">
