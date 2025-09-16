@@ -6,6 +6,9 @@ import eddiePhoto from "../assets/eddie-profile.jpg";
 import yoniPhoto from "../assets/yoni-profile.jpg";
 import wlcostaPhoto from "../assets/wlcosta-profile.jpg";
 
+// Detect mobile device
+const isMobileDevice = () => typeof window !== 'undefined' && window.innerWidth < 768;
+
 const testimonials = [
   {
     quote: "Geir has been working with us for the past two years and has become a huge part of our real estate journey. Not only does he help us present our exclusive listings in the best possible way, but he also brings fresh energy, creative ideas, and a new perspective to everything we do. He's a cool guy with a brilliant creative brain, always thinking outside the box and encouraging us to push beyond our comfort zone. Geir's support means a lot to us, he's a true team player and someone we're genuinely grateful to work with. His work speaks for itself, and our clients are always seriously impressed.",
@@ -43,9 +46,18 @@ export const TestimonialsSection = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [autoScroll, setAutoScroll] = useState(true);
   const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(isMobileDevice());
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,7 +76,7 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-// Auto-scroll functionality
+// Auto-scroll functionality - enhanced for mobile
   useEffect(() => {
     if (!isVisible || !autoScroll || isDragging) return;
 
@@ -73,11 +85,14 @@ export const TestimonialsSection = () => {
         const container = scrollContainerRef.current;
         const maxScroll = container.scrollWidth - container.clientWidth;
         
+        // More aggressive scrolling on mobile
+        const scrollSpeed = isMobile ? 1.5 : 1;
+        
         // Reset to beginning when reached end for seamless loop
-        if (container.scrollLeft >= maxScroll * 0.66) { // Reset earlier for smoother transition
+        if (container.scrollLeft >= maxScroll * 0.66) { 
           container.scrollLeft = 0;
         } else {
-          container.scrollLeft += 1; // Slightly faster scroll speed
+          container.scrollLeft += scrollSpeed;
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
@@ -90,7 +105,7 @@ export const TestimonialsSection = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isVisible, autoScroll, isDragging]);
+  }, [isVisible, autoScroll, isDragging, isMobile]);
 
   // Mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -110,8 +125,8 @@ export const TestimonialsSection = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Resume auto-scroll after 2 seconds (faster resume)
-    setTimeout(() => setAutoScroll(true), 2000);
+    // Resume auto-scroll after 1 second on mobile, 2 seconds on desktop
+    setTimeout(() => setAutoScroll(true), isMobile ? 1000 : 2000);
   };
 
   // Touch handlers for mobile
@@ -131,8 +146,8 @@ export const TestimonialsSection = () => {
 
   const handleTouchEnd = () => {
     setIsDragging(false);
-    // Resume auto-scroll after 2 seconds (faster resume)
-    setTimeout(() => setAutoScroll(true), 2000);
+    // Resume auto-scroll after 1 second on mobile
+    setTimeout(() => setAutoScroll(true), 1000);
   };
 
   const ProfileImage = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
@@ -152,7 +167,9 @@ export const TestimonialsSection = () => {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-400/50 transition-all duration-300 hover:scale-110 border border-white/20">
+          <div className={`w-10 h-10 rounded-full overflow-hidden flex-shrink-0 cursor-pointer border border-white/20 transition-all duration-300 ${
+            isMobile ? '' : 'hover:ring-2 hover:ring-blue-400/50 hover:scale-110'
+          }`}>
             <img 
               src={testimonial.image} 
               alt={testimonial.author}
@@ -215,7 +232,9 @@ export const TestimonialsSection = () => {
             {extendedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer hover:scale-105 transition-all duration-300 snap-center"
+                className={`flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 snap-center ${
+                  isMobile ? '' : 'hover:scale-105'
+                }`}
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
                 <div className="space-y-4">
