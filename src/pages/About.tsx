@@ -153,17 +153,17 @@ const About = () => {
                 media that elevates your real estate business.
               </p>
               
-              <div className="space-y-8">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                 {services.map((service, index) => (
-                  <div key={index} className="flex items-start gap-6 p-6 glass-card hover:border-white/20 transition-all duration-300">
-                    <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <service.icon className="w-6 h-6 text-accent-gold" />
+                  <div key={index} className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-4 sm:p-6 lg:p-8 glass-card hover:border-white/20 transition-all duration-300">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-gold" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-medium text-white mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3">
                         {service.title}
                       </h3>
-                      <p className="text-white/70 leading-relaxed">
+                      <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                         {service.description}
                       </p>
                     </div>
