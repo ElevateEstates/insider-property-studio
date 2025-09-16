@@ -76,19 +76,20 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-// Auto-scroll functionality - always active on mobile
+// Auto-scroll functionality - simplified for mobile
   useEffect(() => {
-    if (!isVisible || isDragging) return;
+    // Force auto-scroll to always be active on mobile when visible
+    if (!isVisible) return;
     
-    // On mobile, auto-scroll is always active (never paused by user interaction)
-    if (isMobile || autoScroll) {
+    // On mobile, ignore isDragging and autoScroll states - always animate
+    if (isMobile || (!isDragging && autoScroll)) {
       const scroll = () => {
         if (scrollContainerRef.current) {
           const container = scrollContainerRef.current;
           const maxScroll = container.scrollWidth - container.clientWidth;
           
           // More aggressive scrolling on mobile
-          const scrollSpeed = isMobile ? 1.5 : 1;
+          const scrollSpeed = isMobile ? 2 : 1;
           
           // Reset to beginning when reached end for seamless loop
           if (container.scrollLeft >= maxScroll * 0.66) { 
@@ -109,6 +110,11 @@ export const TestimonialsSection = () => {
       };
     }
   }, [isVisible, autoScroll, isDragging, isMobile]);
+
+  // Debug log for mobile detection
+  useEffect(() => {
+    console.log('Mobile detected:', isMobile, 'Visible:', isVisible, 'Auto-scroll:', autoScroll);
+  }, [isMobile, isVisible, autoScroll]);
 
   // Mouse drag handlers - disabled on mobile
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -229,7 +235,8 @@ export const TestimonialsSection = () => {
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none',
-              ...(isMobile ? { pointerEvents: 'none' } : {}) // Disable scroll interaction on mobile
+              // Don't disable pointer events completely - just scrolling
+              WebkitOverflowScrolling: 'touch'
             }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -245,7 +252,6 @@ export const TestimonialsSection = () => {
                 className={`flex-shrink-0 w-72 sm:w-80 md:w-96 px-2 md:px-4 select-none cursor-pointer transition-all duration-300 snap-center ${
                   isMobile ? '' : 'hover:scale-105'
                 }`}
-                style={isMobile ? { pointerEvents: 'auto' } : {}} // Re-enable click on mobile
                 onClick={() => setSelectedTestimonial(testimonial)}
               >
                 <div className="space-y-4">
