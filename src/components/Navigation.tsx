@@ -127,34 +127,36 @@ export const Navigation = () => {
           
           {/* Mobile Menu Content */}
           <div 
-            className="absolute top-16 md:top-20 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-8"
+            className="absolute top-16 md:top-20 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
-            <nav className="grid grid-cols-2 gap-4 max-w-md mx-auto" role="navigation" aria-label="Mobile navigation">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={cn(
-                    "aspect-square rounded-2xl text-base font-semibold tracking-wide transition-all duration-300",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold",
-                    "flex items-center justify-center text-center p-4",
-                    "min-h-[100px] min-w-[100px]", // Square dimensions
-                    location.pathname === item.href
-                      ? "text-accent-gold bg-white/20 shadow-lg shadow-accent-gold/20"
-                      : "text-white hover:text-accent-gold hover:bg-white/10 hover:scale-105"
-                  )}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  aria-current={location.pathname === item.href ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <div className="px-6 py-8">
+              <nav className="grid grid-cols-2 gap-4 max-w-md mx-auto" role="navigation" aria-label="Mobile navigation">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={cn(
+                      "aspect-square rounded-2xl text-base font-semibold tracking-wide transition-all duration-300",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold",
+                      "flex items-center justify-center text-center p-4",
+                      "min-h-[100px] min-w-[100px]", // Square dimensions
+                      location.pathname === item.href
+                        ? "text-accent-gold bg-white/20 shadow-lg shadow-accent-gold/20"
+                        : "text-white hover:text-accent-gold hover:bg-white/10 hover:scale-105"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-current={location.pathname === item.href ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
             
-            {/* Close indicator area */}
+            {/* Expanded close indicator area - fills remaining height */}
             <div 
-              className="mt-8 pt-6 pb-4 flex flex-col items-center justify-center cursor-pointer group transition-all duration-300 hover:bg-white/5 rounded-xl"
+              className="min-h-[200px] flex flex-col items-center justify-center cursor-pointer group transition-all duration-300 hover:bg-white/5 px-6 pb-8"
               onClick={() => setIsMobileMenuOpen(false)}
               role="button"
               aria-label="Close menu"
