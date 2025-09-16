@@ -197,7 +197,9 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-            <DialogContent className="w-[100vw] h-[100vh] max-w-none bg-black/95 backdrop-blur-xl border-0 text-white p-0 overflow-hidden rounded-none sm:w-[95vw] sm:h-[90vh] sm:max-w-2xl sm:rounded-xl sm:border sm:border-white/20">
+            <DialogContent className="w-[90vw] h-[80vh] p-0 border bg-black/95 rounded-lg border-white/20 z-[101]
+                              fixed left-[50%] top-[55%] transform -translate-x-1/2 -translate-y-1/2
+                              max-w-[800px] max-h-[900px] backdrop-blur-xl text-white overflow-hidden">
               <div className="h-full flex flex-col bg-black/90">
                 {/* Fixed Header with Close Button */}
                 <div className="flex items-center justify-between p-4 border-b border-white/20 bg-black/95 backdrop-blur-xl flex-shrink-0">
@@ -230,17 +232,17 @@ export const TestimonialsSection = () => {
                   </button>
                 </div>
 
-                {/* Scrollable Content Area */}
+                {/* Scrollable Content Area - Enhanced */}
                 <div 
-                  className="flex-1 overflow-y-auto overscroll-contain"
+                  className="flex-1 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent"
                   style={{ 
                     WebkitOverflowScrolling: 'touch'
                   }}
                 >
-                  <div className="p-6 space-y-6">
+                  <div className="p-4 lg:p-6 space-y-4 lg:space-y-6">
                     {/* Large Profile Image */}
                     <div className="flex justify-center">
-                      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-400/30">
+                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden border-2 border-blue-400/30">
                         <img 
                           src={selectedTestimonial.image} 
                           alt={selectedTestimonial.author}
@@ -257,26 +259,26 @@ export const TestimonialsSection = () => {
                     
                     {/* Quote Icon */}
                     <div className="flex justify-center">
-                      <Quote className="text-blue-400 w-8 h-8 opacity-80" />
+                      <Quote className="text-blue-400 w-6 h-6 lg:w-8 lg:h-8 opacity-80" />
                     </div>
                     
-                    {/* Testimonial Text */}
-                    <blockquote className="text-white/95 text-base leading-relaxed font-light text-center px-2">
+                    {/* Testimonial Text - Enhanced for readability */}
+                    <blockquote className="text-white/95 text-sm lg:text-base leading-relaxed font-light text-center px-2 lg:px-4 max-h-none">
                       "{selectedTestimonial.quote}"
                     </blockquote>
                     
                     {/* Author Information */}
                     <div className="text-center pt-4 border-t border-white/20">
-                      <div className="text-white font-semibold text-lg mb-1">
+                      <div className="text-white font-semibold text-base lg:text-lg mb-1">
                         {selectedTestimonial.author}
                       </div>
-                      <div className="text-blue-400 text-sm mb-6">
+                      <div className="text-blue-400 text-sm mb-4 lg:mb-6">
                         {selectedTestimonial.company}
                       </div>
                     </div>
                     
                     {/* Extra bottom padding for safe scrolling */}
-                    <div className="h-20"></div>
+                    <div className="h-8 lg:h-12"></div>
                   </div>
                 </div>
               </div>
