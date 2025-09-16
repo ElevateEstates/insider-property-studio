@@ -151,32 +151,32 @@ const Contact = () => {
   const services = [
     {
       title: "Real Estate Photography",
-      price: "From €299",
+      price: "From €275",
       features: [
-        "Professional HDR photography",
-        "Interior and exterior shots",
-        "Same-day delivery available",
-        "High-resolution images"
+        "Professional High Dynamic Range photos",
+        "Showcase your property in it's best light",
+        "Attract more viewings to meet interested buyers"
       ]
     },
     {
       title: "Video Tours",
-      price: "From €599",
+      price: "From €150",
       features: [
-        "Cinematic property tours",
-        "Drone footage included",
-        "Professional editing",
-        "Multiple format delivery"
+        "Simple social media reels",
+        "High level property showcase videos",
+        "Drone videos, including FPV drone",
+        "Professional editing with animations"
       ]
     },
     {
       title: "Marketing Package",
-      price: "From €899",
+      subtitle: "retainer and commission-based partnership available",
+      price: "From €1000",
       features: [
-        "Photography + Video",
-        "Social media content",
-        "Virtual staging options",
-        "Branded materials"
+        "Post consistently",
+        "Build your brand and audience",
+        "Run ads to boost visibility",
+        "Generate real leads that lead to results"
       ]
     }
   ];
@@ -215,13 +215,20 @@ const Contact = () => {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mt-20">
             {services.map((service, index) => (
               <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-medium text-white">
-                    {service.title}
-                  </h3>
+                  <div>
+                    <h3 className="text-xl font-medium text-white">
+                      {service.title}
+                    </h3>
+                    {service.subtitle && (
+                      <p className="text-accent-gold text-sm mt-1">
+                        {service.subtitle}
+                      </p>
+                    )}
+                  </div>
                   <Badge className="bg-accent-gold text-primary">
                     {service.price}
                   </Badge>
@@ -432,9 +439,16 @@ const Contact = () => {
                 {services.map((service, index) => (
                   <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
                     <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-medium text-white">
-                        {service.title}
-                      </h3>
+                      <div>
+                        <h3 className="text-xl font-medium text-white">
+                          {service.title}
+                        </h3>
+                        {service.subtitle && (
+                          <p className="text-accent-gold text-sm mt-1">
+                            {service.subtitle}
+                          </p>
+                        )}
+                      </div>
                       <Badge className="bg-accent-gold text-primary">
                         {service.price}
                       </Badge>
