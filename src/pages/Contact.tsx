@@ -280,7 +280,7 @@ const Contact = () => {
                       <Input 
                         id="firstName" 
                         required
-                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50" 
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
                         placeholder="John"
                       />
                     </div>
@@ -291,7 +291,7 @@ const Contact = () => {
                       <Input 
                         id="lastName" 
                         required
-                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50" 
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
                         placeholder="Doe"
                       />
                     </div>
@@ -305,7 +305,7 @@ const Contact = () => {
                       id="email" 
                       type="email" 
                       required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50" 
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
                       placeholder="john@example.com"
                     />
                   </div>
@@ -316,7 +316,7 @@ const Contact = () => {
                     </Label>
                     <Input 
                       id="phone" 
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50" 
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
                       placeholder="+34 123 456 789"
                     />
                   </div>
@@ -326,7 +326,7 @@ const Contact = () => {
                       I am a... *
                     </Label>
                     <Select onValueChange={handleTypeChange} required>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectTrigger className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-colors">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                       <SelectContent>
@@ -344,7 +344,7 @@ const Contact = () => {
                       Service Needed *
                     </Label>
                     <Select required>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectTrigger className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-colors">
                         <SelectValue placeholder="Select service" />
                       </SelectTrigger>
                       <SelectContent>
@@ -364,7 +364,7 @@ const Contact = () => {
                       id="message" 
                       rows={5}
                       required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors"
                       placeholder="Tell us about your property, timeline, budget, and any specific requirements..."
                     />
                   </div>

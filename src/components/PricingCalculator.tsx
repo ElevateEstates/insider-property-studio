@@ -58,8 +58,8 @@ const serviceOptions: ServiceOption[] = [
   {
     id: "24h-editing",
     category: "Photography",
-    name: "Premium Express Editing",
-    description: "Full-quality editing delivered in 24 hours - zero compromises on excellence, only on our sleep schedule",
+    name: "24-hour express editing",
+    description: "Get your photos in 24 hours - zero compromises on excellence, only on our sleep schedule",
     apartmentPrice: 99,
     villaPrice: 99
   },
