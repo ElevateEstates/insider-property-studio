@@ -298,12 +298,23 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-        <DialogContent className="w-[95vw] max-w-4xl h-[90vh] max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden">
-          <div className="p-4 md:p-8 h-full overflow-y-auto">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+        <DialogContent className="w-[100vw] h-[100vh] sm:w-[95vw] sm:h-[90vh] max-w-none max-h-none sm:max-w-4xl sm:max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden sm:rounded-lg">
+          {/* Enhanced Close Button */}
+          <button
+            onClick={() => setSelectedTestimonial(null)}
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center border-2 border-white/30 hover:border-white/50 transition-all duration-200 group"
+            aria-label="Close testimonial"
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          <div className="p-4 sm:p-6 md:p-8 h-full overflow-y-auto">
+            <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start min-h-full">
               {/* Profile Image Section */}
-              <div className="flex-shrink-0 mx-auto md:mx-0">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
+              <div className="flex-shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
                       <img 
                         src={selectedTestimonial.image} 
                         alt={selectedTestimonial.author}
@@ -317,21 +328,23 @@ export const TestimonialsSection = () => {
                   </div>
                   
               {/* Content Section */}
-              <div className="flex-1 space-y-4 md:space-y-6 text-center md:text-left">
+              <div className="flex-1 space-y-3 sm:space-y-4 md:space-y-6 text-center md:text-left">
                 {/* Quote Icon */}
-                <Quote className="text-blue-400 w-8 h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
+                <Quote className="text-blue-400 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
                 
                 {/* Full Testimonial Text */}
-                <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
-                  "{selectedTestimonial.quote}"
-                </blockquote>
+                <div className="max-h-[40vh] sm:max-h-[50vh] md:max-h-none overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                  <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
+                    "{selectedTestimonial.quote}"
+                  </blockquote>
+                </div>
                 
                 {/* Author Information */}
-                <div className="border-t border-white/20 pt-4 md:pt-6">
-                  <div className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-2">
+                <div className="border-t border-white/20 pt-3 sm:pt-4 md:pt-6 mt-4 sm:mt-6">
+                  <div className="text-white font-semibold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 sm:mb-2">
                     {selectedTestimonial.author}
                   </div>
-                  <div className="text-blue-400 text-sm sm:text-base md:text-lg">
+                  <div className="text-blue-400 text-xs sm:text-sm md:text-base lg:text-lg">
                     {selectedTestimonial.company}
                   </div>
                 </div>

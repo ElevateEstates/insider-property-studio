@@ -95,19 +95,19 @@ export const Navigation = () => {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Enhanced Size */}
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white hover:bg-white/10 focus-visible:ring-accent-gold"
+              className="lg:hidden text-white hover:bg-white/10 focus-visible:ring-accent-gold w-12 h-12 sm:w-14 sm:h-14"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-7 w-7 sm:h-8 sm:w-8" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-7 w-7 sm:h-8 sm:w-8" />
               )}
             </Button>
           </div>
