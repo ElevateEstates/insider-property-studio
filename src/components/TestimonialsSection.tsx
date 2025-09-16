@@ -36,8 +36,8 @@ const testimonials = [
   }
 ];
 
-// Duplicate testimonials for seamless infinite scroll - need more copies for smooth loop
-const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+// Triple testimonials for seamless infinite scroll
+const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
 export const TestimonialsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,9 +75,12 @@ export const TestimonialsSection = () => {
         // Smooth continuous scrolling
         const scrollSpeed = 0.75;
         
-        // Reset to beginning when reached 1/4 point for seamless loop
-        if (container.scrollLeft >= maxScroll * 0.25) {
-          container.scrollLeft = 0;
+        // Calculate the width of one set of testimonials (1/3 of total since we have 3 copies)
+        const oneSetWidth = maxScroll / 3;
+        
+        // Reset seamlessly when we've scrolled past the first set
+        if (container.scrollLeft >= oneSetWidth) {
+          container.scrollLeft = container.scrollLeft - oneSetWidth;
         } else {
           container.scrollLeft += scrollSpeed;
         }
