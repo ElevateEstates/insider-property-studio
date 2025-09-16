@@ -292,7 +292,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1384px); /* Fine-tuned: 320px * 4 + 32px * 3 + 8px buffer for perfect alignment */
+    transform: translateX(-1378px); /* Fine-tuned: reduced by 6px to compensate for leftward jump */
   }
 }
 
