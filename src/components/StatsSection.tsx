@@ -210,7 +210,7 @@ export const StatsSection = () => {
               <div>Presentation matters — we combine</div>
               <div>striking visuals, proven marketing</div>
               <div>strategies, and local connections to</div>
-              <div>bring buyers, sellers, and agents together</div>
+              <div>bring buyers, sellers, and agents together for success</div>
             </div>
           </div>
           
