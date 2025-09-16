@@ -190,18 +190,29 @@ const Contact = () => {
       {/* Our Packages Section */}
       <section className="py-32 transparent-section">
         <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8"
-          style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+          className="container mx-auto max-w-5xl px-4 md:px-8"
+          style={{ transform: `translateY(${scrollY * 0.02}px)` }}
         >
-          <div className="text-center mb-16 glass-card rounded-2xl p-8">
-            <h2 className="text-3xl md:text-5xl font-light mb-8">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-light mb-4 text-white">
               Our Packages
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              We offer fixed-price packages for clients who need specific deliverables.
-              <br /><br />
-              For more comprehensive collaborations, we evaluate your project to create a custom plan to achieve the results you're looking for.
-            </p>
+            <div className="w-20 h-0.5 bg-accent-gold mx-auto"></div>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-accent-gold to-transparent opacity-60"></div>
+            <div className="pl-12 space-y-8">
+              <div className="space-y-6 text-lg leading-relaxed text-white/80 max-w-4xl">
+                <p>
+                  We offer fixed-price packages for clients who need specific deliverables.
+                </p>
+                
+                <p>
+                  For more comprehensive collaborations, we evaluate your project to create a custom plan to achieve the results you're looking for.
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
