@@ -111,27 +111,19 @@ const Portfolio = () => {
           className="container mx-auto max-w-4xl px-4 md:px-8 text-center"
           style={{ transform: `translateY(${scrollY * 0.02}px)` }}
         >
-          <div className="glass-card p-12 rounded-3xl">
-            <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
-              Ready to Create Your Visual Story?
+          <div className="space-y-8">
+            <h2 className="text-2xl md:text-3xl font-light text-white/90">
+              ready to start working?
             </h2>
-            <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-              Let's work together to create stunning visual content that showcases 
-              your property and captures the attention of potential buyers.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link to="/contact">
-                <Button size="lg" className="glass-button">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button variant="outline" size="lg" className="glass-button">
-                  Learn More About Us
-                </Button>
-              </Link>
-            </div>
+            <Link to="/#contact">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+              >
+                Let's Discuss
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
