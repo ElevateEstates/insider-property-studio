@@ -1,6 +1,53 @@
 import { useEffect, useState, useRef } from "react";
 import { usePersistedAnimation } from "@/hooks/usePersistedAnimation";
 
+interface DynamicTextProps {
+  children: string;
+  className?: string;
+  maxWidth?: number;
+}
+
+const DynamicText = ({ children, className = "", maxWidth }: DynamicTextProps) => {
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [fontSize, setFontSize] = useState(16);
+
+  useEffect(() => {
+    const adjustFontSize = () => {
+      if (!textRef.current) return;
+      
+      const container = textRef.current;
+      const containerWidth = maxWidth || container.offsetWidth;
+      
+      // Reset to base size first
+      container.style.fontSize = '16px';
+      
+      // Check if text overflows
+      if (container.scrollWidth > containerWidth) {
+        // Calculate scale factor needed
+        const scale = containerWidth / container.scrollWidth;
+        const newFontSize = Math.max(12, 16 * scale * 0.95); // 0.95 for some padding
+        setFontSize(newFontSize);
+      } else {
+        setFontSize(16);
+      }
+    };
+
+    adjustFontSize();
+    window.addEventListener('resize', adjustFontSize);
+    return () => window.removeEventListener('resize', adjustFontSize);
+  }, [children, maxWidth]);
+
+  return (
+    <p 
+      ref={textRef}
+      className={`${className} whitespace-nowrap`}
+      style={{ fontSize: `${fontSize}px` }}
+    >
+      {children}
+    </p>
+  );
+};
+
 interface CountUpProps {
   end: number;
   suffix?: string;
@@ -145,10 +192,21 @@ export const StatsSection = () => {
 
         {/* Tagline moved from Hero section */}
         <div className="mt-12 md:mt-20 space-y-2 text-center">
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
+          <div className="block md:hidden px-4">
+            <DynamicText className="text-white/80 leading-relaxed">
+              Presentation matters — we combine striking visuals, proven marketing strategies,
+            </DynamicText>
+          </div>
+          <p className="hidden md:block text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto">
             Presentation matters — we combine striking visuals, proven marketing strategies,
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-12 md:pb-16">
+          
+          <div className="block md:hidden px-4">
+            <DynamicText className="text-white/80 leading-relaxed pb-12">
+              and local connections to bring buyers, sellers, and agents together for success.
+            </DynamicText>
+          </div>
+          <p className="hidden md:block text-lg lg:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto pb-12 md:pb-16">
             and local connections to bring buyers, sellers, and agents together for success.
           </p>
         </div>
