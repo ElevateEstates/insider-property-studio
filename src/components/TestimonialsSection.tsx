@@ -184,9 +184,11 @@ export const TestimonialsSection = () => {
                 willChange: 'transform'
               }}
             >
-              {/* First set - visible at start */}
+              {/* First complete set */}
               {renderTestimonials()}
-              {/* Duplicate set for seamless loop - positioned exactly after first set */}
+              {/* Second identical set for seamless loop */}
+              {renderTestimonials()}
+              {/* Third set to ensure smooth transitions */}
               {renderTestimonials()}
             </div>
           </div>

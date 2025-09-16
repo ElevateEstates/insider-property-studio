@@ -292,7 +292,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% / 2));
+    transform: translateX(calc(-320px * 4 - 32px * 3)); /* Exact width of 4 testimonials + 3 gaps */
   }
 }
 
