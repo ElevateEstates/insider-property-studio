@@ -23,10 +23,10 @@ export const ParallaxBackground = ({
   const multiplier = reduced ? 0.07 : (isMobile || prefersReducedMotion) ? 0.8 : 1;
 
   const handleScroll = useCallback(() => {
-    // Much more aggressive throttling for mobile performance
+    // Moderate throttling for mobile performance
     if (isMobile) {
-      // Only update every 3rd frame on mobile
-      if (Math.floor(window.scrollY / 3) !== Math.floor(scrollY / 3)) {
+      // Only update every 2nd frame on mobile (less aggressive than before)
+      if (Math.floor(window.scrollY / 2) !== Math.floor(scrollY / 2)) {
         requestAnimationFrame(() => setScrollY(window.scrollY));
       }
     } else {
@@ -157,12 +157,13 @@ export const ParallaxBackground = ({
       return null;
     };
     
-    // Heavily optimized star field for mobile performance
+    // Balanced mobile stars - visible but optimized for performance
     const starConfigs = isMobile || prefersReducedMotion ? [
-      // Minimal mobile stars - much fewer for performance
+      // Optimized mobile stars - enough to be visible but not laggy
       { opacity: 0.8, size: 100, dotSize: 1.0, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
       { opacity: 0.7, size: 120, dotSize: 0.8, speed: 0.15, oscillate: 0.001, amplitude: 30 },
-      { opacity: 0.6, size: 110, dotSize: 0.9, speed: 0.13, oscillate: 0.0009, amplitude: 28 }
+      { opacity: 0.75, size: 110, dotSize: 0.9, speed: 0.13, oscillate: 0.0009, amplitude: 28 },
+      { opacity: 0.6, size: 90, dotSize: 1.1, speed: 0.14, oscillate: 0.0007, amplitude: 22 }
     ] : [
       // Small stars (90% of stars) - much smaller
       { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
@@ -176,8 +177,8 @@ export const ParallaxBackground = ({
     ];
     
     starConfigs.forEach((config, i) => {
-      // Drastically reduce star count on mobile for performance
-      const starsPerConfig = isMobile || prefersReducedMotion ? 1 : 2;
+      // Balanced star count: visible but performant on mobile
+      const starsPerConfig = isMobile || prefersReducedMotion ? 2 : 2;
       for (let j = 0; j < starsPerConfig; j++) {
         const starId = `star-${i}-${j}`;
         
