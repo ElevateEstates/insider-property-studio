@@ -11,18 +11,11 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-8 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[35vh] z-10">
-      {/* Background Image with Parallax - Constrained to footer bounds */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style={{
-          backgroundImage: `url(/lovable-uploads/1b35db94-4dd0-4d9d-bd6a-95c0a645c0b9.png)`,
-          transform: `translateY(${Math.min(scrollY * 0.3, 0)}px)`
-        }}
-      />
+    <footer className="relative py-8 px-4 md:px-6 overflow-hidden border-t border-white/10 rounded-none min-h-[35vh] z-10">
+      {/* Black background with 50% opacity */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
       
-      {/* 30% Transparent Overlay with blend mode */}
-      <div className="absolute inset-0 z-5 bg-black/20" style={{ mixBlendMode: 'multiply' }}></div>
+      {/* Remove the image background and blend mode overlay */}
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center justify-center space-y-6 min-h-[25vh]">
