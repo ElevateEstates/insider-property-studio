@@ -157,7 +157,9 @@ const PortfolioModal = ({
                 : 'flex-[6] lg:flex-[6]' // Large when details hidden
             }`}>
               {getCurrentImage() ? (
-                <div className="relative w-full h-full flex items-center justify-center p-2">
+                <div className={`relative w-full h-full flex items-center justify-center transition-all duration-300 ${
+                  showDetails ? 'p-2' : 'p-1' // Less padding when details hidden for bigger image
+                }`}>
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
@@ -169,14 +171,14 @@ const PortfolioModal = ({
                     <>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
                         <ChevronLeft size={24} />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
                         <ChevronRight size={24} />
@@ -186,7 +188,7 @@ const PortfolioModal = ({
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-3 right-3 bg-black/70 px-4 py-2 rounded-full border border-white/20">
+                    <div className="absolute top-2 right-2 bg-black/70 px-3 py-1.5 rounded-full border border-white/20">
                       <span className="text-white/90 text-sm font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
@@ -194,7 +196,7 @@ const PortfolioModal = ({
                   )}
                 </div>
               ) : (
-                <div className="text-white/50 text-center p-8">
+                <div className="text-white/50 text-center p-4">
                   <p>Image not available</p>
                 </div>
               )}
