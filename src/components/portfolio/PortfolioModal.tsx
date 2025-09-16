@@ -128,12 +128,12 @@ const PortfolioModal = ({
           {/* Top safe zone for navigation */}
           <div className="h-16 flex-shrink-0"></div>
           
-          {/* Content Container with clear borders */}
+          {/* Content Container with single clear border */}
           <div className="flex-1 flex flex-col items-center justify-start p-4 pointer-events-auto">
-            <div className="w-full max-w-lg bg-black/95 border-2 border-white/40 rounded-xl shadow-2xl p-4 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <div className="w-full max-w-lg bg-black/95 border-2 border-white/40 rounded-xl shadow-2xl overflow-hidden max-h-[calc(100vh-80px)]">
               
               {/* Header with Close Button */}
-              <div className="flex-shrink-0 flex items-center justify-between w-full mb-4 p-3 bg-black/90 rounded-lg border border-white/20">
+              <div className="flex-shrink-0 flex items-center justify-between w-full p-4 bg-black/90 border-b border-white/20">
                 <div className="flex-1 min-w-0 pr-2">
                   <h2 className="text-sm font-semibold leading-tight text-white">
                     {currentItem.title}
@@ -160,137 +160,141 @@ const PortfolioModal = ({
                 </div>
               </div>
 
-              {/* Main Image */}
-              <div className="flex-shrink-0 relative mb-3">
-                <div className="bg-black/30 rounded-lg overflow-hidden border border-white/20">
-                  {getCurrentImage() ? (
-                    <div className="relative">
-                      <img
-                        src={getCurrentImage()}
-                        alt={currentItem.title}
-                        className="w-full h-auto max-h-60 object-contain"
-                      />
+              {/* Main Content Area with Scroll */}
+              <div className="flex-1 overflow-y-auto p-4">
+                
+                {/* Main Image */}
+                <div className="flex-shrink-0 relative mb-3">
+                  <div className="bg-black/30 rounded-lg overflow-hidden">
+                    {getCurrentImage() ? (
+                      <div className="relative">
+                        <img
+                          src={getCurrentImage()}
+                          alt={currentItem.title}
+                          className="w-full h-auto max-h-60 object-contain"
+                        />
+                        
+                        {/* Navigation Arrows */}
+                        {hasMultipleImages && (
+                          <>
+                            <button
+                              onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/70 hover:bg-black/90 
+                                         rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
+                            >
+                              <ChevronLeft size={14} />
+                            </button>
+                            <button
+                              onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/70 hover:bg-black/90 
+                                         rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
+                            >
+                              <ChevronRight size={14} />
+                            </button>
+                          </>
+                        )}
+
+                        {/* Image Counter */}
+                        {hasMultipleImages && (
+                          <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full border border-white/30">
+                            <span className="text-white/90 text-xs font-medium">
+                              {selectedImageIndex + 1} / {images.length}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="text-white/50 text-center p-4">
+                        <p>Image not available</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Thumbnail Strip */}
+                {hasMultipleImages && (
+                  <div className="flex-shrink-0 mb-3 bg-black/30 rounded-lg p-2">
+                    <div className="flex gap-1 overflow-x-auto">
+                      {images.map((image: string, index: number) => (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedImageIndex(index)}
+                          className={`flex-shrink-0 w-12 h-8 rounded border-2 overflow-hidden 
+                                     transition-all hover:scale-105 ${
+                                       selectedImageIndex === index 
+                                         ? 'border-white shadow-lg scale-105' 
+                                         : 'border-white/30 hover:border-white/60'
+                                     }`}
+                        >
+                          <img
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Project Details */}
+                {showDetails && (
+                  <div className="flex-shrink-0 w-full mb-3 bg-black/50 rounded-lg p-3">
+                    <div className="space-y-2 text-sm">
                       
-                      {/* Navigation Arrows */}
-                      {hasMultipleImages && (
-                        <>
-                          <button
-                            onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/70 hover:bg-black/90 
-                                       rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
-                          >
-                            <ChevronLeft size={14} />
-                          </button>
-                          <button
-                            onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/70 hover:bg-black/90 
-                                       rounded-full flex items-center justify-center text-white transition-all hover:scale-110 border border-white/20"
-                          >
-                            <ChevronRight size={14} />
-                          </button>
-                        </>
+                      {/* Badges */}
+                      {(currentItem.clientType || currentItem.packageType) && (
+                        <div className="flex gap-2 flex-wrap">
+                          {currentItem.clientType && (
+                            <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                              {currentItem.clientType}
+                            </Badge>
+                          )}
+                          {currentItem.packageType && (
+                            <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                              {currentItem.packageType}
+                            </Badge>
+                          )}
+                        </div>
                       )}
 
-                      {/* Image Counter */}
-                      {hasMultipleImages && (
-                        <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full border border-white/30">
-                          <span className="text-white/90 text-xs font-medium">
-                            {selectedImageIndex + 1} / {images.length}
-                          </span>
+                      {/* Project Description */}
+                      {currentItem.description && (
+                        <div>
+                          <h3 className="text-white font-medium text-sm mb-1">Project Details</h3>
+                          <p className="text-white/80 text-sm leading-relaxed">
+                            {currentItem.description}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Client Requirements */}
+                      {currentItem.clientNotes && (
+                        <div>
+                          <h3 className="text-white font-medium text-sm mb-1">Client Requirements</h3>
+                          <p className="text-white/80 text-sm leading-relaxed">
+                            {currentItem.clientNotes}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Shoot Details */}
+                      {currentItem.shootDetails && (
+                        <div>
+                          <h3 className="text-white font-medium text-sm mb-1">Shoot Details</h3>
+                          <p className="text-white/80 text-sm leading-relaxed">
+                            {currentItem.shootDetails}
+                          </p>
                         </div>
                       )}
                     </div>
-                  ) : (
-                    <div className="text-white/50 text-center p-4">
-                      <p>Image not available</p>
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
 
-              {/* Thumbnail Strip */}
-              {hasMultipleImages && (
-                <div className="flex-shrink-0 mb-3 bg-black/30 rounded-lg p-2 border border-white/20">
-                  <div className="flex gap-1 overflow-x-auto">
-                    {images.map((image: string, index: number) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-12 h-8 rounded border-2 overflow-hidden 
-                                   transition-all hover:scale-105 ${
-                                     selectedImageIndex === index 
-                                       ? 'border-white shadow-lg scale-105' 
-                                       : 'border-white/30 hover:border-white/60'
-                                   }`}
-                      >
-                        <img
-                          src={image}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Project Details */}
-              {showDetails && (
-                <div className="flex-shrink-0 w-full mb-3 bg-black/50 rounded-lg p-3 border border-white/20">
-                  <div className="space-y-2 text-sm">
-                    
-                    {/* Badges */}
-                    {(currentItem.clientType || currentItem.packageType) && (
-                      <div className="flex gap-2 flex-wrap">
-                        {currentItem.clientType && (
-                          <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                            {currentItem.clientType}
-                          </Badge>
-                        )}
-                        {currentItem.packageType && (
-                          <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                            {currentItem.packageType}
-                          </Badge>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Project Description */}
-                    {currentItem.description && (
-                      <div>
-                        <h3 className="text-white font-medium text-sm mb-1">Project Details</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.description}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Client Requirements */}
-                    {currentItem.clientNotes && (
-                      <div>
-                        <h3 className="text-white font-medium text-sm mb-1">Client Requirements</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.clientNotes}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Shoot Details */}
-                    {currentItem.shootDetails && (
-                      <div>
-                        <h3 className="text-white font-medium text-sm mb-1">Shoot Details</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.shootDetails}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Navigation between properties */}
+              {/* Navigation Footer */}
               {items.length > 1 && (
-                <div className="flex-shrink-0 flex justify-between items-center w-full p-2 border-t border-white/20 bg-black/30 rounded-lg border border-white/20">
+                <div className="flex-shrink-0 flex justify-between items-center w-full p-4 border-t border-white/20 bg-black/30">
                   <button
                     onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
                     className="flex items-center gap-1 px-2 py-1 text-white/80 hover:text-white 
@@ -312,7 +316,6 @@ const PortfolioModal = ({
                   </button>
                 </div>
               )}
-              
             </div>
           </div>
         </div>
