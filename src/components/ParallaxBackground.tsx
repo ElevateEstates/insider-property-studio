@@ -74,33 +74,33 @@ export const ParallaxBackground = ({
       const secondaryOscillationX = Math.cos(scrollY * oscillateSpeed * 1.3 + uniquePhase * 2) * (oscillateAmplitude * 0.3);
       const secondaryOscillationY = Math.sin(scrollY * oscillateSpeed * 0.9 + uniquePhase * 1.7) * (oscillateAmplitude * 0.2);
       
-      // Create continuous loop with large cycle to prevent visible repetition
-      const cycleHeight = screenHeight * 8;
-      const cycleWidth = screenWidth * 3;
+      // Create continuous loop with very large cycle to prevent visible repetition
+      const cycleHeight = screenHeight * 12; // Increased for better coverage
+      const cycleWidth = screenWidth * 4; // Increased for better coverage
       
       const xProgress = (baseX % cycleWidth) / cycleWidth;
-      const xOffset = (xProgress * cycleWidth) - (screenWidth * 0.5) + oscillationX + secondaryOscillationX;
+      const xOffset = (xProgress * cycleWidth) - (screenWidth * 1.5) + oscillationX + secondaryOscillationX;
       
       const yProgress = (baseY % cycleHeight) / cycleHeight;
-      const yOffset = (yProgress * cycleHeight) - (screenHeight * 2) + oscillationY + secondaryOscillationY;
+      const yOffset = (yProgress * cycleHeight) - (screenHeight * 1) + oscillationY + secondaryOscillationY; // Start closer to top
       
-      // Extended smooth fade with generous margins
-      const fadeMargin = 300;
+      // More lenient fade margins to keep stars visible longer
+      const fadeMargin = 400; // Increased fade margin
       let horizontalFade = 1;
       let verticalFade = 1;
       
-      // Horizontal fade
+      // Horizontal fade - more lenient
       if (xOffset < -fadeMargin) {
-        horizontalFade = Math.max(0, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
+        horizontalFade = Math.max(0.1, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
       } else if (xOffset > screenWidth + fadeMargin) {
-        horizontalFade = Math.max(0, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
+        horizontalFade = Math.max(0.1, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
       }
       
-      // Vertical fade - more lenient to keep stars visible
-      if (yOffset < -fadeMargin) {
-        verticalFade = Math.max(0.1, Math.sin(Math.PI * (yOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
-      } else if (yOffset > screenHeight + fadeMargin) {
-        verticalFade = Math.max(0.1, Math.sin(Math.PI * (screenHeight + fadeMargin - yOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
+      // Vertical fade - keep stars visible across entire screen and beyond
+      if (yOffset < -fadeMargin * 2) {
+        verticalFade = Math.max(0.2, Math.sin(Math.PI * (yOffset + fadeMargin * 2) / (-fadeMargin * 3)) * 0.5 + 0.5);
+      } else if (yOffset > screenHeight + fadeMargin * 2) {
+        verticalFade = Math.max(0.2, Math.sin(Math.PI * (screenHeight + fadeMargin * 2 - yOffset) / (fadeMargin * 3)) * 0.5 + 0.5);
       }
       
       const finalOpacity = baseOpacity * horizontalFade * verticalFade;
@@ -112,8 +112,8 @@ export const ParallaxBackground = ({
       const scaledDotSize = dotSize * Math.min(footerScale, 1.5); // Cap maximum scale
       const scaledSize = size * Math.min(footerScale, 1.3);
       
-      // Render if meaningfully visible
-      if (finalOpacity > 0.05) {
+      // Render if meaningfully visible - lower threshold for better coverage
+      if (finalOpacity > 0.02) {
         return (
           <div 
             key={id}
@@ -129,7 +129,7 @@ export const ParallaxBackground = ({
               top: 0,
               left: 0,
               right: 0,
-              height: '150vh',
+              height: '200vh', // Increased coverage
               pointerEvents: 'none'
             }}
           />
@@ -168,16 +168,12 @@ export const ParallaxBackground = ({
         // Distribute across screen width with better spacing
         const baseX = (screenWidth / 2) * j + (screenWidth * 0.2) + ((i * 47) % (screenWidth * 0.3));
         
-        // Start some stars visible at top, others distributed for continuous flow
+        // Ensure stars are always visible from top to bottom
         const initialY = isMobile ? 
-          // On mobile, ensure stars are visible at top (scrollY=0)
-          ((i + j) % 3 === 0 ? 
-            (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // Visible on screen
-            (screenHeight * 0.3) + ((i * 19) % (screenHeight * 0.5))) : // Lower on screen
-          // Desktop behavior
-          ((i + j) % 3 === 0 ? 
-            (screenHeight * 0.1) + ((i * 29) % (screenHeight * 0.4)) : // On screen
-            -(screenHeight * 0.3) - ((i * 19) % (screenHeight * 0.5))); // Off screen top
+          // On mobile, distribute stars across entire viewport from the very beginning
+          (i * 80 + j * 120) % (screenHeight * 2) : // Spread across 2x viewport height
+          // Desktop behavior - also ensure coverage from top
+          (i * 100 + j * 150) % (screenHeight * 2.5); // Spread across 2.5x viewport height
         
         // Add strong randomization to prevent any dot from matching scroll speed exactly
         const speedVariation = 0.05 + (Math.abs(Math.sin(i * j * 2.5)) * 0.04);
@@ -237,7 +233,7 @@ export const ParallaxBackground = ({
   };
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '150vh' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '200vh' }}>
       {/* Base dark gray background */}
       <div 
         className={`absolute ${className}`}
@@ -247,7 +243,7 @@ export const ParallaxBackground = ({
           top: 0,
           left: 0,
           right: 0,
-          height: '150vh'
+          height: '200vh' // Increased coverage
         }}
       />
       
