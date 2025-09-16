@@ -72,21 +72,21 @@ export const TestimonialsSection = () => {
         const container = scrollContainerRef.current;
         
         // Smooth continuous scrolling
-        const scrollSpeed = 0.5; // Slightly slower for smoother experience
+        const scrollSpeed = 0.5;
         
-        // Get total width and calculate single set width (half of total since we have 2 copies)
-        const totalWidth = container.scrollWidth;
+        // Calculate the width of one complete set of testimonials
+        // Since we have 2 identical sets, one set is half the total scroll width
+        const totalScrollWidth = container.scrollWidth;
         const containerWidth = container.clientWidth;
-        const maxScrollLeft = totalWidth - containerWidth;
-        const singleSetWidth = maxScrollLeft / 2;
+        const singleSetWidth = (totalScrollWidth - containerWidth) / 2;
         
         // Increment scroll position
         container.scrollLeft += scrollSpeed;
         
-        // When we've scrolled through the first complete set, instantly jump back to start
-        // This creates seamless infinite loop since both sets are identical
+        // Reset to beginning when we've scrolled through one complete set
+        // Use modulo to ensure smooth cycling without visible jumps
         if (container.scrollLeft >= singleSetWidth) {
-          container.scrollLeft = 0;
+          container.scrollLeft = container.scrollLeft - singleSetWidth;
         }
       }
       animationRef.current = requestAnimationFrame(scroll);
