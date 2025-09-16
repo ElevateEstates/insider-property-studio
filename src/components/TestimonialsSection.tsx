@@ -65,15 +65,15 @@ export const TestimonialsSection = () => {
       // Move left by 0.5px per frame for smooth animation  
       translateXRef.current -= 0.5;
       
-      // Calculate exact reset point: width of one testimonial set
+      // Calculate exact reset point: width of one testimonial set multiplied by 10
       // w-80 = 320px + px-4 padding = 16px each side + gap-8 = 32px between items
       const itemWidth = 320 + 32 + 32; // card width + padding + gap
-      const singleSetWidth = testimonials.length * itemWidth;
+      const singleSetWidth = testimonials.length * itemWidth * 10; // 10x repetition
       
-      // Reset seamlessly when we've moved exactly one set width
-      // Use modulo to avoid any jumps
+      // Reset seamlessly when we've moved through all 10 cycles
+      // This will take a very long time so effectively infinite
       if (Math.abs(translateXRef.current) >= singleSetWidth) {
-        translateXRef.current = translateXRef.current + singleSetWidth;
+        translateXRef.current = 0;
       }
       
       // Apply transform to the container
@@ -138,14 +138,10 @@ export const TestimonialsSection = () => {
     );
   };
 
-  // Render testimonials multiple times for seamless infinite scroll
+  // Render testimonials multiple times for effectively infinite scroll
   const renderTestimonials = () => {
-    // Create 3 identical sets - this ensures when we reset, identical content is visible
-    const repeatedTestimonials = [
-      ...testimonials, 
-      ...testimonials, 
-      ...testimonials
-    ];
+    // Create 10 identical sets - effectively infinite for any reasonable viewing time
+    const repeatedTestimonials = Array(10).fill(testimonials).flat();
     
     return repeatedTestimonials.map((testimonial, index) => (
       <div
