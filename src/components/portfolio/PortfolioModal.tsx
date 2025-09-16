@@ -63,9 +63,13 @@ const PortfolioModal = ({
   
   const getCurrentImage = () => {
     if (type === 'lifestyle-photos') {
-      return currentItem.src;
+      return currentItem?.src;
     }
-    return images[selectedImageIndex] || currentItem.images?.[0];
+    // For property listings, get the current selected image or fallback to first image
+    if (currentItem?.images && currentItem.images.length > 0) {
+      return currentItem.images[selectedImageIndex] || currentItem.images[0];
+    }
+    return null;
   };
 
   // Auto-scroll active thumbnail to center - always call this hook
@@ -174,16 +178,19 @@ const PortfolioModal = ({
               // Image Content
               <div className="p-4 space-y-4">
                 {/* Main Image Display */}
-                <div className="flex justify-center bg-black/20 rounded-lg min-h-[50vh]">
-                  <img
-                    src={getCurrentImage()}
-                    alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-                    className="max-w-full max-h-[70vh] object-contain rounded-lg"
-                    onError={(e) => {
-                      console.error('Image failed to load:', getCurrentImage());
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
+                <div className="flex justify-center bg-black/20 rounded-lg min-h-[40vh] items-center p-4">
+                  {getCurrentImage() ? (
+                    <img
+                      src={getCurrentImage()}
+                      alt={`${currentItem.title}`}
+                      className="w-full h-auto max-h-[60vh] object-contain rounded-lg"
+                      style={{ minHeight: '200px' }}
+                    />
+                  ) : (
+                    <div className="text-white/60 text-center p-8">
+                      <p>Loading image...</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Image Navigation for multiple images */}
