@@ -186,29 +186,8 @@ const Contact = () => {
       <ParallaxBackground speed={8} reduced={true} />
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center transparent-section">
-        <div 
-          className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20 py-32"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-        >
-          <div className="max-w-6xl w-full text-center space-y-8">
-            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
-              Professional Real Estate Media
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light">
-              Let's Create Something
-              <span className="block text-gradient-gold">Extraordinary</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-              Ready to showcase your property with stunning visuals? Get in touch today 
-              and let's discuss how we can help you achieve your goals.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Our Services Section */}
+      {/* Our Packages Section */}
       <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-6xl px-4 md:px-8"
@@ -216,10 +195,12 @@ const Contact = () => {
         >
           <div className="text-center mb-16 glass-card rounded-2xl p-8">
             <h2 className="text-3xl md:text-5xl font-light mb-8">
-              Our Services
+              Our Packages
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Professional real estate media services tailored to your needs.
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              We offer fixed-price packages for clients who need specific deliverables.
+              <br /><br />
+              For more comprehensive collaborations, we evaluate your project to create a custom plan to achieve the results you're looking for.
             </p>
           </div>
           
