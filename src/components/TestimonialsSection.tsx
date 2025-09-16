@@ -181,17 +181,13 @@ export const TestimonialsSection = () => {
               style={{ 
                 transition: 'none',
                 pointerEvents: 'auto',
-                willChange: 'transform',
-                animationDuration: '40s', // Slow smooth scroll
-                animationIterationCount: 'infinite',
-                animationTimingFunction: 'linear'
+                willChange: 'transform'
               }}
             >
+              {/* First set - visible at start */}
               {renderTestimonials()}
-              {/* Duplicate for seamless loop - hidden from SEO */}
-              <div aria-hidden="true" className="flex gap-8">
-                {renderTestimonials()}
-              </div>
+              {/* Duplicate set for seamless loop - positioned exactly after first set */}
+              {renderTestimonials()}
             </div>
           </div>
         </div>
