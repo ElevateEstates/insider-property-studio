@@ -140,8 +140,8 @@ const PortfolioModal = ({
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col min-h-0 p-3 lg:p-4">
             
-            {/* Main Image Display */}
-            <div className="flex-1 flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0">
+            {/* Main Image Display - Increased space */}
+            <div className="flex-[3] flex items-center justify-center relative bg-black/30 rounded-lg mb-3 min-h-0">
               {getCurrentImage() ? (
                 <div className="relative w-full h-full flex items-center justify-center p-2">
                   <img
@@ -212,8 +212,8 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Compact Layout */}
-            <div className="flex-shrink-0 max-h-32 lg:max-h-40 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4">
+            {/* Project Details - Compact with Scroll */}
+            <div className="flex-shrink-0 h-24 lg:h-32 overflow-y-auto bg-black/20 rounded-lg p-3 lg:p-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
               <div className="space-y-2 lg:space-y-3">
                 
                 {/* Badges */}
