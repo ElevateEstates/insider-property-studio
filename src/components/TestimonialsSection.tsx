@@ -197,7 +197,7 @@ export const TestimonialsSection = () => {
         {/* Dynamic Testimonial Modal */}
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
-            <DialogContent className="w-[100vw] h-[100vh] sm:w-[95vw] sm:h-[90vh] max-w-none max-h-none sm:max-w-4xl sm:max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden sm:rounded-lg">
+            <DialogContent className="w-[95vw] max-h-[85vh] sm:w-[95vw] sm:h-[90vh] max-w-none sm:max-w-4xl sm:max-h-[90vh] bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg">
               {/* Enhanced Close Button */}
               <button
                 onClick={() => setSelectedTestimonial(null)}
@@ -209,8 +209,8 @@ export const TestimonialsSection = () => {
                 </svg>
               </button>
               
-              <div className="p-4 sm:p-6 md:p-8 h-full overflow-y-auto">
-                <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start min-h-full">
+              <div className="p-4 sm:p-6 md:p-8 h-full overflow-y-auto overscroll-contain">
+                <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-start">
                   {/* Profile Image Section */}
                   <div className="flex-shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-blue-400/30">
@@ -231,8 +231,8 @@ export const TestimonialsSection = () => {
                     {/* Quote Icon */}
                     <Quote className="text-blue-400 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 opacity-80 mx-auto md:mx-0" />
                     
-                    {/* Full Testimonial Text */}
-                    <div className="max-h-[40vh] sm:max-h-[50vh] md:max-h-none overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                    {/* Full Testimonial Text - Scrollable */}
+                    <div className="space-y-4">
                       <blockquote className="text-white/95 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
                         "{selectedTestimonial.quote}"
                       </blockquote>
