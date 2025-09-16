@@ -118,7 +118,7 @@ const About = () => {
               
               <div className="space-y-6 text-lg leading-relaxed text-white/80 max-w-4xl">
                 <p>
-                  In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving every agent access to nearly every listing, the question isn't simply who arranges the viewing.
+                  In the competitive Costa del Sol real estate market—where thousands of agents compete for the same buyers—standout visuals are essential, not optional. With collaboration platforms giving agents access to almost every listing, it's no longer about who schedules the viewing—it's about who earns the client's trust.
                 </p>
                 
                 <p>
