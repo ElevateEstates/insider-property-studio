@@ -151,6 +151,22 @@ export const Navigation = () => {
                 </Link>
               ))}
             </nav>
+            
+            {/* Close indicator area */}
+            <div 
+              className="mt-8 pt-6 pb-4 flex flex-col items-center justify-center cursor-pointer group transition-all duration-300 hover:bg-white/5 rounded-xl"
+              onClick={() => setIsMobileMenuOpen(false)}
+              role="button"
+              aria-label="Close menu"
+            >
+              <div className="w-8 h-1 bg-white/30 rounded-full mb-2 group-hover:bg-white/50 transition-colors duration-300"></div>
+              <div className="w-6 h-1 bg-white/20 rounded-full group-hover:bg-white/40 transition-colors duration-300"></div>
+              <div className="mt-3 opacity-50 group-hover:opacity-80 transition-opacity duration-300">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <path d="M19 15l-7-7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       )}
