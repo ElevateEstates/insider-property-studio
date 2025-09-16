@@ -41,7 +41,7 @@ const PortfolioModal = ({
   renderContent,
 }: PortfolioModalProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [showDetails, setShowDetails] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
 
   const currentItem = items[currentIndex] || null;
   
@@ -132,8 +132,8 @@ const PortfolioModal = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowDetails(!showDetails)}
-                className="px-3 py-1.5 text-xs font-medium bg-white/10 hover:bg-white/20 
-                           rounded-full transition-colors text-white border border-white/20"
+                className="px-4 py-2 text-sm font-medium bg-[hsl(var(--accent-gold))] hover:bg-[hsl(var(--accent-gold-dark))] 
+                           rounded-lg transition-colors text-black border border-[hsl(var(--accent-gold-light))]"
               >
                 {showDetails ? 'Hide Details' : 'Show Details'}
               </button>
