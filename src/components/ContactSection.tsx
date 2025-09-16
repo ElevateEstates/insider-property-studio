@@ -9,47 +9,39 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { Send, Mail, MapPin, MessageCircle, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 export const ContactSection = () => {
   const [selectedType, setSelectedType] = useState("");
   const [otherSpecification, setOtherSpecification] = useState("");
   const [isOtherDialogOpen, setIsOtherDialogOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Thanks! You're on the insider list.",
-      description: "We'll send you exclusive property previews soon.",
+      description: "We'll send you exclusive property previews soon."
     });
   };
-
   const handleTypeChange = (value: string) => {
     setSelectedType(value);
     if (value === "other") {
       setIsOtherDialogOpen(true);
     }
   };
-
-  return (
-    <section id="contact-form" className="py-12 md:py-20 px-4 md:px-6 relative overflow-hidden z-10">
-      <div 
-        className="container mx-auto max-w-6xl relative z-20 section-content py-4 md:py-8 px-4 md:px-8"
-      >
+  return <section id="contact-form" className="py-12 md:py-20 px-4 md:px-6 relative overflow-hidden z-10">
+      <div className="container mx-auto max-w-6xl relative z-20 section-content py-4 md:py-8 px-4 md:px-8">
         <div className="text-center mb-12 md:mb-16 animate-fade-up">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 md:mb-8 border-b border-white/20 pb-3 md:pb-4 text-white">
             Ready to Work Together?
           </h2>
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed text-white/80 font-light max-w-2xl mx-auto">
-            Tell us about your project and we'll create a tailored strategy for your success
-          </p>
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed text-white/80 font-light max-w-2xl mx-auto">Let's discuss collaboration ideas. No obligations.</p>
         </div>
           
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -58,10 +50,7 @@ export const ContactSection = () => {
               <div>
                 <h3 className="text-xl md:text-2xl font-light text-white mb-4 md:mb-6">Get In Touch</h3>
                 <div className="space-y-4 md:space-y-6">
-                  <a 
-                    href="mailto:geir@elevateproperties.es"
-                    className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
-                  >
+                  <a href="mailto:geir@elevateproperties.es" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center">
                       <Mail className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
@@ -70,12 +59,7 @@ export const ContactSection = () => {
                       <p className="text-sm md:text-base">geir@elevateproperties.es</p>
                     </div>
                   </a>
-                  <a 
-                    href="https://wa.me/34685243192" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
-                  >
+                  <a href="https://wa.me/34685243192" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
                       <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-green-400" />
                     </div>
@@ -84,12 +68,7 @@ export const ContactSection = () => {
                       <p className="text-sm md:text-base">+34 685 243 192</p>
                     </div>
                   </a>
-                  <a 
-                    href="https://www.instagram.com/elevateproperties.es" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300"
-                  >
+                  <a href="https://www.instagram.com/elevateproperties.es" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-pink-500/20 rounded-xl flex items-center justify-center">
                       <Instagram className="w-5 h-5 md:w-6 md:h-6 text-pink-400" />
                     </div>
@@ -154,19 +133,10 @@ export const ContactSection = () => {
                 
                 <div>
                   <Label htmlFor="message" className="text-white mb-1 md:mb-2 block text-sm md:text-base">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    rows={3}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 min-h-[80px] md:min-h-[100px]"
-                    placeholder="Tell us about your project..."
-                  />
+                  <Textarea id="message" rows={3} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 min-h-[80px] md:min-h-[100px]" placeholder="Tell us about your project..." />
                 </div>
                 
-                <Button 
-                  type="submit" 
-                  variant="outline"
-                  className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group relative z-50 h-12 md:h-14 text-sm md:text-base"
-                >
+                <Button type="submit" variant="outline" className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group relative z-50 h-12 md:h-14 text-sm md:text-base">
                   Send Message
                   <Send className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -183,37 +153,23 @@ export const ContactSection = () => {
           </DialogHeader>
           <div className="space-y-4">
             <Label htmlFor="otherSpec">How would you describe yourself?</Label>
-            <Textarea
-              id="otherSpec"
-              value={otherSpecification}
-              onChange={(e) => setOtherSpecification(e.target.value)}
-              placeholder="Please specify your role or business type..."
-              rows={3}
-            />
+            <Textarea id="otherSpec" value={otherSpecification} onChange={e => setOtherSpecification(e.target.value)} placeholder="Please specify your role or business type..." rows={3} />
             <div className="flex gap-2">
-              <Button 
-                onClick={() => {
-                  setIsOtherDialogOpen(false);
-                  setSelectedType(`other: ${otherSpecification}`);
-                }}
-                className="flex-1"
-              >
+              <Button onClick={() => {
+              setIsOtherDialogOpen(false);
+              setSelectedType(`other: ${otherSpecification}`);
+            }} className="flex-1">
                 Save
               </Button>
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setIsOtherDialogOpen(false);
-                  setSelectedType("");
-                }}
-                className="flex-1"
-              >
+              <Button variant="outline" onClick={() => {
+              setIsOtherDialogOpen(false);
+              setSelectedType("");
+            }} className="flex-1">
                 Cancel
               </Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
-    </section>
-  );
+    </section>;
 };
