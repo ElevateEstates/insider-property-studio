@@ -186,7 +186,7 @@ const Contact = () => {
       <Navigation />
       
 
-      {/* Our Services Section */}
+      {/* Our Services Section - moved from bottom */}
       <section className="py-32 transparent-section">
         <div 
           className="container mx-auto max-w-5xl px-4 md:px-8"
@@ -380,57 +380,8 @@ const Contact = () => {
               </Card>
             </div>
 
-            {/* Services & Pricing */}
-            <div>
-              <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-light mb-4 text-white">
-                  Our Services
-                </h2>
-                <p className="text-white/70">
-                  Professional real estate media services tailored to your needs.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {services.map((service, index) => (
-                  <Card key={index} className="glass-card p-6 hover:border-white/20 transition-all duration-300">
-                    <div className="mb-4">
-                      <h3 className="text-xl font-medium text-white">
-                        {service.title}
-                      </h3>
-                      {service.subtitle && (
-                        <p className="text-accent-gold text-sm mt-1">
-                          {service.subtitle}
-                        </p>
-                      )}
-                    </div>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-white/70 text-sm flex items-center">
-                          <div className="w-1.5 h-1.5 bg-accent-gold rounded-full mr-3"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card>
-                ))}
-              </div>
-
-              <div className="mt-8 p-6 glass-card rounded-2xl">
-                <div className="flex items-start gap-4">
-                  <MessageCircle className="w-6 h-6 text-accent-gold mt-1" />
-                  <div>
-                    <h4 className="text-white font-medium mb-2">
-                      Need a Custom Quote?
-                    </h4>
-                    <p className="text-white/70 text-sm">
-                      Every project is unique. Contact us to discuss your specific 
-                      requirements and get a personalized quote that fits your budget.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Spacer for full width layout */}
+            <div></div>
           </div>
         </div>
       </section>

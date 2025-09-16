@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Check, Calculator, Plus, Minus } from "lucide-react";
+import { Check, Calculator, Plus, Minus, MessageCircle } from "lucide-react";
 
 interface ServiceOption {
   id: string;
@@ -240,7 +240,7 @@ export const PricingCalculator = () => {
                                  <div className="mt-3 space-y-2">
                                    {service.subOptions.map((subOption) => (
                                      <div key={subOption.id} className="flex items-center gap-2 text-xs">
-                                       <div className="w-1.5 h-1.5 bg-accent-gold rounded-full"></div>
+                                       <div className="w-1.5 h-1.5 bg-accent-gold rounded-full flex-shrink-0"></div>
                                        <span className="text-accent-gold font-medium">{subOption.name}:</span>
                                        <span className="text-white/50">{subOption.description}</span>
                                      </div>
@@ -259,17 +259,17 @@ export const PricingCalculator = () => {
                   
                   {/* Special Drone Photography Section */}
                   {category === "Drone" && (
-                    <div className="p-4 rounded-lg border-2 transition-all duration-300 border-white/10 bg-white/5 hover:border-accent-gold/50 hover:bg-accent-gold/5">
+                    <div className="p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer border-white/10 bg-white/5 hover:border-accent-gold/50 hover:bg-accent-gold/5"
+                         onClick={() => toggleService("drone-photos")}>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3">
                             <div
-                              className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all cursor-pointer ${
+                              className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
                                 selectedServices.has("drone-photos")
                                   ? "border-accent-gold bg-accent-gold"
                                   : "border-white/40"
                               }`}
-                              onClick={() => toggleService("drone-photos")}
                             >
                               {selectedServices.has("drone-photos") && (
                                 <Check className="w-3 h-3 text-primary" />
@@ -309,13 +309,13 @@ export const PricingCalculator = () => {
                                     <Plus className="w-3 h-3" />
                                   </Button>
                                 </div>
-                                <Badge className="bg-accent-gold text-primary">
-                                  €{getDronePhotoPrice()}
-                                </Badge>
                               </div>
                             </div>
                           </div>
                         </div>
+                        <Badge className="bg-accent-gold text-primary ml-4">
+                          €{getDronePhotoPrice()}
+                        </Badge>
                       </div>
                     </div>
                   )}
@@ -381,6 +381,21 @@ export const PricingCalculator = () => {
                 <Button className="w-full glass-button mt-6">
                   Request Quote
                 </Button>
+                
+                <div className="mt-6 p-6 glass-card rounded-2xl">
+                  <div className="flex items-start gap-4">
+                    <MessageCircle className="w-6 h-6 text-accent-gold mt-1" />
+                    <div>
+                      <h4 className="text-white font-medium mb-2">
+                        Need a Custom Quote?
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        Every project is unique. Contact us to discuss your specific 
+                        requirements and get a personalized quote that fits your budget.
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 
                 <p className="text-xs text-white/60 text-center mt-4">
                   Final pricing may vary based on property specifics and location
