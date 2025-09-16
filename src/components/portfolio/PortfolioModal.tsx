@@ -107,8 +107,9 @@ const PortfolioModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full h-full max-w-none max-h-none p-0 m-0 border-0 bg-black/95 
-                                sm:w-[96vw] sm:h-[94vh] sm:max-w-none sm:rounded-lg sm:border sm:border-white/20 sm:m-4">
+      <DialogContent className="w-full h-full max-w-none max-h-none p-0 m-0 border-0 bg-black/95 z-[9999]
+                                sm:w-[96vw] sm:h-[94vh] sm:max-w-none sm:rounded-lg sm:border sm:border-white/20 sm:m-4
+                                fixed inset-0 sm:inset-4">
         <VisuallyHidden>
           <DialogTitle>{currentItem.title}</DialogTitle>
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
