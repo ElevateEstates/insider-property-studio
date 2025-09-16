@@ -198,7 +198,67 @@ export const TestimonialsSection = () => {
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
             <DialogContent className="w-[95vw] h-[80vh] max-w-none bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg mt-16">
-              <div className="h-full flex flex-col">
+              <div 
+                className="h-full flex flex-col relative"
+                onTouchStart={(e) => {
+                  const touch = e.touches[0];
+                  const startX = touch.clientX;
+                  const startY = touch.clientY;
+                  
+                  const handleTouchMove = (moveEvent: TouchEvent) => {
+                    const moveTouch = moveEvent.touches[0];
+                    const deltaX = moveTouch.clientX - startX;
+                    const deltaY = moveTouch.clientY - startY;
+                    
+                    // Only trigger if horizontal swipe is dominant
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
+                      setSelectedTestimonial(null);
+                      document.removeEventListener('touchmove', handleTouchMove);
+                      document.removeEventListener('touchend', handleTouchEnd);
+                    }
+                  };
+                  
+                  const handleTouchEnd = () => {
+                    document.removeEventListener('touchmove', handleTouchMove);
+                    document.removeEventListener('touchend', handleTouchEnd);
+                  };
+                  
+                  document.addEventListener('touchmove', handleTouchMove);
+                  document.addEventListener('touchend', handleTouchEnd);
+                }}
+                onMouseDown={(e) => {
+                  const startX = e.clientX;
+                  const startY = e.clientY;
+                  
+                  const handleMouseMove = (moveEvent: MouseEvent) => {
+                    const deltaX = moveEvent.clientX - startX;
+                    const deltaY = moveEvent.clientY - startY;
+                    
+                    // Only trigger if horizontal drag is dominant
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
+                      setSelectedTestimonial(null);
+                      document.removeEventListener('mousemove', handleMouseMove);
+                      document.removeEventListener('mouseup', handleMouseUp);
+                    }
+                  };
+                  
+                  const handleMouseUp = () => {
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.removeEventListener('mouseup', handleMouseUp);
+                  };
+                  
+                  document.addEventListener('mousemove', handleMouseMove);
+                  document.addEventListener('mouseup', handleMouseUp);
+                }}
+              >
+                {/* Swipe indicator */}
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="flex space-x-1">
+                    <div className="w-8 h-1 bg-white/30 rounded-full"></div>
+                    <div className="w-3 h-1 bg-white/20 rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-white/40 text-center mt-1">Swipe to close</div>
+                </div>
                 {/* Scrollable Content Area */}
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="flex flex-col items-center space-y-4">
