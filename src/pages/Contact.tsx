@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
+import { PricingCalculator } from "@/components/PricingCalculator";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -244,6 +245,16 @@ const Contact = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Pricing Calculator */}
+      <section className="py-32 transparent-section">
+        <div 
+          className="container mx-auto max-w-7xl px-4 md:px-8"
+          style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+        >
+          <PricingCalculator />
         </div>
       </section>
 
