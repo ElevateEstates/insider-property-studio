@@ -156,7 +156,8 @@ const Contact = () => {
       features: [
         "Professional High Dynamic Range photos",
         "Showcase your property in it's best light",
-        "Attract more viewings to meet interested buyers"
+        "Attract more viewings to meet interested buyers",
+        "24-hour editing available"
       ]
     },
     {

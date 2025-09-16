@@ -56,6 +56,14 @@ const serviceOptions: ServiceOption[] = [
     villaPrice: 550
   },
   {
+    id: "24h-editing",
+    category: "Photography",
+    name: "24-Hour Rush Editing",
+    description: "Express editing service for urgent deadlines",
+    apartmentPrice: 99,
+    villaPrice: 99
+  },
+  {
     id: "video-basic",
     category: "Video",
     name: "Basic Video Tour (1 minute)",
