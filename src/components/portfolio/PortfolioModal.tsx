@@ -57,9 +57,16 @@ const PortfolioModal = ({
     }
     return [];
   };
-
+  
   const images = getImageArray();
   const hasMultipleImages = images.length > 1;
+  
+  const getCurrentImage = () => {
+    if (type === 'lifestyle-photos') {
+      return currentItem.src;
+    }
+    return images[selectedImageIndex] || currentItem.images?.[0];
+  };
 
   // Auto-scroll active thumbnail to center - always call this hook
   useEffect(() => {
@@ -91,111 +98,6 @@ const PortfolioModal = ({
 
   // Early return after all hooks
   if (!currentItem) return null;
-
-
-  const renderImageModal = () => {
-    if (type === 'property-videos' || type === 'lifestyle-videos') {
-      return (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-4xl aspect-video">
-            <iframe
-              src={currentItem.videoUrl}
-              title={currentItem.title}
-              className="w-full h-full rounded-lg"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="w-full h-full flex flex-col overflow-hidden">
-        {/* Main Image Container - Scrollable */}
-        <div className="flex-1 overflow-auto">
-          <div className="min-h-full flex items-center justify-center relative p-2 sm:p-4 lg:p-8">
-            {/* Left Navigation Arrow */}
-            {hasMultipleImages && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-            )}
-
-            {/* Right Navigation Arrow */}
-            {hasMultipleImages && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 p-3 rounded-full"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
-            )}
-
-            {/* Main Image - Responsive sizing */}
-            <div className="flex flex-col items-center gap-2 sm:gap-4 md:gap-8 max-w-full">
-              <img
-                src={images[selectedImageIndex] || currentItem.src}
-                alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-                className="max-w-full max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] lg:max-h-[70vh] min-h-0 object-contain"
-              />
-              
-              {/* Thumbnails directly below main image */}
-              {hasMultipleImages && (
-                <div className="flex flex-col items-center gap-2 sm:gap-3 w-full">
-                  <div 
-                    ref={thumbnailContainerRef}
-                    className="flex gap-1 sm:gap-2 max-w-4xl w-full overflow-x-auto pb-2 px-2 sm:px-4 md:px-16 scroll-smooth snap-x snap-mandatory"
-                    style={{
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: 'rgba(255,255,255,0.3) transparent'
-                    }}
-                  >
-                    {/* Left safe zone */}
-                    <div className="flex-shrink-0 w-2 sm:w-4 md:w-12" />
-                    
-                    {images.map((image: string, index: number) => (
-                      <button
-                        key={index}
-                        ref={el => thumbnailRefs.current[index] = el}
-                        onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-12 h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 rounded overflow-hidden border-2 transition-all snap-center ${
-                          selectedImageIndex === index 
-                            ? 'border-white shadow-lg scale-105' 
-                            : 'border-white/20 hover:border-white/50'
-                        }`}
-                      >
-                        <img
-                          src={image}
-                          alt={`${currentItem.title} thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                    
-                    {/* Right safe zone */}
-                    <div className="flex-shrink-0 w-2 sm:w-4 md:w-12" />
-                  </div>
-
-                  {/* Image Counter */}
-                  <div className="text-white/70 text-sm">
-                    {selectedImageIndex + 1} of {images.length}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   const shouldShowSidebar = type !== 'lifestyle-photos';
 
@@ -272,11 +174,15 @@ const PortfolioModal = ({
               // Image Content
               <div className="p-4 space-y-4">
                 {/* Main Image Display */}
-                <div className="flex justify-center">
+                <div className="flex justify-center bg-black/20 rounded-lg min-h-[50vh]">
                   <img
-                    src={images[selectedImageIndex] || currentItem.src}
+                    src={getCurrentImage()}
                     alt={`${currentItem.title} ${selectedImageIndex + 1}`}
-                    className="max-w-full max-h-[60vh] object-contain rounded-lg"
+                    className="max-w-full max-h-[70vh] object-contain rounded-lg"
+                    onError={(e) => {
+                      console.error('Image failed to load:', getCurrentImage());
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
                 </div>
 
@@ -318,7 +224,7 @@ const PortfolioModal = ({
                             key={index}
                             ref={el => thumbnailRefs.current[index] = el}
                             onClick={() => setSelectedImageIndex(index)}
-                            className={`flex-shrink-0 w-16 h-12 rounded overflow-hidden border-2 transition-all ${
+                            className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
                               selectedImageIndex === index 
                                 ? 'border-white shadow-lg scale-110' 
                                 : 'border-white/30 hover:border-white/60'
