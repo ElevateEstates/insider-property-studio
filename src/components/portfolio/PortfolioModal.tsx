@@ -110,7 +110,8 @@ const PortfolioModal = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-[90vw] h-[75vh] p-0 border bg-black/95 rounded-lg border-white/20 z-[101]
                                 fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2
-                                max-w-[1400px] max-h-[900px]">
+                                max-w-[1400px] max-h-[900px] 
+                                md:w-[85vw] md:h-[80vh] md:max-w-[900px] md:max-h-[700px]">
         <VisuallyHidden>
           <DialogTitle>{currentItem.title}</DialogTitle>
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
@@ -119,8 +120,8 @@ const PortfolioModal = ({
         {/* Single Column Layout with Image Priority */}
         <div className="w-full h-full bg-black text-white flex flex-col overflow-hidden">
           
-          {/* Header with Close Button - Mobile optimized */}
-          <div className="flex-shrink-0 flex items-center justify-between p-2 lg:p-4 border-b border-white/20 bg-black/90">
+          {/* Header with Close Button - Responsive padding */}
+          <div className="flex-shrink-0 flex items-center justify-between p-2 md:p-4 lg:p-4 border-b border-white/20 bg-black/90">
             <div className="flex-1 min-w-0 pr-2">
               <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
                 {currentItem.title}
@@ -148,7 +149,7 @@ const PortfolioModal = ({
           </div>
 
           {/* Main Content Area - Responsive padding */}
-          <div className="flex-1 flex flex-col min-h-0 p-0 lg:p-2">
+          <div className="flex-1 flex flex-col min-h-0 p-0 md:p-3 lg:p-2">
             
             {/* Main Image Display - Maximized space */}
             <div className={`flex items-center justify-center relative bg-black/30 rounded min-h-0 transition-all duration-300 ${
@@ -157,7 +158,7 @@ const PortfolioModal = ({
                 : 'flex-1' // When hidden, maximize image space
             }`}>
               {getCurrentImage() ? (
-                <div className="relative w-full h-full flex items-center justify-center p-0 lg:p-2">
+                <div className="relative w-full h-full flex items-center justify-center p-0 md:p-1 lg:p-2">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
@@ -203,7 +204,7 @@ const PortfolioModal = ({
             {/* Thumbnail Strip - Directly attached to image */}
             {hasMultipleImages && (
               <div className="flex-shrink-0">
-                <div className="flex gap-0.5 overflow-x-auto px-0 py-0 lg:px-2 lg:py-1">
+                <div className="flex gap-0.5 overflow-x-auto px-0 py-0 md:px-3 md:py-1 lg:px-2 lg:py-1">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
@@ -228,7 +229,7 @@ const PortfolioModal = ({
 
             {/* Project Details - Maximized space */}
             {showDetails && (
-               <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded p-0 mt-0 lg:p-3 lg:mt-2
+               <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 rounded p-0 mt-0 md:p-3 md:mt-2 lg:p-3 lg:mt-2
                               scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
                               animate-fade-in transition-all duration-300">
                 <div className="space-y-1.5">
@@ -284,7 +285,7 @@ const PortfolioModal = ({
 
             {/* Navigation between properties - Minimal spacing */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center pt-0 mt-0 lg:pt-2 lg:mt-1 border-t border-white/20">
+              <div className="flex-shrink-0 flex justify-between items-center pt-0 mt-0 md:pt-2 md:mt-1 lg:pt-2 lg:mt-1 border-t border-white/20">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
                   className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
