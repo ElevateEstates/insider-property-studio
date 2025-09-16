@@ -111,7 +111,7 @@ const About = () => {
           <div className="relative">
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-accent-gold to-transparent opacity-60"></div>
             <div className="pl-12 space-y-8">
-              <p className="text-2xl md:text-3xl font-light leading-relaxed text-white/90 italic">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-white/90 italic whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal">
                 "We've built our reputation on over-delivering—and we won't stop now."
               </p>
               
@@ -135,35 +135,42 @@ const About = () => {
 
       {/* Services Section */}
       <section className="py-32 transparent-section">
-        <div className="container mx-auto max-w-6xl px-4 md:px-8 relative z-20" style={{
+        <div className="container mx-auto max-w-5xl px-4 md:px-8" style={{
         transform: `translateY(${scrollY * 0.03}px)`
       }}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-light mb-8 text-white">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-light mb-4 text-white">
               Our Expertise
             </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              We combine creative vision with technical excellence to deliver 
-              media that elevates your real estate business.
-            </p>
+            <div className="w-20 h-0.5 bg-accent-gold mx-auto"></div>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => <Card key={index} className="glass-card p-8 hover:border-white/20 transition-all duration-300">
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center">
-                    <service.icon className="w-6 h-6 text-accent-gold" />
+          <div className="relative">
+            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-accent-gold to-transparent opacity-60"></div>
+            <div className="pl-12 space-y-8">
+              <p className="text-xl md:text-2xl font-light leading-relaxed text-white/90 mb-12">
+                We combine creative vision with technical excellence to deliver 
+                media that elevates your real estate business.
+              </p>
+              
+              <div className="space-y-8">
+                {services.map((service, index) => (
+                  <div key={index} className="flex items-start gap-6 p-6 glass-card hover:border-white/20 transition-all duration-300">
+                    <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <service.icon className="w-6 h-6 text-accent-gold" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-medium text-white mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="text-white/70 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-medium text-white mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-white/70 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-              </Card>)}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
