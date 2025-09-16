@@ -11,7 +11,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-8 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[35vh]">
+    <footer className="relative py-8 px-4 md:px-6 glass-card overflow-hidden border-t border-white/10 rounded-none min-h-[35vh] z-10">
       {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
@@ -21,8 +21,8 @@ export const Footer = () => {
         }}
       />
       
-      {/* 50% Transparent Overlay */}
-      <div className="absolute inset-0 z-5 bg-black/50"></div>
+      {/* 30% Transparent Overlay with blend mode */}
+      <div className="absolute inset-0 z-5 bg-black/20" style={{ mixBlendMode: 'multiply' }}></div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center justify-center space-y-6 min-h-[25vh]">
