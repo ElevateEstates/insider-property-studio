@@ -198,17 +198,6 @@ export const TestimonialsSection = () => {
         {selectedTestimonial && (
           <Dialog open={!!selectedTestimonial} onOpenChange={(open) => !open && setSelectedTestimonial(null)}>
             <DialogContent className="w-[95vw] h-[80vh] max-w-none bg-white/5 backdrop-blur-xl border border-white/20 text-white p-0 overflow-hidden rounded-lg mt-16">
-              {/* Enhanced Close Button */}
-              <button
-                onClick={() => setSelectedTestimonial(null)}
-                className="absolute top-3 right-3 z-50 w-10 h-10 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center border-2 border-white/30 hover:border-white/50 transition-all duration-200"
-                aria-label="Close testimonial"
-              >
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              
               <div className="h-full flex flex-col">
                 {/* Scrollable Content Area */}
                 <div className="flex-1 overflow-y-auto p-4">
@@ -239,23 +228,23 @@ export const TestimonialsSection = () => {
                       <div className="text-white font-semibold text-lg mb-1">
                         {selectedTestimonial.author}
                       </div>
-                      <div className="text-blue-400 text-sm mb-6">
+                      <div className="text-blue-400 text-sm mb-4">
                         {selectedTestimonial.company}
                       </div>
+                      
+                      {/* Separating line and close logo */}
+                      <div className="border-t border-white/20 pt-4">
+                        <div 
+                          className="flex flex-col items-center space-y-2 cursor-pointer hover:bg-white/10 transition-colors rounded-lg p-3"
+                          onClick={() => setSelectedTestimonial(null)}
+                        >
+                          <svg className="w-8 h-8 text-white/60 hover:text-white/80 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
+                          </svg>
+                          <span className="text-xs text-white/60">Close</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                
-                {/* Bottom Close Area - Safe Zone */}
-                <div 
-                  className="h-20 bg-black/30 border-t border-white/10 flex items-center justify-center cursor-pointer hover:bg-black/50 transition-colors"
-                  onClick={() => setSelectedTestimonial(null)}
-                >
-                  <div className="flex flex-col items-center text-white/60 hover:text-white/80 transition-colors">
-                    <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
-                    <span className="text-xs">Tap to close</span>
                   </div>
                 </div>
               </div>
