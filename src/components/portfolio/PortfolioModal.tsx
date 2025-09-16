@@ -117,52 +117,48 @@ const PortfolioModal = ({
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
         </VisuallyHidden>
         
-        {/* Single Column Layout with Image Priority */}
-        <div className="w-full h-full bg-black text-white flex flex-col overflow-hidden">
+        {/* Centered Layout - Everything grouped together */}
+        <div className="w-full h-full bg-black text-white flex flex-col items-center justify-center overflow-hidden p-2">
           
-          {/* Header with Close Button - Compact mobile */}
-          <div className="flex-shrink-0 flex items-center justify-between px-2 py-1 md:p-4 lg:p-4 border-b border-white/20 bg-black/90">
-            <div className="flex-1 min-w-0 pr-1">
-              <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
-                {currentItem.title}
-              </h2>
-              <div className="text-white/70 text-xs lg:text-sm mt-0.5">
-                {currentItem.date} • {currentItem.location}
+          {/* Content Container - Centered */}
+          <div className="flex flex-col items-center justify-center max-w-full max-h-full">
+            
+            {/* Header with Close Button - Above image */}
+            <div className="flex-shrink-0 flex items-center justify-between w-full mb-2 px-2">
+              <div className="flex-1 min-w-0 pr-2">
+                <h2 className="text-sm lg:text-xl xl:text-2xl font-semibold leading-tight">
+                  {currentItem.title}
+                </h2>
+                <div className="text-white/70 text-xs lg:text-sm mt-0.5">
+                  {currentItem.date} • {currentItem.location}
+                </div>
+              </div>
+              <div className="flex items-center gap-1 lg:gap-2 flex-shrink-0">
+                <button
+                  onClick={() => setShowDetails(!showDetails)}
+                  className="px-2.5 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium bg-[hsl(var(--accent-gold))] hover:bg-[hsl(var(--accent-gold-dark))] 
+                             rounded-md lg:rounded-lg transition-colors text-black border border-[hsl(var(--accent-gold-light))]"
+                >
+                  {showDetails ? 'Hide' : 'Details'}
+                </button>
+                <button
+                  onClick={onClose}
+                  className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/10 hover:bg-white/20 
+                             flex items-center justify-center text-white transition-colors"
+                >
+                  <X size={16} className="lg:w-5 lg:h-5" />
+                </button>
               </div>
             </div>
-            <div className="flex items-center gap-1 lg:gap-2 flex-shrink-0">
-              <button
-                onClick={() => setShowDetails(!showDetails)}
-                className="px-2.5 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium bg-[hsl(var(--accent-gold))] hover:bg-[hsl(var(--accent-gold-dark))] 
-                           rounded-md lg:rounded-lg transition-colors text-black border border-[hsl(var(--accent-gold-light))]"
-              >
-                {showDetails ? 'Hide' : 'Details'}
-              </button>
-              <button
-                onClick={onClose}
-                className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-white/10 hover:bg-white/20 
-                           flex items-center justify-center text-white transition-colors"
-              >
-                <X size={16} className="lg:w-5 lg:h-5" />
-              </button>
-            </div>
-          </div>
 
-          {/* Main Content Area - Zero padding mobile */}
-          <div className="flex-1 flex flex-col min-h-0 p-0 md:p-3 lg:p-2">
-            
-            {/* Main Image Display - Fill available space */}
-            <div className={`flex items-center justify-center relative bg-black/30 min-h-0 transition-all duration-300 ${
-              showDetails 
-                ? 'flex-[2]' // When details shown, still prioritize image
-                : 'flex-1' // When hidden, maximize image space
-            }`}>
+            {/* Main Image - Centered */}
+            <div className="flex-shrink-0 relative">
               {getCurrentImage() ? (
-                <div className="relative w-full h-full flex items-center justify-center p-1 md:p-1 lg:p-2">
+                <div className="relative">
                   <img
                     src={getCurrentImage()}
                     alt={currentItem.title}
-                    className="max-w-full max-h-full w-auto h-auto object-contain rounded transition-all duration-300"
+                    className="max-w-[90vw] max-h-[50vh] md:max-w-[70vw] md:max-h-[60vh] w-auto h-auto object-contain rounded"
                   />
                   
                   {/* Navigation Arrows */}
@@ -170,14 +166,14 @@ const PortfolioModal = ({
                     <>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                        className="absolute left-1 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
                         <ChevronLeft size={16} className="lg:w-5 lg:h-5" />
                       </button>
                       <button
                         onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                        className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 bg-black/70 hover:bg-black/90 
                                    rounded-full flex items-center justify-center text-white transition-all hover:scale-110"
                       >
                         <ChevronRight size={16} className="lg:w-5 lg:h-5" />
@@ -187,7 +183,7 @@ const PortfolioModal = ({
 
                   {/* Image Counter */}
                   {hasMultipleImages && (
-                    <div className="absolute top-1 right-1 bg-black/70 px-1.5 py-0.5 rounded-full border border-white/20">
+                    <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded-full border border-white/20">
                       <span className="text-white/90 text-xs font-medium">
                         {selectedImageIndex + 1} / {images.length}
                       </span>
@@ -195,21 +191,21 @@ const PortfolioModal = ({
                   )}
                 </div>
               ) : (
-                <div className="text-white/50 text-center p-2">
+                <div className="text-white/50 text-center p-4">
                   <p>Image not available</p>
                 </div>
               )}
             </div>
 
-            {/* Thumbnail Strip - No gap from image */}
+            {/* Thumbnail Strip - Right under image */}
             {hasMultipleImages && (
-              <div className="flex-shrink-0">
-                <div className="flex gap-1 overflow-x-auto px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1">
+              <div className="flex-shrink-0 mt-2">
+                <div className="flex gap-1 overflow-x-auto px-2">
                   {images.map((image: string, index: number) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-8 h-6 lg:w-10 lg:h-8 rounded border overflow-hidden 
+                      className={`flex-shrink-0 w-12 h-8 lg:w-14 lg:h-10 rounded border overflow-hidden 
                                  transition-all hover:scale-105 ${
                                    selectedImageIndex === index 
                                      ? 'border-white shadow-lg scale-105' 
@@ -227,16 +223,15 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Project Details - Maximized space */}
+            {/* Project Details - Compact */}
             {showDetails && (
-               <div className="flex-1 min-h-0 overflow-y-auto bg-black/20 px-2 py-1 md:p-3 md:mt-2 lg:p-3 lg:mt-2
-                              scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent
-                              animate-fade-in transition-all duration-300">
-                <div className="space-y-1.5">
+              <div className="flex-shrink-0 w-full max-w-2xl mt-3 max-h-40 overflow-y-auto bg-black/20 rounded p-3
+                             scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                <div className="space-y-2 text-sm">
                   
                   {/* Badges */}
                   {(currentItem.clientType || currentItem.packageType) && (
-                    <div className="flex gap-1 flex-wrap">
+                    <div className="flex gap-2 flex-wrap">
                       {currentItem.clientType && (
                         <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
                           {currentItem.clientType}
@@ -283,12 +278,12 @@ const PortfolioModal = ({
               </div>
             )}
 
-            {/* Navigation between properties - Minimal spacing */}
+            {/* Navigation between properties */}
             {items.length > 1 && (
-              <div className="flex-shrink-0 flex justify-between items-center px-2 py-1 md:pt-2 md:mt-1 lg:pt-2 lg:mt-1 border-t border-white/20">
+              <div className="flex-shrink-0 flex justify-between items-center w-full max-w-md mt-3 px-2 border-t border-white/20 pt-2">
                 <button
                   onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
-                  className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
+                  className="flex items-center gap-1 px-2 py-1 text-white/80 hover:text-white 
                              hover:bg-white/10 rounded transition-colors text-xs"
                 >
                   <ChevronLeft size={12} />
@@ -299,7 +294,7 @@ const PortfolioModal = ({
                 </span>
                 <button
                   onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
-                  className="flex items-center gap-1 px-1.5 py-1 text-white/80 hover:text-white 
+                  className="flex items-center gap-1 px-2 py-1 text-white/80 hover:text-white 
                              hover:bg-white/10 rounded transition-colors text-xs"
                 >
                   Next
