@@ -47,7 +47,7 @@ export const Navigation = () => {
   return (
     <>
       <nav 
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
         style={{
           background: `linear-gradient(to bottom, 
             rgba(0, 0, 0, ${0.7 + scrollOpacity * 0.25}) 0%, 
@@ -117,7 +117,7 @@ export const Navigation = () => {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 z-40 lg:hidden"
+          className="fixed inset-0 z-[90] lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div 
