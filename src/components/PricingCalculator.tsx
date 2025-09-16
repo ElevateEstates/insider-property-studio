@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Check, Calculator } from "lucide-react";
+import { Check, Calculator, Plus, Minus } from "lucide-react";
 
 interface ServiceOption {
   id: string;
@@ -78,24 +78,16 @@ const serviceOptions: ServiceOption[] = [
   {
     id: "video-cinematic",
     category: "Video",
-    name: "Cinematic Video Package",
+    name: "Cinematic Video Package (up to 1 minute)",
     description: "Professional editing with drone footage",
     apartmentPrice: 350,
     villaPrice: 450
   },
   {
-    id: "drone-photos",
-    category: "Drone",
-    name: "Drone Photography",
-    description: "Aerial exterior shots",
-    apartmentPrice: 125,
-    villaPrice: 175
-  },
-  {
     id: "drone-video",
     category: "Drone",
     name: "Drone Video",
-    description: "Aerial cinematic footage",
+    description: "Aerial cinematic footage (flying can be done for urbanisation with approval from community admin - client must request)",
     apartmentPrice: 200,
     villaPrice: 275
   },
@@ -114,12 +106,21 @@ const serviceOptions: ServiceOption[] = [
     description: "Professional 2D floor plans",
     apartmentPrice: 100,
     villaPrice: 150
+  },
+  {
+    id: "360-tour",
+    category: "Digital",
+    name: "360° Virtual Tour",
+    description: "360 camera tour with hosting (first month included, then €25/30 days)",
+    apartmentPrice: 200,
+    villaPrice: 250
   }
 ];
 
 export const PricingCalculator = () => {
   const [selectedPropertyType, setSelectedPropertyType] = useState<string>("apartment");
   const [selectedServices, setSelectedServices] = useState<Set<string>>(new Set());
+  const [dronePhotoQuantity, setDronePhotoQuantity] = useState<number>(5);
 
   const toggleService = (serviceId: string) => {
     const newSelected = new Set(selectedServices);
@@ -131,13 +132,27 @@ export const PricingCalculator = () => {
     setSelectedServices(newSelected);
   };
 
+  const adjustDronePhotoQuantity = (change: number) => {
+    const newQuantity = Math.max(5, dronePhotoQuantity + change);
+    setDronePhotoQuantity(newQuantity);
+  };
+
+  const getDronePhotoPrice = () => {
+    const basePrice = selectedPropertyType === "villa" ? 65 : 50;
+    return (dronePhotoQuantity / 5) * basePrice;
+  };
+
   const calculateTotal = () => {
     const isVilla = selectedPropertyType === "villa";
-    return Array.from(selectedServices).reduce((total, serviceId) => {
+    let total = Array.from(selectedServices).reduce((acc, serviceId) => {
+      if (serviceId === "drone-photos") {
+        return acc + getDronePhotoPrice();
+      }
       const service = serviceOptions.find(s => s.id === serviceId);
-      if (!service) return total;
-      return total + (isVilla ? service.villaPrice : service.apartmentPrice);
+      if (!service) return acc;
+      return acc + (isVilla ? service.villaPrice : service.apartmentPrice);
     }, 0);
+    return total;
   };
 
   const getServicePrice = (service: ServiceOption) => {
@@ -186,9 +201,6 @@ export const PricingCalculator = () => {
                 >
                   <div className="text-center">
                     <div className="font-medium">{type.name}</div>
-                    {type.id === "villa" && (
-                      <div className="text-xs mt-1 opacity-80">+18% pricing</div>
-                    )}
                   </div>
                 </Button>
               ))}
@@ -204,11 +216,7 @@ export const PricingCalculator = () => {
                   {services.map((service) => (
                     <div
                       key={service.id}
-                      className={`p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer ${
-                        selectedServices.has(service.id)
-                          ? "border-accent-gold bg-accent-gold/10"
-                          : "border-white/10 bg-white/5 hover:border-white/20"
-                      }`}
+                      className="p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer border-white/10 bg-white/5 hover:border-white/20"
                       onClick={() => toggleService(service.id)}
                     >
                       <div className="flex items-start justify-between">
@@ -248,6 +256,69 @@ export const PricingCalculator = () => {
                       </div>
                     </div>
                   ))}
+                  
+                  {/* Special Drone Photography Section */}
+                  {category === "Drone" && (
+                    <div className="p-4 rounded-lg border-2 transition-all duration-300 border-white/10 bg-white/5">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all cursor-pointer ${
+                                selectedServices.has("drone-photos")
+                                  ? "border-accent-gold bg-accent-gold"
+                                  : "border-white/40"
+                              }`}
+                              onClick={() => toggleService("drone-photos")}
+                            >
+                              {selectedServices.has("drone-photos") && (
+                                <Check className="w-3 h-3 text-primary" />
+                              )}
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-medium text-white">Drone Photography</h4>
+                              <p className="text-sm text-white/60 mt-1">Aerial exterior shots</p>
+                              
+                              {/* Quantity Controls */}
+                              <div className="mt-3 flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="w-8 h-8 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      adjustDronePhotoQuantity(-5);
+                                    }}
+                                    disabled={dronePhotoQuantity <= 5}
+                                  >
+                                    <Minus className="w-3 h-3" />
+                                  </Button>
+                                  <span className="text-white font-medium min-w-[60px] text-center">
+                                    {dronePhotoQuantity} photos
+                                  </span>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="w-8 h-8 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      adjustDronePhotoQuantity(5);
+                                    }}
+                                  >
+                                    <Plus className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                                <Badge className="bg-accent-gold text-primary">
+                                  €{getDronePhotoPrice()}
+                                </Badge>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}
@@ -266,6 +337,22 @@ export const PricingCalculator = () => {
             ) : (
               <div className="space-y-4">
                 {Array.from(selectedServices).map((serviceId) => {
+                  if (serviceId === "drone-photos") {
+                    return (
+                      <div key={serviceId} className="flex justify-between items-start">
+                        <div className="flex-1 pr-4">
+                          <div className="text-white text-sm font-medium">
+                            Drone Photography ({dronePhotoQuantity} photos)
+                          </div>
+                          <div className="text-white/60 text-xs">Drone</div>
+                        </div>
+                        <div className="text-accent-gold font-medium">
+                          €{getDronePhotoPrice()}
+                        </div>
+                      </div>
+                    );
+                  }
+                  
                   const service = serviceOptions.find(s => s.id === serviceId);
                   if (!service) return null;
                   
