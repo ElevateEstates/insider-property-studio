@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const WorkWithUs = () => {
   const [scrollY, setScrollY] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -45,9 +47,9 @@ export const WorkWithUs = () => {
           variant="outline" 
           size="lg"
           className="glass-button hover-scale relative z-50 w-full sm:w-auto"
-          onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => navigate('/portfolio')}
         >
-          Let's Talk
+          Discover Our Work
           <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
         </Button>
       </div>
