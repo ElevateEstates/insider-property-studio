@@ -23,13 +23,16 @@ export const ParallaxBackground = ({
   const multiplier = reduced ? 0.07 : (isMobile || prefersReducedMotion) ? 0.8 : 1;
 
   const handleScroll = useCallback(() => {
-    // Throttle scroll updates for mobile performance
+    // Much more aggressive throttling for mobile performance
     if (isMobile) {
-      requestAnimationFrame(() => setScrollY(window.scrollY));
+      // Only update every 3rd frame on mobile
+      if (Math.floor(window.scrollY / 3) !== Math.floor(scrollY / 3)) {
+        requestAnimationFrame(() => setScrollY(window.scrollY));
+      }
     } else {
       setScrollY(window.scrollY);
     }
-  }, [isMobile]);
+  }, [isMobile, scrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -61,56 +64,72 @@ export const ParallaxBackground = ({
         oscillateSpeed, oscillateAmplitude, color = '255,255,255' 
       } = config;
       
-      // Calculate smooth continuous movement with guaranteed variation
+      // Calculate smooth continuous movement with simplified math for mobile
       const baseY = yStart + (scrollY * ySpeed * multiplier);
       const baseX = xStart + (scrollY * xDrift * multiplier);
       
-      // Add strong oscillating movement with unique phase for each dot
-      const uniquePhase = (parseFloat(id.split('-')[1] || '0') + parseFloat(id.split('-')[2] || '0')) * 1.5 + 1; // Ensure non-zero phase
-      const oscillationX = Math.sin(scrollY * oscillateSpeed + uniquePhase) * oscillateAmplitude;
-      const oscillationY = Math.cos(scrollY * oscillateSpeed * 0.7 + uniquePhase) * (oscillateAmplitude * 0.5);
+      // Simplified oscillations for mobile performance
+      if (isMobile) {
+        // Much simpler oscillation on mobile
+        const simplePhase = parseFloat(id.split('-')[1] || '0') * 0.5;
+        const oscillationX = Math.sin(scrollY * oscillateSpeed + simplePhase) * oscillateAmplitude * 0.5;
+        const oscillationY = Math.cos(scrollY * oscillateSpeed * 0.7 + simplePhase) * (oscillateAmplitude * 0.3);
+        
+        var finalOscillationX = oscillationX;
+        var finalOscillationY = oscillationY;
+      } else {
+        // Full desktop oscillations
+        const uniquePhase = (parseFloat(id.split('-')[1] || '0') + parseFloat(id.split('-')[2] || '0')) * 1.5 + 1;
+        const oscillationX = Math.sin(scrollY * oscillateSpeed + uniquePhase) * oscillateAmplitude;
+        const oscillationY = Math.cos(scrollY * oscillateSpeed * 0.7 + uniquePhase) * (oscillateAmplitude * 0.5);
+        
+        var finalOscillationX = oscillationX + Math.cos(scrollY * oscillateSpeed * 1.3 + uniquePhase * 2) * (oscillateAmplitude * 0.3);
+        var finalOscillationY = oscillationY + Math.sin(scrollY * oscillateSpeed * 0.9 + uniquePhase * 1.7) * (oscillateAmplitude * 0.2);
+      }
       
-      // Add secondary oscillation to prevent any static states
-      const secondaryOscillationX = Math.cos(scrollY * oscillateSpeed * 1.3 + uniquePhase * 2) * (oscillateAmplitude * 0.3);
-      const secondaryOscillationY = Math.sin(scrollY * oscillateSpeed * 0.9 + uniquePhase * 1.7) * (oscillateAmplitude * 0.2);
-      
-      // Create continuous loop with very large cycle to prevent visible repetition
-      const cycleHeight = screenHeight * 12; // Increased for better coverage
-      const cycleWidth = screenWidth * 4; // Increased for better coverage
+      // Simplified cycle calculations for better performance
+      const cycleHeight = isMobile ? screenHeight * 6 : screenHeight * 12; // Smaller cycles on mobile
+      const cycleWidth = isMobile ? screenWidth * 2 : screenWidth * 4;
       
       const xProgress = (baseX % cycleWidth) / cycleWidth;
-      const xOffset = (xProgress * cycleWidth) - (screenWidth * 1.5) + oscillationX + secondaryOscillationX;
+      const xOffset = (xProgress * cycleWidth) - (screenWidth * 1.5) + finalOscillationX;
       
       const yProgress = (baseY % cycleHeight) / cycleHeight;
-      const yOffset = (yProgress * cycleHeight) - (screenHeight * 1) + oscillationY + secondaryOscillationY; // Start closer to top
+      const yOffset = (yProgress * cycleHeight) - (screenHeight * 1) + finalOscillationY;
       
-      // More lenient fade margins to keep stars visible longer
-      const fadeMargin = 400; // Increased fade margin
-      let horizontalFade = 1;
-      let verticalFade = 1;
-      
-      // Horizontal fade - more lenient
-      if (xOffset < -fadeMargin) {
-        horizontalFade = Math.max(0.1, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
-      } else if (xOffset > screenWidth + fadeMargin) {
-        horizontalFade = Math.max(0.1, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
+      // Simplified fade calculations for mobile performance
+      if (isMobile) {
+        // Simple visibility check on mobile
+        const isVisible = xOffset > -200 && xOffset < screenWidth + 200 && 
+                          yOffset > -300 && yOffset < screenHeight + 300;
+        var finalOpacity = isVisible ? baseOpacity * 0.8 : 0;
+      } else {
+        // Full fade calculations on desktop
+        const fadeMargin = 400;
+        let horizontalFade = 1;
+        let verticalFade = 1;
+        
+        if (xOffset < -fadeMargin) {
+          horizontalFade = Math.max(0.1, Math.sin(Math.PI * (xOffset + fadeMargin) / (-fadeMargin * 2)) * 0.5 + 0.5);
+        } else if (xOffset > screenWidth + fadeMargin) {
+          horizontalFade = Math.max(0.1, Math.sin(Math.PI * (screenWidth + fadeMargin - xOffset) / (fadeMargin * 2)) * 0.5 + 0.5);
+        }
+        
+        if (yOffset < -fadeMargin * 2) {
+          verticalFade = Math.max(0.2, Math.sin(Math.PI * (yOffset + fadeMargin * 2) / (-fadeMargin * 3)) * 0.5 + 0.5);
+        } else if (yOffset > screenHeight + fadeMargin * 2) {
+          verticalFade = Math.max(0.2, Math.sin(Math.PI * (screenHeight + fadeMargin * 2 - yOffset) / (fadeMargin * 3)) * 0.5 + 0.5);
+        }
+        
+        var finalOpacity = baseOpacity * horizontalFade * verticalFade;
       }
       
-      // Vertical fade - keep stars visible across entire screen and beyond
-      if (yOffset < -fadeMargin * 2) {
-        verticalFade = Math.max(0.2, Math.sin(Math.PI * (yOffset + fadeMargin * 2) / (-fadeMargin * 3)) * 0.5 + 0.5);
-      } else if (yOffset > screenHeight + fadeMargin * 2) {
-        verticalFade = Math.max(0.2, Math.sin(Math.PI * (screenHeight + fadeMargin * 2 - yOffset) / (fadeMargin * 3)) * 0.5 + 0.5);
-      }
-      
-      const finalOpacity = baseOpacity * horizontalFade * verticalFade;
-      
-      // Scale effect for footer area - dots get bigger near the bottom
-      const footerStartY = screenHeight * 0.85; // Assume footer starts at 85% of screen height
+      // Simplified scaling for mobile
+      const footerStartY = screenHeight * 0.85;
       const isInFooterArea = yOffset > footerStartY;
-      const footerScale = isInFooterArea ? 1 + ((yOffset - footerStartY) / (screenHeight * 0.3)) * 0.5 : 1;
-      const scaledDotSize = dotSize * Math.min(footerScale, 1.5); // Cap maximum scale
-      const scaledSize = size * Math.min(footerScale, 1.3);
+      const footerScale = isInFooterArea ? 1 + ((yOffset - footerStartY) / (screenHeight * 0.3)) * 0.3 : 1; // Reduced scaling
+      const scaledDotSize = dotSize * Math.min(footerScale, 1.3);
+      const scaledSize = size * Math.min(footerScale, 1.2);
       
       // Render if meaningfully visible - lower threshold for better coverage
       if (finalOpacity > 0.02) {
@@ -129,7 +148,7 @@ export const ParallaxBackground = ({
               top: 0,
               left: 0,
               right: 0,
-              height: '200vh', // Increased coverage
+              height: isMobile ? '150vh' : '200vh', // Reduced height on mobile
               pointerEvents: 'none'
             }}
           />
@@ -138,15 +157,12 @@ export const ParallaxBackground = ({
       return null;
     };
     
-    // Enhanced star field for better mobile visibility
+    // Heavily optimized star field for mobile performance
     const starConfigs = isMobile || prefersReducedMotion ? [
-      // Enhanced mobile stars - much more visible and active
-      { opacity: 0.9, size: 80, dotSize: 1.2, speed: 0.15, oscillate: 0.001, amplitude: 30 },
-      { opacity: 0.8, size: 90, dotSize: 1.0, speed: 0.18, oscillate: 0.0012, amplitude: 35 },
-      { opacity: 0.85, size: 85, dotSize: 1.1, speed: 0.16, oscillate: 0.0014, amplitude: 32 },
-      { opacity: 0.75, size: 95, dotSize: 0.9, speed: 0.2, oscillate: 0.0016, amplitude: 38 },
-      { opacity: 0.7, size: 75, dotSize: 0.8, speed: 0.14, oscillate: 0.0009, amplitude: 28 },
-      { opacity: 0.8, size: 100, dotSize: 1.3, speed: 0.22, oscillate: 0.0018, amplitude: 40 }
+      // Minimal mobile stars - much fewer for performance
+      { opacity: 0.8, size: 100, dotSize: 1.0, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
+      { opacity: 0.7, size: 120, dotSize: 0.8, speed: 0.15, oscillate: 0.001, amplitude: 30 },
+      { opacity: 0.6, size: 110, dotSize: 0.9, speed: 0.13, oscillate: 0.0009, amplitude: 28 }
     ] : [
       // Small stars (90% of stars) - much smaller
       { opacity: 0.7, size: 45, dotSize: 0.15, speed: 0.12, oscillate: 0.0008, amplitude: 25 },
@@ -160,8 +176,8 @@ export const ParallaxBackground = ({
     ];
     
     starConfigs.forEach((config, i) => {
-      // Increase mobile stars: more stars per config on mobile for better visibility
-      const starsPerConfig = isMobile || prefersReducedMotion ? 3 : 2;
+      // Drastically reduce star count on mobile for performance
+      const starsPerConfig = isMobile || prefersReducedMotion ? 1 : 2;
       for (let j = 0; j < starsPerConfig; j++) {
         const starId = `star-${i}-${j}`;
         
@@ -202,27 +218,21 @@ export const ParallaxBackground = ({
     if (!isMobile && !prefersReducedMotion) {
       const coloredStarConfig = { color: '200,220,255', opacity: 0.8, size: 70, dotSize: 0.35 };
       
-      const spiralRadius = 35;
-      const spiralSpeed = 0.001;
+      // Simplified colored star for performance
       const baseX = screenWidth * 0.6;
-      
-      // Start colored star visible
       const initialY = screenHeight * 0.25;
-      
-      const spiralX = baseX + Math.cos(scrollY * spiralSpeed) * spiralRadius;
-      const spiralY = initialY + (scrollY * 0.13 * multiplier);
       
       const coloredStar = createStar({
         id: 'colored-star-accent',
         baseOpacity: coloredStarConfig.opacity,
         size: coloredStarConfig.size,
         dotSize: coloredStarConfig.dotSize,
-        xStart: spiralX,
-        yStart: spiralY,
-        ySpeed: Math.max(0.15, 0.13), // Higher minimum movement
-        xDrift: Math.max(0.04, 0.025), // Higher minimum drift
-        oscillateSpeed: Math.max(0.0015, spiralSpeed * 2), // Higher minimum oscillation
-        oscillateAmplitude: Math.max(40, 30), // Higher minimum amplitude
+        xStart: baseX,
+        yStart: initialY,
+        ySpeed: 0.13,
+        xDrift: 0.025,
+        oscillateSpeed: 0.0015,
+        oscillateAmplitude: 30,
         color: coloredStarConfig.color
       });
       
@@ -233,17 +243,17 @@ export const ParallaxBackground = ({
   };
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: '200vh' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ height: isMobile ? '150vh' : '200vh' }}>
       {/* Base dark gray background */}
       <div 
         className={`absolute ${className}`}
         style={{
-          backgroundColor: '#0f0f0f', // Dark grayish instead of pitch black
+          backgroundColor: '#0f0f0f',
           opacity: opacity,
           top: 0,
           left: 0,
           right: 0,
-          height: '200vh' // Increased coverage
+          height: isMobile ? '150vh' : '200vh' // Reduced height on mobile
         }}
       />
       
