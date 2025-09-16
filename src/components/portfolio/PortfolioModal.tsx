@@ -155,228 +155,172 @@ const PortfolioModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[100vw] h-[100vh] max-w-none bg-black/95 backdrop-blur-xl border-0 p-0 overflow-hidden rounded-none sm:w-[95vw] sm:h-[90vh] sm:max-w-6xl sm:rounded-xl sm:border sm:border-white/20">
+      <DialogContent className="w-full h-full max-w-none max-h-none bg-black/95 border-0 p-0 overflow-hidden m-0 sm:w-[95vw] sm:h-[90vh] sm:max-w-6xl sm:rounded-xl sm:border sm:border-white/20 sm:m-4">
         <VisuallyHidden>
           <DialogTitle>{currentItem.title}</DialogTitle>
           <DialogDescription>{currentItem.description || 'Portfolio item details'}</DialogDescription>
         </VisuallyHidden>
-        <div className="flex h-full flex-col bg-black/95">
-          {/* Fixed Header with Close Button */}
-          <div className="flex items-center justify-between p-3 border-b border-white/20 bg-black/95 backdrop-blur-xl flex-shrink-0 safe-area-top">
-            <div className="flex items-center gap-2 min-w-0 flex-1">
-              <h2 className="text-base sm:text-lg font-medium text-white truncate">
-                {currentItem.title}
-              </h2>
-              {items.length > 1 && (
-                <span className="text-white/50 text-xs sm:text-sm">
-                  {currentIndex + 1} of {items.length}
-                </span>
-              )}
-            </div>
-            
-            {/* Close Button - Larger for mobile */}
-            <Button
-              variant="ghost"
-              size="sm"
+        
+        {/* Mobile-First Layout */}
+        <div className="w-full h-full flex flex-col bg-black">
+          {/* Header */}
+          <div className="flex-shrink-0 flex items-center justify-between p-4 bg-black/95 border-b border-white/20">
+            <h2 className="text-white font-medium text-lg truncate flex-1 mr-4">
+              {currentItem.title}
+            </h2>
+            <button
               onClick={onClose}
-              className="text-white hover:bg-white/10 w-12 h-12 p-0 rounded-full ml-2 flex-shrink-0 touch-manipulation"
+              className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
             >
-              <X className="h-6 w-6" />
-            </Button>
+              <X size={20} />
+            </button>
           </div>
 
-          {/* Main Scrollable Content */}
-          <div 
-            className="flex-1 overflow-y-auto overscroll-contain" 
-            style={{ 
-              WebkitOverflowScrolling: 'touch',
-              scrollBehavior: 'smooth'
-            }}
-          >
-            {type === 'property-videos' || type === 'lifestyle-videos' ? (
-              // Video Content
-              <div className="flex items-center justify-center min-h-full p-4">
-                <div className="w-full max-w-4xl aspect-video">
-                  <iframe
-                    src={currentItem.videoUrl}
-                    title={currentItem.title}
-                    className="w-full h-full rounded-lg"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            ) : (
-              // Image Content - Mobile Optimized
-              <div className="space-y-4">
-                {/* Main Image Container */}
-                <div className="px-4 pt-4">
-                  <div className="relative bg-black/30 rounded-lg overflow-hidden">
-                    {getCurrentImage() ? (
-                      <img
-                        src={getCurrentImage()}
-                        alt={`${currentItem.title}`}
-                        className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] object-contain"
-                        style={{ minHeight: '200px' }}
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-48 text-white/60">
-                        <p>Loading image...</p>
-                      </div>
-                    )}
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="min-h-full">
+              {/* Main Image */}
+              <div className="w-full bg-black/50 min-h-[50vh] flex items-center justify-center relative">
+                {getCurrentImage() ? (
+                  <>
+                    <img
+                      src={getCurrentImage()}
+                      alt={currentItem.title}
+                      className="w-full h-auto max-w-full max-h-[50vh] object-contain"
+                      style={{ display: 'block' }}
+                    />
                     
-                    {/* Image Navigation Arrows Overlay */}
+                    {/* Navigation arrows if multiple images */}
                     {hasMultipleImages && (
                       <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
+                        <button
                           onClick={() => setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-black/50 w-10 h-10 p-0 rounded-full backdrop-blur-sm touch-manipulation"
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white"
                         >
-                          <ChevronLeft className="h-5 w-5" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
                           onClick={() => setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-black/50 w-10 h-10 p-0 rounded-full backdrop-blur-sm touch-manipulation"
+                          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white"
                         >
-                          <ChevronRight className="h-5 w-5" />
-                        </Button>
+                          <ChevronRight size={20} />
+                        </button>
                       </>
                     )}
+                  </>
+                ) : (
+                  <div className="text-white/60 p-8 text-center">
+                    <p>Image not available</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Thumbnails */}
+              {hasMultipleImages && (
+                <div className="p-4 bg-black/30">
+                  <div className="text-center text-white/70 text-sm mb-3">
+                    {selectedImageIndex + 1} of {images.length}
+                  </div>
+                  <div className="flex gap-2 overflow-x-auto pb-2">
+                    {images.map((image: string, index: number) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`flex-shrink-0 w-16 h-12 rounded border-2 overflow-hidden transition-all ${
+                          selectedImageIndex === index 
+                            ? 'border-white scale-105' 
+                            : 'border-white/30'
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`Thumbnail ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
                   </div>
                 </div>
+              )}
 
-                {/* Thumbnail Navigation */}
-                {hasMultipleImages && (
-                  <div className="px-4 space-y-2">
-                    <div className="text-center text-white/70 text-sm">
-                      {selectedImageIndex + 1} of {images.length}
-                    </div>
-                    <div className="overflow-x-auto">
-                      <div 
-                        ref={thumbnailContainerRef}
-                        className="flex gap-3 pb-2 px-2"
-                        style={{ minWidth: 'max-content' }}
-                      >
-                        {images.map((image: string, index: number) => (
-                          <button
-                            key={index}
-                            ref={el => thumbnailRefs.current[index] = el}
-                            onClick={() => setSelectedImageIndex(index)}
-                            className={`flex-shrink-0 w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden border-2 transition-all touch-manipulation ${
-                              selectedImageIndex === index 
-                                ? 'border-white shadow-lg scale-105' 
-                                : 'border-white/30 hover:border-white/60'
-                            }`}
-                          >
-                            <img
-                              src={image}
-                              alt={`${currentItem.title} thumbnail ${index + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+              {/* Content Details */}
+              <div className="p-4 space-y-4 bg-black/20">
+                {/* Date and Location */}
+                <div className="text-white/70 text-sm">
+                  {currentItem.date} • {currentItem.location}
+                </div>
+
+                {/* Badges */}
+                <div className="flex gap-2 flex-wrap">
+                  {currentItem.clientType && (
+                    <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                      {currentItem.clientType}
+                    </Badge>
+                  )}
+                  {currentItem.packageType && (
+                    <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
+                      {currentItem.packageType}
+                    </Badge>
+                  )}
+                </div>
+
+                {/* Project Description */}
+                {currentItem.description && (
+                  <div>
+                    <h3 className="text-white font-medium text-base mb-2">Project Details</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.description}
+                    </p>
                   </div>
                 )}
 
-                {/* Project Details - Always Show for Property Listings */}
-                {type === 'property-listings' && (
-                  <div className="px-4 pb-6 space-y-4 border-t border-white/10 pt-4 mt-2">
-                    {/* Date and Location */}
-                    <div className="flex items-center gap-2 text-white/70 text-sm">
-                      <span>{currentItem.date}</span>
-                      {currentItem.location && (
-                        <>
-                          <span>•</span>
-                          <span className="truncate">{currentItem.location}</span>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Badges */}
-                    <div className="flex gap-2 flex-wrap">
-                      {currentItem.clientType && (
-                        <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                          {currentItem.clientType}
-                        </Badge>
-                      )}
-                      {currentItem.packageType && (
-                        <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                          {currentItem.packageType}
-                        </Badge>
-                      )}
-                      {currentItem.category && (
-                        <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-xs">
-                          {currentItem.category}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Project Description */}
-                    {currentItem.description && (
-                      <div className="space-y-2">
-                        <h3 className="text-base font-medium text-white">Project Details</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.description}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Client Requirements */}
-                    {currentItem.clientNotes && (
-                      <div className="space-y-2">
-                        <h3 className="text-base font-medium text-white">Client Requirements</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.clientNotes}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Shoot Details */}
-                    {currentItem.shootDetails && (
-                      <div className="space-y-2">
-                        <h3 className="text-base font-medium text-white">Shoot Details</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          {currentItem.shootDetails}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Navigation between properties */}
-                    {items.length > 1 && (
-                      <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
-                          className="text-white hover:bg-white/10 flex items-center gap-2 touch-manipulation"
-                        >
-                          <ChevronLeft className="h-4 w-4" />
-                          Previous
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
-                          className="text-white hover:bg-white/10 flex items-center gap-2 touch-manipulation"
-                        >
-                          Next
-                          <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    )}
+                {/* Client Requirements */}
+                {currentItem.clientNotes && (
+                  <div>
+                    <h3 className="text-white font-medium text-base mb-2">Client Requirements</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.clientNotes}
+                    </p>
                   </div>
                 )}
 
-                {/* Safe bottom padding for mobile */}
-                <div className="h-16"></div>
+                {/* Shoot Details */}
+                {currentItem.shootDetails && (
+                  <div>
+                    <h3 className="text-white font-medium text-base mb-2">Shoot Details</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {currentItem.shootDetails}
+                    </p>
+                  </div>
+                )}
+
+                {/* Navigation between properties */}
+                {items.length > 1 && (
+                  <div className="flex justify-between items-center pt-4 border-t border-white/20">
+                    <button
+                      onClick={() => onNavigate(currentIndex > 0 ? currentIndex - 1 : items.length - 1)}
+                      className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                    >
+                      <ChevronLeft size={16} />
+                      Previous
+                    </button>
+                    <span className="text-white/50 text-sm">
+                      {currentIndex + 1} of {items.length}
+                    </span>
+                    <button
+                      onClick={() => onNavigate(currentIndex < items.length - 1 ? currentIndex + 1 : 0)}
+                      className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                    >
+                      Next
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                )}
+
+                {/* Extra bottom padding for mobile */}
+                <div className="h-8"></div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </DialogContent>
