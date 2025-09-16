@@ -103,8 +103,8 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent Successfully!",
-      description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
+      title: "Thanks! You're on the insider list.",
+      description: "We'll send you exclusive property previews soon."
     });
   };
 
@@ -252,137 +252,116 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form & Services */}
-      <section className="py-32 transparent-section">
+      {/* Ready to Work Together Section - imported from home page */}
+      <section id="contact-form" className="py-32 transparent-section relative overflow-hidden z-10">
         <div 
-          className="container mx-auto max-w-7xl px-4 md:px-8 relative z-20"
+          className="container mx-auto max-w-6xl relative z-20 px-4 md:px-8"
           style={{ transform: `translateY(${scrollY * 0.03}px)` }}
         >
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
-            <div>
-              <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-light mb-4 text-white">
-                  Send Us a Message
-                </h2>
-                <p className="text-white/70">
-                  Tell us about your project and we'll get back to you with a custom proposal.
-                </p>
+          <div className="text-center mb-12 md:mb-16 animate-fade-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 md:mb-8 border-b border-white/20 pb-3 md:pb-4 text-white">
+              Ready to Work Together?
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl leading-relaxed text-white/80 font-light max-w-2xl mx-auto">Let's discuss collaboration ideas. No obligations.</p>
+          </div>
+            
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+            {/* Contact Info */}
+            <div className="space-y-6 md:space-y-8 animate-slide-in">
+              <div>
+                <h3 className="text-xl md:text-2xl font-light text-white mb-4 md:mb-6">Get In Touch</h3>
+                <div className="space-y-4 md:space-y-6">
+                  <a href="mailto:geir@elevateproperties.es" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <Mail className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm md:text-base">Email</p>
+                      <p className="text-sm md:text-base">geir@elevateproperties.es</p>
+                    </div>
+                  </a>
+                  <a href="https://wa.me/34685243192" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                      <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-green-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm md:text-base">WhatsApp</p>
+                      <p className="text-sm md:text-base">+34 685 243 192</p>
+                    </div>
+                  </a>
+                  <a href="https://www.instagram.com/elevateproperties.es" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90 hover:scale-105 transition-transform duration-300">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-pink-500/20 rounded-xl flex items-center justify-center">
+                      <Instagram className="w-5 h-5 md:w-6 md:h-6 text-pink-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm md:text-base">Instagram</p>
+                      <p className="text-sm md:text-base">@elevateproperties.es</p>
+                    </div>
+                  </a>
+                  <div className="flex items-center gap-3 md:gap-4 text-white/80 transition-colors hover:text-white/90">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <MapPin className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm md:text-base">Location</p>
+                      <p className="text-sm md:text-base">Costa del Sol, Spain</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <Card className="glass-card p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName" className="text-white mb-2 block">
-                        First Name *
-                      </Label>
-                      <Input 
-                        id="firstName" 
-                        required
-                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
-                        placeholder="John"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName" className="text-white mb-2 block">
-                        Last Name *
-                      </Label>
-                      <Input 
-                        id="lastName" 
-                        required
-                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="email" className="text-white mb-2 block">
-                      Email Address *
-                    </Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="phone" className="text-white mb-2 block">
-                      Phone Number
-                    </Label>
-                    <Input 
-                      id="phone" 
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors" 
-                      placeholder="+34 123 456 789"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="clientType" className="text-white mb-2 block">
-                      I am a... *
-                    </Label>
-                    <Select onValueChange={handleTypeChange} required>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-colors">
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="real-estate-agent">Real Estate Agent</SelectItem>
-                        <SelectItem value="property-owner">Property Owner</SelectItem>
-                        <SelectItem value="developer">Property Developer</SelectItem>
-                        <SelectItem value="business-owner">Business Owner</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="service" className="text-white mb-2 block">
-                      Service Needed *
-                    </Label>
-                    <Select required>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-colors">
-                        <SelectValue placeholder="Select service" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="photography">Photography Only</SelectItem>
-                        <SelectItem value="video">Video Tour Only</SelectItem>
-                        <SelectItem value="both">Photography + Video</SelectItem>
-                        <SelectItem value="marketing">Full Marketing Package</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="message" className="text-white mb-2 block">
-                      Project Details *
-                    </Label>
-                    <Textarea 
-                      id="message" 
-                      rows={5}
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 hover:bg-white/15 transition-colors"
-                      placeholder="Tell us about your property, timeline, budget, and any specific requirements..."
-                    />
-                  </div>
-                  
-                    <Button 
-                      type="submit" 
-                      size="lg"
-                      className="w-full glass-button group"
-                    >
-                    Send Message
-                    <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </form>
-              </Card>
             </div>
-
-            {/* Spacer for full width layout */}
-            <div></div>
+            
+            {/* Contact Form */}
+            <Card className="p-4 md:p-8 bg-transparent backdrop-blur-md border border-white/10">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
+                  <div>
+                    <Label htmlFor="firstName" className="text-white mb-1 md:mb-2 block text-sm md:text-base">First Name</Label>
+                    <Input id="firstName" className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-10 md:h-12" />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-white mb-1 md:mb-2 block text-sm md:text-base">Last Name</Label>
+                    <Input id="lastName" className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-10 md:h-12" />
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="email" className="text-white mb-1 md:mb-2 block text-sm md:text-base">Email</Label>
+                  <Input id="email" type="email" className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-10 md:h-12" />
+                </div>
+                
+                <div>
+                  <Label htmlFor="phone" className="text-white mb-1 md:mb-2 block text-sm md:text-base">Phone</Label>
+                  <Input id="phone" className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-10 md:h-12" />
+                </div>
+                
+                <div>
+                  <Label htmlFor="clientType" className="text-white mb-1 md:mb-2 block text-sm md:text-base">I am a...</Label>
+                  <Select onValueChange={handleTypeChange}>
+                    <SelectTrigger className="bg-white/10 border-white/20 text-white h-10 md:h-12">
+                      <SelectValue placeholder="Select your type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="home-seller">Home Seller</SelectItem>
+                      <SelectItem value="home-buyer">Home Buyer</SelectItem>
+                      <SelectItem value="real-estate-agent">Real Estate Agent</SelectItem>
+                      <SelectItem value="small-business">Small Business</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label htmlFor="message" className="text-white mb-1 md:mb-2 block text-sm md:text-base">Message</Label>
+                  <Textarea id="message" rows={3} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 min-h-[80px] md:min-h-[100px]" placeholder="Tell us about your project..." />
+                </div>
+                
+                <Button type="submit" variant="outline" className="w-full bg-white/10 backdrop-blur-sm border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 hover-scale group relative z-50 h-12 md:h-14 text-sm md:text-base">
+                  Send Message
+                  <Send className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </form>
+            </Card>
           </div>
         </div>
       </section>
