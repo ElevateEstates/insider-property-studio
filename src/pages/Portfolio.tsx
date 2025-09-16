@@ -111,10 +111,10 @@ const Portfolio = () => {
           className="container mx-auto max-w-4xl px-4 md:px-8 text-center"
           style={{ transform: `translateY(${scrollY * 0.02}px)` }}
         >
-          <div className="space-y-8">
-            <h2 className="text-2xl md:text-3xl font-light text-white/90">
+          <div className="space-y-12">
+            <p className="text-base md:text-lg lg:text-xl leading-relaxed text-white font-light transition-colors hover:text-white">
               ready to start working?
-            </h2>
+            </p>
             <Link to="/#contact">
               <Button 
                 variant="outline" 
