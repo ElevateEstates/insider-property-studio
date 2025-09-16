@@ -57,41 +57,9 @@ export const TestimonialsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Smooth infinite scroll using precise calculations
+  // No animation effect needed - using pure CSS animation now
   useEffect(() => {
-    if (!isVisible) return;
-    
-    const animate = () => {
-      // Move left by 0.5px per frame for smooth animation  
-      translateXRef.current -= 0.5;
-      
-      // Calculate exact reset point: width of one testimonial set multiplied by 10
-      // w-80 = 320px + px-4 padding = 16px each side + gap-8 = 32px between items
-      const itemWidth = 320 + 32 + 32; // card width + padding + gap
-      const singleSetWidth = testimonials.length * itemWidth * 10; // 10x repetition
-      
-      // Reset seamlessly when we've moved through all 10 cycles
-      // This will take a very long time so effectively infinite
-      if (Math.abs(translateXRef.current) >= singleSetWidth) {
-        translateXRef.current = 0;
-      }
-      
-      // Apply transform to the container
-      const container = document.querySelector('.testimonials-scroll-container');
-      if (container) {
-        (container as HTMLElement).style.transform = `translateX(${translateXRef.current}px)`;
-      }
-      
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
+    // Just track visibility for entrance animations
   }, [isVisible]);
 
   const ProfileImage = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
@@ -138,12 +106,9 @@ export const TestimonialsSection = () => {
     );
   };
 
-  // Render testimonials multiple times for effectively infinite scroll
+  // Render testimonials - original set only for SEO, CSS handles infinite scroll
   const renderTestimonials = () => {
-    // Create 10 identical sets - effectively infinite for any reasonable viewing time
-    const repeatedTestimonials = Array(10).fill(testimonials).flat();
-    
-    return repeatedTestimonials.map((testimonial, index) => (
+    return testimonials.map((testimonial, index) => (
       <div
         key={`testimonial-${index}`}
         className="flex-shrink-0 w-80 px-4 select-none cursor-pointer transition-all duration-300 hover:scale-102 origin-center"
@@ -212,14 +177,21 @@ export const TestimonialsSection = () => {
           
           <div className="overflow-hidden py-8">
             <div 
-              className="testimonials-scroll-container flex gap-8"
+              className="testimonials-scroll-container flex gap-8 animate-marquee"
               style={{ 
-                transition: 'none', // Pure requestAnimationFrame animation
+                transition: 'none',
                 pointerEvents: 'auto',
-                willChange: 'transform' // Optimize for smooth animation
+                willChange: 'transform',
+                animationDuration: '40s', // Slow smooth scroll
+                animationIterationCount: 'infinite',
+                animationTimingFunction: 'linear'
               }}
             >
               {renderTestimonials()}
+              {/* Duplicate for seamless loop - hidden from SEO */}
+              <div aria-hidden="true" className="flex gap-8">
+                {renderTestimonials()}
+              </div>
             </div>
           </div>
         </div>
