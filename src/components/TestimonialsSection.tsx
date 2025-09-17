@@ -5,8 +5,15 @@ import scarlettPhoto from "../assets/scarlett-lancaster.jpg";
 import eddiePhoto from "../assets/eddie-profile.jpg";
 import yoniPhoto from "../assets/yoni-profile.jpg";
 import wlcostaPhoto from "../assets/wlcosta-profile.jpg";
+import janaPhoto from "../assets/jana-parker.jpg";
 
 const testimonials = [
+  {
+    quote: "We have been working with Geir for the past couple of years and have always been impressed by his professionalism and exceptional quality of his work. His images perfectly showcase the character and atmosphere of our holiday rentals, making them stand out to potential guests. We couldn't recommend him more highly!",
+    author: "Jana Parker",
+    company: "Sales and Office Manager at SUNCOASTER SL",
+    image: janaPhoto
+  },
   {
     quote: "Geir has been working with us for the past two years and has become a huge part of our real estate journey. Not only does he help us present our exclusive listings in the best possible way, but he also brings fresh energy, creative ideas, and a new perspective to everything we do. He's a cool guy with a brilliant creative brain, always thinking outside the box and encouraging us to push beyond our comfort zone. Geir's support means a lot to us, he's a true team player and someone we're genuinely grateful to work with. His work speaks for itself, and our clients are always seriously impressed.",
     author: "Warner and Sandra Laurie",
